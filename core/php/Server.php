@@ -44,6 +44,8 @@ class Plex_Server extends Plex_MachineAbstract
 	 * The Plex HTTP API endpoint for client listing.
 	 */
 	const ENDPOINT_CLIENT = 'clients';
+	const ENDPOINT_STATUS = 'status';
+	const ENDPOINT_SESSIONS = 'sessions';
 
 	/**
 	 * Sets up our Plex server using the minimum amount of data required to
@@ -104,6 +106,32 @@ class Plex_Server extends Plex_MachineAbstract
 			$client->setVersion($attribute['version']);
 			$client->setServer($this);
 			$clients[$attribute['name']] = $client;
+		}
+		
+		return $clients;
+	}
+	public function getClientsSessions()
+	{
+		$url = sprintf(
+			'%s/%s',
+			$this->getBaseUrl(),
+			self::ENDPOINT_STATUS.'/'.
+			self::ENDPOINT_SESSIONS
+		);
+		$clients = array();
+		$clientArray = $this->makeCall($url);
+		
+		foreach ($clientArray as $attribute) {
+			$client = new Plex_Client(
+				$attribute['device'],
+				$attribute['address'],
+				(int) $attribute['port']
+			);
+			$client->setHost($attribute['host']);
+			$client->setMachineIdentifier($attribute['machineIdentifier']);
+			$client->setVersion($attribute['version']);
+			$client->setServer($this);
+			$clients[$attribute['device']] = $client;
 		}
 		
 		return $clients;
