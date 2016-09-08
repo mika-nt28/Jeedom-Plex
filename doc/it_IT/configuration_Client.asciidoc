@@ -1,0 +1,16 @@
+Nous allons nous rendre sur la page de parametrage des client plex Plugins > Multimedia > Plex
+Arriver sur cette page nous allons pouvoir acceder a nos clients deja configurer, ou en ajouter un.
+
+image::../images/plex_screenshot_configuration1.jpg[]
+
+Vous l'aurez deviné, pour ajouté un client, il suffit de cliquer sur le bouton "Ajouter" et de nomer l'equipement dans la fenetre qui va apparaitre
+
+image::../images/plex_screenshot_configuration2.jpg[]
+
+Commencer par personnalisé les paramettre général (activer, visisble, parent)
+N'oublier pas d'activer l'option "Heartbeat" pour que le demon serveille votre client.
+
+Dans la partie configuration, le plugin detecte automatiquement tous les client compatible (Aujourd'hui teste Rasplex et plex *home theater.
+Vos clients doivent imperativement etre lancer et connecte au serveur plex*
+
+Ajouté un increment pour le volume.

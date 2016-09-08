@@ -1,0 +1,21 @@
+La premiere chose a réaliser est de connecter Jeedom au serveur plex.
+
+Juste apres l'activation, nous avons les champs de parametrage du serveur.
+
+image::../images/plex_screenshot_configuration3.jpg[]
+
+Remplisser donc bien les 3 champs
+
+* Adresse ip du serveur
+* Le port de connexion
+* Son nom, attention de bien respecter la casse de se parametre
+
+
+Pour connaitre les informations liée a votre installation Plex je vous conseill d'ouvrir la page de configuration de votre server Plex
+
+image::../images/plex_screenshot_ServeurConfiguration.jpg[]
+
+Nota:
+
+Des indicateur de demon sont egalement présente sur cette page de configuration.
+Le demon permet de scruter l'etat de media en cours et determine si une pause et etablie sur le player.
