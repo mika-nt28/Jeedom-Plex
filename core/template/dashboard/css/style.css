@@ -1,0 +1,671 @@
+/* CSS Widget plex */
+
+.plex_widget{
+	width: 220px;
+	height: 330px;
+	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	background-color: black;
+	overflow:hidden;	
+	position: relative;	
+	z-index: 1;
+}
+
+.haut_plex_widget{
+	height: 257px;
+	width: 250px;
+	
+	background-color: #4a89dc;
+	
+	z-index: 2;
+}
+.bas_plex_widget{
+	height: 70px;
+	width: 250px;
+	
+	background-color: #5d9cec;
+	
+	z-index: 2;
+}
+.bas_plex_widget_volume{
+	height: 70px;
+	width: 250px;
+	
+	background-color: #5d9cec;
+	
+	z-index: 2;
+}
+
+
+/* PATIE CERCLE */
+.cercle_bas_plex_widget{
+	width: 52px;
+	height: 52px;
+	
+	position: absolute;
+	
+	margin : 6.5px 99px 6.5px;
+	
+	border: 2px solid black;
+	
+	border-radius:50%;
+	
+	z-index: 3;
+	
+	opacity: 0.6;
+}
+.cercle_bas_plex_widget:hover{
+	
+	border-radius:20%;
+	
+	border: 2px solid #679403;
+	
+	opacity: 1;
+	transition: all 2s;
+}
+.play_in_cercle{
+	width: 30px;
+	height: 30px;
+	
+	position: absolute;
+	
+	margin-left: 12px;
+	margin-top: 9px;
+	
+	cursor:pointer;
+	
+	z-index: 4;
+}
+.pause_in_cercle{
+	width: 30px;
+	height: 30px;
+	
+	position: absolute;
+	
+	margin-left: 9px;
+	margin-top: 9px;
+	
+	cursor:pointer;
+	
+	z-index: 4;
+}
+.avance_gauche{
+	width: 20px;
+	height: 20px;
+	
+	position: absolute;
+	
+	margin-top: 23px;
+	left: 48px;
+	
+	-ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    
+    cursor:pointer;
+    
+    z-index: 4;
+    
+    opacity: 0.6;
+}
+.avance_gauche:hover{
+	opacity: 1;
+}
+.avance_droite{
+	width: 20px;
+	height: 20px;
+	
+	position: absolute;
+	
+	margin-top: 22px;
+	right: 48px;
+	
+	cursor:pointer;
+	
+	z-index: 4;
+	
+	opacity: 0.6;
+}
+.avance_droite:hover{
+	opacity: 1;
+}
+
+.change_gauche{
+	width: 20px;
+	height: 20px;
+	
+	position: absolute;
+	
+	margin-top: 23px;
+	left: 25px;
+	
+	-ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    
+    cursor:pointer;
+    
+    z-index: 4;
+    
+    opacity: 0.6;
+}
+.change_gauche:hover{
+	opacity: 1;
+}
+.change_droite{
+	width: 20px;
+	height: 20px;
+	
+	position: absolute;
+	
+	margin-top: 22px;
+	right: 25px;
+    
+    cursor:pointer;
+    
+    z-index: 4;
+    
+    opacity: 0.6;
+}
+.change_droite:hover{
+	opacity: 1;
+}
+
+.working_droite{
+	width: 15px;
+	height: 40px;
+	
+	position: absolute;
+	
+	top: 143.5px;
+	right: 5px;
+	
+	cursor:pointer;
+	
+	z-index: 4;
+	
+	opacity: 0.1;
+}
+.working_droite:hover{
+	opacity: 1;
+}
+.working_droite_telecommande{
+	width: 15px;
+	height: 40px;
+	
+	position: absolute;
+	
+	top: 143.5px;
+	left: 5px;
+	
+	cursor:pointer;
+	
+	z-index: 4;
+	
+	-ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+	
+	opacity: 0.1;
+}
+.working_droite_telecommande:hover{
+	opacity: 1;
+}
+.sections_gauche{
+	width: 15px;
+	height: 40px;
+	
+	position: absolute;
+	
+	top: 143.5px;
+	left: 5px;
+	
+	cursor:pointer;
+	
+	-ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+	
+	z-index: 4;
+	
+	opacity: 0.1;
+}
+.sections_gauche:hover{
+	opacity: 1;
+}
+.sections_droite_liste{
+	width: 15px;
+	height: 40px;
+	
+	position: absolute;
+	
+	top: 143.5px;
+	right: 5px;
+	
+	cursor:pointer;
+	
+	z-index: 4;
+	
+	opacity: 0.1;
+}
+.sections_droite_liste:hover{
+	opacity: 1;
+}
+.telecommande_plex_widget{
+	width: 200px;
+	height: 327px;
+	
+	float: left;
+	
+	position: absolute;
+	
+	z-index: 10;
+	
+	right: -200px;
+	
+	background-color: #4a89dc;
+}
+.media_panel{
+	width: 200px;
+	height: 327px;
+	
+	float: left;
+	
+	position: absolute;
+	
+	z-index: 10;
+	
+	left: -200px;
+	
+	background-color: #4a89dc;
+}
+
+.titre_plex{
+	text-align: center;
+	width: 250px;
+	height: 25px;
+	overflow:hidden;
+	
+	position: absolute;
+	
+}
+.gros_titre_plex{
+	font-size:18px;
+}
+.petit_titre_plex{
+	font-size:14px;
+}
+
+.jaquette_plex{
+	width: 250px;
+	height: 200px;
+}
+
+.affiche_premiere_plex{
+	width: 130px;
+	height: 170px;
+	
+	position: absolute;
+	
+	margin-left: 60px;
+	margin-top: 25px;
+	
+	z-index: 7;
+	cursor:pointer;
+	
+	border-radius: 10%;
+}
+.affiche_prev_plex{
+	width: 110px;
+	height: 150px;
+	
+	position: absolute;
+	
+	margin-left: 40px;
+	margin-top: 45px;
+	
+	z-index: 6;
+	
+	opacity: 0.22;
+	
+	border-radius: 10%;
+}
+.affiche_next_plex{
+	width: 110px;
+	height: 150px;
+	
+	position: absolute;
+	
+	margin-left: 100px;
+	margin-top: 45px;
+	
+	z-index: 6;
+	
+	opacity: 0.22;
+	
+	border-radius: 10%;
+}
+.shadow_fenetre_plex{
+	-moz-box-shadow: 0px 0px 40px 0px #330001;
+	-webkit-box-shadow: 0px 0px 40px 0px #330001;
+	-o-box-shadow: 0px 0px 40px 0px #330001;
+	box-shadow: 0px 0px 40px 0px #330001;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#330001, Direction=NaN, Strength=40);
+}
+
+
+/*PATIE TELECOMMANDE*/
+.commande_principal_plex{
+	position: absolute; 
+	top: 50px; 
+	height: 150px; 
+	width: 150px; 
+	left: 25px;
+}
+.bouton_media_plex{
+	width: 35px;
+	height: 65px;
+	top:42.5px;
+	left: 0px;
+	position: absolute;
+	cursor:pointer;
+	opacity: 0.7;
+}
+.bouton_media_plex:hover{
+	opacity: 1;
+}
+.bouton_haut_plex{
+	height: 65px;
+	width: 35px;
+	-ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+	left: 57.5px;
+	top:-12px;
+	position: absolute;
+	cursor:pointer;
+	opacity: 0.7;
+}
+.bouton_haut_plex:hover{
+	opacity: 1;
+}
+.bouton_droit_plex{
+	height: 65px;
+	width: 35px;
+	-ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+	right: 0px;
+	top:42.5px;
+	position: absolute;
+	cursor:pointer;
+	opacity: 0.7;
+}
+.bouton_droit_plex:hover{
+	opacity: 1;
+}
+.bouton_bas_plex{
+	height: 65px;
+	width: 35px;
+	-ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+	left: 57.5px;
+	bottom:-12px;
+	position: absolute;
+	cursor:pointer;
+	opacity: 0.7;
+}
+.bouton_bas_plex:hover{
+	opacity: 1;
+}
+.commande_entree_plex{
+	position: absolute;
+	top: 61px;
+	left: 48px;
+	opacity: 0.7;
+	cursor:pointer;
+}
+.commande_entree_plex:hover{
+	opacity: 1;
+}
+.stop_plex_widget{
+	height: 22px;
+	width: 22px;
+	background-color: black;
+	
+	position: absolute;
+	
+	margin-top: 21px;
+	right: 73px;
+    
+    cursor:pointer;
+    
+    z-index: 4;
+    
+    opacity: 0.6;
+    
+    border-radius: 2px;
+}
+.stop_plex_widget:hover{
+	background-color: #DA4453;
+	opacity: 0.9;
+}
+.osd-plex{
+	height: 30px;
+	width: 22px;
+	
+	position: absolute;
+	
+	margin-top: 21px;
+	left: 74px;
+    
+    cursor:pointer;
+    
+    z-index: 4;
+    
+    opacity: 0.6;
+    background-image: url('../images/working.png');
+    
+    background-size: 22px 22px;
+    background-repeat: no-repeat;
+}
+.osd-plex:hover{
+	opacity: 0.9;
+	background-image: url('../images/workinghover.png');
+}
+
+/*AFFICHE MUSIQUE*/
+.affiche_premiere_musique_plex{
+	width: 150px;
+	height: 150px;
+	
+	position: absolute;
+	
+	left: 50px;
+	margin-top: 40px;
+	
+	z-index: 7;
+	cursor:pointer;
+	
+	border-radius: 10%;
+}
+.affiche_deuxieme_musique_plex{
+	width: 130px;
+	
+	position: absolute;
+	
+	left: 25px;
+	margin-top: 60px;
+	
+	z-index: 6;
+	
+	opacity: 0.22;
+	
+	border-radius: 10%;
+}
+.affiche_troisieme_musique_plex{
+	width: 130px;
+	height: 130px;
+	
+	position: absolute;
+	
+	right: 25px;
+	margin-top: 60px;
+	
+	z-index: 6;
+	
+	opacity: 0.22;
+	
+	border-radius: 10%;
+}
+.titre_haut_plex_widget{
+width: 250px;
+font-size : 1em;
+text-align:center;
+position: absolute;
+font-weight: bold;
+z-index: 2;
+}
+.commande_haute_plex{
+	position: absolute;
+	width: 135px;
+	left:32.5px;
+	bottom:10px;
+}
+.commande_haute_plex_deux{
+	position: absolute;
+	width: 160px;
+	bottom: 40px;
+	left:25px;
+	
+}
+.btm-library-plex{
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	opacity: 0.6;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+.btm-library-plex:hover{
+	opacity: 1;
+}
+.retour-plex{
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	opacity: 0.7;
+	position: absolute;
+	bottom: 0px;
+}
+.retour-plex:hover{
+	opacity: 1;
+}
+.acceuil-plex{
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	opacity: 0.6;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+.acceuil-plex:hover{
+	opacity: 1;
+}
+.full-plex{
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	opacity: 0.6;
+	position: absolute;
+}
+.full-plex:hover{
+	opacity: 1;
+}
+.volumeoff-plex{
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	opacity: 0.6;
+	position: absolute;
+	right: 0px;
+}
+.volumeoff-plex:hover{
+	opacity: 1;
+}
+.btm-telecommande-power-plex{
+	position: absolute;
+	width: 15px;
+	height: 18px;
+	opacity: 0.5;
+	left: 10px;
+	top: 10px;
+	cursor: pointer;
+	background-image: url('../images/power.png');
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+}
+.btm-telecommande-power-plex:hover{
+	background-image: url('../images/power-rouge.png');
+	opacity: 0.8;
+}
+.btm-telecommande-reboot-plex{
+	position: absolute;
+	width: 15px;
+	height: 18px;
+	opacity: 0.5;
+	right:15px;
+	top:10px;
+	cursor: pointer;
+	background-image: url('../images/reboot.png');
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+}
+.btm-telecommande-reboot-plex:hover{
+	background-image: url('../images/reboot-orange.png');
+	opacity: 0.8;
+}
+.time_haut_plex_widget{
+	position: absolute;
+	font-weight: bold;
+    z-index: 4;
+	margin-top: 3px;
+    text-decoration: none; 
+    cursor:default;
+	right: 10px;
+	opacity: 0.6;
+}
+
+.volume_plex_widget{
+	position: absolute;
+	width: 250px;
+	bottom: 20px;
+}
+
+.bouton_sup_volume{
+	opacity: 0.5;
+	cursor: pointer;
+	position: absolute;
+	bottom: 75px;
+	left: 5px;
+	
+	
+}
+.bouton_sup_volume:hover{
+	opacity: 1;
+}
+
+.type_media{
+	
+	position: absolute;
+	margin-top: 5px;
+	left: 5px;
+    cursor:pointer;
+    text-decoration: none; 
+    cursor:default;
+    z-index: 4;
+    opacity: 0.3;
+}

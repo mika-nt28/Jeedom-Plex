@@ -1,0 +1,132 @@
+<div class="eqLogic eqLogic-widget plex" data-version="mobile" style="overflow:hidden;text-align:center; width: 420px; height:19.34em; padding-bottom:0px;background-color:#4a89dc;" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#">
+	<link rel="stylesheet" href="plugins/plex/core/template/mobile/css/mobile.css" />
+				<span class="statusCmd" style="position : absolute;bottom : 1px;left : 1px;width : 30px;color: #404040 ;z-index: 1030;"></span>
+				<img src="" class="type_media" style="position:absolute;left:5px; height:0.8em; top:5px;opacity: 0.3;"/>
+				<span style="position:absolute; right:5px; font-size:0.7em; color: #404040 ;top:5px;">#endtime_media#</span>
+				<strong style="margin-left:auto;margin-right:auto;">#name#</strong>
+				<div style="margin-top : 5px; height:12em;">
+					<div class="jaquette_plex_gros" style="height:8em;">
+					<img class="jaquette_plex" src="#thumbnail#" style="margin-left:auto;margin-right:auto;height:100%;border-radius:5%;"/>
+					</div>
+					<div class="jaquette_plex_telecommande" style="height:8em; display:none;">
+					<img class="bouton_gauche_plex cmd noRefresh" data-cmd_id="#cmd_left_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
+					<img class="bouton_droit_plex cmd noRefresh" data-cmd_id="#cmd_right_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
+					<img class="bouton_haut_plex cmd noRefresh" data-cmd_id="#cmd_up_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
+					<img class="bouton_bas_plex cmd noRefresh" data-cmd_id="#cmd_down_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
+					<a class="commande_entree_plex cmd noRefresh" data-cmd_id="#cmd_ok_id#" style="text-decoration: none; color: black; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:1em;font-weight:bold;">Entrée</a>
+					<img class="jaquette_plex" src="plugins/plex/core/template/dashboard/images/plex_logo.png" style="margin-left:auto;margin-right:auto;height:100%;border-radius:5%;"/>
+					</div>
+				<div class="jaquette_plex_gros_aa" style="height:3.23em;">
+				<span style="font-size:1em;">
+					#titrehaut#
+				</span>
+				<br />
+				<span style="font-size:0.7em;">
+					#titrebas#
+				</span>
+				</div>
+				<div class="jaquette_plex_telecommande_aa" style="height:3.23em;display:none;">
+				
+				<img class="bouton_bas_aa cmd noRefresh" data-cmd_id="#cmd_back_id#" src="plugins/plex/core/template/dashboard/images/retour.png"/>
+				<img class="bouton_bas_aa cmd noRefresh" data-cmd_id="#cmd_home_id#" src="plugins/plex/core/template/dashboard/images/home.png"/>
+				<img class="bouton_bas_aa cmd noRefresh" data-cmd_id="#cmd_fullscreen_id#" src="plugins/plex/core/template/dashboard/images/resize.png"/>
+				
+				</div>
+				<div style="background-color:#5d9cec;height:6em;margin-top:0.5em;display:block;">
+					<div style="height:3em;">
+					<img class="bouton_bas" style="margin-right:0.2em;opacity: 0.5;" src="plugins/plex/core/template/dashboard/images/sound63.png" onclick="telecommande_plex#id#('sound');"/>
+					<img class="change_gauche cmd noRefresh" data-cmd_id="#cmd_previous_id#" src="plugins/plex/core/template/dashboard/images/change.png"/>
+					<img class="play_in_cercle bouton_bas cmd noRefresh" data-cmd_id="#cmd_play_id#" src="plugins/plex/core/template/dashboard/images/play1.png" style="margin-left:0.32em;" />
+                    <img class="pause_in_cercle bouton_bas cmd noRefresh" data-cmd_id="#cmd_pause_id#" src="plugins/plex/core/template/dashboard/images/pause.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_next_id#" src="plugins/plex/core/template/dashboard/images/change.png"/>
+					<img class="bouton_bas" style="margin-left:0.2em;opacity: 0.5;" src="plugins/plex/core/template/dashboard/images/speaker.png" onclick="telecommande_plex#id#('telecommande');"/>
+					</div>
+					<div class="touche_bas_plex" style="height:3em;">
+					<img class="avance_gauche cmd noRefresh" data-cmd_id="#cmd_stepbackward_id#" src="plugins/plex/core/template/dashboard/images/advance.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_osd_id#" src="plugins/plex/core/template/dashboard/images/working.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_stop_id#" src="plugins/plex/core/template/dashboard/images/stop.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_stepforward_id#" src="plugins/plex/core/template/dashboard/images/advance.png"/>
+					</div>
+					<div class="volume_bas_plex" style="height:3em;display:none;">
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumeoff_id#" src="plugins/plex/core/template/dashboard/images/sound.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumemoins_id#" src="plugins/plex/core/template/dashboard/images/sound63.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumeplus_id#" src="plugins/plex/core/template/dashboard/images/volume9.png"/>
+					</div>
+					<div class="telecommande_bas_plex" style="height:3em;display:none;">
+						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_musiclist_id#" src="plugins/plex/core/template/dashboard/images/music.png"/>
+						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_movielist_id#" src="plugins/plex/core/template/dashboard/images/cinema.png"/>
+						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_tvlist_id#" src="plugins/plex/core/template/dashboard/images/tv.png"/>
+						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_partymode_id#" src="plugins/plex/core/template/dashboard/images/vinyl.png"/>
+					</div>
+	</div>
+				</div>
+<script type="text/javascript">
+	if(#state_nb# == 1){
+			$(".eqLogic[data-eqLogic_uid=#uid#] .play_in_cercle").remove();
+		}else if(#state_nb# == 0){
+			$(".eqLogic[data-eqLogic_uid=#uid#] .pause_in_cercle").remove();
+		}
+	
+	
+		if("#type_media#" == "Audio"){
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").attr("src","plugins/plex/core/template/dashboard/images/music.png");
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "block");
+		}else if("#type_media#" == "Films"){
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").attr("src","plugins/plex/core/template/dashboard/images/cinema.png");
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "block");
+		}else if("#type_media#" == "Séries"){
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").attr("src","plugins/plex/core/template/dashboard/images/tv.png");
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "block");
+		}else{
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "none");
+		}
+	
+	function telecommande_plex#id#(type_telecommande){
+		if(type_telecommande == 'sound'){
+			if ($(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display") == 'none'){
+				$(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display","block");
+				$(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .touche_bas_plex").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros").css("display","block");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros_aa").css("display","block");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande_aa").css("display","none");
+	       } else {
+	    	   telecommande_plex#id#('start');
+	       }
+		}else if(type_telecommande == 'telecommande'){
+			if ($(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display") == 'none'){
+				$(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display","block");
+				$(".plex[data-eqLogic_uid=#uid#] .touche_bas_plex").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande").css("display","block");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros_aa").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande_aa").css("display","block");
+			} else {
+		    	   telecommande_plex#id#('start');
+		    }
+		}else if(type_telecommande == 'start'){
+			$(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display","none");
+			$(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display","none");
+			$(".plex[data-eqLogic_uid=#uid#] .touche_bas_plex").css("display","block");
+			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros").css("display","block");
+			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande").css("display","none");
+			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros_aa").css("display","block");
+			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande_aa").css("display","none");
+		}
+	}
+    
+   		if("#titrehaut#" == "Arrêt"){
+   				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex").css("opacity", 0.3);
+			}else{
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex").css("opacity", 1);
+			}
+   	 $('.plex[data-eqLogic_uid=#uid#] .cmd').on('click', function() {
+			jeedom.cmd.execute({id: $(this).data('cmd_id')});
+		});
+	
+</script>
+
+
+</div>

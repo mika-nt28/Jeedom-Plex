@@ -1,0 +1,101 @@
+.media_Title{
+	text-align: center;
+  	font-size: xx-small;
+	padding: 5px;
+	background-color: #5d9cec;
+	height: 35px;
+}
+.media_Title a{
+	padding: 5px;
+}
+.media_Information{
+	width:200px;
+	height:220px;
+	overflow: hidden;
+}
+.nav-xs{
+	margin:0;
+	padding:0;
+	font-size: 10px;
+}
+.nav-xs li a{
+	margin:0;
+	padding:5px;
+}
+#ListeMedia{
+	overflow: auto;
+	height: 195px;
+}
+.summary-container{
+	overflow: auto;
+}
+.media_Library{
+	text-align:center;
+	overflow:auto; 
+	width:200px;
+	height: 55px;
+	background-color: #5d9cec;
+}
+.media_menu{
+	text-align: center;
+	background-color: #468ce9;
+	width: 215px;
+	padding: 3px;
+	height: 45px;
+	overflow:auto;
+	right: -15px;
+}
+.video_plex_only{
+	padding: 5px;
+	height: 195px;
+	overflow:auto;
+	width: 215px;
+	right: -15px;
+}
+.audio_plex_only{
+	padding: 5px;
+	height: 195px;
+	overflow:auto;
+	width: 215px;
+	right: -15px;
+}
+
+.mix_plex{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	bottom: 10px;
+	opacity: 0.6;
+	right: 18px;
+}
+.mix_plex:hover{
+	opacity: 1;
+}
+.musicsync_plex{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	bottom: 10px;
+	opacity: 0.6;
+	left: 85px;
+}
+.musicsync_plex:hover{
+	opacity: 1;
+}
+.videosync_plex{
+		width: 30px;
+	height: 30px;
+	position: absolute;
+	bottom: 10px;
+	opacity: 0.6;
+	left: 18px;
+}
+.videosync_plex:hover{
+	opacity: 1;
+}
+.position_longueur_plex{
+	position: absolute;
+	font-weight: bold;
+	right: 10px;
+	opacity: 0.6;
+}
