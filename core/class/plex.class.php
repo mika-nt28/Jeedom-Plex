@@ -84,7 +84,7 @@ class plex extends eqLogic {
 	}	
 	public static function getClients(){
 		$server = self::getServer();	
-      		$Clients=$server->getClientsSessions();
+      		$Clients=$server->getClients();
       		log::add('plex','debug', json_encode($Clients));
 		return $Clients;
 	}
