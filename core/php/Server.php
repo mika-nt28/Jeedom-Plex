@@ -85,7 +85,7 @@ class Plex_Server extends Plex_MachineAbstract
 	 * @return Plex_Client[] An array of Plex clients indexed by the Plex client
 	 * name.
 	 */
-	public function getClients()
+	/*public function getClients()
 	{
 		$url = sprintf(
 			'%s/%s',
@@ -109,8 +109,8 @@ class Plex_Server extends Plex_MachineAbstract
 		}
 		
 		return $clients;
-	}
-	public function getClientsSessions()
+	}*/
+	public function getClients()
 	{
 		$url = sprintf(
 			'%s/%s',
