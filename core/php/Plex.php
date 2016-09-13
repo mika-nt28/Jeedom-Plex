@@ -215,7 +215,7 @@ class PlexApi
 	 *
 	 * @return Plex_Client The requested Plex client machine.
 	 */
-	public function getClients
+	public function getClients()
 	{
 		return self::$clients;
 	}
