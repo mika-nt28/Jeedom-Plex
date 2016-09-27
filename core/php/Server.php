@@ -113,7 +113,6 @@ class Plex_Server extends Plex_MachineAbstract
 			self::ENDPOINT_STATUS.'/'.
 			self::ENDPOINT_SESSIONS
 		);
-		$clients = array();
 		$clientArray = $this->makeCall($url);
 		
 		foreach ($clientArray as $attribute) {
