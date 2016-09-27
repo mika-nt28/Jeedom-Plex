@@ -107,11 +107,6 @@ class Plex_Server extends Plex_MachineAbstract
 			$client->setServer($this);
 			$clients[$attribute['name']] = $client;
 		}
-		
-		return $clients;
-	}/*
-	public function getClients()
-	{
 		$url = sprintf(
 			'%s/%s',
 			$this->getBaseUrl(),
@@ -135,7 +130,7 @@ class Plex_Server extends Plex_MachineAbstract
 		}
 		
 		return $clients;
-	}*/
+	}
 	
 	/**
 	 * Returns the Plex library belonging to the instantiatied Plex server.
