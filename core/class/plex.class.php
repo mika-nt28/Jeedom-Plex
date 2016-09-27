@@ -83,7 +83,7 @@ class plex extends eqLogic {
 			$plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
 			$plex->registerServers($servers);
 		}
-     	return $this->plex->getServer(config::byKey('name', 'plex'));		
+     	return $plex->getServer(config::byKey('name', 'plex'));		
 	}	
 	public static function getClients(){
 		$server = self::getServer();	
