@@ -107,16 +107,32 @@ class Plex_Server extends Plex_MachineAbstract
 			$client->setServer($this);
 			$clients[$attribute['name']] = $client;
 		}
+		
+		return $clients;
+	}
+
+	/*<Player address="192.168.0.xxx" 
+		device="Samsung TV"
+		machineIdentifier="u7cl6gdvurels"
+		model=""
+		platform="Samsung"
+		platformVersion=""
+		product="Plex for Samsung" 
+		profile="Samsung" 
+		state="playing" 
+		title="TV UE55H6200" 
+		vendor="" version="2.005" />
+	*/
+	public function getPlayerSessions(){
 		$url = sprintf(
 			'%s/%s',
 			$this->getBaseUrl(),
 			self::ENDPOINT_STATUS.'/'.
 			self::ENDPOINT_SESSIONS
 		);
-		$clientArray = $this->makeCall($url);
-		
-		foreach ($clientArray as $attribute) {
-			$client = new Plex_Client(
+		return $SessionArray = $this->makeCall($url);
+		foreach ($SessionArray as $attribute) {
+			/*$client = new Plex_Client(
 				$attribute['device'],
 				$attribute['address'],
 				(int) $attribute['port']
@@ -125,10 +141,8 @@ class Plex_Server extends Plex_MachineAbstract
 			$client->setMachineIdentifier($attribute['machineIdentifier']);
 			$client->setVersion($attribute['version']);
 			$client->setServer($this);
-			$clients[$attribute['device']] = $client;
+			$clients[$attribute['device']] = $client;*/
 		}
-		
-		return $clients;
 	}
 	
 	/**
