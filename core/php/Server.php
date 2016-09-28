@@ -131,7 +131,7 @@ class Plex_Server extends Plex_MachineAbstract
 			self::ENDPOINT_SESSIONS
 		);
 		$Sessions = array();
-		$SessionArray = $this->makeCall($url);
+		return $SessionArray = $this->makeCall($url);
 		foreach ($SessionArray as $attribute) {
 			/*$client = new Plex_Client(
 				$attribute['device'],
