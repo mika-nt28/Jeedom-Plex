@@ -681,6 +681,8 @@ class plexCmd extends cmd {
 					$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
 					$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
 					$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
+					if($media==null)
+						return false;
 					switch ($this->getConfiguration('commande'))
 					{
 						case 'viewOffset':
