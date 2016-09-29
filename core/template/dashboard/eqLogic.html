@@ -294,6 +294,7 @@
 			timeout:8000, 
 			url: "plugins/plex/core/ajax/plex.ajax.php",
 			data: {
+				Id:'#id#',
 				action: "getLibrary",
 			},
 			dataType: 'json',
@@ -349,6 +350,7 @@
 					timeout:8000, 
 					url: "plugins/plex/core/ajax/plex.ajax.php",
 					data: {
+						Id:'#id#',
 						action: "SearchMedia",
 						Filtre:'',
 						param:JSON.stringify(Media#uid#),
@@ -459,6 +461,7 @@
 					timeout:8000, 
 					url: "plugins/plex/core/ajax/plex.ajax.php",
 					data: {
+						Id:'#id#',
 						action: "SearchMedia",
 						Filtre: 'ByTitle',
 						param: JSON.stringify(Media),
