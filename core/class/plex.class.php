@@ -406,17 +406,19 @@ class plex extends eqLogic {
 				'port' => config::byKey('port', 'plex')
 			)
 		);
-		if($this->_plex == ""){
+		log::add('plex','debug',json_encode($this->_plex));
+		if(!is_object($this->_plex)){
 			$this->_plex = new PlexApi();
 			$this->_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
 		}	
-		if($this->_server == ""){
+		if(!is_object($this->_server)){
 			$this->_plex->registerServers($servers);
 			$this->_server=$this->_plex->getServer(config::byKey('name', 'plex'));
 		}
-		$this->_client=$this->_plex->getClient($this->getLogicalId());
-		if($this->_client!=false)
+		if(!is_object($this->_client)){
+			$this->_client=$this->_plex->getClient($this->getLogicalId());
 			$this->_onlyState=$this->_client->getOnlyState();
+		}
 	}	
 	public function getClients(){
 		$this->ConnexionsPlex();	
