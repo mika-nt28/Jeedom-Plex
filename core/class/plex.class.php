@@ -7,10 +7,10 @@ include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
     /*     * *************************Attributs****************************** */
-	protected $plex;
-	protected $server;
-	protected $client;
-	protected $onlyState;
+	private static $plex;
+	private static $server;
+	private static $client;
+	private static $onlyState;
 	/*     * ***********************Methode static*************************** */
 	public static function UpdateStatus() {
 		while(true){
