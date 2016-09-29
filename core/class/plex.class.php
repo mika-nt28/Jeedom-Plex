@@ -425,7 +425,7 @@ class plex extends eqLogic {
 	}
 	public function getLibrary(){
 		$this->ConnexionsPlex();	
-		$sections=$this-_>server->getLibrary()->getSections();
+		$sections=$this->_server->getLibrary()->getSections();
 		$return=array();
 		foreach($sections as $section)
 			$return[]=self::LibraryInforamtion($section);
