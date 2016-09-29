@@ -94,9 +94,9 @@ $eqLogics = eqLogic::byType('plex');
                     <div class="col-lg-2">
                         <input type="hidden" class="eqLogicAttr form-control" data-l1key="logicalId"/>
 						<?php
-							foreach(plex::getClients() as $Client)
+							foreach($eqLogics[0]->getClients() as $Client)
 							{
-                            	if ($Client->getName()!='')
+                            					if ($Client->getName()!='')
 									echo '<a class="btn btn-default bt_PlexClient">'.$Client->getName().'</a>';
 							}
 						?>
