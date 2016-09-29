@@ -59,7 +59,7 @@ class Plex_Client extends Plex_MachineAbstract
 	 * @var Plex_server 
 	 */
 	private $server;
-	private $onlyStat=false;
+	private $onlyState=false;
 	private $state;
 	
 	/**
