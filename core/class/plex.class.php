@@ -492,7 +492,7 @@ class plex extends eqLogic {
 		global $listCmdPLEX;
 		if($this->getLogicalId()!= ""){
 			$this->ConnexionsPlex();
-			if($this->onlyState()){
+			if($this->_onlyState()){
 				$cmdPlex=	array(
 					'name' => 'Etat du player',
 					'configuration' => array(
