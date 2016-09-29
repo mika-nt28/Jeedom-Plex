@@ -17,7 +17,7 @@ class plex extends eqLogic {
 			$eqLogics = eqLogic::byType('plex');
 			foreach($eqLogics as $plexClient) {
 				if ($plexClient->getIsEnable() == 1 && $plexClient->getConfiguration('heartbeat',0) == 1) {
-					$plexClient->ConnexionsPlex();
+					//$plexClient->ConnexionsPlex();
 					//$plexClient->getCmd(null,'state')->event($this->_client->getState());
 					//$MediaOffset=$plexClient->getCmd(null,'viewOffset');
 					//$MediaOffsetOldValue=$MediaOffset->execCmd();
@@ -38,10 +38,11 @@ class plex extends eqLogic {
 	public static function deamon_info() {
 		$return = array();
 		$return['log'] = 'plex';	
-		$return['state'] = 'nok';
 		$cron = cron::byClassAndFunction('plex', 'UpdateStatus');
-		if(is_object($cron)&& $cron->running())
+		if(is_object($cron) && $cron->running())
 			$return['state'] = 'ok';
+		else
+			$return['state'] = 'nok';
 		if(config::byKey('name', 'plex')!=''&&config::byKey('addr', 'plex')!=''&&config::byKey('port', 'plex')!='')
 			$return['launchable'] = 'ok';
 		else
