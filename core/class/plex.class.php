@@ -417,10 +417,10 @@ class plex extends eqLogic {
 		}
 		if(!is_object($this->_client)){
 			$this->_client=$this->_plex->getClient($this->getLogicalId());
-			if(!is_object($this->_client))
+			/*if(!is_object($this->_client))
 				$this->_onlyState=$this->_client->getOnlyState();
 			else
-				log::add('plex','debug','Impossible de trouver le client '.$this->getLogicalId());
+				log::add('plex','debug','Impossible de trouver le client '.$this->getLogicalId());*/
 		}
 	}	
 	public function getClients(){
