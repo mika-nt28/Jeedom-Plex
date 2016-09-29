@@ -107,7 +107,7 @@ class Plex_Server extends Plex_MachineAbstract
 			$client->setServer($this);
 			$clients[$attribute['name']] = $client;
 		}
-		
+		$this->getPlayerSessions($clients);
 		return $clients;
 	}
 
@@ -123,7 +123,7 @@ class Plex_Server extends Plex_MachineAbstract
 		title="TV UE55H6200" 
 		vendor="" version="2.005" />
 	*/
-	public function getPlayerSessions(){
+	public function getPlayerSessions($clients){
 		$url = sprintf(
 			'%s/%s',
 			$this->getBaseUrl(),
@@ -131,18 +131,23 @@ class Plex_Server extends Plex_MachineAbstract
 			self::ENDPOINT_SESSIONS
 		);
 		$Sessions = array();
-		return $SessionArray = $this->makeCall($url);
+		$SessionArray = $this->makeCall($url);
 		foreach ($SessionArray as $attribute) {
-			/*$client = new Plex_Client(
-				$attribute['device'],
-				$attribute['address'],
-				(int) $attribute['port']
-			);
-			$client->setHost($attribute['host']);
-			$client->setMachineIdentifier($attribute['machineIdentifier']);
-			$client->setVersion($attribute['version']);
-			$client->setServer($this);
-			$Sessions[$attribute['device']] = $client;*/
+			if(isset($clients[$attribute['device']]))
+				$client=$clients[$attribute['device']];
+			else{
+				$client = new Plex_Client(
+					$attribute['device'],
+					$attribute['address'],
+					(int) $attribute['port']
+				);
+				$client->setHost($attribute['host']);
+				$client->setMachineIdentifier($attribute['machineIdentifier']);
+				$client->setVersion($attribute['version']);
+				$client->setOnlyStat(true);
+				$client->setServer($this);
+			}
+			$client->setState($attribute['state']);
 		}
 	}
 	
