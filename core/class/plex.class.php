@@ -19,7 +19,7 @@ class plex extends eqLogic {
 				if ($plexClient->getIsEnable() == 1 && $plexClient->getConfiguration('heartbeat',0) == 1) {
 					$plexClient->ConnexionsPlex();
 					$plexClient->getCmd(null,'state')->event($this->client->getState());
-					//$MediaOffset=$plexClient->getCmd(null,'viewOffset');
+					$MediaOffset=$plexClient->getCmd(null,'viewOffset');
 					//$MediaOffsetOldValue=$MediaOffset->execCmd();
 					$MediaOffset->execute();
 					/*$MediaOffsetNewValue=$MediaOffset->execCmd();
@@ -32,7 +32,7 @@ class plex extends eqLogic {
 				}
 				//$plexClient->refreshWidget();
 			}
-			sleep(1);
+			sleep(10);
 		}
 	}
 	public static function deamon_info() {
