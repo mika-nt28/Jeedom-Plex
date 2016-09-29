@@ -412,7 +412,8 @@ class plex extends eqLogic {
 				$this->plex->registerServers($servers);
 				$this->server=$this->plex->getServer(config::byKey('name', 'plex'));
 				$this->client=$this->plex->getClient($this->getLogicalId());
-				$this->onlyState=$this->client->getOnlyState();
+				if($this->client!=false)
+					$this->onlyState=$this->client->getOnlyState();
 			}
 		}	
 	}	
