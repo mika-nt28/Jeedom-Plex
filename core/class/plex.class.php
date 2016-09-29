@@ -7,12 +7,18 @@ include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
     /*     * *************************Attributs****************************** */
+	public $plex;
+	public $server;
+	public $client;
+	public $onlyState;
 	/*     * ***********************Methode static*************************** */
-	public static function Updatestatus() {
+	public static function UpdateStatus() {
 		while(true){
 			$eqLogics = eqLogic::byType('plex');
 			foreach($eqLogics as $plexClient) {
 				if ($plexClient->getIsEnable() == 1 && $plexClient->getConfiguration('heartbeat',0) == 1) {
+					if ($plexClient->plex == "")	
+						$plexClient->plex = new PlexApi();
 					$MediaOffset=$plexClient->getCmd(null,'viewOffset');
 					$MediaOffsetOldValue=$MediaOffset->execCmd();
 					$MediaOffset->execute();
@@ -33,8 +39,8 @@ class plex extends eqLogic {
 		$return = array();
 		$return['log'] = 'plex';	
 		$return['state'] = 'nok';
-		$cron = cron::byClassAndFunction('plex', 'Updatestatus');
-		if(is_object($cron)&& $cron->getstate()=="run")
+		$cron = cron::byClassAndFunction('plex', 'UpdateStatus');
+		if(is_object($cron)&& $cron->running())
 			$return['state'] = 'ok';
 		if(config::byKey('name', 'plex')!=''&&config::byKey('addr', 'plex')!=''&&config::byKey('port', 'plex')!='')
 			$return['launchable'] = 'ok';
@@ -49,11 +55,11 @@ class plex extends eqLogic {
 		log::remove('plex');
 		self::deamon_stop();
 		
-		$cron = cron::byClassAndFunction('plex', 'Updatestatus');
+		$cron = cron::byClassAndFunction('plex', 'UpdateStatus');
 		if (!is_object($cron)) {
 			$cron = new cron();
 			$cron->setClass('plex');
-			$cron->setFunction('Updatestatus');
+			$cron->setFunction('UpdateStatus');
 			$cron->setEnable(1);
 			$cron->setDeamon(1);
 			$cron->setSchedule('* * * * *');
@@ -64,39 +70,13 @@ class plex extends eqLogic {
 		$cron->run();
 	}
 	public static function deamon_stop() {
-		$cron = cron::byClassAndFunction('plex', 'Updatestatus');
+		$cron = cron::byClassAndFunction('plex', 'UpdateStatus');
 		if (is_object($cron)) {
 			$cron->stop();
 			$cron->remove();
 		}
 	}
-   	public static function getServer(){
-	   	$servers = array(
-			config::byKey('name', 'plex') => array(
-				'address' => config::byKey('addr', 'plex'),
-				'port' => config::byKey('port', 'plex')
-			)
-		);
-		$plex = new PlexApi();
-		$plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
-		$plex->registerServers($servers);
-     	return $plex->getServer(config::byKey('name', 'plex'));		
-	}	
-	public static function getClients(){
-		$server = self::getServer();	
-		//$Clients=$plex->getClients();
-      		$Clients=$server->getClients();
-      		log::add('plex','debug', json_encode($Clients));
-		return $Clients;
-	}
-	public static function getLibrary(){
-		$server = self::getServer();
-		$sections=$server->getLibrary()->getSections();
-		$return=array();
-		foreach($sections as $section)
-			$return[]=self::LibraryInforamtion($section);
-		return $return;
-	}
+   
 	public static function LibraryInforamtion($section){
 		if(method_exists($section,'getKey'))
 			$return['Key']=$section->getKey();
@@ -122,25 +102,6 @@ class plex extends eqLogic {
 			$return['UpdatedAt']=$section->getUpdatedAt();
 		if(method_exists($section,'getCreatedAt'))
 			$return['CreatedAt']=$section->getCreatedAt();
-		return $return;
-	}
-	public static function getMedia($Filtre=null,$param=''){
-		$param=json_decode($param, true);
-		$server = self::getServer();
-		$section=$server->getLibrary()->getSection($param['Library']);
-		$reponse=self::filterMedia($section, $Filtre,$param);
-		$return =array();
-		if($reponse != null){
-			if(count($reponse)>1){
-				foreach($reponse as $media)
-				{
-					$return['Media'][]=self::ListMedia($media);
-				}
-			}
-			else
-				$return['Media']=self::ListMedia($reponse);
-		}
-		$return['Library']=self::LibraryInforamtion($section);
 		return $return;
 	}
 	public static function filterMedia($section, $Filtre=null,$param){
@@ -395,7 +356,7 @@ class plex extends eqLogic {
 		}
 		return $reponse;
 	}
-	private static function ListMedia($media){
+	public static function ListMedia($media){
 		$return =array();
 		if(method_exists($media,'getKey'))
 			$return['Key']=$media->getKey();
@@ -437,7 +398,58 @@ class plex extends eqLogic {
 		return $return;
 	}
 	/*     * *********************Methode d'instance************************* */
-    public function AddCmd($cmdPlex) 	{
+   	public function ConnexionsPlex(){
+	   	$servers = array(
+			config::byKey('name', 'plex') => array(
+				'address' => config::byKey('addr', 'plex'),
+				'port' => config::byKey('port', 'plex')
+			)
+		);
+		if($this->plex == ""){
+			$this->plex = new PlexApi();
+			$this->plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
+			if($this->server == ""){
+				$this->plex->registerServers($servers);
+				$this->server=$this->plex->getServer(config::byKey('name', 'plex'));
+				$this->onlyState=$this->plex->getClient($this->getLogicalId())->getOnlyState();
+			}
+		}	
+	}	
+	public function getClients(){
+		$this->ConnexionsPlex();	
+		$Clients=$this->plex->getClients();
+      	log::add('plex','debug', json_encode($Clients));
+		return $Clients;
+	}
+	public function getLibrary(){
+		$this->ConnexionsPlex();	
+		$sections=$this->server->getLibrary()->getSections();
+		$return=array();
+		foreach($sections as $section)
+			$return[]=self::LibraryInforamtion($section);
+		return $return;
+	}
+	public function getMedia($Filtre=null,$param=''){
+		$param=json_decode($param, true);
+		$this->ConnexionsPlex();	
+		$section=$this->server->getLibrary()->getSection($param['Library']);
+		$reponse=self::filterMedia($section, $Filtre,$param);
+		$return =array();
+		if($reponse != null){
+			if(count($reponse)>1){
+				foreach($reponse as $media)
+				{
+					$return['Media'][]=self::ListMedia($media);
+				}
+			}
+			else
+				$return['Media']=self::ListMedia($reponse);
+		}
+		$return['Library']=self::LibraryInforamtion($section);
+		return $return;
+	}
+	
+	public function AddCmd($cmdPlex) 	{
 		$Commande = $this->getCmd(null,$cmdPlex['configuration']['commande']);
 		if (!is_object($Commande))
 		{
@@ -476,8 +488,25 @@ class plex extends eqLogic {
 		if (!$this->getId())
           return;
 		global $listCmdPLEX;
-		foreach ($listCmdPLEX as $cmdPlex) {
-			$this->AddCmd($cmdPlex);
+		if($this->getLogicalId()!= ""){
+			$this->ConnexionsPlex();
+			if($this->onlyState()){
+				$cmdPlex=	array(
+					'name' => 'Etat du player',
+					'configuration' => array(
+						'categorie' => 'Application',
+						'commande' => 'state',
+					),
+					'type' => 'info',
+					'subType' => 'binary',
+					'description' => 'Etat du player',
+				);
+				$this->AddCmd($cmdPlex);
+			}else{
+				foreach ($listCmdPLEX as $cmdPlex) {
+					$this->AddCmd($cmdPlex);
+				}
+			}
 		}
     }	
 	public function toHtml($_version = 'dashboard') {
