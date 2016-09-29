@@ -681,24 +681,26 @@ class plexCmd extends cmd {
 					$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
 					$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
 					$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
-					if($media==null)
-						return false;
 					switch ($this->getConfiguration('commande'))
 					{
 						case 'viewOffset':
-							$response=$media->getViewOffset();
+							if(method_exists($media,'getViewOffset'))
+								$response=$media->getViewOffset();
 						break;
 						case 'playMedia':
 							// Play episode from beginning
-							$response=$application->playMedia($media);
+							if(method_exists($application,'playMedia'))
+								$response=$application->playMedia($media);
 						break;
 						case 'playMediaLastStopped':
 							// Play epsiode from where it was last stopped
-							//$response=$application->playMedia($episode, $media->getViewOffset());
+							if(method_exists($application,'playMedia'))
+							$response=$application->playMedia($episode, $media->getViewOffset());
 						break;
 						case 'setVolume':
 							// Set voume to half
-							$response=$application->setVolume($Value);
+							if(method_exists($application,'setVolume'))
+								$response=$application->setVolume($Value);
 							//$navigation->toggleOSD();
 						break;
 					}
