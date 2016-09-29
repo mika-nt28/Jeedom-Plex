@@ -7,10 +7,10 @@ include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
     /*     * *************************Attributs****************************** */
-	private static $plex;
-	private static $server;
-	private static $client;
-	private static $onlyState;
+	private $_plex;
+	private $_server;
+	private $_client;
+	private $_onlyState;
 	/*     * ***********************Methode static*************************** */
 	public static function UpdateStatus() {
 		while(true){
@@ -405,27 +405,27 @@ class plex extends eqLogic {
 				'port' => config::byKey('port', 'plex')
 			)
 		);
-		if($this->plex == ""){
-			$this->plex = new PlexApi();
-			$this->plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
-			if($this->server == ""){
-				$this->plex->registerServers($servers);
-				$this->server=$this->plex->getServer(config::byKey('name', 'plex'));
-				$this->client=$this->plex->getClient($this->getLogicalId());
-				if($this->client!=false)
-					$this->onlyState=$this->client->getOnlyState();
+		if($this->_plex == ""){
+			$this->_plex = new PlexApi();
+			$this->_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
+			if($this->_server == ""){
+				$this->_plex->registerServers($servers);
+				$this->_server=$this->_plex->getServer(config::byKey('name', 'plex'));
+				$this->_client=$this->_plex->getClient($this->getLogicalId());
+				if($this->_client!=false)
+					$this->_onlyState=$this->client->getOnlyState();
 			}
 		}	
 	}	
 	public function getClients(){
 		$this->ConnexionsPlex();	
-		$Clients=$this->plex->getClients();
-      	log::add('plex','debug', json_encode($Clients));
+		$Clients=$this->_plex->getClients();
+      		log::add('plex','debug', json_encode($Clients));
 		return $Clients;
 	}
 	public function getLibrary(){
 		$this->ConnexionsPlex();	
-		$sections=$this->server->getLibrary()->getSections();
+		$sections=$this-_>server->getLibrary()->getSections();
 		$return=array();
 		foreach($sections as $section)
 			$return[]=self::LibraryInforamtion($section);
@@ -434,7 +434,7 @@ class plex extends eqLogic {
 	public function getMedia($Filtre=null,$param=''){
 		$param=json_decode($param, true);
 		$this->ConnexionsPlex();	
-		$section=$this->server->getLibrary()->getSection($param['Library']);
+		$section=$this->_server->getLibrary()->getSection($param['Library']);
 		$reponse=self::filterMedia($section, $Filtre,$param);
 		$return =array();
 		if($reponse != null){
@@ -572,9 +572,9 @@ class plexCmd extends cmd {
      public function execute($_options = null) {
 		$response='';
 		$this->getEqLogic()->ConnexionsPlex();	
-		$plex=$this->getEqLogic()->plex;
-		$server = $this->getEqLogic()->server;	
-		$client = $this->getEqLogic()->client;
+		$plex=$this->getEqLogic()->_plex;
+		$server = $this->getEqLogic()->_server;	
+		$client = $this->getEqLogic()->_client;
 		if(is_object($client)){
 			switch ($this->getType()) {
 				case 'action' :
