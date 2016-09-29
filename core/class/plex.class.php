@@ -30,7 +30,7 @@ class plex extends eqLogic {
 						$plexClient->getCmd(null,'state')->event(true);
 					}*/
 				}
-				$plexClient->refreshWidget();
+				//$plexClient->refreshWidget();
 			}
 			sleep(10);
 		}
