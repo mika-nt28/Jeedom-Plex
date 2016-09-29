@@ -147,7 +147,10 @@ class Plex_Server extends Plex_MachineAbstract
 				$client->setOnlyStat(true);
 				$client->setServer($this);
 			}
-			$client->setState($attribute['state']);
+			if ($attribute['state'] =="playing" )
+				$client->setState(true);
+			else
+				$client->setState(false);
 		}
 	}
 	
