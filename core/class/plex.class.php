@@ -17,18 +17,18 @@ class plex extends eqLogic {
 			$eqLogics = eqLogic::byType('plex');
 			foreach($eqLogics as $plexClient) {
 				if ($plexClient->getIsEnable() == 1 && $plexClient->getConfiguration('heartbeat',0) == 1) {
-					if ($plexClient->plex == "")	
-						$plexClient->plex = new PlexApi();
-					$MediaOffset=$plexClient->getCmd(null,'viewOffset');
-					$MediaOffsetOldValue=$MediaOffset->execCmd();
+					$plexClient->ConnexionsPlex();
+					$plexClient->getCmd(null,'state')->event($this->client->getState());
+					//$MediaOffset=$plexClient->getCmd(null,'viewOffset');
+					//$MediaOffsetOldValue=$MediaOffset->execCmd();
 					$MediaOffset->execute();
-					$MediaOffsetNewValue=$MediaOffset->execCmd();
+					/*$MediaOffsetNewValue=$MediaOffset->execCmd();
 					if($MediaOffsetOldValue == $MediaOffsetNewValue){
 						$plexClient->getCmd(null,'state')->event(false);
 					}
 					else{
 						$plexClient->getCmd(null,'state')->event(true);
-					}
+					}*/
 				}
 				//$plexClient->refreshWidget();
 			}
@@ -411,7 +411,8 @@ class plex extends eqLogic {
 			if($this->server == ""){
 				$this->plex->registerServers($servers);
 				$this->server=$this->plex->getServer(config::byKey('name', 'plex'));
-				$this->onlyState=$this->plex->getClient($this->getLogicalId())->getOnlyState();
+				$this->client=$this->plex->getClient($this->getLogicalId())
+				$this->onlyState=$this->client->getOnlyState();
 			}
 		}	
 	}	
@@ -569,16 +570,10 @@ class plex extends eqLogic {
 class plexCmd extends cmd {
      public function execute($_options = null) {
 		$response='';
-	   	$servers = array(
-			config::byKey('name', 'plex') => array(
-				'address' => config::byKey('addr', 'plex'),
-				'port' => config::byKey('port', 'plex')
-			)
-		);
-		$plex = new PlexApi();
-		$plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
-		$plex->registerServers($servers);
-		$client = $plex->getClient($this->getEqLogic()->getLogicalId());
+		$this->getEqLogic()->ConnexionsPlex();	
+		$plex=$this->getEqLogic()->plex;
+		$server = $this->getEqLogic()->server;	
+		$client = $this->getEqLogic()->client;
 		if(is_object($client)){
 			switch ($this->getType()) {
 				case 'action' :
@@ -681,7 +676,6 @@ class plexCmd extends cmd {
 				case 'Application':
 					$application = $client->getApplicationController();
 					//$navigation = $client->getNavigationController();		
-					$server = $plex->getServer(config::byKey('name', 'plex'));	
 					$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
 					$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
 					$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
@@ -709,6 +703,5 @@ class plexCmd extends cmd {
 		}
 		return $response;	
     }
-   
 }
 ?>
