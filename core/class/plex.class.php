@@ -7,18 +7,18 @@ include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
     /*     * *************************Attributs****************************** */
-	private $_plex="";
-	private $_server="";
-	private $_client="";
-	private $_onlyState=false;
+	public $_plex="";
+	public $_server="";
+	public $_client="";
+	public $_onlyState=false;
 	/*     * ***********************Methode static*************************** */
 	public static function UpdateStatus() {
 		while(true){
 			$eqLogics = eqLogic::byType('plex');
 			foreach($eqLogics as $plexClient) {
 				if ($plexClient->getIsEnable() == 1 && $plexClient->getConfiguration('heartbeat',0) == 1) {
-					//$plexClient->ConnexionsPlex();
-					//$plexClient->getCmd(null,'state')->event($this->_client->getState());
+					$plexClient->ConnexionsPlex();
+					$plexClient->getCmd(null,'state')->event($this->_client->getState());
 					$MediaOffset=$plexClient->getCmd(null,'viewOffset');
 					//$MediaOffsetOldValue=$MediaOffset->execCmd();
 					$MediaOffset->execute();
