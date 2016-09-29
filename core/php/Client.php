@@ -59,6 +59,8 @@ class Plex_Client extends Plex_MachineAbstract
 	 * @var Plex_server 
 	 */
 	private $server;
+	private $onlyStat=false;
+	private $state;
 	
 	/**
 	 * The default port on which a Plex client listens.
@@ -198,7 +200,7 @@ class Plex_Client extends Plex_MachineAbstract
 	 * @uses Plex_Client::$host
 	 *
 	 * @return string The hostname of the Plex client.
-	 */
+	 */	
 	public function getHost()
 	{
 		return $this->host;
@@ -296,5 +298,22 @@ class Plex_Client extends Plex_MachineAbstract
 	public function setServer(Plex_Server $server)
 	{
 		$this->server = $server;
+	}
+	
+	public function getOnlyState()
+	{
+		return $this->onlyState;
+	}	
+	public function setOnlyState($onlyState)
+	{
+		$this->onlyState = $onlyState;
+	}
+	public function getState()
+	{
+		return $this->state;
+	}
+	public function setState($state)
+	{
+		$this->state = $state;
 	}
 }
