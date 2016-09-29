@@ -406,7 +406,6 @@ class plex extends eqLogic {
 				'port' => config::byKey('port', 'plex')
 			)
 		);
-		log::add('plex','debug',json_encode($this->_plex));
 		if(!is_object($this->_plex)){
 			$this->_plex = new PlexApi();
 			$this->_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
@@ -426,7 +425,6 @@ class plex extends eqLogic {
 	public function getClients(){
 		$this->ConnexionsPlex();	
 		$Clients=$this->_plex->getClients();
-      		log::add('plex','debug', json_encode($Clients));
 		return $Clients;
 	}
 	public function getLibrary(){
