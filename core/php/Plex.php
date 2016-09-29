@@ -167,6 +167,15 @@ class PlexApi
 		);
 	}
 	
+	public function UpdateClientStatus()
+	{
+		// We are going to use the first server in the list to get a list of the
+		// availalble clients and register those automatically.
+		$serverName = reset(array_keys(self::$servers));
+		$this->getPlayerSessions(
+			$this->getServer($serverName)->getClients()
+		);
+	}
 	/**
 	 * Registers each found client with the bootstrap, so they can be found and
 	 * used by the instantiating software.
