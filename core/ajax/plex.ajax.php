@@ -8,14 +8,14 @@ try {
         throw new Exception(__('401 - Accès non autorisé', __FILE__));
     }
 	if (init('action') == 'getLibrary') {
-		$equipement=eqLogic::byType('plex')[0];
+		$equipement=eqLogic::byId(init('Id'));
 		if(is_object($equipement))
 			ajax::success($equipement->getLibrary());
 		else
 			ajax::success(false);
     }
 	if (init('action') == 'SearchMedia') {	
-		$equipement=eqLogic::byType('plex')[0];
+		$equipement=eqLogic::byId(init('Id'));
 		if(is_object($equipement))
 			ajax::success($equipement->getMedia(init('Filtre'),init('param')));
 		else
