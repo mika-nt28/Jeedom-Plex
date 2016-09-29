@@ -7,17 +7,17 @@ include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
     /*     * *************************Attributs****************************** */
-	private $_plex;
-	private $_server;
-	private $_client;
-	private $_onlyState;
+	private $_plex="";
+	private $_server="";
+	private $_client="";
+	private $_onlyState=false;
 	/*     * ***********************Methode static*************************** */
 	public static function UpdateStatus() {
 		while(true){
 			$eqLogics = eqLogic::byType('plex');
 			foreach($eqLogics as $plexClient) {
 				if ($plexClient->getIsEnable() == 1 && $plexClient->getConfiguration('heartbeat',0) == 1) {
-					//$plexClient->ConnexionsPlex();
+					$plexClient->ConnexionsPlex();
 					//$plexClient->getCmd(null,'state')->event($this->_client->getState());
 					//$MediaOffset=$plexClient->getCmd(null,'viewOffset');
 					//$MediaOffsetOldValue=$MediaOffset->execCmd();
@@ -409,14 +409,14 @@ class plex extends eqLogic {
 		if($this->_plex == ""){
 			$this->_plex = new PlexApi();
 			$this->_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
-			if($this->_server == ""){
-				$this->_plex->registerServers($servers);
-				$this->_server=$this->_plex->getServer(config::byKey('name', 'plex'));
-				$this->_client=$this->_plex->getClient($this->getLogicalId());
-				if($this->_client!=false)
-					$this->_onlyState=$this->client->getOnlyState();
-			}
 		}	
+		if($this->_server == ""){
+			$this->_plex->registerServers($servers);
+			$this->_server=$this->_plex->getServer(config::byKey('name', 'plex'));
+		}
+		$this->_client=$this->_plex->getClient($this->getLogicalId());
+		if($this->_client!=false)
+			$this->_onlyState=$this->_client->getOnlyState();
 	}	
 	public function getClients(){
 		$this->ConnexionsPlex();	
