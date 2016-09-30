@@ -93,11 +93,12 @@ $eqLogics = eqLogic::byType('plex');
 					<label class="col-lg-1 control-label">{{Choisir le client}}<sup><i class="fa fa-question-circle tooltips" style="font-size : 1em;color:grey;" title="Permet de choisir un client reconnue par le systeme. Attention les clients doivent etres actif pour etre reconnue"></i></sup></label>
                     <div class="col-lg-2">
                         <input type="hidden" class="eqLogicAttr form-control" data-l1key="logicalId"/>
-						<?php
-							foreach($eqLogics[0]->getClients() as $Client)
-							{
-                            					if ($Client->getName()!='')
-									echo '<a class="btn btn-default bt_PlexClient">'.$Client->getName().'</a>';
+						<?php	if(count($eqLogics)>0){
+								foreach($eqLogics[0]->getClients() as $Client)
+								{
+									if ($Client->getName()!='')
+										echo '<a class="btn btn-default bt_PlexClient">'.$Client->getName().'</a>';
+								}
 							}
 						?>
                     </div>
