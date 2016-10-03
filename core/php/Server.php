@@ -134,6 +134,7 @@ class Plex_Server extends Plex_MachineAbstract
 		$SessionArray = $this->makeCall($url);
 		if(isset($SessionArray['Player'])){
 		foreach ($SessionArray['Player'] as $attribute) {
+			log::add('plex','debug',"Status: ".json_encode($attribute));
 				if(isset($clients[$attribute['device']]))
 					$client=$clients[$attribute['device']];
 				else{
@@ -148,7 +149,7 @@ class Plex_Server extends Plex_MachineAbstract
 					$client->setOnlyState(true);
 					$client->setServer($this);
 				}
-				if ($attribute['state'] =="playing" )
+				if ($attribute['state'] == "playing" )
 					$client->setState(true);
 				else
 					$client->setState(false);
