@@ -404,10 +404,12 @@ class plex extends eqLogic {
 		if(!is_object($this->_plex)){
 			$this->_plex = new PlexApi();
 			$this->_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
+			log::add('plex','debug',json_encode($this->_plex));
 		}	
 		if(!is_object($this->_server)){
 			$this->_plex->registerServers($servers);
 			$this->_server=$this->_plex->getServer(config::byKey('name', 'plex'));
+			log::add('plex','debug',json_encode($this->_server));
 		}
 		if(!is_object($this->_client)){
 			$this->_client=$this->_plex->getClient($this->getLogicalId());
