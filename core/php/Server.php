@@ -132,7 +132,7 @@ class Plex_Server extends Plex_MachineAbstract
 		);
 		$Sessions = array();
 		$SessionArray = $this->makeCall($url);
-		foreach ($SessionArray as $attribute) {
+		foreach ($SessionArray['Player'] as $attribute) {
 			if(isset($clients[$attribute['device']]))
 				$client=$clients[$attribute['device']];
 			else{
