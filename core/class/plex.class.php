@@ -7,17 +7,17 @@ include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
     /*     * *************************Attributs****************************** */
-	public $_plex=NULL;
-	public $_server=NULL;
-	public $_client=NULL;
-	public $_onlyState=false;
+	public static $_plex=NULL;
+	public static $_server=NULL;
+	public static $_client=NULL;
+	public static $_onlyState=false;
 	/*     * ***********************Methode static*************************** */
 	public static function UpdateStatus() {
 		while(true){
 			$eqLogics = eqLogic::byType('plex');
 			foreach($eqLogics as $plexClient) {
 				if ($plexClient->getIsEnable() == 1 && $plexClient->getConfiguration('heartbeat',0) == 1) {
-					//$plexClient->ConnexionsPlex();
+					$plexClient->ConnexionsPlex();
 					if(is_object($plexClient->_client)&&is_object($plexClient->_server)){
 						$plexClient->_server->getPlayerSessions(array($plexClient->getLogicalId()));
 						$plexClient->getCmd(null,'state')->event($plexClient->_client->getState());
