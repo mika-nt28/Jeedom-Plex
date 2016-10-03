@@ -230,9 +230,7 @@ class PlexApi
 	}
 	public function getClient($clientName)
 	{
-		$result=false;
 		if(isset(self::$clients[$clientName]))
-			$result=self::$clients[$clientName];
-		return $result;
+			return self::$clients[$clientName];
 	}
 }
