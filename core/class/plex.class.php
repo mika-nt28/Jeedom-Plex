@@ -18,6 +18,7 @@ class plex extends eqLogic {
 			foreach($eqLogics as $plexClient) {
 				if ($plexClient->getIsEnable() == 1 && $plexClient->getConfiguration('heartbeat',0) == 1) {
 					$plexClient->ConnexionsPlex();
+					$plexClient->_server->getPlayerSessions(array($plexClient->getLogicalId()));
 					$plexClient->getCmd(null,'state')->event($plexClient->_client->getState());
 					$MediaOffset=$plexClient->getCmd(null,'viewOffset');
 					//$MediaOffsetOldValue=$MediaOffset->execCmd();
