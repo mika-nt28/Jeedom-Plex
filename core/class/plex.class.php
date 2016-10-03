@@ -7,10 +7,10 @@ include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
     /*     * *************************Attributs****************************** */
-	public static $_plex=NULL;
-	public static $_server=NULL;
-	public static $_client=NULL;
-	public static $_onlyState=false;
+	public $_plex=NULL;
+	public $_server=NULL;
+	public $_client=NULL;
+	public $_onlyState=false;
 	/*     * ***********************Methode static*************************** */
 	public static function UpdateStatus() {
 		while(true){
@@ -402,9 +402,11 @@ class plex extends eqLogic {
 			)
 		);
 		if(!is_object($this->_plex)){
-			$this->_plex = new PlexApi();
-			$this->_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
+			$plex = new PlexApi();
+			log::add('plex','debug',json_encode($plex));
+			$this->_plex = $plex;
 			log::add('plex','debug',json_encode($this->_plex));
+			$this->_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
 		}	
 		if(!is_object($this->_server)){
 			$this->_plex->registerServers($servers);
