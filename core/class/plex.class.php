@@ -17,13 +17,14 @@ class plex extends eqLogic {
 			$eqLogics = eqLogic::byType('plex');
 			foreach($eqLogics as $plexClient) {
 				if ($plexClient->getIsEnable() == 1 && $plexClient->getConfiguration('heartbeat',0) == 1) {
-					$plexClient->ConnexionsPlex();
 					if(is_object($plexClient->_client)&&is_object($plexClient->_server)){
 						$plexClient->_server->getPlayerSessions(array($plexClient->getLogicalId()));
 						$plexClient->getCmd(null,'state')->event($plexClient->_client->getState());
 						$MediaOffset=$plexClient->getCmd(null,'viewOffset');
 						$MediaOffset->execute();
 					}
+					else
+						$plexClient->ConnexionsPlex();
 				}
 				//$plexClient->refreshWidget();
 			}
