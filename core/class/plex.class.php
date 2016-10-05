@@ -398,14 +398,13 @@ class plex extends eqLogic {
 	}
 	/*     * *********************Methode d'instance************************* */
    	public function ConnexionsPlex(){
-	   	
-		log::add('plex','debug',json_encode(var_dump(self::$_plex)));
+		var_dump(self::$_plex);
 		if(!is_object(self::$_plex)){
 			self::$_plex = new PlexApi();
 			self::$_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
 			log::add('plex','debug',json_encode(var_dump(self::$_plex)));
 		}	
-		log::add('plex','debug',json_encode(var_dump(self::$_server)));
+		var_dump(self::$_server);
 		if(!is_object(self::$_server)){
 			$servers = array(
 				config::byKey('name', 'plex') => array(
@@ -415,9 +414,8 @@ class plex extends eqLogic {
 			);
 			self::$_plex->registerServers($servers);
 			self::$_server=self::$_plex->getServer(config::byKey('name', 'plex'));
-			log::add('plex','debug',json_encode(var_dump(self::$_server)));
 		}
-		log::add('plex','debug',json_encode(var_dump($this->_client)));
+		var_dump($this->_client);
 		if(!is_object($this->_client)){
 			$this->_client=self::$_plex->getClient($this->getLogicalId());
 			if(is_object($this->_client))
