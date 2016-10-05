@@ -7,10 +7,10 @@ include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
     /*     * *************************Attributs****************************** */
-	public $_plex;
-	public $_server;
-	public $_client;
-	public $_onlyState=false;
+	protected $_plex;
+	protected $_server;
+	protected $_client;
+	protected $_onlyState;
 	/*     * ***********************Methode static*************************** */
 	public static function UpdateStatus() {
 		while(true){
@@ -23,8 +23,8 @@ class plex extends eqLogic {
 						$MediaOffset=$plexClient->getCmd(null,'viewOffset');
 						$MediaOffset->execute();
 					}
-					else
-						$plexClient->ConnexionsPlex();
+					//else
+						//$plexClient->ConnexionsPlex();
 				}
 				//$plexClient->refreshWidget();
 			}
