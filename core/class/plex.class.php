@@ -7,10 +7,10 @@ include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
     /*     * *************************Attributs****************************** */
-	protected $_plex;
-	protected $_server;
-	protected $_client;
-	protected $_onlyState;
+	public $_plex;
+	public $_server;
+	public $_client;
+	public $_onlyState;
 	/*     * ***********************Methode static*************************** */
 	public static function UpdateStatus() {
 		while(true){
@@ -398,17 +398,20 @@ class plex extends eqLogic {
 	}
 	/*     * *********************Methode d'instance************************* */
    	public function ConnexionsPlex(){
-	   	$servers = array(
-			config::byKey('name', 'plex') => array(
-				'address' => config::byKey('addr', 'plex'),
-				'port' => config::byKey('port', 'plex')
-			)
-		);
+	   	
 		if(!is_object($this->_plex)){
+			
+			log::add('plex','debug',json_encode($this->_server));
 			$this->_plex = new PlexApi();
 			$this->_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
 		}	
 		if(!is_object($this->_server)){
+			$servers = array(
+				config::byKey('name', 'plex') => array(
+					'address' => config::byKey('addr', 'plex'),
+					'port' => config::byKey('port', 'plex')
+				)
+			);
 			$this->_plex->registerServers($servers);
 			$this->_server=$this->_plex->getServer(config::byKey('name', 'plex'));
 			log::add('plex','debug',json_encode($this->_server));
