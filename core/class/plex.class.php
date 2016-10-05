@@ -16,7 +16,7 @@ class plex extends eqLogic {
 		while(true){
 			$eqLogics = eqLogic::byType('plex');
 			foreach($eqLogics as $plexClient) 
-				$plexClient->tateControl();
+				$plexClient->StateControl();
 			sleep(10);
 		}
 	}
