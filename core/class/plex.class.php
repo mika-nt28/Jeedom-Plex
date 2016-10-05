@@ -400,10 +400,9 @@ class plex extends eqLogic {
    	public function ConnexionsPlex(){
 	   	
 		if(!is_object($this->_plex)){
-			
-			log::add('plex','debug',json_encode($this->_server));
 			$this->_plex = new PlexApi();
 			$this->_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
+			log::add('plex','debug',json_encode(var_dump($this->_plex);));
 		}	
 		if(!is_object($this->_server)){
 			$servers = array(
@@ -414,10 +413,11 @@ class plex extends eqLogic {
 			);
 			$this->_plex->registerServers($servers);
 			$this->_server=$this->_plex->getServer(config::byKey('name', 'plex'));
-			log::add('plex','debug',json_encode($this->_server));
+			log::add('plex','debug',json_encode(var_dump($this->_server);));
 		}
 		if(!is_object($this->_client)){
 			$this->_client=$this->_plex->getClient($this->getLogicalId());
+			log::add('plex','debug',json_encode(var_dump($this->_client);));
 			if(is_object($this->_client))
 				$this->_onlyState=$this->_client->getOnlyState();
 			else
@@ -480,21 +480,20 @@ class plex extends eqLogic {
 		return $Commande;
 	}
 	public function preUpdate() {
-		
 		if ($this->getLogicalId() == '') {
-            throw new Exception(__('Un client doit etre choisi pour poursuivre',__FILE__));
-        }
+            		throw new Exception(__('Un client doit etre choisi pour poursuivre',__FILE__));
+        	}
 		if ($this->getConfiguration('volume_inc') != '' && ($this->getConfiguration('volume_inc') <=  0 || $this->getConfiguration('volume_inc') >=  100)) {
-            throw new Exception(__('Le volume +/- doit être > 0 et < 100',__FILE__));
-        }
-    }  
-    public function preInsert() {
+           		 throw new Exception(__('Le volume +/- doit être > 0 et < 100',__FILE__));
+        	}
+    	}  
+    	public function preInsert() {
 		$this->setCategory('multimedia', 1);
 		$this->setConfiguration('text_color','#BACEC8');
 	}    
-    public function postSave() {
+    	public function postSave() {
 		if (!$this->getId())
-          return;
+          		return;
 		global $listCmdPLEX;
 		if($this->getLogicalId()!= ""){
 			$this->ConnexionsPlex();
@@ -516,7 +515,7 @@ class plex extends eqLogic {
 				}
 			}
 		}
-    }	
+    	}	
 	public function toHtml($_version = 'dashboard') {
 		if ($this->getIsEnable() != 1) {
 			return '';
