@@ -7,8 +7,8 @@ include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
     /*     * *************************Attributs****************************** */
-	public $_plex;
-	public $_server;
+	public static $_plex;
+	public static $_server;
 	public $_client;
 	public $_onlyState;
 	/*     * ***********************Methode static*************************** */
@@ -22,9 +22,9 @@ class plex extends eqLogic {
 	}
 	public function StateControl() {
 		if ($this->getIsEnable() == 1 && $this->getConfiguration('heartbeat',0) == 1) {
-			if(is_object($this->_client)&&is_object($this->_server)){
-				$this->_server->getPlayerSessions(array($this->getLogicalId()));
-				$this->getCmd(null,'state')->event($this->_client->getState());
+			if(is_object(self::$_client)&&is_object(self::$_server)){
+				self::$_server->getPlayerSessions(array($this->getLogicalId()));
+				$this->getCmd(null,'state')->event(self::$_client->getState());
 				$MediaOffset=$this->getCmd(null,'viewOffset');
 				$MediaOffset->execute();
 			}
@@ -399,26 +399,26 @@ class plex extends eqLogic {
 	/*     * *********************Methode d'instance************************* */
    	public function ConnexionsPlex(){
 	   	
-		log::add('plex','debug',json_encode(var_dump($this->_plex)));
-		if(!is_object($this->_plex)){
-			$this->_plex = new PlexApi();
-			$this->_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
-			log::add('plex','debug',json_encode(var_dump($this->_plex)));
+		log::add('plex','debug',json_encode(var_dump(self::$_plex)));
+		if(!is_object(self::$_plex)){
+			self::$_plex = new PlexApi();
+			self::$_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
+			log::add('plex','debug',json_encode(var_dump(self::$_plex)));
 		}	
-		if(!is_object($this->_server)){
+		if(!is_object(self::$_server)){
 			$servers = array(
 				config::byKey('name', 'plex') => array(
 					'address' => config::byKey('addr', 'plex'),
 					'port' => config::byKey('port', 'plex')
 				)
 			);
-			log::add('plex','debug',json_encode(var_dump($this->_server)));
-			$this->_plex->registerServers($servers);
-			$this->_server=$this->_plex->getServer(config::byKey('name', 'plex'));
-			log::add('plex','debug',json_encode(var_dump($this->_server)));
+			log::add('plex','debug',json_encode(var_dump(self::$_server)));
+			self::$_plex->registerServers($servers);
+			self::$_server=self::$_plex->getServer(config::byKey('name', 'plex'));
+			log::add('plex','debug',json_encode(var_dump(self::$_server)));
 		}
 		if(!is_object($this->_client)){
-			$this->_client=$this->_plex->getClient($this->getLogicalId());
+			$this->_client=self::$_plex->getClient($this->getLogicalId());
 			log::add('plex','debug',json_encode(var_dump($this->_client)));
 			if(is_object($this->_client))
 				$this->_onlyState=$this->_client->getOnlyState();
@@ -428,12 +428,12 @@ class plex extends eqLogic {
 	}	
 	public function getClients(){
 		$this->ConnexionsPlex();	
-		$Clients=$this->_plex->getClients();
+		$Clients=self::$_plex->getClients();
 		return $Clients;
 	}
 	public function getLibrary(){
 		$this->ConnexionsPlex();	
-		$sections=$this->_server->getLibrary()->getSections();
+		$sections=self::$_server->getLibrary()->getSections();
 		$return=array();
 		foreach($sections as $section)
 			$return[]=self::LibraryInforamtion($section);
@@ -442,7 +442,7 @@ class plex extends eqLogic {
 	public function getMedia($Filtre=null,$param=''){
 		$param=json_decode($param, true);
 		$this->ConnexionsPlex();	
-		$section=$this->_server->getLibrary()->getSection($param['Library']);
+		$section=self::$_server->getLibrary()->getSection($param['Library']);
 		$reponse=self::filterMedia($section, $Filtre,$param);
 		$return =array();
 		if($reponse != null){
