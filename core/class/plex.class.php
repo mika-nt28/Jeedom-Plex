@@ -22,6 +22,7 @@ class plex extends eqLogic {
 	}
 	public function StateControl() {
 		if ($this->getIsEnable() == 1 && $this->getConfiguration('heartbeat',0) == 1) {
+			$this->ConnexionsPlex();
 			if(isset(self::$_client)&&is_object(self::$_client)&&isset(self::$_server)&&is_object(self::$_server)){
 				$server=self::$_server;
 				$server->getPlayerSessions(array($this->getLogicalId()));
@@ -29,8 +30,6 @@ class plex extends eqLogic {
 				$MediaOffset=$this->getCmd(null,'viewOffset');
 				$MediaOffset->execute();
 			}
-			else
-				$this->ConnexionsPlex();
 		}
 		$this->refreshWidget();
 	}
@@ -406,6 +405,7 @@ class plex extends eqLogic {
 			self::$_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
 			log::add('plex','debug',json_encode(var_dump(self::$_plex)));
 		}	
+		log::add('plex','debug',json_encode(var_dump(self::$_server)));
 		if(!is_object(self::$_server)){
 			$servers = array(
 				config::byKey('name', 'plex') => array(
@@ -413,14 +413,13 @@ class plex extends eqLogic {
 					'port' => config::byKey('port', 'plex')
 				)
 			);
-			log::add('plex','debug',json_encode(var_dump(self::$_server)));
 			self::$_plex->registerServers($servers);
 			self::$_server=self::$_plex->getServer(config::byKey('name', 'plex'));
 			log::add('plex','debug',json_encode(var_dump(self::$_server)));
 		}
+		log::add('plex','debug',json_encode(var_dump($this->_client)));
 		if(!is_object($this->_client)){
 			$this->_client=self::$_plex->getClient($this->getLogicalId());
-			log::add('plex','debug',json_encode(var_dump($this->_client)));
 			if(is_object($this->_client))
 				$this->_onlyState=$this->_client->getOnlyState();
 			else
