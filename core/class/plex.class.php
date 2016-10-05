@@ -22,7 +22,7 @@ class plex extends eqLogic {
 	}
 	public function StateControl() {
 		if ($this->getIsEnable() == 1 && $this->getConfiguration('heartbeat',0) == 1) {
-			if(is_object(self::$_client)&&is_object(self::$_server)){
+			if(isset(self::$_client)&&is_object(self::$_client)&&isset(self::$_server)&&is_object(self::$_server)){
 				$server=self::$_server;
 				$server->getPlayerSessions(array($this->getLogicalId()));
 				$this->getCmd(null,'state')->event(self::$_client->getState());
