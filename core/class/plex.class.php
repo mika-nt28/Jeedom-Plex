@@ -402,7 +402,7 @@ class plex extends eqLogic {
 		if(!is_object($this->_plex)){
 			$this->_plex = new PlexApi();
 			$this->_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
-			log::add('plex','debug',json_encode(var_dump($this->_plex);));
+			log::add('plex','debug',json_encode(var_dump($this->_plex)));
 		}	
 		if(!is_object($this->_server)){
 			$servers = array(
@@ -413,11 +413,11 @@ class plex extends eqLogic {
 			);
 			$this->_plex->registerServers($servers);
 			$this->_server=$this->_plex->getServer(config::byKey('name', 'plex'));
-			log::add('plex','debug',json_encode(var_dump($this->_server);));
+			log::add('plex','debug',json_encode(var_dump($this->_server)));
 		}
 		if(!is_object($this->_client)){
 			$this->_client=$this->_plex->getClient($this->getLogicalId());
-			log::add('plex','debug',json_encode(var_dump($this->_client);));
+			log::add('plex','debug',json_encode(var_dump($this->_client)));
 			if(is_object($this->_client))
 				$this->_onlyState=$this->_client->getOnlyState();
 			else
