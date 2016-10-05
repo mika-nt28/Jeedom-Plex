@@ -22,9 +22,9 @@ class plex extends eqLogic {
 	}
 	public function StateControl() {
 		if ($this->getIsEnable() == 1 && $this->getConfiguration('heartbeat',0) == 1) {
-			if(is_object(self::$_client)&&is_object(self::$_server)){
-				self::$_server->getPlayerSessions(array($this->getLogicalId()));
-				$this->getCmd(null,'state')->event(self::$_client->getState());
+			if(is_object(self::_client)&&is_object(self::_server)){
+				self::_server->getPlayerSessions(array($this->getLogicalId()));
+				$this->getCmd(null,'state')->event(self::$client->getState());
 				$MediaOffset=$this->getCmd(null,'viewOffset');
 				$MediaOffset->execute();
 			}
