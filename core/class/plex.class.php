@@ -15,21 +15,23 @@ class plex extends eqLogic {
 	public static function UpdateStatus() {
 		while(true){
 			$eqLogics = eqLogic::byType('plex');
-			foreach($eqLogics as $plexClient) {
-				if ($plexClient->getIsEnable() == 1 && $plexClient->getConfiguration('heartbeat',0) == 1) {
-					if(is_object($plexClient->_client)&&is_object($plexClient->_server)){
-						$plexClient->_server->getPlayerSessions(array($plexClient->getLogicalId()));
-						$plexClient->getCmd(null,'state')->event($plexClient->_client->getState());
-						$MediaOffset=$plexClient->getCmd(null,'viewOffset');
-						$MediaOffset->execute();
-					}
-					//else
-						//$plexClient->ConnexionsPlex();
-				}
-				//$plexClient->refreshWidget();
-			}
+			foreach($eqLogics as $plexClient) 
+				$plexClient->tateControl();
 			sleep(10);
 		}
+	}
+	public function StateControl() {
+		if ($this->getIsEnable() == 1 && $this->getConfiguration('heartbeat',0) == 1) {
+			if(is_object($this->_client)&&is_object($this->_server)){
+				$this->_server->getPlayerSessions(array($this->getLogicalId()));
+				$this->getCmd(null,'state')->event($this->_client->getState());
+				$MediaOffset=$this->getCmd(null,'viewOffset');
+				$MediaOffset->execute();
+			}
+			else
+				$this->ConnexionsPlex();
+		}
+		$this->refreshWidget();
 	}
 	public static function deamon_info() {
 		$return = array();
