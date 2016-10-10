@@ -572,8 +572,8 @@ class plexCmd extends cmd {
      public function execute($_options = null) {
 		$response='';
 		$this->getEqLogic()->ConnexionsPlex();	
-		$plex=$this->getEqLogic()->_plex;
-		$server = $this->getEqLogic()->_server;	
+		$plex= plex::$_plex;
+		$server = plex::$_server;	
 		$client = $this->getEqLogic()->_client;
 		if(is_object($client)){
 			switch ($this->getType()) {
