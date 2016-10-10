@@ -173,10 +173,10 @@
 		function UpdateDetail#uid#(Data){
 			//Mise a jours des etoiles		
 			$('.plex[data-eqLogic_uid=#uid#] .item-summary').text(Data.Media.Summary);
-			$('.item-duration').text(SecondToDuration(Data.Media.Duration));
+			//$('.item-duration').text(SecondToDuration(Data.Media.Duration));
 		
 			if (typeof(Data.Media.Duration) != "undefined")
-				$('.item-duration').text(SecondToDuration(Data.Media[i].Duration)).show();;
+				$('.item-duration').text(SecondToDuration(Data.Media.Duration)).show();
 			else
 				$('.item-duration').hide();
 			for (var i in Data.Media.Genre) {
@@ -222,7 +222,7 @@
 					.hide();
 				if(i==0){
 					if (typeof(Data.Media[i].Duration) != "undefined")
-						$('.plex[data-eqLogic_uid=#uid#] .time_haut_plex_widget').text(SecondToDuration(Data.Media[i].Duration)).show();;
+						$('.plex[data-eqLogic_uid=#uid#] .time_haut_plex_widget').text(SecondToDuration(Data.Media[i].Duration)).show();
 					else
 						$('.plex[data-eqLogic_uid=#uid#] .time_haut_plex_widget').hide();
 					$('.plex[data-eqLogic_uid=#uid#] .gros_titre_plex').attr('title',Data.Media[i].Title).text(Data.Media[i].Title);
