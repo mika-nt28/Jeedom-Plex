@@ -555,11 +555,11 @@
 			var duration=heure+' h '+minute+' min ';
 			return duration
 		}	
-		$(".plex[data-eqLogic_uid=#uid#] .volume").bootstrapSlider({
+		/*$(".plex[data-eqLogic_uid=#uid#] .volume").bootstrapSlider({
 			min: 0,
 			max: 100,
 			value: ('#volume#' == '') ? 0 : parseInt('#volume#')
-			});
+			});*/
 		$(".plex[data-eqLogic_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
 		$(".plex[data-eqLogic_uid=#uid#] .volume").on('slideStop', function (ev) {
 			jeedom.cmd.execute({id: '#volume_id#', value: {slider: ev.value}});
