@@ -156,8 +156,6 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		// Partie telecommande ///
-	//	var Media#uid#='{}';
 		var Media#uid#=jQuery.parseJSON('#media#');
 		var Init=true;
 		function telecommande#uid#(){
@@ -324,15 +322,15 @@
 							break;
 						}					
 					}
-					if (typeof(Media#uid#.Library) != "undefined" && Init)
-						$('.plex[data-eqLogic_uid=#uid#] .btm-library-plex').first().trigger('click');
-					else
+					//if (typeof(Media#uid#.Library) != "undefined" && Init)
+					//	$('.plex[data-eqLogic_uid=#uid#] .btm-library-plex').first().trigger('click');
+					//else
 						Init=false;
 				}
 			}
 		});
         $('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-library-plex", function() {				
-			$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
+			//$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
 			$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
 			$('.plex[data-eqLogic_uid=#uid#] .Filtre').show();
 			$('.plex[data-eqLogic_uid=#uid#] .Detail').hide();
@@ -367,12 +365,12 @@
 						if (data.result!=false)
 						{		
 							UpdateList#uid#(data.result);	
-							if ((typeof(Media#uid#.Video) != "undefined" || typeof(Media#uid#.Show) != "undefined" ||typeof(Media#uid#.Album) != "undefined") && Init)
-								$('.plex[data-eqLogic_uid=#uid#] .btm-media-plex').first().trigger('click');
-							else{
+							//if ((typeof(Media#uid#.Video) != "undefined" || typeof(Media#uid#.Show) != "undefined" ||typeof(Media#uid#.Album) != "undefined") && Init)
+							//	$('.plex[data-eqLogic_uid=#uid#] .btm-media-plex').first().trigger('click');
+							//else{
 								Init=false;
 								UpdateCmd('media', JSON.stringify(Media#uid#));
-							}
+							//}
 						}
 					}
 				});
@@ -480,7 +478,7 @@
 							$('.plex[data-eqLogic_uid=#uid#] .tab-content').removeClass('active');	
 							switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-lib_title="'+Media.Library+'"]').data('lib_type')){
 								case 'movie':			
-									$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
+									//$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
 									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').hide();
 									$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
 									$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
@@ -492,7 +490,7 @@
 								case 'show':
 									if (Media.Season == '' || typeof(Media.Season) == "undefined"){
 										UpdateList#uid#(data.result);
-										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
+										//$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
 										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
 										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
 										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
@@ -502,7 +500,7 @@
 									}
 									else if (Media.Episode == '' || typeof(Media.Episode) == "undefined"){
 										UpdateList#uid#(data.result);
-										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');			
+										//$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');			
 										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
 										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
 										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
@@ -512,7 +510,7 @@
 									}
 									else{
 										UpdateDetail#uid#(data.result);
-										$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');		
+										//$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');		
 										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
 										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
 										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
@@ -524,7 +522,7 @@
 								case 'artist':
 									if (Media.Tarck == '' || typeof(Media.Tarck) == "undefined"){
 										UpdateList#uid#(data.result);
-										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');			
+										//$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');			
 										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
 										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
 										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
@@ -534,7 +532,7 @@
 										}
 									else{
 										UpdateDetail#uid#(data.result);
-										$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
+										//$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
 										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').hide();
 										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
 										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
