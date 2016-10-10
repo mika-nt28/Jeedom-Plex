@@ -31,7 +31,6 @@ class plex extends eqLogic {
 				$MediaOffset->execute();
 			}
 		}
-		$this->refreshWidget();
 	}
 	public static function deamon_info() {
 		$return = array();
