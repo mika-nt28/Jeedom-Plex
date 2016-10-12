@@ -54,29 +54,47 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 	 *
 	 * @return void
 	 */
-	public function playMedia(
-		Plex_Server_Library_ItemAbstract $item,
-		$viewOffset = NULL
-	)
-	{
+	public function playMedia(Plex_Server_Library_ItemAbstract $item, $viewOffset = NULL)	{
+	/*	$url=http://{PLAYER_ID}:{PLAYER_PORT}
+		$url+='/player/playback/playMedia?key='.$item->getRatingKey();
+		$url+='&offset=0';
+		$url+='&X-Plex-Client-Identifier={CLIENT_ID}';
+		$url+='&machineIdentifier={SERVER_ID}';
+		$url+='&address={SERVER_IP}';
+		$url+='&port={SERVER_PORT}';
+		$url+='&protocol=http';
+		$url+='&path=http://{SERVER_IP}:{SERVER_PORT}/library/metadata/{MEDIA_ID}';
+		$url+='&X-Plex-Token='.config::byKey('PlexToken', 'plex');
+		$ch = curl_init();
+      		log::add('plex','debug','Connexion a '. $url);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_HEADER, FALSE);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		
+		$response = curl_exec($ch);
+      		log::add('plex','debug','response: '. $response);
+		if ($response === false) {
+      			log::add('plex','debug',curl_strerror(curl_error($ch)));
+			throw new Plex_Exception_Machine(
+				'CURL_ERROR',
+				array(curl_errno($ch), curl_error($ch))
+			);
+		}
+		
+		curl_close($ch);*/
+
 		$key = sprintf(
 			'/%s/%s/%d',
 			Plex_Server_Library::ENDPOINT_LIBRARY,
 			Plex_Server_Library::ENDPOINT_METADATA,
 			$item->getRatingKey()
 		);
-		$path=$key;
-		/*if(stripos($key,'?')>0)
-			$path='&';
-		else
-			$path.='?';
-      	 	$path.= 'X-Plex-Token='.config::byKey('PlexToken', 'plex');*/
 		$params = array(
 			'key' => $key,
 			'path' => sprintf(
 				'%s%s',
-				$this->getServer()->getBaseUrl(),
-				$path
+				$this->getBaseUrl(),
+				$key
 			)
 		);
 		if ($viewOffset) {
