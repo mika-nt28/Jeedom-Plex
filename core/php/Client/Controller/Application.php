@@ -66,11 +66,11 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 			$item->getRatingKey()
 		);
 		$path=$key;
-		if(stripos($key,'?')>0)
+		/*if(stripos($key,'?')>0)
 			$path='&';
 		else
 			$path.='?';
-      	 	$path.= 'X-Plex-Token='.config::byKey('PlexToken', 'plex');
+      	 	$path.= 'X-Plex-Token='.config::byKey('PlexToken', 'plex');*/
 		$params = array(
 			'key' => $key,
 			'path' => sprintf(
