@@ -97,7 +97,7 @@ abstract class Plex_Client_ControllerAbstract extends Plex_Client
 			$url = sprintf(
 				'%s?%s',
 				$url,
-				http_build_query($params)
+				$params//http_build_query($params)
 			);
 		}
 		$this->makeCall($url);
