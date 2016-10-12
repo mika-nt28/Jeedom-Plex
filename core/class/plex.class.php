@@ -27,8 +27,8 @@ class plex extends eqLogic {
 				$server=self::$_server;
 				$server->getPlayerSessions(array($this->getLogicalId()));
 				//$this->getCmd(null,'state')->event($this->_client->getState());
-				//$MediaOffset=$this->getCmd(null,'viewOffset');
-				//$MediaOffset->execute();
+				$MediaOffset=$this->getCmd(null,'viewOffset');
+				$MediaOffset->execute();
 			//}
 		}
 	}
