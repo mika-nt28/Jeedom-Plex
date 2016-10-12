@@ -55,15 +55,23 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 	 * @return void
 	 */
 	public function playMedia(Plex_Server_Library_ItemAbstract $item, $viewOffset = NULL)	{
-	/*	$url=http://{PLAYER_ID}:{PLAYER_PORT}
+		$url=sprintf(
+			'http://%s:%s',
+			$this->getHost(),
+			$this->getPort(),
+		);
 		$url+='/player/playback/playMedia?key='.$item->getRatingKey();
 		$url+='&offset=0';
-		$url+='&X-Plex-Client-Identifier={CLIENT_ID}';
-		$url+='&machineIdentifier={SERVER_ID}';
-		$url+='&address={SERVER_IP}';
-		$url+='&port={SERVER_PORT}';
+		//$url+='&X-Plex-Client-Identifier={CLIENT_ID}';
+		//$url+='&machineIdentifier={SERVER_ID}';
+		//$url+='&address='.$this->getServer()->getHost();
+		//$url+='&port='.$this->getServer()->getPort();
 		$url+='&protocol=http';
-		$url+='&path=http://{SERVER_IP}:{SERVER_PORT}/library/metadata/{MEDIA_ID}';
+		$url+='&path='.sprintf(
+				'%s%s',
+				$this->getServer()->getBaseUrl(),
+				$key
+			);
 		$url+='&X-Plex-Token='.config::byKey('PlexToken', 'plex');
 		$ch = curl_init();
       		log::add('plex','debug','Connexion a '. $url);
@@ -81,9 +89,9 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 			);
 		}
 		
-		curl_close($ch);*/
+		curl_close($ch);
 
-		$key = sprintf(
+		/*$key = sprintf(
 			'/%s/%s/%d',
 			Plex_Server_Library::ENDPOINT_LIBRARY,
 			Plex_Server_Library::ENDPOINT_METADATA,
@@ -93,7 +101,7 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 			'key' => $key,
 			'path' => sprintf(
 				'%s%s',
-				$this->getBaseUrl(),
+				$this->getServer()->getBaseUrl(),
 				$key
 			)
 		);
@@ -101,7 +109,7 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 			$params['viewOffset'] = $viewOffset;
 		}
 		
-		$this->executeCommand($params);
+		$this->executeCommand($params);*/
 	}
 	
 	/**
