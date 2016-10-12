@@ -65,17 +65,18 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 			Plex_Server_Library::ENDPOINT_METADATA,
 			$item->getRatingKey()
 		);
+		$path=$key;
 		if(stripos($key,'?')>0)
-			$key.='&';
+			$path='&';
 		else
-			$key.='?';
-      	 	$key.= 'X-Plex-Token='.config::byKey('PlexToken', 'plex');
+			$path.='?';
+      	 	$path.= 'X-Plex-Token='.config::byKey('PlexToken', 'plex');
 		$params = array(
 			'key' => $key,
 			'path' => sprintf(
 				'%s%s',
 				$this->getServer()->getBaseUrl(),
-				$key
+				$path
 			)
 		);
 		if ($viewOffset) {
