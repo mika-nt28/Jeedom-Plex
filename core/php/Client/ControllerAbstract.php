@@ -74,8 +74,9 @@ abstract class Plex_Client_ControllerAbstract extends Plex_Client
 			$command
 		);*/
 		return sprintf(
-			'%s/player/playback/%s',
+			'%s/player/%s/%s',
 			$this->getBaseUrl(),
+			$controller,
 			$command
 		);
 	}
