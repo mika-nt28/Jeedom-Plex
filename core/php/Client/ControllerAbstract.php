@@ -66,11 +66,16 @@ abstract class Plex_Client_ControllerAbstract extends Plex_Client
 	 */
 	private function buildUrl($controller, $command)
 	{
-		return sprintf(
-			'%s/system/players/%s/%s/%s',
+		/*return sprintf(
+			'%s/player/playback/%s/%s/%s',
 			$this->getServer()->getBaseUrl(),
 			$this->getAddress(),
 			$controller,
+			$command
+		);*/
+		return sprintf(
+			'%s/system/players/%s',
+			$this->getBaseUrl(),
 			$command
 		);
 	}
@@ -89,7 +94,20 @@ abstract class Plex_Client_ControllerAbstract extends Plex_Client
 	 * @return void
 	 */
 	protected function executeCommand($params = array())
-	{
+	{	/*http://<CLIENT IP>:<CLIENT PORT>/player/playback/playMedia?
+			key=%2Flibrary%2Fmetadata%2F<MEDIA ID>
+			&offset=0
+			&X-Plex-Client-Identifier=<CLIENT ID>
+			&machineIdentifier=<SERVER ID>
+			&address=<SERVER IP>
+			&port=<SERVER PORT>
+			&protocol=http
+			&path=http%3A%2F%2F<SERVER IP>%3A<SERVER PORT>%2Flibrary%2Fmetadata%2F<MEDIA ID>
+		http://192.168.0.100:32400/system/players/192.168.0.81/application/playMedia
+			?key=%2Flibrary%2Fmetadata%2F45
+			&path=http%3A%2F%2F192.168.0.81%3A3005%2Flibrary%2Fmetadata%2F45
+			&X-Plex-Token=WNzykNtfzBp6nJWuhynn
+			*/
 		$controller = strtolower(array_pop(explode('_', get_class($this))));
 		$command = $this->getCallingFunction();
 		$url = $this->buildUrl($controller, $command);
