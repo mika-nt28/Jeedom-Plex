@@ -694,7 +694,9 @@ class plexCmd extends cmd {
 						case 'playMediaLastStopped':
 							// Play epsiode from where it was last stopped
 							if(method_exists($application,'playMedia'))
-							$response=$application->playMedia($episode, $media->getViewOffset());
+								$response=$application->playMedia($episode, $media->getViewOffset());
+							else
+								log::add('plex','debug','La methode playMedia n\'existe pas');
 						break;
 						case 'setVolume':
 							// Set voume to half
