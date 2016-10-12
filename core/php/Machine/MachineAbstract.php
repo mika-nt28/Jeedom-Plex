@@ -153,7 +153,7 @@ abstract class Plex_MachineAbstract implements Plex_MachineInterface
 
       		log::add('plex','debug','response: '. $response);
 		if (!$response) {
-      			log::add('plex','debug',curl_error($ch));
+      			log::add('plex','debug',curl_strerror(curl_error($ch)));
 			throw new Plex_Exception_Machine(
 				'CURL_ERROR',
 				array(curl_errno($ch), curl_error($ch))
