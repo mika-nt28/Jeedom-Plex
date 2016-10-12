@@ -55,53 +55,7 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 	 * @return void
 	 */
 	public function playMedia(Plex_Server_Library_ItemAbstract $item, $viewOffset = NULL)	{
-		/*http://<CLIENT IP>:<CLIENT PORT>/player/playback/playMedia?
-			key=%2Flibrary%2Fmetadata%2F<MEDIA ID>
-			&offset=0
-			&X-Plex-Client-Identifier=<CLIENT ID>
-			&machineIdentifier=<SERVER ID>
-			&address=<SERVER IP>
-			&port=<SERVER PORT>
-			&protocol=http
-			&path=http%3A%2F%2F<SERVER IP>%3A<SERVER PORT>%2Flibrary%2Fmetadata%2F<MEDIA ID>
-		*/
-		$url=sprintf(
-			'http://%s:%s',
-			$this->getHost(),
-			$this->getPort()
-		);
-		$url+='/player/playback/playMedia?key='.$item->getRatingKey();
-		$url+='&offset=0';
-		//$url+='&X-Plex-Client-Identifier={CLIENT_ID}';
-		//$url+='&machineIdentifier={SERVER_ID}';
-		//$url+='&address='.$this->getServer()->getHost();
-		//$url+='&port='.$this->getServer()->getPort();
-		$url+='&protocol=http';
-		$url+='&path='.sprintf(
-				'%s%s',
-				$this->getServer()->getBaseUrl(),
-				$key
-			);
-		$url+='&X-Plex-Token='.config::byKey('PlexToken', 'plex');
-		$ch = curl_init();
-      		log::add('plex','debug','Connexion a '. $url);
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_HEADER, FALSE);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		
-		$response = curl_exec($ch);
-      		log::add('plex','debug','response: '. $response);
-		if ($response === false) {
-      			log::add('plex','debug',curl_strerror(curl_error($ch)));
-			throw new Plex_Exception_Machine(
-				'CURL_ERROR',
-				array(curl_errno($ch), curl_error($ch))
-			);
-		}
-		
-		curl_close($ch);
-
-		/*$key = sprintf(
+		$key = sprintf(
 			'/%s/%s/%d',
 			Plex_Server_Library::ENDPOINT_LIBRARY,
 			Plex_Server_Library::ENDPOINT_METADATA,
@@ -119,7 +73,7 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 			$params['viewOffset'] = $viewOffset;
 		}
 		
-		$this->executeCommand($params);*/
+		$this->executeCommand($params);
 	}
 	
 	/**
