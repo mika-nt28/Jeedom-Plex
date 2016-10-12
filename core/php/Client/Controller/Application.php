@@ -55,10 +55,20 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 	 * @return void
 	 */
 	public function playMedia(Plex_Server_Library_ItemAbstract $item, $viewOffset = NULL)	{
+		/*http://<CLIENT IP>:<CLIENT PORT>/player/playback/playMedia?
+			key=%2Flibrary%2Fmetadata%2F<MEDIA ID>
+			&offset=0
+			&X-Plex-Client-Identifier=<CLIENT ID>
+			&machineIdentifier=<SERVER ID>
+			&address=<SERVER IP>
+			&port=<SERVER PORT>
+			&protocol=http
+			&path=http%3A%2F%2F<SERVER IP>%3A<SERVER PORT>%2Flibrary%2Fmetadata%2F<MEDIA ID>
+		*/
 		$url=sprintf(
 			'http://%s:%s',
 			$this->getHost(),
-			$this->getPort(),
+			$this->getPort()
 		);
 		$url+='/player/playback/playMedia?key='.$item->getRatingKey();
 		$url+='&offset=0';
