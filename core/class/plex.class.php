@@ -558,7 +558,7 @@ class plex extends eqLogic {
 		$parameters = $this->getDisplay('parameters');
         if (is_array($parameters)) {
             foreach ($parameters as $key => $value) {    
-				log::add('plex','debug','Received : ' .$value . ' from ' .$key);
+		log::add('plex','debug','Received : ' .$value . ' from ' .$key);
                 $replace['#' . $key . '#'] = $value;
             }
         }
@@ -571,9 +571,11 @@ class plex extends eqLogic {
 class plexCmd extends cmd {
      public function execute($_options = null) {
 		$response='';
+		log::add('plex','debug','Connextion a plex');
 		$this->getEqLogic()->ConnexionsPlex();	
 		$plex= plex::$_plex;
 		$server = plex::$_server;	
+		log::add('plex','debug','Récuperation du client');
 		$client = $this->getEqLogic()->_client;
 		if(is_object($client)){
 			switch ($this->getType()) {
@@ -675,10 +677,13 @@ class plexCmd extends cmd {
 					}
 				break;
 				case 'Application':
+					log::add('plex','debug','Récuperation dz $application');
 					$application = $client->getApplicationController();
 					//$navigation = $client->getNavigationController();		
 					$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
+					log::add('plex','debug','Récuperation de la librarie');
 					$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
+					log::add('plex','debug','Récuperation du media');
 					$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
 					switch ($this->getConfiguration('commande'))
 					{
@@ -688,8 +693,12 @@ class plexCmd extends cmd {
 						break;
 						case 'playMedia':
 							// Play episode from beginning
+							
+							log::add('plex','debug','Execution de playMedia');
 							if(method_exists($application,'playMedia'))
 								$response=$application->playMedia($media);
+							else
+								log::add('plex','debug','La methode playMedia n\'existe pas');
 						break;
 						case 'playMediaLastStopped':
 							// Play epsiode from where it was last stopped
