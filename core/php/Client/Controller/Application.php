@@ -62,6 +62,12 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 			$item->getRatingKey()
 		);
 		$params = array(
+			'offset' =>0,
+			'X-Plex-Client-Identifier'=>$this->getMachineIdentifier(),
+			'machineIdentifier'=>$this->getServer()->getMachineIdentifier(),
+			'address'=>$this->getServer()->getHost(),
+			'port'=> $this->getServer()->getPort(),
+			'protocol'=> 'http',
 			'key' => $key,
 			'path' => sprintf(
 				'%s%s',
