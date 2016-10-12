@@ -136,22 +136,22 @@ abstract class Plex_MachineAbstract implements Plex_MachineInterface
 	 *
 	 * @throws Plex_Exception_Machine
 	 */
-	protected function makeCall($url)
-	{
+	protected function makeCall($url){
 		if(stripos($url,'?')>0)
 			$url.='&';
 		else
 			$url.='?';
-       	$url.= 'X-Plex-Token='.config::byKey('PlexToken', 'plex');
+       		$url.= 'X-Plex-Token='.config::byKey('PlexToken', 'plex');
 		$ch = curl_init();
-      	log::add('plex','debug','Connexion a '. $url);
+      		log::add('plex','debug','Connexion a '. $url);
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_HEADER, FALSE);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 1000);
 		
 		$response = curl_exec($ch);
 
-      	log::add('plex','debug','response: '. $response);
+      		log::add('plex','debug','response: '. $response);
 		if ($response === FALSE) {
       			log::add('plex','error',curl_error($ch));
 			throw new Plex_Exception_Machine(
