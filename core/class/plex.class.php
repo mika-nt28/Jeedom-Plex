@@ -25,6 +25,7 @@ class plex extends eqLogic {
 				$PlayerSate=$this->getCmd(null,'state');
 				if(is_object($PlayerSate)){
 					$State=$this->_client->getState();
+					log::add('plex','debug','Etat du player : '.$State);
 					$PlayerSate->setCollectDate(date('Y-m-d H:i:s'));
 					$PlayerSate->setConfiguration('doNotRepeatEvent', 1);
 					$PlayerSate->event($State);
