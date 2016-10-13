@@ -76,8 +76,8 @@ class Plex_Server extends Plex_MachineAbstract
 */
 		$Server=$this->makeCall($this->getBaseUrl());
 		foreach ($Server as $attribute) {
-		$this->setMachineIdentifier($attribute['machineIdentifier']);
-
+			$this->setMachineIdentifier($attribute['machineIdentifier']);
+		}
 	}
 	public function getClients(){
 		$url = sprintf(
