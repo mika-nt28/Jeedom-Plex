@@ -49,7 +49,7 @@ class PlexApi
 	
 	public function getToken($username, $password)
 	{
-		$host = "https://plex.tv/users/sign_in.json";
+		/*$host = "https://plex.tv/users/sign_in.json";
 		$header = array(
 			   'Content-Type: application/xml; charset=utf-8', 
 			   'Content-Length: 0', 
@@ -71,11 +71,11 @@ class PlexApi
 		$curlError = curl_error($process);
 		$json = json_decode($data, true);
 		//$this->token=$json['user']['authentication_token'];
-		config::save('PlexToken',$json['user']['authentication_token'], 'plex');
+		config::save('PlexToken',$json['user']['authentication_token'], 'plex');*/
 	}
 	public function registerServers(array $servers)
 	{
-		// Register each server.
+	/*	// Register each server.
 		foreach ($servers as $name => $server) {
 			$port = isset($server['port']) ? $server['port'] : NULL;
 			self::$servers[$name] = new Plex_Server(
@@ -90,22 +90,22 @@ class PlexApi
 		$serverName = reset(array_keys(self::$servers));
 		$this->registerClients(
 			$this->getServer($serverName)->getClients()
-		);
+		);*/
 	}
 	
 	public function UpdateClientStatus()
 	{
-		// We are going to use the first server in the list to get a list of the
+	/*	// We are going to use the first server in the list to get a list of the
 		// availalble clients and register those automatically.
 		$serverName = reset(array_keys(self::$servers));
 		$this->getPlayerSessions(
 			$this->getServer($serverName)->getClients()
-		);
+		);*/
 	}
 
    	private function registerClients(array $clients)
 	{
-		self::$clients = $clients;
+		//self::$clients = $clients;
 	}
 	
 	/**
@@ -121,14 +121,14 @@ class PlexApi
 	 */
 	public function getServer($serverName)
 	{
-		if (!isset(self::$servers[$serverName])) {
+		/*if (!isset(self::$servers[$serverName])) {
 			throw new Plex_Exception_Server(
 				'RESOURCE_NOT_FOUND', 
 				array($serverName)
 			);
 		}
 
-		return self::$servers[$serverName];
+		return self::$servers[$serverName];*/
 	}
 	
 	/**
@@ -142,11 +142,11 @@ class PlexApi
 	 */
 	public function getClients()
 	{
-		return self::$clients;
+		//return self::$clients;
 	}
 	public function getClient($clientName)
 	{
-		if(isset(self::$clients[$clientName]))
-			return self::$clients[$clientName];
+		/*if(isset(self::$clients[$clientName]))
+			return self::$clients[$clientName];*/
 	}
 }
