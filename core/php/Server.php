@@ -6,12 +6,12 @@ class Plex_Server extends Plex_MachineAbstract
 	const ENDPOINT_STATUS = 'status';
 	const ENDPOINT_SESSIONS = 'sessions';
 	
-	public function __construct($name, $address, $port){
+	public function __construct($name, $address, $port, $token){
 		$this->name = $name;
 		$this->address = $address;
 		$this->port = $port ? $port : self::DEFAULT_PORT;
-		//$this->token = $token;
-		//$this->ServerInforamation();
+		$this->token = $token;
+		$this->ServerInforamation();
 	}
 	public function ServerInforamation(){
 		/* <MediaContainer size="19" 
@@ -28,11 +28,12 @@ class Plex_Server extends Plex_MachineAbstract
 		hubSearch="1" 
 		machineIdentifier="1da10d1286afd8e3c3f85e25bc18c02f235e1ab0" multiuser="1" myPlex="1" myPlexMappingState="mapped" myPlexSigninState="ok" myPlexSubscription="0" myPlexUsername="michaelhalbout@outlook.fr" platform="Linux" platformVersion="3.16.0-4-686-pae (#1 SMP Debian 3.16.36-1+deb8u1 (2016-09-03))" pluginHost="1" readOnlyLibraries="0" requestParametersInCookie="1" sync="1" transcoderActiveVideoSessions="0" transcoderAudio="1" transcoderLyrics="1" transcoderPhoto="1" transcoderSubtitles="1" transcoderVideo="1" transcoderVideoBitrates="64,96,208,320,720,1500,2000,3000,4000,8000,10000,12000,20000" transcoderVideoQualities="0,1,2,3,4,5,6,7,8,9,10,11,12" transcoderVideoResolutions="128,128,160,240,320,480,768,720,720,1080,1080,1080,1080" updatedAt="1476289283" updater="1" version="1.1.4.2757-24ffd60"> <Directory count="1" key="activity" title="activity" /> <Directory count="1" key="butler" title="butler" /> <Directory count="1" key="channels" title="channels" /> <Directory count="1" key="clients" title="clients" /> <Directory count="1" key="diagnostics" title="diagnostics" /> <Directory count="1" key="hubs" title="hubs" /> <Directory count="1" key="library" title="library" /> <Directory count="1" key="neighborhood" title="neighborhood" /> <Directory count="1" key="playQueues" title="playQueues" /> <Directory count="1" key="player" title="player" /> <Directory count="1" key="playlists" title="playlists" /> <Directory count="1" key="resources" title="resources" /> <Directory count="1" key="search" title="search" /> <Directory count="1" key="server" title="server" /> <Directory count="1" key="servers" title="servers" /> <Directory count="1" key="statistics" title="statistics" /> <Directory count="1" key="system" title="system" /> <Directory count="1" key="transcode" title="transcode" /> <Directory count="1" key="updater" title="updater" /> </MediaContainer>
 */
-		/*$Server=$this->makeCall($this->getBaseUrl());
+		$Server=$this->makeCall($this->getBaseUrl());
 		foreach ($Server as $attribute) {
 			log::add('plex', 'debug',json_encode($attribute));
-			//$this->setMachineIdentifier($attribute['machineIdentifier']);
-		}*/
+			if(isset($attribute['machineIdentifier']))
+				$this->setMachineIdentifier($attribute['machineIdentifier']);
+		}
 	}
 	public function getClients(){
 		$url = sprintf(
