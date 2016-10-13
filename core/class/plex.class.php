@@ -21,10 +21,9 @@ class plex extends eqLogic {
 			$this->ConnexionsPlex();
 			if(isset($this->_client)&&is_object($this->_client)&&isset(self::$_server)&&is_object(self::$_server)){
 				$server=self::$_server;
-				$server->getPlayerSessions(array($this->getLogicalId()));
 				$PlayerSate=$this->getCmd(null,'state');
 				if(is_object($PlayerSate)){
-					$State=$this->_client->getState();
+					$State=$server->getPlayerSessions(array($this->getLogicalId()));
 					log::add('plex','debug','Etat du player : '.$State);
 					$PlayerSate->setCollectDate(date('Y-m-d H:i:s'));
 					$PlayerSate->setConfiguration('doNotRepeatEvent', 1);
