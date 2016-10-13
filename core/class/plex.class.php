@@ -26,9 +26,14 @@ class plex extends eqLogic {
 			if(isset($this->_client)&&is_object($this->_client)&&isset(self::$_server)&&is_object(self::$_server)){
 				$server=self::$_server;
 				$server->getPlayerSessions(array($this->getLogicalId()));
-				$State=$this->_client->getState();
 				$PlayerSate=$this->getCmd(null,'state');
-				$PlayerSate->event($State);
+				if(is_object($PlayerSate)){
+					$State=$this->_client->getState();
+					$PlayerSate->setCollectDate(date('Y-m-d H:i:s'));
+					$PlayerSate->setConfiguration('doNotRepeatEvent', 1);
+					$PlayerSate->event($State);
+					$PlayerSate->save();
+				}
 				$MediaOffset=$this->getCmd(null,'viewOffset');
 				$MediaOffset->execute();
 			}
@@ -714,7 +719,11 @@ class plexCmd extends cmd {
 				break;
 			}
 		}
+		$this->setCollectDate(date('Y-m-d H:i:s'));
+		$this->setConfiguration('doNotRepeatEvent', 1);
+		$this->event($response);
+		$this->save();
 		return $response;	
-    }
+    	}
 }
 ?>
