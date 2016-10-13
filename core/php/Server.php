@@ -16,7 +16,7 @@ class Plex_Server extends Plex_MachineAbstract
 		$this->address = $address;
 		$this->port = $port ? $port : self::DEFAULT_PORT;
 		//$this->token = $token;
-		$this->ServerInforamation();
+		//$this->ServerInforamation();
 	}
 	public function ServerInforamation(){
 		/* <MediaContainer size="19" 
