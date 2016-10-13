@@ -1,159 +1,131 @@
 <div class="eqLogic eqLogic-widget plex" data-version="mobile" style="overflow:hidden;text-align:center; width: 420px; height:19.34em; padding-bottom:0px;background-color:#4a89dc;" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#">
 	<link rel="stylesheet" href="plugins/plex/core/template/mobile/css/mobile.css" />
-	<span class="statusCmd" style="position : absolute;bottom : 3px;left : 3px;width : 30px;color: #404040 ;z-index: 1030;"></span>
-	<span class="cmd cmd-widget" data-cmd_id="#volume_id#" style="display:none;"></span>
-	<div class="media_panel">
-    	<div class="media_Title"></div>
-    	<div class="media_Information">
-			<ul class="nav nav-tabs nav-xs" role="tablist">
-				<li><a href="#ListeMedia" class="ListeMedia" role="tab" data-toggle="tab">Liste</a></li>
-				<li><a href="#Filtre" class="Filtre" role="tab" data-toggle="tab">Filtre</a></li>
-				<li><a href="#Detail" class="Detail" role="tab" data-toggle="tab">Detail</a></li>
-				<li><a href="#Playback" class="Playback" role="tab" data-toggle="tab">Audio</a></li>
-				<li><a href="#Cast" class="Cast" role="tab" data-toggle="tab">Casting</a></li>
-				<li><a href="#Poster" class="Poster" role="tab" data-toggle="tab">Poster</a></li>
-			</ul>
-			<div class="tab-content">    
-				<div class="tab-pane active" id="ListeMedia">
-					<ul class="noRefresh" style="text-decoration: none; cursor:default; color: #404040 ; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px;font-weight:bold;" ></ul>
-				</div>  	
-				<div class="tab-pane" id="Filtre">
-				    <div class="form-group">
-							<a class="btn btn-xs bt_PlexFilter " data-filtre="Unwatched">Non vue</a>
-							<a class="btn btn-xs bt_PlexFilter " data-filtre="RecentlyReleased">Récemment modifié</a>
-							<a class="btn btn-xs bt_PlexFilter " data-filtre="RecentlyAdded">Récemment ajouté</a>
-							<a class="btn btn-xs bt_PlexFilter " data-filtre="RecentlyViewed">Récemment vue</a>
-							<!--a class="btn btn-xs bt_PlexFilter " data-filtre="OnDeck">OnDeck</a-->
-							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByYear">Par année</a>
-							<!--a class="btn btn-xs bt_PlexFilter " data-filtre="ByDecade">ByDecade</a-->
-							<!--a class="btn btn-xs bt_PlexFilter " data-filtre="ByContentRating">ByContentRating</a-->
-							<!--a class="btn btn-xs bt_PlexFilter " data-filtre="ByResolution">ByResolution</a-->
-							<!--a class="btn btn-xs bt_PlexFilter " data-filtre="ByFirstCharacter">ByFirstCharacter</a-->
-							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByTitle">Par titre</a>
-							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByCollection">Par collection</a>
-							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByGenre">Par genre</a>
-							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByDirector">Par réalisateur</a>
-							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByActor">Par Acteur</a>
-							<a class="btn btn-xs bt_PlexGroupFiltre" data-filtre="artists">Par artiste</a>
-							<a class="btn btn-xs bt_PlexGroupFiltre" data-filtre="Albums">Par albums</a>
-							<a class="btn btn-xs bt_PlexFilter " data-filtre="search">Autre</a>
-							<a class="btn btn-xs bt_PlexFilter " data-filtre=""><i class="fa fa-times"></i></a>
+				<span class="statusCmd" style="position : absolute;bottom : 1px;left : 1px;width : 30px;color: #404040 ;z-index: 1030;"></span>
+				<img src="" class="type_media" style="position:absolute;left:5px; height:0.8em; top:5px;opacity: 0.3;"/>
+				<span style="position:absolute; right:5px; font-size:0.7em; color: #404040 ;top:5px;">#endtime_media#</span>
+				<strong style="margin-left:auto;margin-right:auto;">#name#</strong>
+				<div style="margin-top : 5px; height:12em;">
+					<div class="jaquette_plex_gros" style="height:8em;">
+					<img class="jaquette_plex" src="#thumbnail#" style="margin-left:auto;margin-right:auto;height:100%;border-radius:5%;"/>
 					</div>
-					<div class="form-group" id="in_search" >
-						<input class="form-control" placeholder="Rechercher"value="">
-						<a class="btn btn-success" id="bt_search"><i class="fa fa-search"></i></a>
+					<div class="jaquette_plex_telecommande" style="height:8em; display:none;">
+					<img class="bouton_gauche_plex cmd noRefresh" data-cmd_id="#cmd_left_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
+					<img class="bouton_droit_plex cmd noRefresh" data-cmd_id="#cmd_right_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
+					<img class="bouton_haut_plex cmd noRefresh" data-cmd_id="#cmd_up_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
+					<img class="bouton_bas_plex cmd noRefresh" data-cmd_id="#cmd_down_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
+					<a class="commande_entree_plex cmd noRefresh" data-cmd_id="#cmd_ok_id#" style="text-decoration: none; color: black; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:1em;font-weight:bold;">Entrée</a>
+					<img class="jaquette_plex" src="plugins/plex/core/template/dashboard/images/plex_logo.png" style="margin-left:auto;margin-right:auto;height:100%;border-radius:5%;"/>
 					</div>
-				</div>  	
-				<div class="tab-pane" id="Detail">
-					<h2 class="item-year"></h2>
-					<div class="item-genre metadata-tags"></div>
-					<div class="rating-container">
-						<span class="rating">
-							<i class="star-icon glyphicon star"></i>
-							<i class="star-icon glyphicon star"></i>
-							<i class="star-icon glyphicon star"></i>
-							<i class="star-icon glyphicon star"></i>
-							<i class="star-icon glyphicon star"></i>
-						</span>
-					</div>
-					<div class="summary-container">
-						<div class="summary">
-							<p class="item-summary metadata-summary" style="max-height: 192px;"></p>
-						</div>
-					</div>	
+				<div class="jaquette_plex_gros_aa" style="height:3.23em;">
+				<span style="font-size:1em;">
+					#titrehaut#
+				</span>
+				<br />
+				<span style="font-size:0.7em;">
+					#titrebas#
+				</span>
 				</div>
-				<div class="tab-pane" id="Playback">
-					<div class="item-audio metadata-tags metadata-tags-separator">
-						<span class="metadata-label">Audio</span>
-						<span class="dropdown" id="audio-dropdown"></span>
-					</div>
-					<div class="item-subtitles metadata-tags">
-						<span class="metadata-label">Sous-titres</span>
-						<span class="dropdown" id="subtitles-dropdown"></span>
-					</div>	
+				<div class="jaquette_plex_telecommande_aa" style="height:3.23em;display:none;">
+				
+				<img class="bouton_bas_aa cmd noRefresh" data-cmd_id="#cmd_back_id#" src="plugins/plex/core/template/dashboard/images/retour.png"/>
+				<img class="bouton_bas_aa cmd noRefresh" data-cmd_id="#cmd_home_id#" src="plugins/plex/core/template/dashboard/images/home.png"/>
+				<img class="bouton_bas_aa cmd noRefresh" data-cmd_id="#cmd_fullscreen_id#" src="plugins/plex/core/template/dashboard/images/resize.png"/>
+				
 				</div>
-				<div class="tab-pane" id="Cast">
-					<div class="item-director metadata-tags">
-						<span class="metadata-label">Réalisateur</span>
+				<div style="background-color:#5d9cec;height:6em;margin-top:0.5em;display:block;">
+					<div style="height:3em;">
+					<img class="bouton_bas" style="margin-right:0.2em;opacity: 0.5;" src="plugins/plex/core/template/dashboard/images/sound63.png" onclick="telecommande_plex#id#('sound');"/>
+					<img class="change_gauche cmd noRefresh" data-cmd_id="#cmd_previous_id#" src="plugins/plex/core/template/dashboard/images/change.png"/>
+					<img class="play_in_cercle bouton_bas cmd noRefresh" data-cmd_id="#cmd_play_id#" src="plugins/plex/core/template/dashboard/images/play1.png" style="margin-left:0.32em;" />
+                    <img class="pause_in_cercle bouton_bas cmd noRefresh" data-cmd_id="#cmd_pause_id#" src="plugins/plex/core/template/dashboard/images/pause.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_next_id#" src="plugins/plex/core/template/dashboard/images/change.png"/>
+					<img class="bouton_bas" style="margin-left:0.2em;opacity: 0.5;" src="plugins/plex/core/template/dashboard/images/speaker.png" onclick="telecommande_plex#id#('telecommande');"/>
 					</div>
-					<div class="item-writer metadata-tags">
-					  <span class="metadata-label">Scénariste</span> 
+					<div class="touche_bas_plex" style="height:3em;">
+					<img class="avance_gauche cmd noRefresh" data-cmd_id="#cmd_stepbackward_id#" src="plugins/plex/core/template/dashboard/images/advance.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_osd_id#" src="plugins/plex/core/template/dashboard/images/working.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_stop_id#" src="plugins/plex/core/template/dashboard/images/stop.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_stepforward_id#" src="plugins/plex/core/template/dashboard/images/advance.png"/>
 					</div>
-					<div class="item-cast metadata-tags">
-					  <span class="metadata-label">Acteurs</span> 
+					<div class="volume_bas_plex" style="height:3em;display:none;">
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumeoff_id#" src="plugins/plex/core/template/dashboard/images/sound.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumemoins_id#" src="plugins/plex/core/template/dashboard/images/sound63.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumeplus_id#" src="plugins/plex/core/template/dashboard/images/volume9.png"/>
 					</div>
-				</div>
-				<div class="tab-pane" id="Poster">
-					<img class="affiche_premiere_plex"/>
-				</div>
-			</div>		
-        </div>
-        <div class="media_Library"> </div>
-		<img class="sections_droite_liste tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Listes" onClick="listefermer#uid#()"/>
+					<div class="telecommande_bas_plex" style="height:3em;display:none;">
+						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_musiclist_id#" src="plugins/plex/core/template/dashboard/images/music.png"/>
+						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_movielist_id#" src="plugins/plex/core/template/dashboard/images/cinema.png"/>
+						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_tvlist_id#" src="plugins/plex/core/template/dashboard/images/tv.png"/>
+						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_partymode_id#" src="plugins/plex/core/template/dashboard/images/vinyl.png"/>
+					</div>
 	</div>
-	<!-- Partie telecommande du Widget-->
-	<div class="telecommande_plex_widget">
-		<!--div class="btm-telecommande-power-plex cmd noRefresh tooltips" data-cmd_id="#cmd_shutdown_id#" title="Power"></div>
-		<div class="btm-telecommande-reboot-plex cmd noRefresh tooltips" data-cmd_id="#cmd_reboot_id#" title="Reboot"></div-->
-		<div class="commande_haute_plex_deux">
-		</div>
-		<div class="commande_principal_plex">
-		<img class="retour-plex cmd noRefresh tooltips" data-cmd_id="#cmd_back_id#" src="plugins/plex/core/template/dashboard/images/retour.png" title="Retour" />
-		<img class="acceuil-plex cmd noRefresh tooltips" data-cmd_id="#cmd_contextMenu_id#" src="plugins/plex/core/template/dashboard/images/home.png" title="Accueil" />
-		<!--img class="full-plex cmd noRefresh tooltips" data-cmd_id="#cmd_fullscreen_id#" src="plugins/plex/core/template/dashboard/images/resize.png" title="Plein Ecran" />
-		<img class="volumeoff-plex cmd noRefresh tooltips" data-cmd_id="#cmd_volumeoff_id#" src="plugins/plex/core/template/dashboard/images/sound.png" title="Mute" /-->
-		<a class="commande_entree_plex cursor cmd noRefresh tooltips" data-cmd_id="#cmd_select_id#" style="text-decoration: none; color: black; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:18px;font-weight:bold;" title="Entrée">Entrée</a>
-		<img class="bouton_media_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveLeft_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Gauche"/>
-		<img class="bouton_haut_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveUp_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Haut"/>
-		<img class="bouton_droit_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveRight_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Droite"/>
-		<img class="bouton_bas_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveDown_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Bas"/>
-		</div>
-		<img class="working_droite_telecommande noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Télécommande" onClick="telecommandefermer#uid#()"/>
-	</div>
-	<!-- Partie Haute du Widget-->
-	<div class="haut_plex_widget">
-    <a href="#eqLink#" class="titre_haut_plex_widget"> #name# </a>
-    <a class="time_haut_plex_widget tooltips noRefresh" style="text-decoration: none; color: #404040; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px;font-weight:bold;" title="Durée"></a>
-	<img class="working_droite tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Télécommande" onClick="telecommande#uid#()"/>
-	<img class="sections_gauche tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" onclick="liste#uid#()" title="Informations"/>
-		<div class="jaquette_plex"></div>
-		<div class="titre_plex">
-			<a class="gros_titre_plex tooltips noRefresh" style="text-decoration: none; cursor:default;" title=""></a>
-		</div><br/>
-		<div class="titre_plex">
-			<a class="petit_titre_plex tooltips noRefresh" style="text-decoration: none; cursor:default;top : 50px;" title=""></a>
-		</div>
-		<div class="etat_plex">
-			<a class="position_longueur_plex noRefresh" style="text-decoration: none;cursor:default; color: #404040; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px;font-weight:bold;">#viewOffset#</a>
-		</div>
-	</div>
+				</div>
+<script type="text/javascript">
+	/*if(#state_nb# == 1){
+			$(".eqLogic[data-eqLogic_uid=#uid#] .play_in_cercle").remove();
+		}else if(#state_nb# == 0){
+			$(".eqLogic[data-eqLogic_uid=#uid#] .pause_in_cercle").remove();
+		}
 	
-	<!-- Partie basse du Widget-->
-	<div class="bas_plex_widget" style="display:block;">
-		<img src="plugins/plex/core/template/dashboard/images/sound.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_plex#uid#('bouton')" />
-		<div class="stop_plex_widget cmd noRefresh tooltips" data-cmd_id="#cmd_stop_id#" title="Stop">
-		</div>
-		<img class="avance_gauche cmd noRefresh tooltips" data-cmd_id="#cmd_stepBack_id#" src="plugins/plex/core/template/dashboard/images/advance.png" title="Retour rapide" />
-		<div class="osd-plex cmd noRefresh tooltips" data-cmd_id="#cmd_toggleOSD_id#" title="OSD"></div>
-		<img class="change_gauche cmd noRefresh tooltips" data-cmd_id="#cmd_skipPrevious_id#" src="plugins/plex/core/template/dashboard/images/change.png" title="Précédent" />
-		<div class="cercle_bas_plex_widget">
-			<img class="play_in_cercle noRefresh tooltips" data-PlayCmd_id="#cmd_play_id#" data-PlayMediaCmd_id="#cmd_playMedia_id#" src="plugins/plex/core/template/dashboard/images/play1.png" title="Lecture"/>
-			<img class="pause_in_cercle cmd noRefresh tooltips" data-cmd_id="#cmd_pause_id#" src="plugins/plex/core/template/dashboard/images/pause.png" title="Pause" />
-		</div>
-		<img class="change_droite cmd noRefresh tooltips" data-cmd_id="#cmd_skipNext_id#" src="plugins/plex/core/template/dashboard/images/change.png" title="Suivant" />
-		<img class="avance_droite cmd noRefresh tooltips" data-cmd_id="#cmd_stepForward_id#" src="plugins/plex/core/template/dashboard/images/advance.png" title="Avance rapide" />
-	</div>
-	<div class="bas_plex_widget_volume" style="display:none;">
-		<img src="plugins/plex/core/template/dashboard/images/working.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_plex#uid#('volume')"/>
-		<div class="volume_plex_widget">
-		<div style="margin-top : 5px;" class="showinit">
-				<a class="btn btn-circle btn-xs cmd vol-" data-cmd_id="#cmd_volumemoins_id#" title="Volume-"><i class="fa fa-volume-down"></i></a>
-				<div class="volume cmd noRefresh" data-cmd_id="#volume_id#" style="width: 180px;"></div>
-				<a class="btn btn-circle btn-xs cmd vol+" data-cmd_id="#cmd_volumeplus_id#" style="position : relative;" title="Volume+"><i class="fa fa-volume-up"></i></a>
-		</div>
-		</div>
-	</div>
-	<script type="text/javascript">
+	
+		if("#type_media#" == "Audio"){
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").attr("src","plugins/plex/core/template/dashboard/images/music.png");
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "block");
+		}else if("#type_media#" == "Films"){
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").attr("src","plugins/plex/core/template/dashboard/images/cinema.png");
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "block");
+		}else if("#type_media#" == "Séries"){
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").attr("src","plugins/plex/core/template/dashboard/images/tv.png");
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "block");
+		}else{
+			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "none");
+		}
+	
+	function telecommande_plex#id#(type_telecommande){
+		if(type_telecommande == 'sound'){
+			if ($(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display") == 'none'){
+				$(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display","block");
+				$(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .touche_bas_plex").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros").css("display","block");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros_aa").css("display","block");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande_aa").css("display","none");
+	       } else {
+	    	   telecommande_plex#id#('start');
+	       }
+		}else if(type_telecommande == 'telecommande'){
+			if ($(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display") == 'none'){
+				$(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display","block");
+				$(".plex[data-eqLogic_uid=#uid#] .touche_bas_plex").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande").css("display","block");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros_aa").css("display","none");
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande_aa").css("display","block");
+			} else {
+		    	   telecommande_plex#id#('start');
+		    }
+		}else if(type_telecommande == 'start'){
+			$(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display","none");
+			$(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display","none");
+			$(".plex[data-eqLogic_uid=#uid#] .touche_bas_plex").css("display","block");
+			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros").css("display","block");
+			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande").css("display","none");
+			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros_aa").css("display","block");
+			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande_aa").css("display","none");
+		}
+	}
+    
+   		if("#titrehaut#" == "Arrêt"){
+   				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex").css("opacity", 0.3);
+			}else{
+				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex").css("opacity", 1);
+			}
+   	 $('.plex[data-eqLogic_uid=#uid#] .cmd').on('click', function() {
+			jeedom.cmd.execute({id: $(this).data('cmd_id')});
+		});*/
+
 		var Media#uid#=jQuery.parseJSON('#media#');
 		var Init=true;
 		function telecommande#uid#(){
