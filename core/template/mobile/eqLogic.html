@@ -1,132 +1,662 @@
 <div class="eqLogic eqLogic-widget plex" data-version="mobile" style="overflow:hidden;text-align:center; width: 420px; height:19.34em; padding-bottom:0px;background-color:#4a89dc;" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#">
 	<link rel="stylesheet" href="plugins/plex/core/template/mobile/css/mobile.css" />
-				<span class="statusCmd" style="position : absolute;bottom : 1px;left : 1px;width : 30px;color: #404040 ;z-index: 1030;"></span>
-				<img src="" class="type_media" style="position:absolute;left:5px; height:0.8em; top:5px;opacity: 0.3;"/>
-				<span style="position:absolute; right:5px; font-size:0.7em; color: #404040 ;top:5px;">#endtime_media#</span>
-				<strong style="margin-left:auto;margin-right:auto;">#name#</strong>
-				<div style="margin-top : 5px; height:12em;">
-					<div class="jaquette_plex_gros" style="height:8em;">
-					<img class="jaquette_plex" src="#thumbnail#" style="margin-left:auto;margin-right:auto;height:100%;border-radius:5%;"/>
+	<span class="statusCmd" style="position : absolute;bottom : 3px;left : 3px;width : 30px;color: #404040 ;z-index: 1030;"></span>
+	<span class="cmd cmd-widget" data-cmd_id="#volume_id#" style="display:none;"></span>
+	<div class="media_panel">
+    	<div class="media_Title"></div>
+    	<div class="media_Information">
+			<ul class="nav nav-tabs nav-xs" role="tablist">
+				<li><a href="#ListeMedia" class="ListeMedia" role="tab" data-toggle="tab">Liste</a></li>
+				<li><a href="#Filtre" class="Filtre" role="tab" data-toggle="tab">Filtre</a></li>
+				<li><a href="#Detail" class="Detail" role="tab" data-toggle="tab">Detail</a></li>
+				<li><a href="#Playback" class="Playback" role="tab" data-toggle="tab">Audio</a></li>
+				<li><a href="#Cast" class="Cast" role="tab" data-toggle="tab">Casting</a></li>
+				<li><a href="#Poster" class="Poster" role="tab" data-toggle="tab">Poster</a></li>
+			</ul>
+			<div class="tab-content">    
+				<div class="tab-pane active" id="ListeMedia">
+					<ul class="noRefresh" style="text-decoration: none; cursor:default; color: #404040 ; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px;font-weight:bold;" ></ul>
+				</div>  	
+				<div class="tab-pane" id="Filtre">
+				    <div class="form-group">
+							<a class="btn btn-xs bt_PlexFilter " data-filtre="Unwatched">Non vue</a>
+							<a class="btn btn-xs bt_PlexFilter " data-filtre="RecentlyReleased">Récemment modifié</a>
+							<a class="btn btn-xs bt_PlexFilter " data-filtre="RecentlyAdded">Récemment ajouté</a>
+							<a class="btn btn-xs bt_PlexFilter " data-filtre="RecentlyViewed">Récemment vue</a>
+							<!--a class="btn btn-xs bt_PlexFilter " data-filtre="OnDeck">OnDeck</a-->
+							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByYear">Par année</a>
+							<!--a class="btn btn-xs bt_PlexFilter " data-filtre="ByDecade">ByDecade</a-->
+							<!--a class="btn btn-xs bt_PlexFilter " data-filtre="ByContentRating">ByContentRating</a-->
+							<!--a class="btn btn-xs bt_PlexFilter " data-filtre="ByResolution">ByResolution</a-->
+							<!--a class="btn btn-xs bt_PlexFilter " data-filtre="ByFirstCharacter">ByFirstCharacter</a-->
+							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByTitle">Par titre</a>
+							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByCollection">Par collection</a>
+							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByGenre">Par genre</a>
+							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByDirector">Par réalisateur</a>
+							<a class="btn btn-xs bt_PlexFilter " data-filtre="ByActor">Par Acteur</a>
+							<a class="btn btn-xs bt_PlexGroupFiltre" data-filtre="artists">Par artiste</a>
+							<a class="btn btn-xs bt_PlexGroupFiltre" data-filtre="Albums">Par albums</a>
+							<a class="btn btn-xs bt_PlexFilter " data-filtre="search">Autre</a>
+							<a class="btn btn-xs bt_PlexFilter " data-filtre=""><i class="fa fa-times"></i></a>
 					</div>
-					<div class="jaquette_plex_telecommande" style="height:8em; display:none;">
-					<img class="bouton_gauche_plex cmd noRefresh" data-cmd_id="#cmd_left_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
-					<img class="bouton_droit_plex cmd noRefresh" data-cmd_id="#cmd_right_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
-					<img class="bouton_haut_plex cmd noRefresh" data-cmd_id="#cmd_up_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
-					<img class="bouton_bas_plex cmd noRefresh" data-cmd_id="#cmd_down_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
-					<a class="commande_entree_plex cmd noRefresh" data-cmd_id="#cmd_ok_id#" style="text-decoration: none; color: black; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:1em;font-weight:bold;">Entrée</a>
-					<img class="jaquette_plex" src="plugins/plex/core/template/dashboard/images/plex_logo.png" style="margin-left:auto;margin-right:auto;height:100%;border-radius:5%;"/>
+					<div class="form-group" id="in_search" >
+						<input class="form-control" placeholder="Rechercher"value="">
+						<a class="btn btn-success" id="bt_search"><i class="fa fa-search"></i></a>
 					</div>
-				<div class="jaquette_plex_gros_aa" style="height:3.23em;">
-				<span style="font-size:1em;">
-					#titrehaut#
-				</span>
-				<br />
-				<span style="font-size:0.7em;">
-					#titrebas#
-				</span>
+				</div>  	
+				<div class="tab-pane" id="Detail">
+					<h2 class="item-year"></h2>
+					<div class="item-genre metadata-tags"></div>
+					<div class="rating-container">
+						<span class="rating">
+							<i class="star-icon glyphicon star"></i>
+							<i class="star-icon glyphicon star"></i>
+							<i class="star-icon glyphicon star"></i>
+							<i class="star-icon glyphicon star"></i>
+							<i class="star-icon glyphicon star"></i>
+						</span>
+					</div>
+					<div class="summary-container">
+						<div class="summary">
+							<p class="item-summary metadata-summary" style="max-height: 192px;"></p>
+						</div>
+					</div>	
 				</div>
-				<div class="jaquette_plex_telecommande_aa" style="height:3.23em;display:none;">
-				
-				<img class="bouton_bas_aa cmd noRefresh" data-cmd_id="#cmd_back_id#" src="plugins/plex/core/template/dashboard/images/retour.png"/>
-				<img class="bouton_bas_aa cmd noRefresh" data-cmd_id="#cmd_home_id#" src="plugins/plex/core/template/dashboard/images/home.png"/>
-				<img class="bouton_bas_aa cmd noRefresh" data-cmd_id="#cmd_fullscreen_id#" src="plugins/plex/core/template/dashboard/images/resize.png"/>
-				
+				<div class="tab-pane" id="Playback">
+					<div class="item-audio metadata-tags metadata-tags-separator">
+						<span class="metadata-label">Audio</span>
+						<span class="dropdown" id="audio-dropdown"></span>
+					</div>
+					<div class="item-subtitles metadata-tags">
+						<span class="metadata-label">Sous-titres</span>
+						<span class="dropdown" id="subtitles-dropdown"></span>
+					</div>	
 				</div>
-				<div style="background-color:#5d9cec;height:6em;margin-top:0.5em;display:block;">
-					<div style="height:3em;">
-					<img class="bouton_bas" style="margin-right:0.2em;opacity: 0.5;" src="plugins/plex/core/template/dashboard/images/sound63.png" onclick="telecommande_plex#id#('sound');"/>
-					<img class="change_gauche cmd noRefresh" data-cmd_id="#cmd_previous_id#" src="plugins/plex/core/template/dashboard/images/change.png"/>
-					<img class="play_in_cercle bouton_bas cmd noRefresh" data-cmd_id="#cmd_play_id#" src="plugins/plex/core/template/dashboard/images/play1.png" style="margin-left:0.32em;" />
-                    <img class="pause_in_cercle bouton_bas cmd noRefresh" data-cmd_id="#cmd_pause_id#" src="plugins/plex/core/template/dashboard/images/pause.png"/>
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_next_id#" src="plugins/plex/core/template/dashboard/images/change.png"/>
-					<img class="bouton_bas" style="margin-left:0.2em;opacity: 0.5;" src="plugins/plex/core/template/dashboard/images/speaker.png" onclick="telecommande_plex#id#('telecommande');"/>
+				<div class="tab-pane" id="Cast">
+					<div class="item-director metadata-tags">
+						<span class="metadata-label">Réalisateur</span>
 					</div>
-					<div class="touche_bas_plex" style="height:3em;">
-					<img class="avance_gauche cmd noRefresh" data-cmd_id="#cmd_stepbackward_id#" src="plugins/plex/core/template/dashboard/images/advance.png"/>
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_osd_id#" src="plugins/plex/core/template/dashboard/images/working.png"/>
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_stop_id#" src="plugins/plex/core/template/dashboard/images/stop.png"/>
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_stepforward_id#" src="plugins/plex/core/template/dashboard/images/advance.png"/>
+					<div class="item-writer metadata-tags">
+					  <span class="metadata-label">Scénariste</span> 
 					</div>
-					<div class="volume_bas_plex" style="height:3em;display:none;">
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumeoff_id#" src="plugins/plex/core/template/dashboard/images/sound.png"/>
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumemoins_id#" src="plugins/plex/core/template/dashboard/images/sound63.png"/>
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumeplus_id#" src="plugins/plex/core/template/dashboard/images/volume9.png"/>
+					<div class="item-cast metadata-tags">
+					  <span class="metadata-label">Acteurs</span> 
 					</div>
-					<div class="telecommande_bas_plex" style="height:3em;display:none;">
-						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_musiclist_id#" src="plugins/plex/core/template/dashboard/images/music.png"/>
-						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_movielist_id#" src="plugins/plex/core/template/dashboard/images/cinema.png"/>
-						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_tvlist_id#" src="plugins/plex/core/template/dashboard/images/tv.png"/>
-						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_partymode_id#" src="plugins/plex/core/template/dashboard/images/vinyl.png"/>
-					</div>
+				</div>
+				<div class="tab-pane" id="Poster">
+					<img class="affiche_premiere_plex"/>
+				</div>
+			</div>		
+        </div>
+        <div class="media_Library"> </div>
+		<img class="sections_droite_liste tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Listes" onClick="listefermer#uid#()"/>
 	</div>
-				</div>
-<script type="text/javascript">
-	if(#state_nb# == 1){
-			$(".eqLogic[data-eqLogic_uid=#uid#] .play_in_cercle").remove();
-		}else if(#state_nb# == 0){
-			$(".eqLogic[data-eqLogic_uid=#uid#] .pause_in_cercle").remove();
-		}
+	<!-- Partie telecommande du Widget-->
+	<div class="telecommande_plex_widget">
+		<!--div class="btm-telecommande-power-plex cmd noRefresh tooltips" data-cmd_id="#cmd_shutdown_id#" title="Power"></div>
+		<div class="btm-telecommande-reboot-plex cmd noRefresh tooltips" data-cmd_id="#cmd_reboot_id#" title="Reboot"></div-->
+		<div class="commande_haute_plex_deux">
+		</div>
+		<div class="commande_principal_plex">
+		<img class="retour-plex cmd noRefresh tooltips" data-cmd_id="#cmd_back_id#" src="plugins/plex/core/template/dashboard/images/retour.png" title="Retour" />
+		<img class="acceuil-plex cmd noRefresh tooltips" data-cmd_id="#cmd_contextMenu_id#" src="plugins/plex/core/template/dashboard/images/home.png" title="Accueil" />
+		<!--img class="full-plex cmd noRefresh tooltips" data-cmd_id="#cmd_fullscreen_id#" src="plugins/plex/core/template/dashboard/images/resize.png" title="Plein Ecran" />
+		<img class="volumeoff-plex cmd noRefresh tooltips" data-cmd_id="#cmd_volumeoff_id#" src="plugins/plex/core/template/dashboard/images/sound.png" title="Mute" /-->
+		<a class="commande_entree_plex cursor cmd noRefresh tooltips" data-cmd_id="#cmd_select_id#" style="text-decoration: none; color: black; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:18px;font-weight:bold;" title="Entrée">Entrée</a>
+		<img class="bouton_media_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveLeft_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Gauche"/>
+		<img class="bouton_haut_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveUp_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Haut"/>
+		<img class="bouton_droit_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveRight_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Droite"/>
+		<img class="bouton_bas_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveDown_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Bas"/>
+		</div>
+		<img class="working_droite_telecommande noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Télécommande" onClick="telecommandefermer#uid#()"/>
+	</div>
+	<!-- Partie Haute du Widget-->
+	<div class="haut_plex_widget">
+    <a href="#eqLink#" class="titre_haut_plex_widget"> #name# </a>
+    <a class="time_haut_plex_widget tooltips noRefresh" style="text-decoration: none; color: #404040; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px;font-weight:bold;" title="Durée"></a>
+	<img class="working_droite tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Télécommande" onClick="telecommande#uid#()"/>
+	<img class="sections_gauche tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" onclick="liste#uid#()" title="Informations"/>
+		<div class="jaquette_plex"></div>
+		<div class="titre_plex">
+			<a class="gros_titre_plex tooltips noRefresh" style="text-decoration: none; cursor:default;" title=""></a>
+		</div><br/>
+		<div class="titre_plex">
+			<a class="petit_titre_plex tooltips noRefresh" style="text-decoration: none; cursor:default;top : 50px;" title=""></a>
+		</div>
+		<div class="etat_plex">
+			<a class="position_longueur_plex noRefresh" style="text-decoration: none;cursor:default; color: #404040; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px;font-weight:bold;">#viewOffset#</a>
+		</div>
+	</div>
 	
-	
-		if("#type_media#" == "Audio"){
-			$(".plex[data-eqLogic_uid=#uid#] .type_media").attr("src","plugins/plex/core/template/dashboard/images/music.png");
-			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "block");
-		}else if("#type_media#" == "Films"){
-			$(".plex[data-eqLogic_uid=#uid#] .type_media").attr("src","plugins/plex/core/template/dashboard/images/cinema.png");
-			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "block");
-		}else if("#type_media#" == "Séries"){
-			$(".plex[data-eqLogic_uid=#uid#] .type_media").attr("src","plugins/plex/core/template/dashboard/images/tv.png");
-			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "block");
-		}else{
-			$(".plex[data-eqLogic_uid=#uid#] .type_media").css("display", "none");
-		}
-	
-	function telecommande_plex#id#(type_telecommande){
-		if(type_telecommande == 'sound'){
-			if ($(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display") == 'none'){
-				$(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display","block");
-				$(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display","none");
-				$(".plex[data-eqLogic_uid=#uid#] .touche_bas_plex").css("display","none");
-				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros").css("display","block");
-				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande").css("display","none");
-				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros_aa").css("display","block");
-				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande_aa").css("display","none");
-	       } else {
-	    	   telecommande_plex#id#('start');
-	       }
-		}else if(type_telecommande == 'telecommande'){
-			if ($(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display") == 'none'){
-				$(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display","none");
-				$(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display","block");
-				$(".plex[data-eqLogic_uid=#uid#] .touche_bas_plex").css("display","none");
-				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros").css("display","none");
-				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande").css("display","block");
-				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros_aa").css("display","none");
-				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande_aa").css("display","block");
-			} else {
-		    	   telecommande_plex#id#('start');
-		    }
-		}else if(type_telecommande == 'start'){
-			$(".plex[data-eqLogic_uid=#uid#] .volume_bas_plex").css("display","none");
-			$(".plex[data-eqLogic_uid=#uid#] .telecommande_bas_plex").css("display","none");
-			$(".plex[data-eqLogic_uid=#uid#] .touche_bas_plex").css("display","block");
-			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros").css("display","block");
-			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande").css("display","none");
-			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_gros_aa").css("display","block");
-			$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex_telecommande_aa").css("display","none");
-		}
-	}
-    
-   		if("#titrehaut#" == "Arrêt"){
-   				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex").css("opacity", 0.3);
-			}else{
-				$(".plex[data-eqLogic_uid=#uid#] .jaquette_plex").css("opacity", 1);
+	<!-- Partie basse du Widget-->
+	<div class="bas_plex_widget" style="display:block;">
+		<img src="plugins/plex/core/template/dashboard/images/sound.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_plex#uid#('bouton')" />
+		<div class="stop_plex_widget cmd noRefresh tooltips" data-cmd_id="#cmd_stop_id#" title="Stop">
+		</div>
+		<img class="avance_gauche cmd noRefresh tooltips" data-cmd_id="#cmd_stepBack_id#" src="plugins/plex/core/template/dashboard/images/advance.png" title="Retour rapide" />
+		<div class="osd-plex cmd noRefresh tooltips" data-cmd_id="#cmd_toggleOSD_id#" title="OSD"></div>
+		<img class="change_gauche cmd noRefresh tooltips" data-cmd_id="#cmd_skipPrevious_id#" src="plugins/plex/core/template/dashboard/images/change.png" title="Précédent" />
+		<div class="cercle_bas_plex_widget">
+			<img class="play_in_cercle noRefresh tooltips" data-PlayCmd_id="#cmd_play_id#" data-PlayMediaCmd_id="#cmd_playMedia_id#" src="plugins/plex/core/template/dashboard/images/play1.png" title="Lecture"/>
+			<img class="pause_in_cercle cmd noRefresh tooltips" data-cmd_id="#cmd_pause_id#" src="plugins/plex/core/template/dashboard/images/pause.png" title="Pause" />
+		</div>
+		<img class="change_droite cmd noRefresh tooltips" data-cmd_id="#cmd_skipNext_id#" src="plugins/plex/core/template/dashboard/images/change.png" title="Suivant" />
+		<img class="avance_droite cmd noRefresh tooltips" data-cmd_id="#cmd_stepForward_id#" src="plugins/plex/core/template/dashboard/images/advance.png" title="Avance rapide" />
+	</div>
+	<div class="bas_plex_widget_volume" style="display:none;">
+		<img src="plugins/plex/core/template/dashboard/images/working.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_plex#uid#('volume')"/>
+		<div class="volume_plex_widget">
+		<div style="margin-top : 5px;" class="showinit">
+				<a class="btn btn-circle btn-xs cmd vol-" data-cmd_id="#cmd_volumemoins_id#" title="Volume-"><i class="fa fa-volume-down"></i></a>
+				<div class="volume cmd noRefresh" data-cmd_id="#volume_id#" style="width: 180px;"></div>
+				<a class="btn btn-circle btn-xs cmd vol+" data-cmd_id="#cmd_volumeplus_id#" style="position : relative;" title="Volume+"><i class="fa fa-volume-up"></i></a>
+		</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var Media#uid#=jQuery.parseJSON('#media#');
+		var Init=true;
+		function telecommande#uid#(){
+			$(".plex[data-eqLogic_uid=#uid#] .telecommande_plex_widget").animate({right:"0px"});
+			$(".plex[data-eqLogic_uid=#uid#] .telecommande_plex_widget").attr("class","telecommande_plex_widget shadow_fenetre_plex");
+			if ($(".plex[data-eqLogic_uid=#uid#] .media_panel").css("left") == "0px"){
+				listefermer#uid#();
 			}
-   	 $('.plex[data-eqLogic_uid=#uid#] .cmd').on('click', function() {
+		}
+		function telecommandefermer#uid#(){
+			$(".plex[data-eqLogic_uid=#uid#] .telecommande_plex_widget").animate({right:"-200px"});
+			$(".plex[data-eqLogic_uid=#uid#] .telecommande_plex_widget").attr("class","telecommande_plex_widget");
+		}
+		// Partie liste ///
+		function UpdateDetail#uid#(Data){
+			//Mise a jours des etoiles		
+			$('.plex[data-eqLogic_uid=#uid#] .item-summary').text(Data.Media.Summary);
+			//$('.item-duration').text(SecondToDuration(Data.Media.Duration));
+		
+			if (typeof(Data.Media.Duration) != "undefined")
+				$('.item-duration').text(SecondToDuration(Data.Media.Duration)).show();
+			else
+				$('.item-duration').hide();
+			for (var i in Data.Media.Genre) {
+				$('.plex[data-eqLogic_uid=#uid#] .item-genre .metadata-tags').append($('<a class="pivot-link">')
+					.attr('href',Data.Media.Genre[i].Href)
+					.text(Data.Media.Genre[i].Name));
+			}
+			for (var i in Data.Media.Realisateur) {
+				$('.plex[data-eqLogic_uid=#uid#] .item-director .metadata-tags').append($('<span class="metadata-tag-list">')
+					.append($('<a class="pivot-link">')
+						.attr('href',Data.Media.Realisateur[i].Href)
+						.text(Data.Media.Realisateur[i].Name)));
+			}
+			for (var i in Data.Media.Scenariste) {
+				$('.plex[data-eqLogic_uid=#uid#] .item-writer .metadata-tags').append($('<span class="metadata-tag-list">')
+					.append($('<a class="pivot-link">')
+						.attr('href',Data.Media.Scenariste[i].Href)
+						.text(Data.Media.Scenariste[i].Name)));
+			}
+			for (var i in Data.Media.Acteurs) {
+				$('.plex[data-eqLogic_uid=#uid#] .item-cast .metadata-tags').append($('<span class="metadata-tag-list">')
+					.append($('<a class="pivot-link">')
+						.attr('href',Data.Media.Acteurs[i].Href)
+						.text(Data.Media.Acteurs[i].Name)));
+			}
+			$('.plex[data-eqLogic_uid=#uid#] #audio-dropdown').text(Data.Media.Audio);
+			$('.plex[data-eqLogic_uid=#uid#] #subtitles-dropdown').text(Data.Media.Subtitles);
+			$('.plex[data-eqLogic_uid=#uid#] .studio-flag').attr('src',Data.Media.StudioFlag);
+		}
+		function UpdateList#uid#(Data){
+			$('.plex[data-eqLogic_uid=#uid#] #ListeMedia ul').html('');
+			$('.plex[data-eqLogic_uid=#uid#] .jaquette_plex').html('');
+			for (var i in Data.Media) {
+				$('.plex[data-eqLogic_uid=#uid#] #ListeMedia ul').append(
+					$('<li>')
+						.addClass('btm-media-plex')
+						.attr('data-type_media',Data.Media[i].Type)
+						.attr('data-id_media',i)//Data.Media[i].RatingKey)
+						.text(Data.Media[i].Title));
+				var ThumbMenu=$("<img>").addClass("affiche").attr('src','plugins/plex/core/php/Poster.php?url='+Data.Media[i].Poster)
+					.attr('data-type_media',Data.Media[i].Type)
+					.attr('title',Data.Media[i].Title)
+					.hide();
+				if(i==0){
+					if (typeof(Data.Media[i].Duration) != "undefined")
+						$('.plex[data-eqLogic_uid=#uid#] .time_haut_plex_widget').text(SecondToDuration(Data.Media[i].Duration)).show();
+					else
+						$('.plex[data-eqLogic_uid=#uid#] .time_haut_plex_widget').hide();
+					$('.plex[data-eqLogic_uid=#uid#] .gros_titre_plex').attr('title',Data.Media[i].Title).text(Data.Media[i].Title);
+					$('.plex[data-eqLogic_uid=#uid#] .petit_titre_plex').attr('title',Data.Media[i].Tagline).text(Data.Media[i].Tagline);
+					ThumbMenu.addClass("affiche_premiere_plex").show();
+				}
+				if(i==1){
+					ThumbMenu.addClass("affiche_next_plex").show();
+				}
+				$('.plex[data-eqLogic_uid=#uid#] .jaquette_plex').append(ThumbMenu);
+			}
+		}
+		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
+			$('.plex[data-eqLogic_uid=#uid#] .affiche').hide();
+			$('.plex[data-eqLogic_uid=#uid#] .affiche').removeClass("affiche_premiere_plex");
+			$('.plex[data-eqLogic_uid=#uid#] .affiche').removeClass("affiche_next_plex");
+			$('.plex[data-eqLogic_uid=#uid#] .affiche').removeClass("affiche_prev_plex");
+			$(this).addClass("affiche_premiere_plex").show();
+			$(this).next().addClass("affiche_next_plex").show();
+			$(this).prev().addClass("affiche_prev_plex").show();
+			switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-lib_title="'+Media#uid#.Library+'"]').data('lib_type')){
+				default:
+					Media#uid#.Video=$(this).attr("title");
+				break;
+				case 'show':
+					switch($(this).data('type_media')){
+						case 'show':
+							Media#uid#.Show=$(this).attr("title");
+						break;
+						case 'season':
+							Media#uid#.Season=$(this).attr("title");
+						break;
+						case 'episode':
+							Media#uid#.Episode=$(this).attr("title");
+						break;
+					}	
+				break;
+				case 'artist':
+					if($(this).data('type_media')== 'album')
+						Media#uid#.Album=$(this).attr("title");
+					else	
+						Media#uid#.Tarck=$(this).attr("title");
+				break;
+			}
+			UpdateCmd('media', JSON.stringify(Media#uid#));
+			UpdateInforamtion(Media#uid#);
+		});
+		function liste#uid#(){
+			$(".plex[data-eqLogic_uid=#uid#] .media_panel").animate({left:"0px"});
+			$(".plex[data-eqLogic_uid=#uid#] .media_panel").attr("class","media_panel shadow_fenetre_plex");
+			if ($(".plex[data-eqLogic_uid=#uid#] .media_panel").css("right") == "0px"){
+				telecommandefermer#uid#();
+			}
+		}
+		function listefermer#uid#(){
+			$(".plex[data-eqLogic_uid=#uid#] .media_panel").animate({left:"-200px"});
+			$(".plex[data-eqLogic_uid=#uid#] .media_panel").attr("class","media_panel");
+		}
+		
+		// fonction Pause et Play //
+		if(#state# == 0)
+		{
+				$(".eqLogic[data-eqLogic_uid=#uid#] .pause_in_cercle").hide();
+				$(".eqLogic[data-eqLogic_uid=#uid#] .play_in_cercle").show();
+			} 
+		else
+		{
+				$(".eqLogic[data-eqLogic_uid=#uid#] .pause_in_cercle").show();
+				$(".eqLogic[data-eqLogic_uid=#uid#] .play_in_cercle").hide();
+			}
+		
+		// fonction Musique ou Video ///
+		$.ajax({
+			type: "POST",
+			timeout:8000, 
+			url: "plugins/plex/core/ajax/plex.ajax.php",
+			data: {
+				Id:'#id#',
+				action: "getLibrary",
+			},
+			dataType: 'json',
+			error: function(request, status, error) {
+				handleAjaxError(request, status, error);
+			},
+			success: function(data) { 
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				if (data.result!=false)
+				{
+					for (var i in data.result) {
+						switch(data.result[i].Type)
+						{
+							default:
+							break;
+							case 'movie':
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/cinema.png" data-lib_type="'+data.result[i].Type+'" data-lib_title="'+data.result[i].Title+'" title="'+data.result[i].Title+'" />'));
+							break;
+							case 'show':
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/tv.png" data-lib_type="'+data.result[i].Type+'" data-lib_title="'+data.result[i].Title+'" title="'+data.result[i].Title+'" />'));
+							break;
+							case 'artist':
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/music.png" data-lib_type="'+data.result[i].Type+'" data-lib_title="'+data.result[i].Title+'" title="'+data.result[i].Title+'" />'));
+							break;
+						}					
+					}
+					if (typeof(Media#uid#.Library) != "undefined" && Init)
+						$('.plex[data-eqLogic_uid=#uid#] .btm-library-plex').first().trigger('click');
+					else
+						Init=false;
+				}
+			}
+		});
+        $('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-library-plex", function() {				
+			$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
+			$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
+			$('.plex[data-eqLogic_uid=#uid#] .Filtre').show();
+			$('.plex[data-eqLogic_uid=#uid#] .Detail').hide();
+			$('.plex[data-eqLogic_uid=#uid#] .Playback').hide();
+			$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
+			$('.plex[data-eqLogic_uid=#uid#] .Poster').hide();
+			if(!Init){
+				Media#uid# = {};
+				Media#uid#.Library=$(this).data('lib_title');
+			}
+			
+			if (Media#uid#.Library!=''){
+				$.ajax({
+					type: "POST",
+					timeout:8000, 
+					url: "plugins/plex/core/ajax/plex.ajax.php",
+					data: {
+						Id:'#id#',
+						action: "SearchMedia",
+						Filtre:'',
+						param:JSON.stringify(Media#uid#),
+					},
+					dataType: 'json',
+					error: function(request, status, error) {
+						handleAjaxError(request, status, error);
+					},
+					success: function(data) { 
+						if (data.state != 'ok') {
+							$('#div_alert').showAlert({message: data.result, level: 'danger'});
+							return;
+						}
+						if (data.result!=false)
+						{		
+							UpdateList#uid#(data.result);	
+							if ((typeof(Media#uid#.Video) != "undefined" || typeof(Media#uid#.Show) != "undefined" ||typeof(Media#uid#.Album) != "undefined") && Init)
+								$('.plex[data-eqLogic_uid=#uid#] .btm-media-plex').first().trigger('click');
+							else{
+								Init=false;
+								UpdateCmd('media', JSON.stringify(Media#uid#));
+							}
+						}
+					}
+				});
+			}
+		});
+		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
+			if (Init){
+				var InitMedia = JSON.parse(JSON.stringify(Media#uid#));
+				delete InitMedia.Episode;
+				delete InitMedia.Tarck;
+				UpdateInforamtion(InitMedia);
+			}else{
+				switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-lib_title="'+Media#uid#.Library+'"]').data('lib_type')){
+					default:
+						Media#uid#.Video=$(this).text();
+					break;
+					case 'show':
+						switch($(this).data('type_media')){
+							case 'show':
+								Media#uid#.Show=$(this).text();
+							break;
+							case 'season':
+								Media#uid#.Season=$(this).text();
+							break;
+							case 'episode':
+								Media#uid#.Episode=$(this).text();
+							break;
+						}	
+					break;
+					case 'artist':
+						if($(this).data('type_media')== 'album')
+							Media#uid#.Album=$(this).text();
+						else
+							Media#uid#.Tarck=$(this).text();
+					break;
+				}
+				UpdateCmd('media', JSON.stringify(Media#uid#));
+			}
+			UpdateInforamtion(Media#uid#);
+			Init=false;
+		});
+		$('.plex[data-eqLogic_uid=#uid#]').on('click',".menu_plex", function() {
+			if (!Init){
+				switch($(this).text()){
+					case Media#uid#.Library:
+						Media#uid#='{}';
+						Media#uid#.Library=$(this).text();
+					break;
+					case Media#uid#.Video:
+						Media#uid#.Video=$(this).text();
+					break;
+					case Media#uid#.Show:
+						Media#uid#.Show=$(this).text();
+						delete Media#uid#.Season;
+						delete Media#uid#.Episode;
+					break;
+					case Media#uid#.Season:
+						Media#uid#.Season=$(this).text();
+						delete Media#uid#.Episode;
+					break;
+					case Media#uid#.Episode:
+						Media#uid#.Episode=$(this).text();
+					break;
+					case Media#uid#.Album:
+						delete Media#uid#.Episode;
+						Media#uid#.Album=$(this).text();
+						delete Media#uid#.Tarck;
+					break;
+					case Media#uid#.Tarck:
+						Media#uid#.Tarck=$(this).text();
+					break;
+				}
+				UpdateCmd('media', JSON.stringify(Media#uid#));
+				UpdateInforamtion(Media#uid#);
+			}
+		});
+		function UpdateInforamtion(Media){
+			if (Media!=''){
+				$('.plex[data-eqLogic_uid=#uid#] .media_Title').html('');
+				$.each(Media, function( key, value ) {
+					if(key!="Library")
+					$('.plex[data-eqLogic_uid=#uid#] .media_Title').append($('<a class="menu_plex">').text(value));
+				});
+				$.ajax({
+					type: "POST",
+					timeout:8000, 
+					url: "plugins/plex/core/ajax/plex.ajax.php",
+					data: {
+						Id:'#id#',
+						action: "SearchMedia",
+						Filtre: 'ByTitle',
+						param: JSON.stringify(Media),
+					},
+					dataType: 'json',
+					error: function(request, status, error) {
+						handleAjaxError(request, status, error);
+					},
+					success: function(data) { 
+						if (data.state != 'ok') {
+							$('#div_alert').showAlert({message: data.result, level: 'danger'});
+							return;
+						}
+						if (data.result!=false)
+						{	
+							$('.plex[data-eqLogic_uid=#uid#] .tab-content').removeClass('active');	
+							switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-lib_title="'+Media.Library+'"]').data('lib_type')){
+								case 'movie':			
+									$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
+									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').hide();
+									$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
+									$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Cast').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+									UpdateDetail#uid#(data.result);
+									break;
+								case 'show':
+									if (Media.Season == '' || typeof(Media.Season) == "undefined"){
+										UpdateList#uid#(data.result);
+										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
+										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
+										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Cast').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+									}
+									else if (Media.Episode == '' || typeof(Media.Episode) == "undefined"){
+										UpdateList#uid#(data.result);
+										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');			
+										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
+										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Cast').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+									}
+									else{
+										UpdateDetail#uid#(data.result);
+										$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');		
+										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
+										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Cast').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+										}
+									break;
+								case 'artist':
+									if (Media.Tarck == '' || typeof(Media.Tarck) == "undefined"){
+										UpdateList#uid#(data.result);
+										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');			
+										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
+										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
+										$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+										}
+									else{
+										UpdateDetail#uid#(data.result);
+										$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
+										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').hide();
+										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
+										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
+										$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
+										$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+										}
+								break;
+							}
+						}
+					}
+				});
+			}
+		}
+		function SecondToDuration(timeCount){	
+			var heure=Math.floor(((timeCount/1000)/60)/60);
+			var minute=Math.floor(((timeCount/1000)/60))-heure*60;
+			var duration=heure+' h '+minute+' min ';
+			return duration
+		}	
+		/*$(".plex[data-eqLogic_uid=#uid#] .volume").bootstrapSlider({
+			min: 0,
+			max: 100,
+			value: ('#volume#' == '') ? 0 : parseInt('#volume#')
+			});*/
+		$(".plex[data-eqLogic_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
+		$(".plex[data-eqLogic_uid=#uid#] .volume").on('slideStop', function (ev) {
+			jeedom.cmd.execute({id: '#volume_id#', value: {slider: ev.value}});
+		});
+		function volume_plex#uid#(bouton){
+			if(bouton == 'bouton'){
+				$(".plex[data-eqLogic_uid=#uid#] .bas_plex_widget_volume").css("display", "block");
+				$(".plex[data-eqLogic_uid=#uid#] .bas_plex_widget").css("display", "none");
+			}else if(bouton == 'volume'){
+				$(".plex[data-eqLogic_uid=#uid#] .bas_plex_widget_volume").css("display", "none");
+				$(".plex[data-eqLogic_uid=#uid#] .bas_plex_widget").css("display", "block");
+			}
+		}
+		
+     /* //Lecture en directe du media  
+		$(".plex[data-eqLogic_uid=#uid#] .affiche_premiere_plex").on('click', function() {
+			$('#md_modal2').dialog({
+				title: "Votre plex : #name#"
+			});
+			
+			$('#md_modal2').load('index.php?v=d&plugin=plex&modal=your.plex&id='+ #id#).dialog('open');
+		});*/
+        $('.plex[data-eqLogic_uid=#uid#] .cmd').on('click', function() {
 			jeedom.cmd.execute({id: $(this).data('cmd_id')});
 		});
-	
-</script>
-
-
+		$('.plex[data-eqLogic_uid=#uid#] .play_in_cercle').on('click', function() {
+		var _this=this;
+			bootbox.confirm('Voulez vous lire le media séléctionné?', function (result) {
+				if (result) {
+					jeedom.cmd.execute({id: $(_this).attr('data-PlayMediaCmd_id')});
+					}
+				else{
+					jeedom.cmd.execute({id: $(_this).attr('data-PlayCmd_id')});
+					}
+			});
+		});
+		function UpdateCmd(logicalId, Valeur){
+			$.ajax({
+				type: "POST",
+				timeout:8000, 
+				url: "plugins/plex/core/ajax/plex.ajax.php",
+				data: {
+					action: "UpdateCommande",
+					EqId:'#id#',
+					CmdId:logicalId,
+					value:Valeur,
+				},
+				dataType: 'json',
+				error: function(request, status, error) {
+					handleAjaxError(request, status, error);
+				},
+				success: function(data) { 
+					if (data.state != 'ok') {
+						$('#div_alert').showAlert({message: data.result, level: 'danger'});
+						return;
+					}
+					if (data.result!=false)
+					{			
+					}
+				}
+			});
+		}
+		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexGroupFiltre', function() {		
+	$('.bt_PlexGroupFiltre').removeClass('btn-primary');
+	GroupFiltre=$(this).attr("data-filtre");
+	$(this).addClass('btn-primary');
+});
+		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexFilter', function() {		
+	$('.plex[data-eqLogic_uid=#uid#] .btn-primary').removeClass('btn-primary');
+	Filtre=$(this).attr("data-filtre");
+	$(this).addClass('btn-primary');
+	switch(Filtre)
+	{
+		case 'Unwatched':
+			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
+		break;case 'RecentlyReleased':
+			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
+		break;
+		case 'RecentlyAdded':
+			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
+		break;
+		case 'RecentlyViewed':
+			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
+		break;
+		case 'OnDeck':
+			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
+		break;
+		case 'UnwatchedShows':
+			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
+		default:
+			$('.plex[data-eqLogic_uid=#uid#] #in_search').show();
+		break;
+	}
+});
+	</script>
 </div>
