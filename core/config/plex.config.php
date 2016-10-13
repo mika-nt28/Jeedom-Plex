@@ -81,7 +81,9 @@ $listCmdPLEX = array(
         'type' => 'info',
         'subType' => 'string',
         'description' => 'Affiche la position de lecture du media',
-    ),
+	'display' => array(
+			'template' => 'duration',
+    	),
 	array(
         'name' => 'Back',
         'configuration' => array(
@@ -390,6 +392,9 @@ $listCmdPLEX = array(
         'type' => 'info',
         'subType' => 'string',
         'description' => 'Durée du media',
+	'display' => array(
+			'template' => 'duration',
+    	),
     ),
 	array(
         'name' => 'Bitrate',
