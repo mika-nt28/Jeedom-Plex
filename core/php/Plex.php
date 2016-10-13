@@ -1,6 +1,6 @@
 <?php
 $phpPlexDir = dirname(__FILE__);
-
+/*
 // Exception
 require_once(sprintf('%s/Exception/ExceptionInterface.php', $phpPlexDir));
 require_once(sprintf('%s/Exception/ExceptionAbstract.php', $phpPlexDir));
@@ -39,7 +39,7 @@ require_once(sprintf('%s/Client.php', $phpPlexDir));
 require_once(sprintf('%s/Client/ControllerAbstract.php', $phpPlexDir));
 require_once(sprintf('%s/Client/Controller/Navigation.php', $phpPlexDir));
 require_once(sprintf('%s/Client/Controller/Playback.php', $phpPlexDir));
-require_once(sprintf('%s/Client/Controller/Application.php', $phpPlexDir));
+require_once(sprintf('%s/Client/Controller/Application.php', $phpPlexDir));*/
 class PlexApi
 {
 
