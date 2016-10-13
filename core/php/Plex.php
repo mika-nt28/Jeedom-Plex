@@ -81,8 +81,7 @@ class PlexApi
 			self::$servers[$name] = new Plex_Server(
 				$name,
 				$server['address'],
-				$port,
-				$this->token
+				$port
 			);
 		}
 		
