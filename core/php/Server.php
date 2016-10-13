@@ -42,19 +42,6 @@ class Plex_Server extends Plex_MachineAbstract
 		$this->getPlayerSessions($clients);
 		return $clients;
 	}
-
-	/*<Player address="192.168.0.xxx" 
-		device="Samsung TV"
-		machineIdentifier="u7cl6gdvurels"
-		model=""
-		platform="Samsung"
-		platformVersion=""
-		product="Plex for Samsung" 
-		profile="Samsung" 
-		state="playing" 
-		title="TV UE55H6200" 
-		vendor="" version="2.005" />
-	*/
 	public function getPlayerSessions($clients){
 		$url = sprintf(
 			'%s/%s',
@@ -64,11 +51,8 @@ class Plex_Server extends Plex_MachineAbstract
 		);
 		$Sessions = array();
 		$SessionArray = $this->makeCall($url);
-		log::add('plex','debug',"SessionArray: ".json_encode($SessionArray));
 		foreach ($SessionArray as $Session) {			
-			log::add('plex','debug',"$Session: ".json_encode($Session['Player']));
 			foreach ($Session['Player'] as $attribute) {
-				log::add('plex','debug',"Status: ".json_encode($attribute));
 				if(isset($clients[$attribute['device']]))
 					$client=$clients[$attribute['device']];
 				else{
@@ -83,13 +67,10 @@ class Plex_Server extends Plex_MachineAbstract
 					$client->setOnlyState(true);
 					$client->setServer($this);
 				}
-				log::add('plex','debug',"Status: ".$attribute['state']);
-				if ($attribute['state'] == "playing" )
-					$client->setState(true);
-				else
-					$client->setState(false);
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public function getLibrary(){
