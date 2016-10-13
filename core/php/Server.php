@@ -11,11 +11,11 @@ class Plex_Server extends Plex_MachineAbstract
 	private $port;
 	private $token;
 	
-	public function __construct($name, $address, $port, $token){
+	public function __construct($name, $address, $port){
 		$this->name = $name;
 		$this->address = $address;
 		$this->port = $port ? $port : self::DEFAULT_PORT;
-		$this->token = $token;
+		//$this->token = $token;
 		$this->ServerInforamation();
 	}
 	public function ServerInforamation(){
