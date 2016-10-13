@@ -1,17 +1,13 @@
 <?php
-
-/* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 include_file('core', 'Plex', 'php', 'plex');
 include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
-    /*     * *************************Attributs****************************** */
 	public static $_plex;
 	public static $_server;
 	public $_client;
 	public $_onlyState;
-	/*     * ***********************Methode static*************************** */
 	public static function UpdateStatus() {
 		while(true){
 			$eqLogics = eqLogic::byType('plex');
@@ -21,7 +17,7 @@ class plex extends eqLogic {
 		}
 	}
 	public function StateControl() {
-		/*if ($this->getIsEnable() == 1 && $this->getConfiguration('heartbeat',0) == 1) {
+		if ($this->getIsEnable() == 1 && $this->getConfiguration('heartbeat',0) == 1) {
 			$this->ConnexionsPlex();
 			if(isset($this->_client)&&is_object($this->_client)&&isset(self::$_server)&&is_object(self::$_server)){
 				$server=self::$_server;
@@ -37,7 +33,7 @@ class plex extends eqLogic {
 				$MediaOffset=$this->getCmd(null,'viewOffset');
 				$MediaOffset->execute();
 			}
-		}*/
+		}
 	}
 	public static function deamon_info() {
 		$return = array();
@@ -719,10 +715,10 @@ class plexCmd extends cmd {
 				break;
 			}
 		}
-		/*$this->setCollectDate(date('Y-m-d H:i:s'));
+		$this->setCollectDate(date('Y-m-d H:i:s'));
 		$this->setConfiguration('doNotRepeatEvent', 1);
 		$this->event($response);
-		$this->save();*/
+		$this->save();
 		return $response;	
     	}
 }
