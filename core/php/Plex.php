@@ -1,31 +1,4 @@
 <?php
-
-/**
- * Plex Bootstrap
- *
- * This is the file to be included in your application and will bootstrap the
- * rest of what is required.
- * 
- * @category php-plex
- * @package Plex
- * @author <nickbart@gmail.com> Nick Bartkowiak
- * @copyright (c) 2013 Nick Bartkowiak
- * @license http://www.gnu.org/licenses/gpl-3.0.html GNU Public Licence (GPLv3)
- * @version 0.0.2
- *
- * This file is part of php-plex.
- * 
- * php-plex is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * php-plex is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- */
-
 $phpPlexDir = dirname(__FILE__);
 
 // Exception
@@ -67,32 +40,10 @@ require_once(sprintf('%s/Client/ControllerAbstract.php', $phpPlexDir));
 require_once(sprintf('%s/Client/Controller/Navigation.php', $phpPlexDir));
 require_once(sprintf('%s/Client/Controller/Playback.php', $phpPlexDir));
 require_once(sprintf('%s/Client/Controller/Application.php', $phpPlexDir));
-
-/**
- * Bootstrap class for using php-plex to interact with the Plex HTTP API.
- * 
- * @category php-plex
- * @package Plex
- * @author <nickbart@gmail.com> Nick Bartkowiak
- * @copyright (c) 2013 Nick Bartkowiak
- * @license http://www.gnu.org/licenses/gpl-3.0.html GNU Public Licence (GPLv3)
- * @version 0.0.2.5
- */
 class PlexApi
 {
-	/**
-	 * A list of Plex server machines on the network. This is defined by the 
-	 * instantiating software.
-	 * @var Plex_Server[]
-	 */
-	private static $servers = array();
 
-	/**
-	 * A list of the Plex client machines on the network This is found upon
-	 * registring of Plex server. The first registered Plex server will go out
-	 * and get the list of available clients and register them accordingly.
-	 * @var Plex_Client[]
-	 */
+	private static $servers = array();
 	private static $clients = array();
 	private static $token = '';
 	
@@ -119,34 +70,9 @@ class PlexApi
 		log::add('plex','debug','Token: '.$data);
 		$curlError = curl_error($process);
 		$json = json_decode($data, true);
+		$this->token=$json['user']['authentication_token'];
 		config::save('PlexToken',$json['user']['authentication_token'], 'plex');
 	}
-	/**
-	 * Allows an instantiating software to define a list of Plex servers on the
-	 * network. In addition, the first server listed will be used to find the
-	 * list of available clients and will register them accordingly.
-	 *
-	 * @param array $servers An associative array of Plex server machines on the
-	 * network defined thusly:
-	 *
-	 * array (
-	 *     'server-1-name' => array(
-	 *         'address' => '192.168.1.5',
-	 *         'port' => 32400
-	 *     ),
-	 *     'server-2-name' => array(
-	 *         'address' => '192.168.1.10',
-	 *         'port' => 32400
-	 *     )
-	 * )
-	 *
-	 * @uses Plex::$servers
-	 * @uses Plex::registerClients()
-	 * @uses Plex::getServer()
-	 * @uses Plex_Server::getClient()
-	 *
-	 * @return void
-	 */
 	public function registerServers(array $servers)
 	{
 		// Register each server.
@@ -155,7 +81,8 @@ class PlexApi
 			self::$servers[$name] = new Plex_Server(
 				$name,
 				$server['address'],
-				$port
+				$port,
+				$this->token
 			);
 		}
 		
@@ -176,17 +103,7 @@ class PlexApi
 			$this->getServer($serverName)->getClients()
 		);
 	}
-	/**
-	 * Registers each found client with the bootstrap, so they can be found and
-	 * used by the instantiating software.
-	 *
-	 * @param Plex_Client[] $clients An associative array of Plex client machines on the
-	 * network.
-	 *
-	 * @uses Plex::$clients
-	 *
-	 * @return void
-	 */
+
    	private function registerClients(array $clients)
 	{
 		self::$clients = $clients;
