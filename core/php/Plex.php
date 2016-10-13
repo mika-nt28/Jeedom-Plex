@@ -70,7 +70,7 @@ class PlexApi
 		log::add('plex','debug','Token: '.$data);
 		$curlError = curl_error($process);
 		$json = json_decode($data, true);
-		$this->token=$json['user']['authentication_token'];
+		//$this->token=$json['user']['authentication_token'];
 		config::save('PlexToken',$json['user']['authentication_token'], 'plex');
 	}
 	public function registerServers(array $servers)
