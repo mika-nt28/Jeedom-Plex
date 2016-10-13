@@ -64,9 +64,10 @@ class Plex_Server extends Plex_MachineAbstract
 		);
 		$Sessions = array();
 		$SessionArray = $this->makeCall($url);
-		log::add('plex','debug',"SessionArray: ".json_encode($SessionArray['Player']));
-		if(isset($SessionArray['Player'])){
-			foreach ($SessionArray['Player'] as $attribute) {
+		log::add('plex','debug',"SessionArray: ".json_encode($SessionArray));
+		foreach ($SessionArray as $Session) {			
+			log::add('plex','debug',"$Session: ".json_encode($Session['Player']));
+			foreach ($Session['Player'] as $attribute) {
 				log::add('plex','debug',"Status: ".json_encode($attribute));
 				if(isset($clients[$attribute['device']]))
 					$client=$clients[$attribute['device']];
