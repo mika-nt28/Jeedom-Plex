@@ -5,11 +5,6 @@ class Plex_Server extends Plex_MachineAbstract
 	const ENDPOINT_CLIENT = 'clients';
 	const ENDPOINT_STATUS = 'status';
 	const ENDPOINT_SESSIONS = 'sessions';
-	private $machineIdentifier;
-	private $name;
-	private $ddress;
-	private $port;
-	private $token;
 	
 	public function __construct($name, $address, $port){
 		$this->name = $name;
