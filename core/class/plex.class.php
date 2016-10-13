@@ -474,6 +474,10 @@ class plex extends eqLogic {
 		}
 		if(isset($cmdPlex['display']['icon']))
 			$Commande->setDisplay('icon',$cmdPlex['display']['icon']);
+		if(isset($cmdPlex['display']['template'])){
+			$Commande->setTemplate('dashboard',$cmdPlex['display']['template']);
+			$Commande->setTemplate('mobile', $cmdPlex['display']['template']);
+		}
 		$Commande->save();
 		return $Commande;
 	}
@@ -546,8 +550,8 @@ class plex extends eqLogic {
 			'#state#' => $EtatPlayer,
 			'#volume#' => is_object($this->getCmd(null, 'volume'))?$this->getCmd(null, 'volume')->execCmd():0,
 			'#volume_id#' => is_object($this->getCmd(null, 'setVolume'))?$this->getCmd(null, 'setVolume')->getId():'',
-			'#viewOffset#' => is_object($this->getCmd(null, 'viewOffset'))?$this->getCmd(null, 'viewOffset')->execCmd():'',
-			'#getDuration#' => is_object($this->getCmd(null, 'getDuration'))?$this->getCmd(null, 'getDuration')->execCmd():'',
+			'#viewOffset#' => $this->getCmd(null, 'viewOffset')->toHtml($_version),
+			'#getDuration#' => $this->getCmd(null, 'getDuration')->toHtml($_version),
 			'#skipNext#' => is_object($this->getCmd(null, 'skipNext'))?$this->getCmd(null, 'skipNext')->execCmd():'',
 		);
 		//ACTION
