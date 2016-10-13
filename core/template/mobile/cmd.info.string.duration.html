@@ -1,0 +1,13 @@
+<div  style="width: 100px;" class="cmd tooltips cmd-widget" data-type="info" data-subtype="string" data-cmd_id="#id#" title="#collectDate#">
+    <center class="duration"></center>
+    <script>
+      $('.duration').text(SecondToDuration('#state#'));
+      
+		function SecondToDuration(timeCount){	
+			var heure=Math.floor(((timeCount/1000)/60)/60);
+			var minute=Math.floor(((timeCount/1000)/60))-heure*60;
+			var duration=heure+' h '+minute+' min ';
+			return duration
+		}	
+    </script>
+</div>
