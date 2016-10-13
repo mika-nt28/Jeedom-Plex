@@ -59,6 +59,12 @@ class Plex_Client extends Plex_MachineAbstract
 	public function setMachineIdentifier($machineIdentifier){
 		$this->machineIdentifier = $machineIdentifier;
 	}
+	public function getVersion(){
+		return $this->state;
+	}
+	public function setVersion($version){
+		$this->version = $version;
+	}
 	protected function getServer(){
 		return $this->server;
 	}
