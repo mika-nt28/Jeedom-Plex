@@ -540,24 +540,24 @@ class plex extends eqLogic {
 			'#name#' => ($this->getIsEnable()) ? $this->getName() : '<del>' . $this->getName() . '</del>',
 			'#eqLink#' => $this->getLinkToConfiguration(),
 			'#uid#' => 'plex' . $this->getId()/* . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER*/,
-			'#action#' => (isset($action)) ? $action : '',
+			//'#action#' => (isset($action)) ? $action : '',
 			'#background#' => ($this->getConfiguration('has_image_fond')) ? 'background-color: #000000; background-image: url(plugins/plex/core/template/dashboard/plex.png); background-repeat: no-repeat; background-position: center 0px;background-size: contain;#style#' : 'background-color:'.($this->getBackgroundColor($_version)).';#style#\'',
-			'#media#' =>$Media,
-			'#state#' => $EtatPlayer,
-			'#volume#' => is_object($this->getCmd(null, 'volume'))?$this->getCmd(null, 'volume')->execCmd():0,
-			'#volume_id#' => is_object($this->getCmd(null, 'setVolume'))?$this->getCmd(null, 'setVolume')->getId():'',
-			'#viewOffset#' => is_object($this->getCmd(null, 'viewOffset'))?$this->getCmd(null, 'viewOffset')->execCmd():'',
-			'#getDuration#' => is_object($this->getCmd(null, 'getDuration'))?$this->getCmd(null, 'getDuration')->execCmd():'',
+			//'#media#' =>$Media,
+			//'#state#' => $EtatPlayer,
+			//'#volume#' => is_object($this->getCmd(null, 'volume'))?$this->getCmd(null, 'volume')->execCmd():0,
+			//'#volume_id#' => is_object($this->getCmd(null, 'setVolume'))?$this->getCmd(null, 'setVolume')->getId():'',
+			//'#viewOffset#' => is_object($this->getCmd(null, 'viewOffset'))?$this->getCmd(null, 'viewOffset')->execCmd():'',
+			//'#getDuration#' => is_object($this->getCmd(null, 'getDuration'))?$this->getCmd(null, 'getDuration')->execCmd():'',
 			//'#skipNext#' => is_object($this->getCmd(null, 'skipNext'))?$this->getCmd(null, 'skipNext')->execCmd():'',
 		);
 		//ACTION
-		foreach ($this->getCmd('action') as $cmd) {
+		//foreach ($this->getCmd('action') as $cmd) {
 			if ($cmd->getIsVisible()) {
 				$replace['#cmd_' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
 			} else {
 				$replace['#cmd_' . $cmd->getLogicalId() . '_id#'] = 'No';
 			}
-		}
+		//}
 		$parameters = $this->getDisplay('parameters');
         if (is_array($parameters)) {
             foreach ($parameters as $key => $value) {    
