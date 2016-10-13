@@ -12,6 +12,18 @@ abstract class Plex_MachineAbstract implements Plex_MachineInterface
 			$this->port
 		);
 	}
+	protected function xmlMediaContainerAttributesToArray($xml)
+	{
+		if (!$xml) return false;
+		
+		$array = array();
+		foreach($xml->attributes() as $key => $value) {
+			// For abstraction, everything is casted to string. It is the
+			// responsibility of the calling method to handle typing.
+			$array[$key] = (string) $value[0];
+		}
+		return $array;
+	}
 	protected function xmlAttributesToArray($xml, $pass = 0)
 	{
 		if (!$xml) return false;
@@ -76,7 +88,7 @@ abstract class Plex_MachineAbstract implements Plex_MachineInterface
 		
 		$xml = simplexml_load_string($response);
 		if($MediaContainer)
-			return $xml;
+			return $this->xmlMediaContainerAttributesToArray($xml);
 		else
 			return $this->xmlAttributesToArray($xml);
 	}
