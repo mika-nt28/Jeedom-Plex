@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-//include_file('core', 'Plex', 'php', 'plex');
+include_file('core', 'Plex', 'php', 'plex');
 include_file('core', 'plex', 'config', 'plex');
 
 class plex extends eqLogic {
