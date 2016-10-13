@@ -64,7 +64,7 @@ class Plex_Client_Controller_Application extends Plex_Client_ControllerAbstract
 		$params = array(
 			'offset' =>0,
 			'X-Plex-Client-Identifier'=>$this->getMachineIdentifier(),
-			//'machineIdentifier'=>$this->getServer()->getMachineIdentifier(),
+			'machineIdentifier'=>$this->getServer()->getMachineIdentifier(),
 			'address'=>$this->getServer()->getAddress(),
 			'port'=> $this->getServer()->getPort(),
 			'protocol'=> 'http',
