@@ -31,7 +31,7 @@ class Plex_Server extends Plex_MachineAbstract
 	$Server=$this->makeCall($this->getBaseUrl(),true);
 		if(isset($Server['machineIdentifier']))
 			$this->setMachineIdentifier($Server['machineIdentifier']);
-		log::add('plex', 'debug', $this->getMachineIdentifier();
+		log::add('plex', 'debug', $this->getMachineIdentifier());
 	}
 	public function getClients(){
 		$url = sprintf(
