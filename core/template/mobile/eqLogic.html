@@ -5,16 +5,13 @@
 				<span style="position:absolute; right:5px; font-size:0.7em; color: #404040 ;top:5px;">#endtime_media#</span>
 				<strong style="margin-left:auto;margin-right:auto;">#name#</strong>
 				<div style="margin-top : 5px; height:12em;">
-					<div class="jaquette_plex_gros" style="height:8em;">
-					<img class="jaquette_plex" src="#thumbnail#" style="margin-left:auto;margin-right:auto;height:100%;border-radius:5%;"/>
-					</div>
+					<div class="jaquette_plex" style="height:8em;"></div>
 					<div class="jaquette_plex_telecommande" style="height:8em; display:none;">
 					<img class="bouton_gauche_plex cmd noRefresh" data-cmd_id="#cmd_moveLeft_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
 					<img class="bouton_droit_plex cmd noRefresh" data-cmd_id="#cmd_moveRight_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
 					<img class="bouton_haut_plex cmd noRefresh" data-cmd_id="#cmd_moveUp_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
 					<img class="bouton_bas_plex cmd noRefresh" data-cmd_id="#cmd_moveDown_id#" src="plugins/plex/core/template/dashboard/images/chevron.png"/>
 					<a class="commande_entree_plex cmd noRefresh" data-cmd_id="#cmd_select_id#" style="text-decoration: none; color: black; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:1em;font-weight:bold;">Entrée</a>
-					<img class="jaquette_plex" src="plugins/plex/core/template/dashboard/images/plex_logo.png" style="margin-left:auto;margin-right:auto;height:100%;border-radius:5%;"/>
 					</div>
 				<div class="jaquette_plex_gros_aa" style="height:3.23em;">
 					<span class="gros_titre_plex" style="font-size:1em;"></span>
@@ -31,29 +28,24 @@
 				<div style="background-color:#5d9cec;height:6em;margin-top:0.5em;display:block;">
 					<div style="height:3em;">
 					<img class="bouton_bas" style="margin-right:0.2em;opacity: 0.5;" src="plugins/plex/core/template/dashboard/images/sound63.png" onclick="telecommande_plex#id#('sound');"/>
-					<img class="change_gauche cmd noRefresh" data-cmd_id="#cmd_previous_id#" src="plugins/plex/core/template/dashboard/images/change.png"/>
+					<img class="change_gauche cmd noRefresh" data-cmd_id="#cmd_skipPrevious_id#" src="plugins/plex/core/template/dashboard/images/change.png"/>
 					<img class="play_in_cercle bouton_bas cmd noRefresh" data-cmd_id="#cmd_play_id#" src="plugins/plex/core/template/dashboard/images/play1.png" style="margin-left:0.32em;" />
-                    <img class="pause_in_cercle bouton_bas cmd noRefresh" data-cmd_id="#cmd_pause_id#" src="plugins/plex/core/template/dashboard/images/pause.png"/>
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_next_id#" src="plugins/plex/core/template/dashboard/images/change.png"/>
+			    		<img class="pause_in_cercle bouton_bas cmd noRefresh" data-cmd_id="#cmd_pause_id#" src="plugins/plex/core/template/dashboard/images/pause.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_skipNext_id#" src="plugins/plex/core/template/dashboard/images/change.png"/>
 					<img class="bouton_bas" style="margin-left:0.2em;opacity: 0.5;" src="plugins/plex/core/template/dashboard/images/speaker.png" onclick="telecommande_plex#id#('telecommande');"/>
 					</div>
 					<div class="touche_bas_plex" style="height:3em;">
-					<img class="avance_gauche cmd noRefresh" data-cmd_id="#cmd_stepbackward_id#" src="plugins/plex/core/template/dashboard/images/advance.png"/>
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_osd_id#" src="plugins/plex/core/template/dashboard/images/working.png"/>
+					<img class="avance_gauche cmd noRefresh" data-cmd_id="#cmd_stepBack_id#" src="plugins/plex/core/template/dashboard/images/advance.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_toggleOSD_id#" src="plugins/plex/core/template/dashboard/images/working.png"/>
 					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_stop_id#" src="plugins/plex/core/template/dashboard/images/stop.png"/>
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_stepforward_id#" src="plugins/plex/core/template/dashboard/images/advance.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_stepForward_id#" src="plugins/plex/core/template/dashboard/images/advance.png"/>
 					</div>
 					<div class="volume_bas_plex" style="height:3em;display:none;">
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumeoff_id#" src="plugins/plex/core/template/dashboard/images/sound.png"/>
+					<!--img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumeoff_id#" src="plugins/plex/core/template/dashboard/images/sound.png"/>
 					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumemoins_id#" src="plugins/plex/core/template/dashboard/images/sound63.png"/>
-					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumeplus_id#" src="plugins/plex/core/template/dashboard/images/volume9.png"/>
+					<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_volumeplus_id#" src="plugins/plex/core/template/dashboard/images/volume9.png"/-->
 					</div>
-					<div class="telecommande_bas_plex" style="height:3em;display:none;">
-						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_musiclist_id#" src="plugins/plex/core/template/dashboard/images/music.png"/>
-						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_movielist_id#" src="plugins/plex/core/template/dashboard/images/cinema.png"/>
-						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_tvlist_id#" src="plugins/plex/core/template/dashboard/images/tv.png"/>
-						<img class="bouton_bas cmd noRefresh" data-cmd_id="#cmd_partymode_id#" src="plugins/plex/core/template/dashboard/images/vinyl.png"/>
-					</div>
+					<div class="telecommande_bas_plex media_Library" style="height:3em;display:none;"></div>
 	</div>
 				</div>
 <script type="text/javascript">
