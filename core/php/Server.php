@@ -6,7 +6,7 @@ class Plex_Server extends Plex_MachineAbstract
 	const ENDPOINT_STATUS = 'status';
 	const ENDPOINT_SESSIONS = 'sessions';
 	
-	public function __construct($name, $address, $port, $token){
+	public function __construct($name, $address, $port, $token=''){
 		$this->name = $name;
 		$this->address = $address;
 		$this->port = $port ? $port : self::DEFAULT_PORT;
