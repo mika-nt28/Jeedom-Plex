@@ -78,10 +78,10 @@ $eqLogics = eqLogic::byType('plex');
                 <div class="form-group">
 			<label class="col-sm-2 control-label" ></label>
 			<div class="col-sm-9"> 
-				<label class="col-sm-2 control-label">{{Heartbeat}}
+				<label class="col-sm-2 control-label">{{Activer}}
 					<input type="checkbox" class="eqLogicAttr" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
 				</label>
-				<label class="col-sm-2 control-label">{{Heartbeat}}
+				<label class="col-sm-2 control-label">{{Visible}}
 					<input type="checkbox" class="eqLogicAttr" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
 				</label>
 			</div>
