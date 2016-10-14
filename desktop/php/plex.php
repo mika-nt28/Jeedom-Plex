@@ -76,17 +76,23 @@ $eqLogics = eqLogic::byType('plex');
                     </div>
                 </div>
                 <div class="form-group">
-                <label class="col-sm-2 control-label" ></label>
-                <div class="col-sm-9">
-                 <input type="checkbox" class="eqLogicAttr" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
-                  <input type="checkbox" class="eqLogicAttr" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
-                </div>
+			<label class="col-sm-2 control-label" ></label>
+			<div class="col-sm-9"> 
+				<label class="col-sm-2 control-label">{{Heartbeat}}
+					<input type="checkbox" class="eqLogicAttr" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
+				</label>
+				<label class="col-sm-2 control-label">{{Heartbeat}}
+					<input type="checkbox" class="eqLogicAttr" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
+				</label>
+			</div>
                 </div>
                 <div class="form-group">
-               <label class="col-sm-2 control-label">{{Heartbeat}} <sup><i class="fa fa-question-circle tooltips" style="font-size : 1em;color:grey;" title="Permet de vérifier toutes les minutes si le plex est toujours actif. Si il n'est plus actif, cela le mettra comme arrêté dans Jeedom. Utile pour les plexs qui sont sur des machines qui s'éteignent sans forcément arrêter plex"></i></sup></label>
-               <div class="col-sm-9">
-               <input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="heartbeat" checked/>
-               </div>
+		       <label class="col-sm-2 control-label">{{Heartbeat}}
+			       <sup>
+				       <i class="fa fa-question-circle tooltips" style="font-size : 1em;color:grey;" title="Permet de vérifier toutes les minutes si le plex est toujours actif. Si il n'est plus actif, cela le mettra comme arrêté dans Jeedom. Utile pour les plexs qui sont sur des machines qui s'éteignent sans forcément arrêter plex"></i>
+			       </sup>
+				<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="heartbeat" checked/>
+			</label>
                </div>
 				 <legend><i class="fa fa-wrench"></i>  {{Configuration}}</legend>
                 <div class="form-group">
