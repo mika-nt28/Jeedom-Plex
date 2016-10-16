@@ -557,9 +557,9 @@ class plex extends eqLogic {
 		//ACTION
 		foreach ($this->getCmd('action') as $cmd) {
 			if ($cmd->getIsVisible()) {
-				$replace['#cmd_' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
+				$replace['#'. $cmd->getLogicalId() . '#'] = $cmd->toHtml($_version),=;
 			} else {
-				$replace['#cmd_' . $cmd->getLogicalId() . '_id#'] = 'No';
+				$replace['#' . $cmd->getLogicalId() . '#'] = '';
 			}
 		}
 		$parameters = $this->getDisplay('parameters');
