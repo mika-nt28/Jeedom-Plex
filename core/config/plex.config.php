@@ -65,7 +65,7 @@ $listCmdPLEX = array(
 		'subType' => 'string',
 		'description' => 'Affiche la position de lecture du media',
 		'display' => array(
-				'template' => 'duration'
+				'template' => 'Plex_Duration'
 		)
     	),
 	array(
@@ -78,7 +78,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Navigation vers précédent',
 		'display' => array(
-			'icon' => '<i class="fa fa-reply"></i>'
+			'icon' => '<i class="fa fa-reply"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -92,6 +93,7 @@ $listCmdPLEX = array(
 		'description' => 'Navigation vers le haut',
 		'display' => array(
 			'icon' => '<i class="fa fa-arrow-up"></i>'
+			'template' => 'Plex_telecommande',
        		)
     	),
 	array(
@@ -104,7 +106,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Navigation vers la gauche',
 		'display' => array(
-			'icon' => '<i class="fa fa-arrow-left"></i>'
+			'icon' => '<i class="fa fa-arrow-left"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -117,7 +120,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Navigation vers la droite',
 		'display' => array(
-			'icon' => '<i class="fa fa-arrow-right"></i>'
+			'icon' => '<i class="fa fa-arrow-right"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -130,7 +134,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Navigation vers le bas',
 		'display' => array(
-			'icon' => '<i class="fa fa-arrow-down"></i>'
+			'icon' => '<i class="fa fa-arrow-down"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -143,7 +148,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Navigation Page Haut',
 		'display' => array(	
-			'icon' => '<i class="fa fa-chevron-up"></i>'
+			'icon' => '<i class="fa fa-chevron-up"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -156,7 +162,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Navigation Page bas',
 		'display' => array(
-			'icon' => '<i class="fa fa-chevron-down"></i>'
+			'icon' => '<i class="fa fa-chevron-down"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -169,7 +176,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Navigation passe a la lettre suivante',
 		'display' => array(
-			'icon' => '<i class="fa fa-caret-square-o-up"></i>'
+			'icon' => '<i class="fa fa-caret-square-o-up"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -182,7 +190,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Navigation passe a la lettre précédente',
 		'display' => array(
-			'icon' => '<i class="fa fa-caret-square-o-down"></i>'
+			'icon' => '<i class="fa fa-caret-square-o-down"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -195,7 +204,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Valider',
 		'display' => array(
-			'icon' => '<i class="fa fa-check"></i>'
+			'icon' => '<i class="fa fa-check"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -208,7 +218,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Navigation vers le menu',
 		'display' => array(	
-			'icon' => '<i class="fa fa-home"></i>'
+			'icon' => '<i class="fa fa-home"></i>',
+			'template' => 'Plex_telecommande'
        		)
     	),
 	array(
@@ -221,7 +232,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Navigation vers l\'OSD',
 		'display' => array(
-			'icon' => '<i class="icon techno-television4"></i>'
+			'icon' => '<i class="icon techno-television4"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -234,7 +246,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Recule',
 		'display' => array(
-			'icon' => '<i class="fa fa-backward"></i>'
+			'icon' => '<i class="fa fa-backward"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -247,7 +260,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Avance rapide',
 		'display' => array(
-			'icon' => '<i class="fa fa-forward"></i>'
+			'icon' => '<i class="fa fa-forward"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -260,7 +274,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Recule de 15 secondes',
 		'display' => array(
-			'icon' => '<i class="fa fa-step-backward"></i>'
+			'icon' => '<i class="fa fa-step-backward"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -273,7 +288,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Avance de 10 minute',
 		'display' => array(
-			'icon' => '<i class="fa fa-fast-forward"></i>'
+			'icon' => '<i class="fa fa-fast-forward"></i>',
+			'template' => 'Plex_telecommande'
        		)
     	),
 	array(
@@ -286,7 +302,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Met en pause ou lecture',
 		'display' => array(
-			'icon' => '<i class="fa fa-play"></i>'
+			'icon' => '<i class="fa fa-play"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -299,7 +316,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Met en pause ou lecture',
 		'display' => array(
-			'icon' => '<i class="fa fa-pause"></i>'
+			'icon' => '<i class="fa fa-pause"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -312,7 +330,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Stop la lecture',
 		'display' => array(
-			'icon' => '<i class="fa fa-stop"></i>'
+			'icon' => '<i class="fa fa-stop"></i>',
+			'template' => 'Plex_telecommande'
        	 )
     	),
 	array(
@@ -325,7 +344,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Avance de 30 secondes',
 		'display' => array(
-			'icon' => '<i class="fa fa-step-forward"></i>'
+			'icon' => '<i class="fa fa-step-forward"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -338,7 +358,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Recule de 10 minute',
 		'display' => array(
-			'icon' => '<i class="fa fa-fast-backward"></i>'
+			'icon' => '<i class="fa fa-fast-backward"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
