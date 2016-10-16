@@ -1,37 +1,50 @@
 <span class="cmd" data-type="action" data-subtype="other" data-cmd_id="#id#" style="width:100%;height:100%;">
-
     <a class="btn btn-sm btn-default action cmdName tooltips iconCmd#id#" title="" style="background-color:#576e84 !important;border-color : transparent !important;"></a>
-
    <script>
-
 		if ("#state#" == "1") {
-
 			$(".iconCmd#id#").css('background-color', '#C42833');
 
 		} else {
-
 			$(".iconCmd#id#").css('background-color', 'transparent');
-
 		}
-
 	$(".cmd[data-cmd_id=#id#] .action").off();
-
 	$(".cmd[data-cmd_id=#id#] .action").on("click", function() {
-
 		jeedom.cmd.execute({id: "#id#"});
-
 	});
-
 	switch('#logicalId#'){
-
-		case 'home':
-
-			$('.iconCmd#id#').text('Free');
-
+		case 'cmd_back_id':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/retour.png");
 		break;
-
+		case 'home':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/home.png");
+		break;
+		case 'cmd_fullscreen_id':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/resize.png");
+		break;
+		case 'cmd_volumeoff_id':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/sound.png");
+		break;
+		case 'cmd_select_id':
+		//<a class="commande_entree_plex cursor cmd noRefresh tooltips" data-cmd_id="##" style="text-decoration: none; color: black; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:18px;font-weight:bold;" title="Entrée">Entrée</a>
+		break;
+		case 'cmd_moveLeft_id':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
+		break;
+		case 'cmd_moveUp_id':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
+		break;
+		case 'cmd_moveRight_id':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
+		break;
+		case 'cmd_moveDown_id':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
+		break;
+		case 'stepBack':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/advance.png");
+		break;
+		case 'skipPrevious':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/change.png");
+		break;
 	}
-
 	</script>
-
 </span>
