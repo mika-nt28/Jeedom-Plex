@@ -100,15 +100,15 @@
 		<div class="commande_haute_plex_deux">
 		</div>
 		<div class="commande_principal_plex">
-		<img class="retour-plex cmd noRefresh tooltips" data-cmd_id="#cmd_back_id#" src="plugins/plex/core/template/dashboard/images/retour.png" title="Retour" />
-		<img class="acceuil-plex cmd noRefresh tooltips" data-cmd_id="#cmd_contextMenu_id#" src="plugins/plex/core/template/dashboard/images/home.png" title="Accueil" />
-		<!--img class="full-plex cmd noRefresh tooltips" data-cmd_id="#cmd_fullscreen_id#" src="plugins/plex/core/template/dashboard/images/resize.png" title="Plein Ecran" />
-		<img class="volumeoff-plex cmd noRefresh tooltips" data-cmd_id="#cmd_volumeoff_id#" src="plugins/plex/core/template/dashboard/images/sound.png" title="Mute" /-->
-		<a class="commande_entree_plex cursor cmd noRefresh tooltips" data-cmd_id="#cmd_select_id#" style="text-decoration: none; color: black; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:18px;font-weight:bold;" title="Entrée">Entrée</a>
-		<img class="bouton_media_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveLeft_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Gauche"/>
-		<img class="bouton_haut_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveUp_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Haut"/>
-		<img class="bouton_droit_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveRight_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Droite"/>
-		<img class="bouton_bas_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveDown_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Bas"/>
+			#back#
+			#contextMenu#
+			#fullscreen#
+			#volumeoff#
+			#select#
+			#moveLeft#
+			#moveUp#
+			#moveRight#
+			#moveDown#
 		</div>
 		<img class="working_droite_telecommande noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Télécommande" onClick="telecommandefermer#uid#()"/>
 	</div>
@@ -133,26 +133,22 @@
 	<!-- Partie basse du Widget-->
 	<div class="bas_plex_widget" style="display:block;">
 		<img src="plugins/plex/core/template/dashboard/images/sound.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_plex#uid#('bouton')" />
-		<div class="stop_plex_widget cmd noRefresh tooltips" data-cmd_id="#cmd_stop_id#" title="Stop">
-		</div>
-		<img class="avance_gauche cmd noRefresh tooltips" data-cmd_id="#cmd_stepBack_id#" src="plugins/plex/core/template/dashboard/images/advance.png" title="Retour rapide" />
-		<div class="osd-plex cmd noRefresh tooltips" data-cmd_id="#cmd_toggleOSD_id#" title="OSD"></div>
-		<img class="change_gauche cmd noRefresh tooltips" data-cmd_id="#cmd_skipPrevious_id#" src="plugins/plex/core/template/dashboard/images/change.png" title="Précédent" />
+		#stop#
+		#stepBack#
+		#toggleOSD#
+		#skipPrevious#
 		<div class="cercle_bas_plex_widget">
-			<img class="play_in_cercle noRefresh tooltips" data-PlayCmd_id="#cmd_play_id#" data-PlayMediaCmd_id="#cmd_playMedia_id#" src="plugins/plex/core/template/dashboard/images/play1.png" title="Lecture"/>
-			<img class="pause_in_cercle cmd noRefresh tooltips" data-cmd_id="#cmd_pause_id#" src="plugins/plex/core/template/dashboard/images/pause.png" title="Pause" />
+			#play#
+			#pause#
 		</div>
-		<img class="change_droite cmd noRefresh tooltips" data-cmd_id="#cmd_skipNext_id#" src="plugins/plex/core/template/dashboard/images/change.png" title="Suivant" />
-		<img class="avance_droite cmd noRefresh tooltips" data-cmd_id="#cmd_stepForward_id#" src="plugins/plex/core/template/dashboard/images/advance.png" title="Avance rapide" />
+		#skipNext#
+		#stepForward#
 	</div>
 	<div class="bas_plex_widget_volume" style="display:none;">
 		<img src="plugins/plex/core/template/dashboard/images/working.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_plex#uid#('volume')"/>
 		<div class="volume_plex_widget">
 		<div style="margin-top : 5px;" class="showinit">
-				<a class="btn btn-circle btn-xs cmd vol-" data-cmd_id="#cmd_volumemoins_id#" title="Volume-"><i class="fa fa-volume-down"></i></a>
-				<div class="volume cmd noRefresh" data-cmd_id="#volume_id#" style="width: 180px;"></div>
-				<a class="btn btn-circle btn-xs cmd vol+" data-cmd_id="#cmd_volumeplus_id#" style="position : relative;" title="Volume+"><i class="fa fa-volume-up"></i></a>
-		</div>
+			<div class="volume cmd noRefresh" data-cmd_id="#volume#" style="width: 180px;"></div>	
 		</div>
 	</div>
 	<script type="text/javascript">
