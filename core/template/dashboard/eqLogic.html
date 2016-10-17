@@ -112,8 +112,9 @@
 	</div>
 	<!-- Partie Haute du Widget-->
 	<div class="haut_plex_widget">
-    <a href="#eqLink#" class="titre_haut_plex_widget"> #name# </a>
-    <a class="time_haut_plex_widget tooltips noRefresh" style="text-decoration: none; color: #404040; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px;font-weight:bold;" title="Durée"></a>
+    	<a href="#eqLink#" class="titre_haut_plex_widget"> #name# </a>
+	<a class="position_longueur_plex noRefresh" style="text-decoration: none;cursor:default; color: #404040; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px;font-weight:bold;">#viewOffset#</a>
+    	<a class="time_haut_plex_widget tooltips noRefresh" style="text-decoration: none; color: #404040; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px;font-weight:bold;" title="Durée"></a>
 	<img class="working_droite tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Télécommande" onClick="telecommande#uid#()"/>
 	<img class="sections_gauche tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" onclick="liste#uid#()" title="Informations"/>
 		<div class="jaquette_plex"></div>
@@ -122,9 +123,6 @@
 		</div><br/>
 		<div class="titre_plex">
 			<a class="petit_titre_plex tooltips noRefresh" style="text-decoration: none; cursor:default;top : 50px;" title=""></a>
-		</div>
-		<div class="etat_plex">
-			<a class="position_longueur_plex noRefresh" style="text-decoration: none;cursor:default; color: #404040; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px;font-weight:bold;">#viewOffset#</a>
 		</div>
 	</div>
 	
@@ -555,15 +553,7 @@
 			var duration=heure+' h '+minute+' min ';
 			return duration
 		}	
-		/*$(".plex[data-eqLogic_uid=#uid#] .volume").bootstrapSlider({
-			min: 0,
-			max: 100,
-			value: ('#volume#' == '') ? 0 : parseInt('#volume#')
-			});*/
 		$(".plex[data-eqLogic_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
-		$(".plex[data-eqLogic_uid=#uid#] .volume").on('slideStop', function (ev) {
-			jeedom.cmd.execute({id: '#volume_id#', value: {slider: ev.value}});
-		});
 		function volume_plex#uid#(bouton){
 			if(bouton == 'bouton'){
 				$(".plex[data-eqLogic_uid=#uid#] .bas_plex_widget_volume").css("display", "block");
@@ -573,29 +563,6 @@
 				$(".plex[data-eqLogic_uid=#uid#] .bas_plex_widget").css("display", "block");
 			}
 		}
-		
-     /* //Lecture en directe du media  
-		$(".plex[data-eqLogic_uid=#uid#] .affiche_premiere_plex").on('click', function() {
-			$('#md_modal2').dialog({
-				title: "Votre plex : #name#"
-			});
-			
-			$('#md_modal2').load('index.php?v=d&plugin=plex&modal=your.plex&id='+ #id#).dialog('open');
-		});*/
-        $('.plex[data-eqLogic_uid=#uid#] .cmd').on('click', function() {
-			jeedom.cmd.execute({id: $(this).data('cmd_id')});
-		});
-		$('.plex[data-eqLogic_uid=#uid#] .play_in_cercle').on('click', function() {
-		var _this=this;
-			bootbox.confirm('Voulez vous lire le media séléctionné?', function (result) {
-				if (result) {
-					jeedom.cmd.execute({id: $(_this).attr('data-PlayMediaCmd_id')});
-					}
-				else{
-					jeedom.cmd.execute({id: $(_this).attr('data-PlayCmd_id')});
-					}
-			});
-		});
 		function UpdateCmd(logicalId, Valeur){
 			$.ajax({
 				type: "POST",
