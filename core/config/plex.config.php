@@ -372,7 +372,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Chapitre suivant',
 		'display' => array(
-			'icon' => '<i class="fa fa-arrow-right"></i>'
+			'icon' => '<i class="fa fa-arrow-right"></i>',
+			'template' => 'Plex_telecommande'
       	  	)
     	),
 	array(
@@ -385,7 +386,8 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Chapitre précédent',
 		'display' => array(
-			'icon' => '<i class="fa fa-arrow-left"></i>'
+			'icon' => '<i class="fa fa-arrow-left"></i>',
+			'template' => 'Plex_telecommande'
         	)
     	),
 	array(
@@ -398,7 +400,7 @@ $listCmdPLEX = array(
 		'subType' => 'string',
 		'description' => 'Durée du media',
 		'display' => array(
-			'template' => 'duration'
+			'template' => 'Plex_Duration'
 		)
     	),
 	array(
