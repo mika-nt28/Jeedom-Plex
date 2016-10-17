@@ -13,51 +13,56 @@
 	});
 	switch('#logicalId#'){
 		case 'back':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/retour.png");
+			$('.iconCmd#id#').append($('<img class="retour-plex cmd noRefresh tooltips" data-cmd_id="#cmd_back_id#" src="plugins/plex/core/template/dashboard/images/retour.png" title="Retour" />'));
 		break;
 		case 'home':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/home.png");
+			$('.iconCmd#id#').append($('<img class="acceuil-plex cmd noRefresh tooltips" data-cmd_id="#cmd_contextMenu_id#" src="plugins/plex/core/template/dashboard/images/home.png" title="Accueil" />'));
 		break;
 		case 'fullscreen':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/resize.png");
+			$('.iconCmd#id#').append($('<img class="full-plex cmd noRefresh tooltips" data-cmd_id="#cmd_fullscreen_id#" src="plugins/plex/core/template/dashboard/images/resize.png" title="Plein Ecran" />'));
 		break;
 		case 'volumeoff':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/sound.png");
+			$('.iconCmd#id#').append($('<img class="volumeoff-plex cmd noRefresh tooltips" data-cmd_id="#cmd_volumeoff_id#" src="plugins/plex/core/template/dashboard/images/sound.png" title="Mute" />'));
 		break;
 		case 'select':
-		//<a class="commande_entree_plex cursor cmd noRefresh tooltips" data-cmd_id="##" style="text-decoration: none; color: black; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:18px;font-weight:bold;" title="Entrée">Entrée</a>
+			$('.iconCmd#id#').append($('<a class="commande_entree_plex cursor cmd noRefresh tooltips" data-cmd_id="#cmd_select_id#" style="text-decoration: none; color: black; font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:18px;font-weight:bold;" title="Entrée">')
+				.text('Entrée'));
 		break;
 		case 'moveLeft':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
+			$('.iconCmd#id#').append($('<img class="bouton_media_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveLeft_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Gauche"/>'));
 		break;
 		case 'moveUp':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
+			$('.iconCmd#id#').append($('<img class="bouton_haut_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveUp_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Haut"/>'));
 		break;
 		case 'moveRight':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
+			$('.iconCmd#id#').append($('<img class="bouton_droit_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveRight_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Droite"/>'));
 		break;
 		case 'moveDown':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
+			$('.iconCmd#id#').append($('<img class="bouton_bas_plex cmd noRefresh tooltips" data-cmd_id="#cmd_moveDown_id#" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Bas"/>'));
 		break;
 		case 'stepBack':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/advance.png");
+			$('.iconCmd#id#').append($('<img class="avance_gauche cmd noRefresh tooltips" data-cmd_id="#cmd_stepBack_id#" src="plugins/plex/core/template/dashboard/images/advance.png" title="Retour rapide" />'));
 		break;
 		case 'skipPrevious':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/change.png");
+			$('.iconCmd#id#').append($('<img class="change_gauche cmd noRefresh tooltips" data-cmd_id="#cmd_skipPrevious_id#" src="plugins/plex/core/template/dashboard/images/change.png" title="Précédent" />'));
 		break;
 		case 'skipNext':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/change.png");
+			$('.iconCmd#id#').append($('<img class="change_droite cmd noRefresh tooltips" data-cmd_id="#cmd_skipNext_id#" src="plugins/plex/core/template/dashboard/images/change.png" title="Suivant" />'));
 		break;
 		case 'stepForward':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/advance.png");
+			$('.iconCmd#id#').append($('<img class="avance_droite cmd noRefresh tooltips" data-cmd_id="#cmd_stepForward_id#" src="plugins/plex/core/template/dashboard/images/advance.png" title="Avance rapide" />'));
 		break;
 		case 'play':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/play1.png");
+			$('.iconCmd#id#').append($('<img class="play_in_cercle noRefresh tooltips" data-PlayCmd_id="#cmd_play_id#" data-PlayMediaCmd_id="#cmd_playMedia_id#" src="plugins/plex/core/template/dashboard/images/play1.png" title="Lecture"/>'));
 		break;
 		case 'pause':
-			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/pause.png");
+			$('.iconCmd#id#').append($('<img class="pause_in_cercle cmd noRefresh tooltips" data-cmd_id="#cmd_pause_id#" src="plugins/plex/core/template/dashboard/images/pause.png" title="Pause" />'));
+		break;
+		case 'stop':
+			$('.iconCmd#id#').append($('<div class="stop_plex_widget cmd noRefresh tooltips" data-cmd_id="#cmd_stop_id#" title="Stop">'));
 		break;
 		case 'toggleOSD':
+			$('.iconCmd#id#').append($('<div class="osd-plex cmd noRefresh tooltips" data-cmd_id="#cmd_toggleOSD_id#" title="OSD">'));
 		break;
 		case 'stop':
 		break;
