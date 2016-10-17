@@ -12,31 +12,31 @@
 		jeedom.cmd.execute({id: "#id#"});
 	});
 	switch('#logicalId#'){
-		case 'cmd_back_id':
+		case 'back':
 			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/retour.png");
 		break;
 		case 'home':
 			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/home.png");
 		break;
-		case 'cmd_fullscreen_id':
+		case 'fullscreen':
 			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/resize.png");
 		break;
-		case 'cmd_volumeoff_id':
+		case 'volumeoff':
 			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/sound.png");
 		break;
-		case 'cmd_select_id':
+		case 'select':
 		//<a class="commande_entree_plex cursor cmd noRefresh tooltips" data-cmd_id="##" style="text-decoration: none; color: black; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:18px;font-weight:bold;" title="Entrée">Entrée</a>
 		break;
-		case 'cmd_moveLeft_id':
+		case 'moveLeft':
 			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
 		break;
-		case 'cmd_moveUp_id':
+		case 'moveUp':
 			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
 		break;
-		case 'cmd_moveRight_id':
+		case 'moveRight':
 			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
 		break;
-		case 'cmd_moveDown_id':
+		case 'moveDown':
 			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/chevron.png");
 		break;
 		case 'stepBack':
@@ -44,6 +44,22 @@
 		break;
 		case 'skipPrevious':
 			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/change.png");
+		break;
+		case 'skipNext':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/change.png");
+		break;
+		case 'stepForward':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/advance.png");
+		break;
+		case 'play':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/play1.png");
+		break;
+		case 'pause':
+			$('.iconCmd#id#').attr('src',"plugins/plex/core/template/dashboard/images/pause.png");
+		break;
+		case 'toggleOSD':
+		break;
+		case 'stop':
 		break;
 	}
 	</script>
