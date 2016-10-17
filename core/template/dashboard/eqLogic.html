@@ -1254,36 +1254,8 @@
 	GroupFiltre=$(this).attr("data-filtre");
 	$(this).addClass('btn-primary');
 });
-		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexFilter', function() {		
+$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexFilter', function() {		
 	$('.plex[data-eqLogic_uid=#uid#] .btn-primary').removeClass('btn-primary');
-	Filtre=$(this).attr("data-filtre");
-	$(this).addClass('btn-primary');
-	switch(Filtre)
-	{
-		case 'Unwatched':
-			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
-		break;case 'RecentlyReleased':
-			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
-		break;
-		case 'RecentlyAdded':
-			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
-		break;
-		case 'RecentlyViewed':
-			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
-		break;
-		case 'OnDeck':
-			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
-		break;
-		case 'UnwatchedShows':
-			$('.plex[data-eqLogic_uid=#uid#] #in_search').hide();
-		default:
-			$('.plex[data-eqLogic_uid=#uid#] #in_search').show();
-		break;
-	}
-});
-	</script>
-</div>
-ata-eqLogic_uid=#uid#] .btn-primary').removeClass('btn-primary');
 	Filtre=$(this).attr("data-filtre");
 	$(this).addClass('btn-primary');
 	switch(Filtre)
