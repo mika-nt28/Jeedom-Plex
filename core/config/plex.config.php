@@ -92,7 +92,7 @@ $listCmdPLEX = array(
 		'subType' => 'other',
 		'description' => 'Navigation vers le haut',
 		'display' => array(
-			'icon' => '<i class="fa fa-arrow-up"></i>'
+			'icon' => '<i class="fa fa-arrow-up"></i>',
 			'template' => 'Plex_telecommande'
        		)
     	),
