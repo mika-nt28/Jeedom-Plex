@@ -690,8 +690,10 @@ class plexCmd extends cmd {
 					switch ($this->getConfiguration('commande'))
 					{
 						case 'viewOffset':
+							$response=0;
 							if(method_exists($media,'getViewOffset'))
 								$response=$media->getViewOffset();
+							
 						break;
 						case 'playMedia':
 							// Play episode from beginning
