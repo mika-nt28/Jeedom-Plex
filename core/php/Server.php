@@ -11,7 +11,7 @@ class Plex_Server extends Plex_MachineAbstract
 		$this->address = $address;
 		$this->port = $port ? $port : self::DEFAULT_PORT;
 		$this->token = $token;
-		log:add('plex','debug','Initialisation server : '.$this->getMachineIdentifier())
+		log:add('plex','debug','Initialisation server : '.$this->getMachineIdentifier());
 		if(isset($this->getMachineIdentifier()))
 			$this->ServerInforamation();
 	}
