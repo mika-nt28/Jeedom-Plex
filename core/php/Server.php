@@ -1,6 +1,7 @@
 <?php
 class Plex_Server extends Plex_MachineAbstract
 {
+	private $machineIdentifier;
 	const DEFAULT_PORT = 32400;
 	const ENDPOINT_CLIENT = 'clients';
 	const ENDPOINT_STATUS = 'status';
