@@ -56,10 +56,11 @@ class Plex_Server extends Plex_MachineAbstract
 				if(isset($clients[$attribute['device']]))
 					$client=$clients[$attribute['device']];
 				else{
+					$port = isset($attribute['port']) ? $attribute['port'] : 3000;
 					$client = new Plex_Client(
 						$attribute['device'],
 						$attribute['address'],
-						3000
+						$port
 					);
 					$client->setHost($attribute['host']);
 					$client->setMachineIdentifier($attribute['machineIdentifier']);
