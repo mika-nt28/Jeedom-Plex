@@ -7,7 +7,7 @@ class plex extends eqLogic {
 	public static $_plex;
 	public static $_server;
 	public $_client;
-	public $_onlyState;
+	public $_onlyState=false;
 	public static function UpdateStatus() {
 		while(true){
 			$eqLogics = eqLogic::byType('plex');
@@ -30,8 +30,10 @@ class plex extends eqLogic {
 					$PlayerSate->event($State);
 					$PlayerSate->save();
 				}
-				$MediaOffset=$this->getCmd(null,'viewOffset');
-				$MediaOffset->execute();
+				if(!$this->_onlyState){
+					$MediaOffset=$this->getCmd(null,'viewOffset');
+					$MediaOffset->execute();
+				}
 			}
 		}
 	}
