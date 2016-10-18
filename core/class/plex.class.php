@@ -2,7 +2,6 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 include_file('core', 'Plex', 'php', 'plex');
 include_file('core', 'plex', 'config', 'plex');
-
 class plex extends eqLogic {
 	public static $_plex;
 	public static $_server;
@@ -19,8 +18,8 @@ class plex extends eqLogic {
 	public function StateControl() {
 		if ($this->getIsEnable() == 1 && $this->getConfiguration('heartbeat',0) == 1) {
 			$this->ConnexionsPlex();
-			if(isset($this->_client)&&is_object($this->_client)&&isset(self::$_server)&&is_object(self::$_server)){
-				$server=self::$_server;
+			if(isset($this->_client)&&is_object($this->_client)){
+				$server=self::$_plex->getServer(config::byKey('name', 'plex'));
 				$PlayerSate=$this->getCmd(null,'state');
 				if(is_object($PlayerSate)){
 					$State=$server->getPlayerSessions(array($this->getLogicalId()));
@@ -405,8 +404,8 @@ class plex extends eqLogic {
 		if(!is_object(self::$_plex)){
 			self::$_plex = new PlexApi();
 			self::$_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
-		}	
-		if(!is_object(self::$_server)){
+		//}	
+		//if(!is_object(self::$_server)){
 			$servers = array(
 				config::byKey('name', 'plex') => array(
 					'address' => config::byKey('addr', 'plex'),
