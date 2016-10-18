@@ -17,7 +17,7 @@ class Plex_Server extends Plex_MachineAbstract
 	}
 	public function ServerInforamation(){
 		$Server=$this->makeCall($this->getBaseUrl(),true);
-		if(isset($Server['machineIdentifier']))
+		if(!isset($Server['machineIdentifier']))
 			$this->setMachineIdentifier($Server['machineIdentifier']);
 	}
 	public function getClients(){
