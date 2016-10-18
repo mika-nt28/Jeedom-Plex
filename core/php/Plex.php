@@ -84,6 +84,7 @@ class PlexApi
 					$port, 
 					$this->token
 				);
+				self::$servers[$name]->ServerInforamation();
 			}
 
 			// We are going to use the first server in the list to get a list of the
