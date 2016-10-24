@@ -62,8 +62,11 @@ class Plex_Server extends Plex_MachineAbstract
 						$attribute['address'],
 						$port
 					);
+				if(isset($attribute['host']))
 					$client->setHost($attribute['host']);
+				if(isset($attribute['machineIdentifier']))
 					$client->setMachineIdentifier($attribute['machineIdentifier']);
+				if(isset($attribute['version']))
 					$client->setVersion($attribute['version']);
 					$client->setOnlyState(true);
 					$client->setServer($this);
