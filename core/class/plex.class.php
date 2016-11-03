@@ -10,8 +10,10 @@ class plex extends eqLogic {
 	public static function UpdateStatus() {
 		while(true){
 			$eqLogics = eqLogic::byType('plex');
-			foreach($eqLogics as $plexClient) 
-				$plexClient->StateControl();
+			if(is_array($eqLogics)){
+				foreach($eqLogics as $plexClient) 
+					$plexClient->StateControl();
+			}
 			sleep(10);
 		}
 	}
@@ -248,21 +250,25 @@ class plex extends eqLogic {
 				}
 			break;
 			case 'ByTitle':	
+				$reponse=null;
 				switch($section->getType())
 				{
 					case 'movie':
-						$reponse=$section->getMovie($param['Video']);
+						if(isset($param['Video']))
+							$reponse=$section->getMovie($param['Video']);
 						break;
 					case 'show':
-						$show = $section->getShow($param['Show']);
-						if(isset($param['Season'])){
-							$Season=$show->getSeason($param['Season']);
-							if(isset($param['Episode']))
-								$reponse=$Season->getEpisode($param['Episode']);
-							else
-								$reponse=$Season->getEpisodes();
-						}else{
-							$reponse=$show->getSeasons();
+						if(isset($param['Show'])){
+							$show = $section->getShow($param['Show']);
+							if(isset($param['Season'])){
+								$Season=$show->getSeason($param['Season']);
+								if(isset($param['Episode']))
+									$reponse=$Season->getEpisode($param['Episode']);
+								else
+									$reponse=$Season->getEpisodes();
+							}else{
+								$reponse=$show->getSeasons();
+							}
 						}
 						break;
 					case 'artist':
@@ -271,8 +277,10 @@ class plex extends eqLogic {
 						else{
 							$Albums=$section->getAllAlbums();
 							foreach ($Albums as $Album) {
-								if($Album->getTitle() == $param['Album'])
-									$reponse=$Album->getTracks();
+								if(isset($param['Album'])){
+									if($Album->getTitle() == $param['Album'])
+										$reponse=$Album->getTracks();
+								}
 							}
 						}
 						break;
@@ -698,12 +706,9 @@ class plexCmd extends cmd {
 						break;
 						case 'playMedia':
 							// Play episode from beginning
-							
 							log::add('plex','debug','Execution de playMedia');
-							//if(method_exists($application,'playMedia'))
+							if(method_exists($application,'playMedia'))
 								$response=$application->playMedia($media);
-							//else
-								//log::add('plex','debug','La methode playMedia n\'existe pas');
 						break;
 						case 'playMediaLastStopped':
 							// Play epsiode from where it was last stopped
