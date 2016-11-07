@@ -411,7 +411,8 @@ class plex extends eqLogic {
    	public function ConnexionsPlex(){
 		if(!is_object(self::$_plex)){
 			self::$_plex = new PlexApi();
-			self::$_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
+			if(config::byKey('PlexUser', 'plex') != '' && config::byKey('PlexPassword', 'plex') != '')
+				self::$_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
 		//}	
 		//if(!is_object(self::$_server)){
 			$servers = array(
