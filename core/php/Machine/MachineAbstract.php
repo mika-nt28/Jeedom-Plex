@@ -61,11 +61,13 @@ abstract class Plex_MachineAbstract implements Plex_MachineInterface
 		return $array;
 	}
 	protected function makeCall($url,$MediaContainer=false){
-		if(stripos($url,'?')>0)
-			$url.='&';
-		else
-			$url.='?';
-       		$url.= 'X-Plex-Token='.config::byKey('PlexToken', 'plex');
+		if(isset(config::byKey('PlexToken', 'plex')) && config::byKey('PlexToken', 'plex') !=''){
+			if(stripos($url,'?')>0)
+				$url.='&';
+			else
+				$url.='?';
+			$url.= 'X-Plex-Token='.config::byKey('PlexToken', 'plex');
+		}
 		$ch = curl_init();
       		log::add('plex','debug','Connexion a '. $url);
 		curl_setopt($ch, CURLOPT_URL, $url);
