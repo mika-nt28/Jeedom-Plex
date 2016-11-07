@@ -61,7 +61,7 @@ abstract class Plex_MachineAbstract implements Plex_MachineInterface
 		return $array;
 	}
 	protected function makeCall($url,$MediaContainer=false){
-		if(isset(config::byKey('PlexToken', 'plex')) && config::byKey('PlexToken', 'plex') !=''){
+		if(isset(config::byKey('PlexToken', 'plex'))){
 			if(stripos($url,'?')>0)
 				$url.='&';
 			else
