@@ -45,6 +45,7 @@ class PlexApi
 
 	private static $servers = array();
 	private static $clients = array();
+	private $token = '';
 	
 	public function getToken($username, $password)
 	{
@@ -74,26 +75,24 @@ class PlexApi
 	}
 	public function registerServers(array $servers)
 	{
-		if(isset($this->token)){
-			// Register each server.
-			foreach ($servers as $name => $server) {
-				$port = isset($server['port']) ? $server['port'] : NULL;
-				self::$servers[$name] = new Plex_Server(
-					$name,
-					$server['address'],
-					$port, 
-					$this->token
-				);
-				self::$servers[$name]->ServerInforamation();
-			}
-
-			// We are going to use the first server in the list to get a list of the
-			// availalble clients and register those automatically.
-			$serverName = reset(array_keys(self::$servers));
-			$this->registerClients(
-				$this->getServer($serverName)->getClients()
+		// Register each server.
+		foreach ($servers as $name => $server) {
+			$port = isset($server['port']) ? $server['port'] : NULL;
+			self::$servers[$name] = new Plex_Server(
+				$name,
+				$server['address'],
+				$port, 
+				$this->token
 			);
+			self::$servers[$name]->ServerInforamation();
 		}
+
+		// We are going to use the first server in the list to get a list of the
+		// availalble clients and register those automatically.
+		$serverName = reset(array_keys(self::$servers));
+		$this->registerClients(
+			$this->getServer($serverName)->getClients()
+		);
 	}
 	
 	public function UpdateClientStatus()
