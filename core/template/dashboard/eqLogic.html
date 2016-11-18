@@ -212,7 +212,33 @@
 					.attr('data-type_media',Data.Media[i].Type)
 					.attr('title',Data.Media[i].Title)
 					.hide();
-				if(i==0){
+				var IdMedia=0;
+				var mediaName;
+				switch(Data.Media[i].Type){
+					default:
+						mediaName=Media#uid#.Video;
+					break;
+					case 'show':
+						mediaName=Media#uid#.Show;
+					break;
+					case 'season':
+						mediaName=Media#uid#.Season;
+					break;
+					case 'episode':
+						mediaName=Media#uid#.Episode;
+					break;
+					case 'artist':
+					break;
+					case 'album':
+						mediaName=Media#uid#.Album;
+					break;
+					case 'track':
+						mediaName=Media#uid#.Tarck;
+					break;
+				}
+				if (Data.Media[i].Title == mediaName)
+				    IdMedia=i;
+				if(i==IdMedia){
 					if (typeof(Data.Media[i].Duration) != "undefined")
 						$('.plex[data-eqLogic_uid=#uid#] .time_haut_plex_widget').text(SecondToDuration(Data.Media[i].Duration)).show();
 					else
@@ -221,8 +247,11 @@
 					$('.plex[data-eqLogic_uid=#uid#] .petit_titre_plex').attr('title',Data.Media[i].Tagline).text(Data.Media[i].Tagline);
 					ThumbMenu.addClass("affiche_premiere_plex").show();
 				}
-				if(i==1){
+				if(i==IdMedia+1)
 					ThumbMenu.addClass("affiche_next_plex").show();
+				if(IdMedia>0){
+					if(i==IdMedia-1)
+						ThumbMenu.addClass("affiche_prev_plex").show();
 				}
 				$('.plex[data-eqLogic_uid=#uid#] .jaquette_plex').append(ThumbMenu);
 			}
