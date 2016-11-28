@@ -210,6 +210,7 @@
 			$('.plex[data-eqLogic_uid=#uid#] #audio-dropdown').text(Data.Media.Audio);
 			$('.plex[data-eqLogic_uid=#uid#] #subtitles-dropdown').text(Data.Media.Subtitles);
 			$('.plex[data-eqLogic_uid=#uid#] .studio-flag').attr('src',Data.Media.StudioFlag);
+			UpdateThumbMenu#uid#($('.plex[data-eqLogic_uid=#uid#] .jaquette_plex .affiche[data-Key='+Data.Media.RatingKey+']'));
 		}
 		function UpdateList#uid#(Data){
 			$('.plex[data-eqLogic_uid=#uid#] #ListeMedia ul').html('');
@@ -260,16 +261,21 @@
 				}
 			}
 			if(mediaKey!='')
-				$('.plex[data-eqLogic_uid=#uid#] .jaquette_plex .affiche[data-Key='+mediaKey+']').trigger('click');
+				UpdateThumbMenu#uid#($('.plex[data-eqLogic_uid=#uid#] .jaquette_plex .affiche[data-Key='+mediaKey+']'));
+			else
+				UpdateThumbMenu#uid#($('.plex[data-eqLogic_uid=#uid#] .jaquette_plex .affiche').first());
 		}
-		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
+		function UpdateThumbMenu#uid#(Affiche){
 			$('.plex[data-eqLogic_uid=#uid#] .affiche').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .affiche').removeClass("affiche_premiere_plex");
 			$('.plex[data-eqLogic_uid=#uid#] .affiche').removeClass("affiche_next_plex");
 			$('.plex[data-eqLogic_uid=#uid#] .affiche').removeClass("affiche_prev_plex");
-			$(this).addClass("affiche_premiere_plex").show();
-			$(this).next().addClass("affiche_next_plex").show();
-			$(this).prev().addClass("affiche_prev_plex").show();
+			Affiche.addClass("affiche_premiere_plex").show();
+			Affiche.next().addClass("affiche_next_plex").show();
+			Affiche.prev().addClass("affiche_prev_plex").show();
+		}
+		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
+			UpdateThumbMenu#uid#($(this));
 			switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-lib_title="'+Media#uid#.Library+'"]').data('lib_type')){
 				default:
 					Media#uid#.Video=$(this).attr("title");
