@@ -214,6 +214,7 @@
 		function UpdateList#uid#(Data){
 			$('.plex[data-eqLogic_uid=#uid#] #ListeMedia ul').html('');
 			$('.plex[data-eqLogic_uid=#uid#] .jaquette_plex').html('');
+			var mediaKey='';
 			for (var i in Data.Media) {
 				$('.plex[data-eqLogic_uid=#uid#] #ListeMedia ul').append(
 					$('<li>')
@@ -221,53 +222,45 @@
 						.attr('data-type_media',Data.Media[i].Type)
 						.attr('data-id_media',i)//Data.Media[i].RatingKey)
 						.text(Data.Media[i].Title));
-				var ThumbMenu=$("<img>").addClass("affiche").attr('src','plugins/plex/core/php/Poster.php?url='+Data.Media[i].Poster)
-					.attr('data-type_media',Data.Media[i].Type)
-					.attr('title',Data.Media[i].Title)
-					.hide();
-				var IdMedia=0;
-				var mediaName;
+				$('.plex[data-eqLogic_uid=#uid#] .jaquette_plex').append(
+					$("<img>")
+						.addClass("affiche")
+						.attr('src','plugins/plex/core/php/Poster.php?url='+Data.Media[i].Poster)
+						.attr('data-type_media',Data.Media[i].Type)
+						.attr('data-Key',Data.Media[i].RatingKey)
+						.attr('title',Data.Media[i].Title)
+						.hide());
 				switch(Data.Media[i].Type){
 					default:
-						mediaName=Media#uid#.Video;
+						if (Data.Media[i].Title == Media#uid#.Video)
+							mediaKey=Data.Media[i].RatingKey;
 					break;
 					case 'show':
-						mediaName=Media#uid#.Show;
+						if (Data.Media[i].Title == Media#uid#.Show)
+							mediaKey=Data.Media[i].RatingKey;
 					break;
 					case 'season':
-						mediaName=Media#uid#.Season;
+						if (Data.Media[i].Title == Media#uid#.Season)
+							mediaKey=Data.Media[i].RatingKey;
 					break;
 					case 'episode':
-						mediaName=Media#uid#.Episode;
+						if (Data.Media[i].Title == Media#uid#.Episode)
+							mediaKey=Data.Media[i].RatingKey;
 					break;
 					case 'artist':
 					break;
 					case 'album':
-						mediaName=Media#uid#.Album;
+						if (Data.Media[i].Title == Media#uid#.Album)
+							mediaKey=Data.Media[i].RatingKey;
 					break;
 					case 'track':
-						mediaName=Media#uid#.Tarck;
+						if (Data.Media[i].Title == Media#uid#.Tarck)
+							mediaKey=Data.Media[i].RatingKey;
 					break;
 				}
-				if (Data.Media[i].Title == mediaName)
-				    IdMedia=i;
-				if(i==IdMedia){
-					if (typeof(Data.Media[i].Duration) != "undefined")
-						$('.plex[data-eqLogic_uid=#uid#] .time_haut_plex_widget').text(SecondToDuration(Data.Media[i].Duration)).show();
-					else
-						$('.plex[data-eqLogic_uid=#uid#] .time_haut_plex_widget').hide();
-					$('.plex[data-eqLogic_uid=#uid#] .gros_titre_plex').attr('title',Data.Media[i].Title).text(Data.Media[i].Title);
-					$('.plex[data-eqLogic_uid=#uid#] .petit_titre_plex').attr('title',Data.Media[i].Tagline).text(Data.Media[i].Tagline);
-					ThumbMenu.addClass("affiche_premiere_plex").show();
-				}
-				if(i==IdMedia+1)
-					ThumbMenu.addClass("affiche_next_plex").show();
-				if(IdMedia>0){
-					if(i==IdMedia-1)
-						ThumbMenu.addClass("affiche_prev_plex").show();
-				}
-				$('.plex[data-eqLogic_uid=#uid#] .jaquette_plex').append(ThumbMenu);
 			}
+			if(mediaKey!='')
+				$('.plex[data-eqLogic_uid=#uid#] .jaquette_plex .affiche[data-Key='+mediaKey+']').trigger('click');
 		}
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
 			$('.plex[data-eqLogic_uid=#uid#] .affiche').hide();
