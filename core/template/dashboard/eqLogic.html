@@ -107,6 +107,18 @@
 			#moveUp#
 			#moveRight#
 			#moveDown#
+		</div>	
+		<div class="commande_bas_plex_deux" style="display:block;">
+			#stop#
+			#stepBack#
+			#toggleOSD#
+			#skipPrevious#
+			<div class="cercle_bas_plex_widget">
+				#play#
+				#pause#
+			</div>
+			#skipNext#
+			#stepForward#
 		</div>
 		<img class="working_droite_telecommande noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Télécommande" onClick="telecommandefermer#uid#()"/>
 	</div>
@@ -143,8 +155,9 @@
 	<div class="bas_plex_widget_volume" style="display:none;">
 		<img src="plugins/plex/core/template/dashboard/images/working.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_plex#uid#('volume')"/>
 		<div class="volume_plex_widget">
-		<div style="margin-top : 5px;" class="showinit">
-			<div class="volume cmd noRefresh" data-cmd_id="#volume#" style="width: 180px;"></div>	
+			<div style="margin-top : 5px;" class="showinit">
+				<div class="volume cmd noRefresh" data-cmd_id="#volume#" style="width: 180px;"></div>	
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
