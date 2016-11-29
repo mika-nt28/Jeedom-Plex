@@ -12,7 +12,7 @@
 			);
 			return $url;
 		}
-		public  function getActiveSession(){
+		public function __construct(){
 			$this->ActiveSessions = $this->makeCall($this->buildUrl($endpoint));
 		}
 		public  function getPlayer($clients){
