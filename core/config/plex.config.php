@@ -13,6 +13,17 @@ $listCmdPLEX = array(
 		'description' => 'Etat du player'
   	 ),
 	array(
+		'name' => 'Type de media lue',
+		'configuration' => array(
+		    'categorie' => 'Application',
+		    'commande' => 'type'
+
+		),
+		'type' => 'info',
+		'subType' => 'string',
+		'description' => 'Type de media lue'
+  	 ),
+	array(
 		'name' => 'Media en cours',
 		'configuration' => array(
 		    'categorie' => 'Application',
