@@ -84,6 +84,9 @@ class Plex_Server extends Plex_MachineAbstract
 			$this->port
 		);
 	}
+	public function getSession(){
+		return new Plex_Server_Session ();
+	}
 	public function getName(){
 		return $this->name;
 	}
