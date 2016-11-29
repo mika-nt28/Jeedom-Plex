@@ -5,17 +5,17 @@
     private ActiveSession=null;
     protected function buildUrl(){
       $url = sprintf(
-      '%s/%s',
-      $this->getBaseUrl(),
-      self::ENDPOINT_STATUS.'/'.
-      self::ENDPOINT_SESSIONS
+        '%s/%s',
+        $this->getBaseUrl(),
+        self::ENDPOINT_STATUS.'/'.
+        self::ENDPOINT_SESSIONS
       );
       return $url;
     }
     protected function getActiveSession(){
      $this->ActiveSession = $this->makeCall($this->buildUrl($endpoint));
     }
-   /* foreach ($SessionArray as $Session) {			
+    /* foreach ($SessionArray as $Session) {			
     foreach ($Session['Player'] as $attribute) {
     if(isset($clients[$attribute['device']]))
     $client=$clients[$attribute['device']];
@@ -41,20 +41,20 @@
     return false;
     }*/
     protected function getItems($endpoint){
-     $items = array();
-      foreach ($this->ActiveSession as $attribute) {
-       if (isset($attribute['type'])) {
-          $item = Plex_Server_Library_ItemAbstract::factory(
-           $attribute['type'],
-            $this->name,
-            $this->address,
-            $this->port
-           );
-          $item->setAttributes($attribute);
-          $items[] = $item;
-        }
-      }
-      return $items;
+    $items = array();
+    foreach ($this->ActiveSession as $attribute) {
+    if (isset($attribute['type'])) {
+    $item = Plex_Server_Library_ItemAbstract::factory(
+     $attribute['type'],
+      $this->name,
+      $this->address,
+      $this->port
+     );
+    $item->setAttributes($attribute);
+    $items[] = $item;
+    }
+    }
+    return $items;
     }
   }
 ?>
