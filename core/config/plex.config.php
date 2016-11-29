@@ -54,6 +54,10 @@ $listCmdPLEX = array(
 		),
 		'type' => 'action',
 		'subType' => 'other',
+		'display' => array(
+			'icon' => '<i class="fa fa-play"></i>',
+			'template' => 'Plex_telecommande'
+        	),
 		'description' => 'Lire le media défini'
     	),
 	array(
