@@ -12,9 +12,9 @@
 			);
 			return $url;
 		}
-		public function __construct(){
+		/*public function __construct(){
 			$this->ActiveSessions = $this->makeCall($this->buildUrl($endpoint));
-		}
+		}*/
 		public  function getPlayer($clients){
 			foreach ($this->ActiveSessions as $Session) {		
 				foreach ($Session['Player'] as $attribute) {
