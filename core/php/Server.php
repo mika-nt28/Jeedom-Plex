@@ -39,10 +39,10 @@ class Plex_Server extends Plex_MachineAbstract
 			$client->setServer($this);
 			$clients[$attribute['name']] = $client;
 		}
-		//$this->getPlayerSessions($clients);
+		$this->getPlayerSessions($clients);
 		return $clients;
 	}
-	/*public function getPlayerSessions($clients){
+	public function getPlayerSessions($clients){
 		$url = sprintf(
 			'%s/%s',
 			$this->getBaseUrl(),
@@ -75,7 +75,7 @@ class Plex_Server extends Plex_MachineAbstract
 			}
 		}
 		return false;
-	}*/
+	}
 
 	public function getLibrary(){
 		return new Plex_Server_Library(
