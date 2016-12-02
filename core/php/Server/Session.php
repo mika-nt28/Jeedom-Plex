@@ -2,7 +2,7 @@
 	class Plex_Server_Session extends Plex_Server{
 		const ENDPOINT_STATUS = 'status';
 		const ENDPOINT_SESSIONS = 'sessions';
-		private ActiveSessions=null;
+		private _ActiveSessions=null;
 		protected function buildUrl(){
 			$url = sprintf(
 				'%s/%s',
@@ -14,8 +14,8 @@
 		}
 		protected function getItems(){
 			$items = array();
-			$this->ActiveSessions = $this->makeCall($this->buildUrl($endpoint));
-			foreach ($this->ActiveSessions as $attribute) {
+			$this->_ActiveSessions = $this->makeCall($this->buildUrl($endpoint));
+			foreach ($this->_ActiveSessions as $attribute) {
 				if (isset($attribute['type'])) {
 					$item = Plex_Server_Library_ItemAbstract::factory(
 						$attribute['type'],
@@ -30,7 +30,7 @@
 			return $items;
 		}
 		protected function getPlayer($clients){
-			foreach ($this->ActiveSessions as $Session) {		
+			foreach ($this->_ActiveSessions as $Session) {		
 				foreach ($Session['Player'] as $attribute) {
 					if(isset($clients[$attribute['device']])){
 						$client=$clients[$attribute['device']];
