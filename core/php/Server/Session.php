@@ -12,31 +12,47 @@
 			);
 			return $url;
 		}
-		/*public function __construct(){
+		protected function getItems(){
+			$items = array();
 			$this->ActiveSessions = $this->makeCall($this->buildUrl($endpoint));
-		}*/
-		public  function getPlayer($clients){
+			foreach ($this->ActiveSessions as $attribute) {
+				if (isset($attribute['type'])) {
+					$item = Plex_Server_Library_ItemAbstract::factory(
+						$attribute['type'],
+						$this->name,
+						$this->address,
+						$this->port
+					);
+					$item->setAttributes($attribute);
+					$items[] = $item;
+				}
+			}
+			return $items;
+		}
+		protected function getPlayer($clients){
 			foreach ($this->ActiveSessions as $Session) {		
 				foreach ($Session['Player'] as $attribute) {
-					if(isset($clients[$attribute['device']]))
+					if(isset($clients[$attribute['device']])){
 						$client=$clients[$attribute['device']];
-					else{
+						if(isset($attribute['machineIdentifier']))
+							$client->setMachineIdentifier($attribute['machineIdentifier']);
+						return true;
+					}else{
 						$port = isset($attribute['port']) ? $attribute['port'] : 3000;
 						$client = new Plex_Client(
 							$attribute['device'],
 							$attribute['address'],
 							$port
 						);
+						$client->setOnlyState(true);
+						$client->setServer($this);
 						if(isset($attribute['host']))
 							$client->setHost($attribute['host']);
 						if(isset($attribute['machineIdentifier']))
 							$client->setMachineIdentifier($attribute['machineIdentifier']);
 						if(isset($attribute['version']))
 							$client->setVersion($attribute['version']);
-						$client->setOnlyState(true);
-							$client->setServer($this);
 					}
-					return true;
 				}
 			}
 			return false;
