@@ -2,7 +2,6 @@
 	class Plex_Server_Session extends Plex_Server{
 		const ENDPOINT_STATUS = 'status';
 		const ENDPOINT_SESSIONS = 'sessions';
-		private $_ActiveSessions=null;
 		protected function buildUrl(){
 			$url = sprintf(
 				'%s/%s',
