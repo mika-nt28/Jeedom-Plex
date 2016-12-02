@@ -46,7 +46,8 @@ class plex extends eqLogic {
 					}
 					$session=$server->getActiveSession();
 					$ItemsSession=$session->getItems();
-					log::add('plex','debug','2- Type de media lue : '.$ItemsSession->getType());
+					if (count($ItemsSession)>0)
+						log::add('plex','debug','2- Type de media lue : '.$ItemsSession->getType());
 					log::add('plex','debug','2- Etat du player : '.$session->getPlayer(array($this->getLogicalId())));
 				}
 				if(!$this->_onlyState){
