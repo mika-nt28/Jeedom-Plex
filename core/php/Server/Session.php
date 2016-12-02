@@ -13,7 +13,7 @@
 		}
 		public function getItems(){
 			$items = array();
-			$this->_ActiveSessions = $this->makeCall($this->buildUrl($endpoint));
+			$this->_ActiveSessions = $this->makeCall($this->buildUrl());
 			foreach ($this->_ActiveSessions as $attribute) {
 				if (isset($attribute['type'])) {
 					$item = Plex_Server_Library_ItemAbstract::factory(
