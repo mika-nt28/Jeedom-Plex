@@ -11,7 +11,7 @@
 			);
 			return $url;
 		}
-		protected function getItems(){
+		public function getItems(){
 			$items = array();
 			$this->_ActiveSessions = $this->makeCall($this->buildUrl($endpoint));
 			foreach ($this->_ActiveSessions as $attribute) {
@@ -28,7 +28,7 @@
 			}
 			return $items;
 		}
-		protected function getPlayer($clients){
+		public function getPlayer($clients){
 			foreach ($this->_ActiveSessions as $Session) {		
 				foreach ($Session['Player'] as $attribute) {
 					if(isset($clients[$attribute['device']])){
