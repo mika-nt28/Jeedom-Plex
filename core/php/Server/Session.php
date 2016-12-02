@@ -14,19 +14,19 @@
 		public function getItems(){
 			$items = array();
 			$this->_ActiveSessions = $this->makeCall($this->buildUrl());
-			foreach ($this->_ActiveSessions as $attribute) {
-				if (isset($attribute['type'])) {
-				log::add('plex','debug','type:' .$attribute['type']);
+			//foreach ($this->_ActiveSessions as $attribute) {
+				if (isset($this->_ActiveSessions['type'])) {
+				log::add('plex','debug','type:' .$this->_ActiveSessions['type']);
 					$item = Plex_Server_Library_ItemAbstract::factory(
-						$attribute['type'],
+						$this->_ActiveSessions['type'],
 						$this->name,
 						$this->address,
 						$this->port
 					);
-					$item->setAttributes($attribute);
+					$item->setAttributes($this->_ActiveSessions);
 					$items[] = $item;
 				}
-			}
+			//}
 			return $items;
 		}
 		public function getPlayer($clients){
