@@ -46,7 +46,7 @@ class plex extends eqLogic {
 					}
 					$session=$server->getActiveSession();
 					$session->getItems();
-					log::add('plex','debug','Etat du player : '$session->getPlayer(array($this->getLogicalId())));
+					log::add('plex','debug','Etat du player : '.$session->getPlayer(array($this->getLogicalId())));
 				}
 				if(!$this->_onlyState){
 					$MediaOffset=$this->getCmd(null,'viewOffset');
