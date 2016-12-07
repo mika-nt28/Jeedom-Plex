@@ -1,5 +1,5 @@
 image::../images/plex_screenshot_widget_principal.jpg[]
-L'ecran principal du widget permet les fonction de base
+The main screen of the widget allows the basic function
 
 * Saut arriere
 * Saut avant

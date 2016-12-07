@@ -1,6 +1,6 @@
 La premiere chose a réaliser est de connecter Jeedom au serveur plex.
 
-Juste apres l'activation, nous avons les champs de parametrage du serveur.
+Right after activation, we have the fields to set up the server.
 
 image::../images/plex_screenshot_configuration3.jpg[]
 
