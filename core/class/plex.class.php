@@ -27,9 +27,11 @@ class plex extends eqLogic {
 			$this->ConnexionsPlex();
 			if(isset($this->_client)&&is_object($this->_client)){
 				$server=self::$_plex->getServer(config::byKey('name', 'plex'));
+				$session=$server->getActiveSession();
 				$PlayerSate=$this->getCmd(null,'state');
 				if(is_object($PlayerSate)){
-					$State=$server->getPlayerSessions(array($this->getLogicalId()));
+					//$State=$server->getPlayerSessions(array($this->getLogicalId()));
+					$State=$session->getPlayer(array($this->getLogicalId()));
 					log::add('plex','debug','Etat du player : '.$State);
 					$PlayerSate->setCollectDate(date('Y-m-d H:i:s'));
 					$PlayerSate->event($State);
@@ -37,16 +39,15 @@ class plex extends eqLogic {
 					if($State){
 						$PlayerTypeMedia=$this->getCmd(null,'type');
 						if(is_object($PlayerTypeMedia)){
-							$PlayerTypeMedia->setCollectDate(date('Y-m-d H:i:s'));
-							$PlayerTypeMedia->event('Type du media en cours');
-							$PlayerTypeMedia->save();
+							$ItemsSession=$session->getItems();
+							if (count($ItemsSession)>0){
+								log::add('plex','debug','Type de media lue : '.$ItemsSession->getType());
+								$PlayerTypeMedia->setCollectDate(date('Y-m-d H:i:s'));
+								$PlayerTypeMedia->event($ItemsSession->getType());
+								$PlayerTypeMedia->save();
+							}
 						}
 					}
-					$session=$server->getActiveSession();
-					$ItemsSession=$session->getItems();
-					if (count($ItemsSession)>0)
-						log::add('plex','debug','2- Type de media lue : '.$ItemsSession->getType());
-					log::add('plex','debug','2- Etat du player : '.$session->getPlayer(array($this->getLogicalId())));
 				}
 				if(!$this->_onlyState){
 					$MediaOffset=$this->getCmd(null,'viewOffset');
