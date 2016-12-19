@@ -47,7 +47,7 @@ class plex extends eqLogic {
 						$PlayerMedia=$this->getCmd(null,'Media');
 						if(is_object($PlayerMedia)){
 							$PlayerMedia->setCollectDate(date('Y-m-d H:i:s'));
-							$PlayerMedia->event($ItemsSession[0]->getKey(););
+							$PlayerMedia->event($ItemsSession[0]->getKey());
 							$PlayerMedia->save();
 						}
 						log::add('plex','debug','Titre de media : '.$ItemsSession[0]->getTitle());
