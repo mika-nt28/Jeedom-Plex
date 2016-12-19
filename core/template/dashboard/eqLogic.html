@@ -219,13 +219,13 @@
 							default:
 							break;
 							case 'movie':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/cinema.png" data-lib_type="'+data.result[i].Type+'" data-lib_title="'+data.result[i].Title+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/cinema.png" data-lib_type="'+data.result[i].Type+'" data-key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 							case 'show':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/tv.png" data-lib_type="'+data.result[i].Type+'" data-lib_title="'+data.result[i].Title+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/tv.png" data-lib_type="'+data.result[i].Type+'" data-key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 							case 'artist':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/music.png" data-lib_type="'+data.result[i].Type+'" data-lib_title="'+data.result[i].Title+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/music.png" data-lib_type="'+data.result[i].Type+'" data-key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 						}					
 					}
@@ -332,7 +332,7 @@
 						if (data.result!=false)
 						{	
 							$('.plex[data-eqLogic_uid=#uid#] .tab-content').removeClass('active');	
-							switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-lib_title="'+Media.Library+'"]').data('lib_type')){
+							switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-key="'+Media.Key+'"]').data('lib_type')){
 								case 'movie':			
 									$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
 									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').hide();
@@ -472,40 +472,31 @@
 			$('.plex[data-eqLogic_uid=#uid#] .Playback').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Poster').hide();
-			
-			/*if (Media#uid#.Library!=''){
-				$.ajax({
-					type: "POST",
-					timeout:8000, 
-					url: "plugins/plex/core/ajax/plex.ajax.php",
-					data: {
-						Id:'#id#',
-						action: "SearchMedia",
-						Filtre:'',
-						param:JSON.stringify(Media#uid#),
-					},
-					dataType: 'json',
-					error: function(request, status, error) {
-						handleAjaxError(request, status, error);
-					},
-					success: function(data) { 
-						if (data.state != 'ok') {
-							$('#div_alert').showAlert({message: data.result, level: 'danger'});
-							return;
-						}
-						if (data.result!=false)
-						{		
-							UpdateList#uid#(data.result);	
-							if ((typeof(Media#uid#.Video) != "undefined" || typeof(Media#uid#.Show) != "undefined" ||typeof(Media#uid#.Album) != "undefined") && Init)
-								$('.plex[data-eqLogic_uid=#uid#] .btm-media-plex').first().trigger('click');
-							else{
-								Init=false;
-								UpdateCmd('media', JSON.stringify(Media#uid#));
-							}
-						}
+			$.ajax({
+				type: "POST",
+				timeout:8000, 
+				url: "plugins/plex/core/ajax/plex.ajax.php",
+				data: {
+					Id:'#id#',
+					action: "SearchMedia",
+					Filtre:'',
+					param:$(this).attr('data-key'),
+				},
+				dataType: 'json',
+				error: function(request, status, error) {
+					handleAjaxError(request, status, error);
+				},
+				success: function(data) { 
+					if (data.state != 'ok') {
+						$('#div_alert').showAlert({message: data.result, level: 'danger'});
+						return;
 					}
-				});
-			}*/
+					if (data.result!=false)
+					{		
+						UpdateList(data.result);
+					}
+				}
+			});
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
 			/*switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-lib_title="'+Media#uid#.Library+'"]').data('lib_type')){
