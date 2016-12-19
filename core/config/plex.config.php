@@ -68,6 +68,10 @@ $listCmdPLEX = array(
 		),
 		'type' => 'action',
 		'subType' => 'other',
+		'display' => array(
+			'icon' => '<i class="fa fa-play"></i>',
+			'template' => 'Plex_telecommande'
+        	),
 		'description' => 'Reprendre le media défini ou on s\était arreté'
     	),
 	array(
