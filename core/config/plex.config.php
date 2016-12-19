@@ -10,6 +10,9 @@ $listCmdPLEX = array(
 		),
 		'type' => 'info',
 		'subType' => 'binary',
+		'display' => array(
+			'template' => 'Plex_State'
+        	),
 		'description' => 'Etat du player'
   	 ),
 	array(
