@@ -36,22 +36,28 @@ class plex extends eqLogic {
 					$PlayerSate->setCollectDate(date('Y-m-d H:i:s'));
 					$PlayerSate->event($State);
 					$PlayerSate->save();
-					if($State){
+					$ItemsSession=$session->getItems();
+					if (count($ItemsSession)>0){
 						$PlayerTypeMedia=$this->getCmd(null,'type');
 						if(is_object($PlayerTypeMedia)){
-							$ItemsSession=$session->getItems();
-							if (count($ItemsSession)>0){
-								log::add('plex','debug','Type de media lue : '.$ItemsSession->getType());
-								$PlayerTypeMedia->setCollectDate(date('Y-m-d H:i:s'));
-								$PlayerTypeMedia->event($ItemsSession->getType());
-								$PlayerTypeMedia->save();
-							}
+							$PlayerTypeMedia->setCollectDate(date('Y-m-d H:i:s'));
+							$PlayerTypeMedia->event($ItemsSession->getType());
+							$PlayerTypeMedia->save();
+						}
+						$KeyMedia=$ItemsSession->getTitle();
+						/*$PlayerMedia=$this->getCmd(null,'Media');
+						if(is_object($PlayerMedia)){
+							$PlayerMedia->setCollectDate(date('Y-m-d H:i:s'));
+							$PlayerMedia->event('');
+							$PlayerMedia->save();
+						}*/
+						$PlayerMediaViewOffset=$this->getCmd(null,'viewOffset');
+						if(is_object($PlayerMediaViewOffset)){
+							$PlayerMediaViewOffset->setCollectDate(date('Y-m-d H:i:s'));
+							$PlayerMediaViewOffset->event(($ItemsSession->getViewOffset());
+							$PlayerMediaViewOffset->save();
 						}
 					}
-				}
-				if(!$this->_onlyState){
-					$MediaOffset=$this->getCmd(null,'viewOffset');
-					$MediaOffset->execute();
 				}
 			}
 		}
