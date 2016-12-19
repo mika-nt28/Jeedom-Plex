@@ -278,14 +278,14 @@
 					$('<li>')
 						.addClass('btm-media-plex')
 						.attr('data-type_media',Data.Media[i].Type)
-						.attr('data-id_media',i)//Data.Media[i].RatingKey)
+						.attr('data-Key',Data.Media[i].Key)
 						.text(Data.Media[i].Title));
 				$('.plex[data-eqLogic_uid=#uid#] .jaquette_plex').append(
 					$("<img>")
 						.addClass("affiche")
 						.attr('src','plugins/plex/core/php/Poster.php?url='+Data.Media[i].Poster)
 						.attr('data-type_media',Data.Media[i].Type)
-						.attr('data-Key',Data.Media[i].RatingKey)
+						.attr('data-Key',Data.Media[i].Key)
 						.attr('title',Data.Media[i].Title)
 						.hide());
 			}
@@ -429,40 +429,13 @@
 						$('#div_alert').showAlert({message: data.result, level: 'danger'});
 						return;
 					}
-					if (data.result!=false)
-					{			
-					}
 				}
 			});
 		}
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
 			UpdateThumbMenu($(this));
-			/*switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-lib_title="'+Media#uid#.Library+'"]').data('lib_type')){
-				default:
-					Media#uid#.Video=$(this).attr("title");
-				break;
-				case 'show':
-					switch($(this).data('type_media')){
-						case 'show':
-							Media#uid#.Show=$(this).attr("title");
-						break;
-						case 'season':
-							Media#uid#.Season=$(this).attr("title");
-						break;
-						case 'episode':
-							Media#uid#.Episode=$(this).attr("title");
-						break;
-					}	
-				break;
-				case 'artist':
-					if($(this).data('type_media')== 'album')
-						Media#uid#.Album=$(this).attr("title");
-					else	
-						Media#uid#.Tarck=$(this).attr("title");
-				break;
-			}
-			UpdateCmd('media', JSON.stringify(Media#uid#));
-			UpdateInforamtion(Media#uid#);*/
+			UpdateCmd('media', $(this).attr('data-Key'));
+			UpdateInforamtion($(this).attr('data-Key'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-library-plex", function() {				
 			$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
@@ -499,65 +472,8 @@
 			});
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
-			/*switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-lib_title="'+Media#uid#.Library+'"]').data('lib_type')){
-				default:
-					Media#uid#.Video=$(this).text();
-				break;
-				case 'show':
-					switch($(this).data('type_media')){
-						case 'show':
-							Media#uid#.Show=$(this).text();
-						break;
-						case 'season':
-							Media#uid#.Season=$(this).text();
-						break;
-						case 'episode':
-							Media#uid#.Episode=$(this).text();
-						break;
-					}	
-				break;
-				case 'artist':
-					if($(this).data('type_media')== 'album')
-						Media#uid#.Album=$(this).text();
-					else
-						Media#uid#.Tarck=$(this).text();
-				break;
-			}
-			UpdateCmd('media', JSON.stringify(Media#uid#));
-			//UpdateInforamtion(Media#uid#);*/
-		});
-		$('.plex[data-eqLogic_uid=#uid#]').on('click',".menu_plex", function() {
-			/*switch($(this).text()){
-				case Media#uid#.Library:
-					Media#uid#='{}';
-					Media#uid#.Library=$(this).text();
-				break;
-				case Media#uid#.Video:
-					Media#uid#.Video=$(this).text();
-				break;
-				case Media#uid#.Show:
-					Media#uid#.Show=$(this).text();
-					delete Media#uid#.Season;
-					delete Media#uid#.Episode;
-				break;
-				case Media#uid#.Season:
-					Media#uid#.Season=$(this).text();
-					delete Media#uid#.Episode;
-				break;
-				case Media#uid#.Episode:
-					Media#uid#.Episode=$(this).text();
-				break;
-				case Media#uid#.Album:
-					delete Media#uid#.Episode;
-					Media#uid#.Album=$(this).text();
-					delete Media#uid#.Tarck;
-				break;
-				case Media#uid#.Tarck:
-					Media#uid#.Tarck=$(this).text();
-				break;
-			}
-			UpdateCmd('media', JSON.stringify(Media#uid#));
-			UpdateInforamtion(Media#uid#);*/
+			UpdateCmd('media', $(this).attr('data-Key'));
+			UpdateInforamtion($(this).attr('data-Key'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexGroupFiltre', function() {		
 			$('.bt_PlexGroupFiltre').removeClass('btn-primary');
