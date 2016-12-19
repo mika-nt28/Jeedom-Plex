@@ -30,6 +30,7 @@
 			return $items;
 		}
 		public function getPlayer($clients){
+			$this->_ActiveSessions = $this->makeCall($this->buildUrl());
 			foreach ($this->_ActiveSessions as $Session) {		
 				foreach ($Session['Player'] as $attribute) {
 					if(isset($clients[$attribute['device']])){
