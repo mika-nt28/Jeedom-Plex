@@ -54,7 +54,7 @@ class plex extends eqLogic {
 						$PlayerMediaViewOffset=$this->getCmd(null,'viewOffset');
 						if(is_object($PlayerMediaViewOffset)){
 							$PlayerMediaViewOffset->setCollectDate(date('Y-m-d H:i:s'));
-							$PlayerMediaViewOffset->event(($ItemsSession->getViewOffset());
+							$PlayerMediaViewOffset->event($ItemsSession->getViewOffset());
 							$PlayerMediaViewOffset->save();
 						}
 					}
