@@ -14,9 +14,7 @@
 		public function getItems(){
 			$items = array();
 			$this->_ActiveSessions = $this->makeCall($this->buildUrl());
-			log::add('plex','debug', json_encode($this->_ActiveSessions));
 			foreach ($this->_ActiveSessions as $attribute) {
-			log::add('plex','debug', json_encode($attribute));
 				if (isset($attribute['type'])) {
 				log::add('plex','debug','type:' .$attribute['type']);
 					$item = Plex_Server_Library_ItemAbstract::factory(
