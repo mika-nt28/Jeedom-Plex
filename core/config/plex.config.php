@@ -34,6 +34,9 @@ $listCmdPLEX = array(
 		),
 		'type' => 'info',
 		'subType' => 'string',
+		'display' => array(
+			'template' => 'Plex_media'
+        	),
 		'description' => 'Media en cours'
     	),
 	array(
