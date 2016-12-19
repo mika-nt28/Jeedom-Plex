@@ -44,6 +44,7 @@ class plex extends eqLogic {
 							$PlayerTypeMedia->event($ItemsSession->getType());
 							$PlayerTypeMedia->save();
 						}
+						log::add('plex','debug','Type de media : '.$ItemsSession->getType());
 						$KeyMedia=$ItemsSession->getTitle();
 						/*$PlayerMedia=$this->getCmd(null,'Media');
 						if(is_object($PlayerMedia)){
@@ -51,12 +52,14 @@ class plex extends eqLogic {
 							$PlayerMedia->event('');
 							$PlayerMedia->save();
 						}*/
+						log::add('plex','debug','Titre de media : '.$ItemsSession->getTitle());
 						$PlayerMediaViewOffset=$this->getCmd(null,'viewOffset');
 						if(is_object($PlayerMediaViewOffset)){
 							$PlayerMediaViewOffset->setCollectDate(date('Y-m-d H:i:s'));
 							$PlayerMediaViewOffset->event($ItemsSession->getViewOffset());
 							$PlayerMediaViewOffset->save();
 						}
+						log::add('plex','debug','Temps de lecture : '.$ItemsSession->getViewOffset());
 					}
 				}
 			}
