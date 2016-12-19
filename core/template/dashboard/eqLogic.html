@@ -314,19 +314,6 @@
 			$(".plex[data-eqLogic_uid=#uid#] .media_panel").animate({left:"-200px"});
 			$(".plex[data-eqLogic_uid=#uid#] .media_panel").attr("class","media_panel");
 		}
-		
-		// fonction Pause et Play //
-		if(#state# == 0)
-		{
-				$(".eqLogic[data-eqLogic_uid=#uid#] .pause_in_cercle").hide();
-				$(".eqLogic[data-eqLogic_uid=#uid#] .play_in_cercle").show();
-			} 
-		else
-		{
-				$(".eqLogic[data-eqLogic_uid=#uid#] .pause_in_cercle").show();
-				$(".eqLogic[data-eqLogic_uid=#uid#] .play_in_cercle").hide();
-			}
-		
 		// fonction Musique ou Video ///
 		$.ajax({
 			type: "POST",
