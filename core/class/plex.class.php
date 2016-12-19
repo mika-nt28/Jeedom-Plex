@@ -41,25 +41,25 @@ class plex extends eqLogic {
 						$PlayerTypeMedia=$this->getCmd(null,'type');
 						if(is_object($PlayerTypeMedia)){
 							$PlayerTypeMedia->setCollectDate(date('Y-m-d H:i:s'));
-							$PlayerTypeMedia->event($ItemsSession->getType());
+							$PlayerTypeMedia->event($ItemsSession[0]->getType());
 							$PlayerTypeMedia->save();
 						}
-						log::add('plex','debug','Type de media : '.$ItemsSession->getType());
-						$KeyMedia=$ItemsSession->getTitle();
+						log::add('plex','debug','Type de media : '.$ItemsSession[0]->getType());
+						$KeyMedia=$ItemsSession[0]->getTitle();
 						/*$PlayerMedia=$this->getCmd(null,'Media');
 						if(is_object($PlayerMedia)){
 							$PlayerMedia->setCollectDate(date('Y-m-d H:i:s'));
 							$PlayerMedia->event('');
 							$PlayerMedia->save();
 						}*/
-						log::add('plex','debug','Titre de media : '.$ItemsSession->getTitle());
+						log::add('plex','debug','Titre de media : '.$ItemsSession[0]->getTitle());
 						$PlayerMediaViewOffset=$this->getCmd(null,'viewOffset');
 						if(is_object($PlayerMediaViewOffset)){
 							$PlayerMediaViewOffset->setCollectDate(date('Y-m-d H:i:s'));
-							$PlayerMediaViewOffset->event($ItemsSession->getViewOffset());
+							$PlayerMediaViewOffset->event($ItemsSession[0]->getViewOffset());
 							$PlayerMediaViewOffset->save();
 						}
-						log::add('plex','debug','Temps de lecture : '.$ItemsSession->getViewOffset());
+						log::add('plex','debug','Temps de lecture : '.$ItemsSession[0]->getViewOffset());
 					}
 				}
 			}
