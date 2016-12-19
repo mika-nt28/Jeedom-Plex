@@ -13,7 +13,7 @@
 		}
 		public function getItems(){
 			$items = array();
-			$this->_ActiveSessions = $this->makeCall($this->buildUrl());
+			/*$this->_ActiveSessions = $this->makeCall($this->buildUrl());
 			foreach ($this->_ActiveSessions['Video'] as $attribute) {
 				if (isset($attribute['type'])) {
 				log::add('plex','debug','type:' .$attribute['type']);
@@ -26,7 +26,7 @@
 					$item->setAttributes($attribute);
 					$items[] = $item;
 				}
-			}
+			}*/
 			return $items;
 		}
 		public function getPlayer($clients){
