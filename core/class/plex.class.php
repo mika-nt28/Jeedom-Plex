@@ -555,60 +555,22 @@ class plex extends eqLogic {
 			}
 		}
     	}	
+	
 	public function toHtml($_version = 'dashboard') {
-		if ($this->getIsEnable() != 1) {
-			return '';
-		}
-		if (!$this->hasRight('r')) {
-			return '';
-		}
+		$replace = $this->preToHtml($_version);
+		if (!is_array($replace)) 
+			return $replace;
 		$version = jeedom::versionAlias($_version);
-		if ($this->getDisplay('hideOn' . $version) == 1) {
+		if ($this->getDisplay('hideOn' . $version) == 1) 
 			return '';
-		}
-	/*	$mc = cache::byKey('plexWidget' . jeedom::versionAlias($_version) . $this->getId());
-		if ($mc->getValue() != '') {
-			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
-		}*/
-		$EtatPlayer=is_object($this->getCmd(null, 'state'))?$this->getCmd(null, 'state')->execCmd():0;
-		if($EtatPlayer=='')
-			$EtatPlayer=0;
-		$Media=is_object($this->getCmd(null, 'media'))?str_replace("'","\'",$this->getCmd(null, 'media')->execCmd()):'{}';
-		if($Media=='')
-			$Media='{}';		
-		$replace = array(
-			'#id#' => $this->getId(),
-			'#name#' => ($this->getIsEnable()) ? $this->getName() : '<del>' . $this->getName() . '</del>',
-			'#eqLink#' => $this->getLinkToConfiguration(),
-			'#uid#' => 'plex' . $this->getId()/* . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER*/,
-			'#action#' => (isset($action)) ? $action : '',
-			'#background#' => ($this->getConfiguration('has_image_fond')) ? 'background-color: #000000; background-image: url(plugins/plex/core/template/dashboard/plex.png); background-repeat: no-repeat; background-position: center 0px;background-size: contain;#style#' : 'background-color:'.($this->getBackgroundColor($_version)).';#style#\'',
-			'#media#' =>$Media,
-			'#state#' => $EtatPlayer,
-			'#volume#' => is_object($this->getCmd(null, 'volume'))?$this->getCmd(null, 'volume')->execCmd():0,
-			'#volume_id#' => is_object($this->getCmd(null, 'setVolume'))?$this->getCmd(null, 'setVolume')->getId():'',
-			'#viewOffset#' => $this->getCmd(null, 'viewOffset')->toHtml($_version),
-			'#getDuration#' => $this->getCmd(null, 'getDuration')->toHtml($_version),
-			'#skipNext#' => is_object($this->getCmd(null, 'skipNext'))?$this->getCmd(null, 'skipNext')->execCmd():'',
-		);
-		//ACTION
-		foreach ($this->getCmd('action') as $cmd) {
-			if ($cmd->getIsVisible()) {
+		foreach ($this->getCmd() as $cmd) {
+			if ($cmd->getIsVisible())
 				$replace['#'. $cmd->getLogicalId() . '#'] = $cmd->toHtml($_version);
-			} else {
+			else 
 				$replace['#' . $cmd->getLogicalId() . '#'] = '';
-			}
+			
 		}
-		$parameters = $this->getDisplay('parameters');
-        if (is_array($parameters)) {
-            foreach ($parameters as $key => $value) {    
-		log::add('plex','debug','Received : ' .$value . ' from ' .$key);
-                $replace['#' . $key . '#'] = $value;
-            }
-        }
-        $html = template_replace($replace, getTemplate('core', $_version, 'eqLogic', 'plex'));
-        cache::set('plexWidget' . $_version . $this->getId(), $html, 0);
-        return $html;
+        	return template_replace($replace, getTemplate('core', $_version, 'eqLogic', 'plex'));
 	}  
 }
 
