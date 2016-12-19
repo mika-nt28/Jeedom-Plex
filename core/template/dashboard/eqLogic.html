@@ -140,7 +140,7 @@
 	
 	<!-- Partie basse du Widget-->
 	<div class="bas_plex_widget" style="display:block;">
-		<img src="plugins/plex/core/template/dashboard/images/sound.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_plex#uid#('bouton')" />
+		<img src="plugins/plex/core/template/dashboard/images/sound.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_plex('bouton')" />
 		#stop#
 		#stepBack#
 		#toggleOSD#
@@ -153,7 +153,7 @@
 		#stepForward#
 	</div>
 	<div class="bas_plex_widget_volume" style="display:none;">
-		<img src="plugins/plex/core/template/dashboard/images/working.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_plex#uid#('volume')"/>
+		<img src="plugins/plex/core/template/dashboard/images/working.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_plex('volume')"/>
 		<div class="volume_plex_widget">
 			<div style="margin-top : 5px;" class="showinit">
 				<div class="volume cmd noRefresh" data-cmd_id="#volume#" style="width: 180px;"></div>	
@@ -184,5 +184,57 @@
 			$(".plex[data-eqLogic_uid=#uid#] .media_panel").animate({left:"-200px"});
 			$(".plex[data-eqLogic_uid=#uid#] .media_panel").attr("class","media_panel");
 		}
+		$(".plex[data-eqLogic_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
+		function volume_plex(bouton){
+			if(bouton == 'bouton'){
+				$(".plex[data-eqLogic_uid=#uid#] .bas_plex_widget_volume").css("display", "block");
+				$(".plex[data-eqLogic_uid=#uid#] .bas_plex_widget").css("display", "none");
+			}else if(bouton == 'volume'){
+				$(".plex[data-eqLogic_uid=#uid#] .bas_plex_widget_volume").css("display", "none");
+				$(".plex[data-eqLogic_uid=#uid#] .bas_plex_widget").css("display", "block");
+			}
+		}
+		$.ajax({
+			type: "POST",
+			timeout:8000, 
+			url: "plugins/plex/core/ajax/plex.ajax.php",
+			data: {
+				Id:'#id#',
+				action: "getLibrary",
+			},
+			dataType: 'json',
+			error: function(request, status, error) {
+				handleAjaxError(request, status, error);
+			},
+			success: function(data) { 
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				if (data.result!=false)
+				{
+					for (var i in data.result) {
+						switch(data.result[i].Type)
+						{
+							default:
+							break;
+							case 'movie':
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/cinema.png" data-lib_type="'+data.result[i].Type+'" data-lib_title="'+data.result[i].Title+'" title="'+data.result[i].Title+'" />'));
+							break;
+							case 'show':
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/tv.png" data-lib_type="'+data.result[i].Type+'" data-lib_title="'+data.result[i].Title+'" title="'+data.result[i].Title+'" />'));
+							break;
+							case 'artist':
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/music.png" data-lib_type="'+data.result[i].Type+'" data-lib_title="'+data.result[i].Title+'" title="'+data.result[i].Title+'" />'));
+							break;
+						}					
+					}
+					if (typeof(Media#uid#.Library) != "undefined" && Init)
+						$('.plex[data-eqLogic_uid=#uid#] .btm-library-plex').first().trigger('click');
+					else
+						Init=false;
+				}
+			}
+		});
 		</script>
 </div>
