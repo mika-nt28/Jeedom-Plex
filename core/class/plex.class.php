@@ -30,7 +30,6 @@ class plex extends eqLogic {
 				$session=$server->getActiveSession();
 				$PlayerSate=$this->getCmd(null,'state');
 				if(is_object($PlayerSate)){
-					//$State=$server->getPlayerSessions(array($this->getLogicalId()));
 					$State=$session->getPlayer(array($this->getLogicalId()));
 					log::add('plex','debug','Etat du player : '.$State);
 					$PlayerSate->setCollectDate(date('Y-m-d H:i:s'));
@@ -45,13 +44,12 @@ class plex extends eqLogic {
 							$PlayerTypeMedia->save();
 						}
 						log::add('plex','debug','Type de media : '.$ItemsSession[0]->getType());
-						$KeyMedia=$ItemsSession[0]->getTitle();
-						/*$PlayerMedia=$this->getCmd(null,'Media');
+						$PlayerMedia=$this->getCmd(null,'Media');
 						if(is_object($PlayerMedia)){
 							$PlayerMedia->setCollectDate(date('Y-m-d H:i:s'));
-							$PlayerMedia->event('');
+							$PlayerMedia->event($ItemsSession[0]->getKey(););
 							$PlayerMedia->save();
-						}*/
+						}
 						log::add('plex','debug','Titre de media : '.$ItemsSession[0]->getTitle());
 						$PlayerMediaViewOffset=$this->getCmd(null,'viewOffset');
 						if(is_object($PlayerMediaViewOffset)){
