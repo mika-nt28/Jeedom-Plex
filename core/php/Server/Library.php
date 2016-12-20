@@ -38,6 +38,7 @@ class Plex_Server_Library extends Plex_Server
 	public function getSectionByMediaKey($key)
 	{
 		foreach ($this->getSections() as $section) {
+			log::add('plex','debug',$section->getTitle());
 			switch($section->getType()){
 				case 'movie':
 					$reponse=$section->getAllMovies();
@@ -49,7 +50,9 @@ class Plex_Server_Library extends Plex_Server
 					$reponse=$section->getAllAlbums();
 				break;
 			}
+			log::add('plex','debug',json_encode($reponse));
 			foreach ($reponse as $item) {
+				log::add('plex','debug',$item->getTitle());
 				if ($item->getKey() == $key) {
 					return $section;
 				}
