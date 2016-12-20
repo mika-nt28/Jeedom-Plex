@@ -37,31 +37,7 @@ class Plex_Server_Library extends Plex_Server
 	}
 	public function getSectionByMediaKey($mediaKey)
 	{
-		$url = sprintf(
-			'%s%s',
-			$this->getBaseUrl(),
-			$mediaKey
-		);
-		$items = array();
-		$itemArray = $this->makeCall($url);
-		
-		foreach ($itemArray as $attribute) {
-			// Not all attributes at this point have a 'type.' Sometimes they
-			// represent a different sort of list like 'All episodes.' In this
-			// case we skip it by checking the integrity of the 'type' index. 
-			// If there is no type index then it is not an item.
-			if (isset($attribute['type'])) {
-				$item = Plex_Server_Library_ItemAbstract::factory(
-					$attribute['type'],
-					$this->name,
-					$this->address,
-					$this->port
-				);
-				$item->setAttributes($attribute);
-				$items[] = $item;
-			}
-		}
-		return $items;
+		return $this->getItems(self::ENDPOINT_METADATA);
 	}
 	protected function getItems($endpoint)
 	{
