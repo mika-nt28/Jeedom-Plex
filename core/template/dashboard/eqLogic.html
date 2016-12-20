@@ -219,13 +219,13 @@
 							default:
 							break;
 							case 'movie':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/cinema.png" data-lib_type="'+data.result[i].Type+'" data-key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/cinema.png" data-lib_type="'+data.result[i].Type+'" data-Key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 							case 'show':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/tv.png" data-lib_type="'+data.result[i].Type+'" data-key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/tv.png" data-lib_type="'+data.result[i].Type+'" data-Key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 							case 'artist':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/music.png" data-lib_type="'+data.result[i].Type+'" data-key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/music.png" data-lib_type="'+data.result[i].Type+'" data-Key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 						}					
 					}
@@ -318,7 +318,7 @@
 						Id:'#id#',
 						action: "SearchMedia",
 						Filtre: 'ByKey',
-						param:JSON.stringify({'Key':Media})
+						param:JSON.stringify({'Key':Media.Key})
 					},
 					dataType: 'json',
 					error: function(request, status, error) {
@@ -332,7 +332,7 @@
 						if (data.result!=false)
 						{	
 							$('.plex[data-eqLogic_uid=#uid#] .tab-content').removeClass('active');	
-							switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-key="'+Media.Key+'"]').data('lib_type')){
+							switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-Key="'+Media.Key+'"]').data('lib_type')){
 								case 'movie':			
 									$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
 									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').hide();
@@ -443,7 +443,7 @@
 					Id:'#id#',
 					action: "SearchMedia",
 					Filtre:'',
-					param:JSON.stringify({'Key':$(this).attr('data-key')}),
+					param:JSON.stringify({'Key':$(this).attr('data-Key')}),
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
@@ -477,7 +477,7 @@
 					Id:'#id#',
 					action: "SearchMedia",
 					Filtre:'',
-					param:JSON.stringify({'Key':$(this).attr('data-key')}),
+					param:JSON.stringify({'Key':$(this).attr('data-Key')}),
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
@@ -505,7 +505,7 @@
 					Id:'#id#',
 					action: "SearchMedia",
 					Filtre:'',
-					param:JSON.stringify({'Key':$(this).attr('data-key')}),
+					param:JSON.stringify({'Key':$(this).attr('data-Key')}),
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
