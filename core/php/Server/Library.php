@@ -44,7 +44,9 @@ class Plex_Server_Library extends Plex_Server
 				}
 			}
 		}*/
-		$mediaKey = str_replace('/library', '', $mediaKey);
+		log::add('plex','debug',$mediaKey);
+		$mediaKey = str_replace('library', '', $mediaKey);
+		log::add('plex','debug',$mediaKey);
 		return $this->getItems($mediaKey);
 	}
 	protected function getItems($endpoint)
