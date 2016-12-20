@@ -267,7 +267,7 @@ class Plex_Server_Library extends Plex_Server
 	public function getSectionByKey($key)
 	{
 		foreach ($this->getSections() as $section) {
-			if ($section->getKey() === $key) {
+			if ($section->getKey() == $key) {
 				return $section;
 			}
 		}
