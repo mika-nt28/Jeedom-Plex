@@ -471,7 +471,7 @@ class plex extends eqLogic {
 		return $return;
 	}
 	public function getMedia($Filtre=null,$param=''){
-		$param=json_decode($param, true);
+		//$param=json_decode($param, true);
 		$this->ConnexionsPlex();	
 		$section=self::$_server->getLibrary()->getSection($param);
 		$reponse=self::filterMedia($section, $Filtre,$param);
@@ -680,10 +680,11 @@ class plexCmd extends cmd {
 				break;
 				case 'Application':
 					$application = $client->getApplicationController();
-					//$navigation = $client->getNavigationController();		
-					$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
-					$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
-					$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
+					$navigation = $client->getNavigationController();		
+					//$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
+					//$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
+					//$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
+					$media= plex::getMedia(null, $this->getEqLogic()->getCmd(null,'media')->execCmd());
 					switch ($this->getConfiguration('commande'))
 					{
 						case 'viewOffset':
@@ -709,7 +710,7 @@ class plexCmd extends cmd {
 							// Set voume to half
 							if(method_exists($application,'setVolume'))
 								$response=$application->setVolume($Value);
-							//$navigation->toggleOSD();
+							$navigation->toggleOSD();
 						break;
 					}
 				break;
