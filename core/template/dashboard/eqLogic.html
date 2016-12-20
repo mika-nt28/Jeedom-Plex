@@ -317,7 +317,7 @@
 					data: {
 						Id:'#id#',
 						action: "SearchMedia",
-						Filtre: 'ByTitle',
+						Filtre: 'ByKey',
 						param: JSON.stringify(Media),
 					},
 					dataType: 'json',
@@ -443,7 +443,7 @@
 					Id:'#id#',
 					action: "SearchMedia",
 					Filtre:'',
-					param:$(this).attr('data-key'),
+					param:JSON.stringify({'key':$(this).attr('data-key')}),
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
@@ -477,7 +477,7 @@
 					Id:'#id#',
 					action: "SearchMedia",
 					Filtre:'',
-					param:$(this).attr('data-key'),
+					param:JSON.stringify({'key':$(this).attr('data-key')}),
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
@@ -505,7 +505,7 @@
 					Id:'#id#',
 					action: "SearchMedia",
 					Filtre:'',
-					param:$(this).attr('data-key'),
+					param:JSON.stringify({'key':$(this).attr('data-key')}),
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
