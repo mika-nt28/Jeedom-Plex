@@ -473,7 +473,7 @@ class plex extends eqLogic {
 	public function getMedia($Filtre=null,$param=''){
 		$param=json_decode($param, true);
 		$this->ConnexionsPlex();	
-		$section=self::$_server->getLibrary()->getSection($param);
+		$section=self::$_server->getLibrary()->getSection($param['Key']);
 		$reponse=self::filterMedia($section, $Filtre,$param);
 		$return =array();
 		if($reponse != null){
@@ -684,7 +684,7 @@ class plexCmd extends cmd {
 					//$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
 					//$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
 					//$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
-					$media= plex::getMedia(null, $this->getEqLogic()->getCmd(null,'media')->execCmd());
+					$media= plex::getMedia(null,json_encode(array('key" => $this->getEqLogic()->getCmd(null,'media')->execCmd())));
 					switch ($this->getConfiguration('commande'))
 					{
 						case 'viewOffset':
