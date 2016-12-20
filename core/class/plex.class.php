@@ -464,8 +464,13 @@ class plex extends eqLogic {
 	public function getMedia($Filtre=null,$param=''){
 		$param=json_decode($param, true);
 		$this->ConnexionsPlex();	
-		$section=self::$_server->getLibrary()->getSection($param['Library']);
-		$reponse=self::filterMedia($section, $Filtre,$param);
+		if(stripos($param['Library'],'Library') === FALSE){
+			$section=self::$_server->getLibrary()->getSection($param['Library']);
+			$reponse=self::filterMedia($section, $Filtre,$param);
+		}else{
+			$reponse=self::$_server->getLibrary()->getSectionByMediaKey($param['Library']);
+			log::add('plex','debug',json_encode($reponse));
+		}
 		$return =array();
 		if($reponse != null){
 			if(count($reponse)>1){
