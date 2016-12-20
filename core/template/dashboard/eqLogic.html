@@ -267,12 +267,11 @@
 			$('.plex[data-eqLogic_uid=#uid#] #audio-dropdown').text(Data.Media.Audio);
 			$('.plex[data-eqLogic_uid=#uid#] #subtitles-dropdown').text(Data.Media.Subtitles);
 			$('.plex[data-eqLogic_uid=#uid#] .studio-flag').attr('src',Data.Media.StudioFlag);
-			UpdateThumbMenu($('.plex[data-eqLogic_uid=#uid#] .jaquette_plex .affiche[data-Key='+Data.Media.RatingKey+']'));
+			UpdateThumbMenu($('.plex[data-eqLogic_uid=#uid#] .jaquette_plex .affiche[data-Key='+Data.Media.Key+']'));
 		}
 		function UpdateList(Data){
 			$('.plex[data-eqLogic_uid=#uid#] #ListeMedia ul').html('');
 			$('.plex[data-eqLogic_uid=#uid#] .jaquette_plex').html('');
-			var mediaKey='';
 			for (var i in Data.Media) {
 				$('.plex[data-eqLogic_uid=#uid#] #ListeMedia ul').append(
 					$('<li>')
@@ -303,105 +302,99 @@
 			Affiche.next().addClass("affiche_next_plex").show();
 			Affiche.prev().addClass("affiche_prev_plex").show();
 		}
-		function UpdateInforamtion(Media){
-			if (Media!=''){
-				/*$('.plex[data-eqLogic_uid=#uid#] .media_Title').html('');
-				$.each(Media, function( key, value ) {
-					if(key!="Library")
-					$('.plex[data-eqLogic_uid=#uid#] .media_Title').append($('<a class="menu_plex">').text(value));
-				});*/
-				$.ajax({
-					type: "POST",
-					timeout:8000, 
-					url: "plugins/plex/core/ajax/plex.ajax.php",
-					data: {
-						Id:'#id#',
-						action: "SearchMedia",
-						Filtre: 'ByKey',
-						param:JSON.stringify({'Key':Media.Key})
-					},
-					dataType: 'json',
-					error: function(request, status, error) {
-						handleAjaxError(request, status, error);
-					},
-					success: function(data) { 
-						if (data.state != 'ok') {
-							$('#div_alert').showAlert({message: data.result, level: 'danger'});
-							return;
-						}
-						if (data.result!=false)
-						{	
-							$('.plex[data-eqLogic_uid=#uid#] .tab-content').removeClass('active');	
-							switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-Key="'+Media.Key+'"]').data('lib_type')){
-								case 'movie':			
-									$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
-									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').hide();
+		function UpdateInforamtion(Key){
+			$.ajax({
+				type: "POST",
+				timeout:8000, 
+				url: "plugins/plex/core/ajax/plex.ajax.php",
+				data: {
+					Id:'#id#',
+					action: "SearchMedia",
+					Filtre: 'ByKey',
+					param:JSON.stringify({'Key':Media.Key})
+				},
+				dataType: 'json',
+				error: function(request, status, error) {
+					handleAjaxError(request, status, error);
+				},
+				success: function(data) { 
+					if (data.state != 'ok') {
+						$('#div_alert').showAlert({message: data.result, level: 'danger'});
+						return;
+					}
+					if (data.result!=false)
+					{	
+						$('.plex[data-eqLogic_uid=#uid#] .tab-content').removeClass('active');	
+						switch($('.plex[data-eqLogic_uid=#uid#] .btm-library-plex[data-Key="'+Key+'"]').data('lib_type')){
+							case 'movie':			
+								$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
+								$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').hide();
+								$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
+								$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
+								$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
+								$('.plex[data-eqLogic_uid=#uid#] .Cast').show();
+								$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+								UpdateDetail(data.result);
+								break;
+							case 'show':
+								/*if (Media.Season == '' || typeof(Media.Season) == "undefined"){
+									UpdateList(data.result);
+									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
+									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
 									$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
 									$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
 									$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
 									$('.plex[data-eqLogic_uid=#uid#] .Cast').show();
 									$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+								}
+								else if (Media.Episode == '' || typeof(Media.Episode) == "undefined"){
+									UpdateList(data.result);
+									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');			
+									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
+									$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Cast').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+								}
+								else{
 									UpdateDetail(data.result);
-									break;
-								case 'show':
-									if (Media.Season == '' || typeof(Media.Season) == "undefined"){
-										UpdateList(data.result);
-										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
-										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
-										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Cast').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
-									}
-									else if (Media.Episode == '' || typeof(Media.Episode) == "undefined"){
-										UpdateList(data.result);
-										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');			
-										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
-										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Cast').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
-									}
-									else{
-										UpdateDetail(data.result);
-										$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');		
-										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
-										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Cast').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
-										}
-									break;
-								case 'artist':
-									if (Media.Tarck == '' || typeof(Media.Tarck) == "undefined"){
-										UpdateList(data.result);
-										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');			
-										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
-										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
-										$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
-										}
-									else{
-										UpdateDetail(data.result);
-										$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
-										$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').hide();
-										$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
-										$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
-										$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
-										$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
-										}
+									$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');		
+									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
+									$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Cast').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+									}*/
 								break;
-							}
+							case 'artist':
+								/*if (Media.Tarck == '' || typeof(Media.Tarck) == "undefined"){
+									UpdateList(data.result);
+									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');			
+									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
+									$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
+									$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+									}
+								else{
+									UpdateDetail(data.result);
+									$('.plex[data-eqLogic_uid=#uid#] .Detail').trigger('click');			
+									$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').hide();
+									$('.plex[data-eqLogic_uid=#uid#] .Filtre').hide();
+									$('.plex[data-eqLogic_uid=#uid#] .Detail').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Playback').show();
+									$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
+									$('.plex[data-eqLogic_uid=#uid#] .Poster').show();
+									}*/
+							break;
 						}
 					}
-				});
-			}
+				}
+			});
+			
 		}
 		function SecondToDuration(timeCount){	
 			var heure=Math.floor(((timeCount/1000)/60)/60);
@@ -435,31 +428,7 @@
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
 			UpdateThumbMenu($(this));
 			UpdateCmd('media', $(this).attr('data-Key'));
-			$.ajax({
-				type: "POST",
-				timeout:8000, 
-				url: "plugins/plex/core/ajax/plex.ajax.php",
-				data: {
-					Id:'#id#',
-					action: "SearchMedia",
-					Filtre:'ByKey',
-					param:JSON.stringify({'Key':$(this).attr('data-Key')}),
-				},
-				dataType: 'json',
-				error: function(request, status, error) {
-					handleAjaxError(request, status, error);
-				},
-				success: function(data) { 
-					if (data.state != 'ok') {
-						$('#div_alert').showAlert({message: data.result, level: 'danger'});
-						return;
-					}
-					if (data.result!=false)
-					{		
-						UpdateInforamtion(data.result);
-					}
-				}
-			});
+			UpdateInforamtion($(this).attr('data-Key'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-library-plex", function() {				
 			$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
@@ -497,31 +466,7 @@
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
 			UpdateCmd('media', $(this).attr('data-Key'));
-			$.ajax({
-				type: "POST",
-				timeout:8000, 
-				url: "plugins/plex/core/ajax/plex.ajax.php",
-				data: {
-					Id:'#id#',
-					action: "SearchMedia",
-					Filtre:'ByKey',
-					param:JSON.stringify({'Key':$(this).attr('data-Key')}),
-				},
-				dataType: 'json',
-				error: function(request, status, error) {
-					handleAjaxError(request, status, error);
-				},
-				success: function(data) { 
-					if (data.state != 'ok') {
-						$('#div_alert').showAlert({message: data.result, level: 'danger'});
-						return;
-					}
-					if (data.result!=false)
-					{		
-						UpdateInforamtion(data.result);
-					}
-				}
-			});
+			UpdateInforamtion($(this).attr('data-Key'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexGroupFiltre', function() {		
 			$('.bt_PlexGroupFiltre').removeClass('btn-primary');
