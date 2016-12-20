@@ -35,9 +35,31 @@ class Plex_Server_Library extends Plex_Server
 		
 		return $url;
 	}
-	public function getSectionByMediaKey($mediaKey)
+	public function getSectionByMediaKey($key)
 	{
-		return $this->getItems(self::ENDPOINT_METADATA);
+		foreach ($this->getSections() as $section) {
+			switch($section->getType()){
+				case 'movie':
+					$reponse=$section->getAllMovies();
+				break;
+				case 'show':
+					$reponse=$section->getAllShows();
+				break;
+				case 'artist':
+					$reponse=$section->getAllAlbums();
+				break;
+			}
+			foreach ($reponse as $item) {
+				if ($item->getKey() == $key) {
+					return $section;
+				}
+			}
+		}
+
+		throw new Plex_Exception_Server_Library(
+			'RESOURCE_NOT_FOUND',
+			array('section', $key)
+		);
 	}
 	protected function getItems($endpoint)
 	{
