@@ -305,11 +305,11 @@
 		}
 		function UpdateInforamtion(Media){
 			if (Media!=''){
-				$('.plex[data-eqLogic_uid=#uid#] .media_Title').html('');
+				/*$('.plex[data-eqLogic_uid=#uid#] .media_Title').html('');
 				$.each(Media, function( key, value ) {
 					if(key!="Library")
 					$('.plex[data-eqLogic_uid=#uid#] .media_Title').append($('<a class="menu_plex">').text(value));
-				});
+				});*/
 				$.ajax({
 					type: "POST",
 					timeout:8000, 
@@ -318,7 +318,7 @@
 						Id:'#id#',
 						action: "SearchMedia",
 						Filtre: 'ByKey',
-						param: JSON.stringify(Media),
+						param:JSON.stringify({'Key':Media})
 					},
 					dataType: 'json',
 					error: function(request, status, error) {
@@ -443,7 +443,7 @@
 					Id:'#id#',
 					action: "SearchMedia",
 					Filtre:'',
-					param:JSON.stringify({'key':$(this).attr('data-key')}),
+					param:JSON.stringify({'Key':$(this).attr('data-key')}),
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
@@ -477,7 +477,7 @@
 					Id:'#id#',
 					action: "SearchMedia",
 					Filtre:'',
-					param:JSON.stringify({'key':$(this).attr('data-key')}),
+					param:JSON.stringify({'Key':$(this).attr('data-key')}),
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
@@ -505,7 +505,7 @@
 					Id:'#id#',
 					action: "SearchMedia",
 					Filtre:'',
-					param:JSON.stringify({'key':$(this).attr('data-key')}),
+					param:JSON.stringify({'Key':$(this).attr('data-key')}),
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
