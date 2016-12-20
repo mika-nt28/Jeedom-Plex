@@ -53,14 +53,14 @@
 				$('.iconCmd#id#').show();
 			else
 				$('.iconCmd#id#').hide();
-			break;
+		break;
 		case 'pause':
 			$('.iconCmd#id#').append($('<img class="pause_in_cercle cmd noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/pause.png" title="Pause" />'));
-			if ("#state#" == "0") 
-				$('.iconCmd#id#').show();
-			else
+			if ("#state#" == "1") 
 				$('.iconCmd#id#').hide();
-			break;
+			else
+				$('.iconCmd#id#').show();
+		break;
 		case 'stop':
 			$('.iconCmd#id#').append($('<div class="stop_plex_widget cmd noRefresh tooltips" title="Stop">'));
 		break;
