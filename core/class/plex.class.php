@@ -151,6 +151,28 @@ class plex extends eqLogic {
 						break;
 				}	
 			break;
+			case 'ByKey':	
+				$reponse=null;
+				switch($section->getType())
+				{
+					case 'movie':
+						$reponse=$section->getMovie($param['Key']);
+					break;
+					case 'show':
+						//$section->getShow($param['Key']);
+						//$show->getSeason($param['Key']);
+						//$Season->getEpisode($param['Key']);
+						//$reponse=$Season->getEpisodes();
+						$reponse=$show->getSeasons();
+					break;
+					case 'artist':
+						$reponse=$section->getTrack($param['Key']);
+						//$Albums=$section->getAllAlbums();
+						//$reponse=$Album->getTracks();
+								}
+					break;
+				}	
+			break;
 			case 'Unwatched':		
 				switch($section->getType())
 				{
@@ -473,13 +495,11 @@ class plex extends eqLogic {
 	public function getMedia($Filtre=null,$param=''){
 		$param=json_decode($param, true);
 		$this->ConnexionsPlex();
-		if(stripos($param['Key'],'library') === FALSE){
+		if(stripos($param['Key'],'library') === FALSE)
 			$section=self::$_server->getLibrary()->getSectionByKey($param['Key']);
-			$reponse=self::filterMedia($section, $Filtre,$param);
-		}else{
+		else
 			$section=self::$_server->getLibrary()->getSectionByMediaKey($param['Key']);
-			$reponse=self::filterMedia($section, $Filtre,$param);
-		}	
+		$reponse=self::filterMedia($section, $Filtre,$param);
 		$return =array();
 		if($reponse != null){
 			if(count($reponse)>1){
