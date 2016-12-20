@@ -37,17 +37,12 @@ class Plex_Server_Library extends Plex_Server
 	}
 	public function getSectionByMediaKey($mediaKey)
 	{
-		/*foreach ($this->getSections() as $section) {
-			foreach ($section as $media) {
-				if ($section->getTitle() == $polymorphicData) {
-					return $section;
-				}
-			}
-		}*/
-		log::add('plex','debug',$mediaKey);
-		$mediaKey = str_replace('library', '', $mediaKey);
-		log::add('plex','debug',$mediaKey);
-		return $this->getItems($mediaKey);
+		$url = sprintf(
+			'%s/%s',
+			$this->getBaseUrl(),
+			$mediaKey
+		);
+		return 	 $this->makeCall($url);
 	}
 	protected function getItems($endpoint)
 	{
