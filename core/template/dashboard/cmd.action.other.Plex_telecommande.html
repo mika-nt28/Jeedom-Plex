@@ -46,10 +46,25 @@
 		case 'stepForward':
 			$('.iconCmd#id#').append($('<img class="avance_droite cmd noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/advance.png" title="Avance rapide" />'));
 		break;
-		case 'play':
+		case 'playMedia': 
+		case 'play':  
+			if ("#state#" == "0") {
+				$(this).closest(".eqLogic .pause_in_cercle").hide();
+				$(this).closest(".eqLogic .play_in_cercle").show();
+			}else{
+				$(this).closest(".eqLogic .pause_in_cercle").show();
+				$(this).closest(".eqLogic .play_in_cercle").hide();
+			}
 			$('.iconCmd#id#').append($('<img class="play_in_cercle noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/play1.png" title="Lecture"/>'));
 		break;
 		case 'pause':
+			if ("#state#" == "0") {
+				$(this).closest(".eqLogic .pause_in_cercle").hide();
+				$(this).closest(".eqLogic .play_in_cercle").show();
+			}else{
+				$(this).closest(".eqLogic .pause_in_cercle").show();
+				$(this).closest(".eqLogic .play_in_cercle").hide();
+			}
 			$('.iconCmd#id#').append($('<img class="pause_in_cercle cmd noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/pause.png" title="Pause" />'));
 		break;
 		case 'stop':
@@ -61,5 +76,6 @@
 		case 'stop':
 		break;
 	}
+	   
 	</script>
 </span>
