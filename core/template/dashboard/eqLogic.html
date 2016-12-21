@@ -348,8 +348,8 @@
 					}
 					if (data.result!=false)
 					{	
-						alert(div.find('#ListeMedia ul').length)
-						if(typeof(div.find('#ListeMedia ul')) == "undefined"&& div.find('#ListeMedia ul').length == 0){
+						alert(div.find('#ListeMedia li').length)
+						if(typeof(div.find('#ListeMedia li')) == "undefined"&& div.find('#ListeMedia li').length == 0){
 							UpdateLibraryElement(div,data.result.Library.Key)
 						}
 						div.find('.tab-content').removeClass('active');	
