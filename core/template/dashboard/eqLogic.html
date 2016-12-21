@@ -441,6 +441,7 @@
 			$('.plex[data-eqLogic_uid=#uid#] .Playback').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Poster').hide();
+			var div=$(this).closest('.eqLogic');
 			$.ajax({
 				type: "POST",
 				timeout:8000, 
@@ -462,7 +463,8 @@
 					}
 					if (data.result!=false)
 					{		
-						UpdateList($(this).closest('.eqLogic'),data.result);
+					alert(data.result);
+						UpdateList(div,data.result);
 					}
 				}
 			});
