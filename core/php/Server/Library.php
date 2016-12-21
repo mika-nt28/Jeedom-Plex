@@ -38,9 +38,10 @@ class Plex_Server_Library extends Plex_Server
 	public function getSectionByMediaKey($key)
 	{
 		$endpoint = str_replace('/library/', '/', $key);
+		$endpoint = str_replace('/children', '', $key);
 		$media=$this->getItems($endpoint);
 		log::add('plex','debug',json_encode($media));
-		if(is_array)
+		if(is_array($media))
 			$section=$media[0]->getLibrarySectionId();
 		else
 			$section=$media->getLibrarySectionId();
