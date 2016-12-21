@@ -288,11 +288,8 @@
 			if(select!=''){
 				UpdateThumbMenu(div,select);
 			}else{
-				if(is_array(Data)){
+				if (typeof(Data[0].RatingKey) != "undefined")
 					UpdateThumbMenu(div,Data[0].RatingKey);
-				}else{
-					UpdateThumbMenu(div,Data.RatingKey);
-				}
 			}
 		}
 		function UpdateThumbMenu(div,RatingKey){
@@ -361,8 +358,7 @@
 							div.find('.Detail').show();
 							div.find('.Playback').show();
 							div.find('.Cast').hide();
-						}
-						else{
+						}else{
 							UpdateDetail(div,data.result.Media);
 							div.find('.Detail').trigger('click');
 							div.find('.Filtre').hide();
