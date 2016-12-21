@@ -499,7 +499,7 @@ class plex extends eqLogic {
 			$reponse=self::filterMedia($section, $Filtre,$param);
 		}else{
 			$reponse=self::$_server->getLibrary()->getSectionByMediaKey($param['Key']);
-			$section=self::$_server->getLibrary()->getSectionByKey($reponse->getLibrarySectionId());
+			$section=self::$_server->getLibrary()->getSectionByKey($reponse[0]->getLibrarySectionId());
 		}
 		$return =array();
 		if($reponse != null){
