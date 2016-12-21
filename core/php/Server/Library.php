@@ -40,7 +40,6 @@ class Plex_Server_Library extends Plex_Server
 		$endpoint = str_replace('/library/', '/', $endpoint);
 		$endpoint = str_replace('/children', '', $endpoint);
 		$media=$this->getItems($endpoint);
-		log::add('plex','debug',json_encode($media));
 		if(is_array($media))
 			$section=$media[0]->getLibrarySectionId();
 		else
