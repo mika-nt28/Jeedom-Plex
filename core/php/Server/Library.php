@@ -40,10 +40,6 @@ class Plex_Server_Library extends Plex_Server
 		$endpoint = str_replace('/library/', '/', $key);
 		$media=$this->getItems($endpoint);
 		return $media[0]->getLibrarySectionId();
-		throw new Plex_Exception_Server_Library(
-			'RESOURCE_NOT_FOUND',
-			array('section', $key)
-		);
 	}
 	protected function getItems($endpoint)
 	{
