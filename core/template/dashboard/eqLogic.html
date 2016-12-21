@@ -348,8 +348,7 @@
 					}
 					if (data.result!=false)
 					{	
-						alert(div.find('#ListeMedia li').length)
-						if(typeof(div.find('#ListeMedia li')) == "undefined"&& div.find('#ListeMedia li').length == 0){
+						if(div.find('#ListeMedia li').length == 0){
 							UpdateLibraryElement(div,data.result.Library.Key)
 						}
 						div.find('.tab-content').removeClass('active');	
