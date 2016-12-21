@@ -285,10 +285,15 @@
 						.attr('title',Data[i].Title)
 						.hide());
 			}
-			if(select!='')
+			if(select!=''){
 				UpdateThumbMenu(div,select);
-			else
-				UpdateThumbMenu(div,Data[0].RatingKey);
+			}else{
+				if(is_array(Data)){
+					UpdateThumbMenu(div,Data[0].RatingKey);
+				}else{
+					UpdateThumbMenu(div,Data.RatingKey);
+				}
+			}
 		}
 		function UpdateThumbMenu(div,RatingKey){
 			div.find('.affiche').hide();
