@@ -285,7 +285,6 @@
 						.attr('title',Data[i].Title)
 						.hide());
 			}
-			alert(Data.length);
 			if(select!='')
 				UpdateThumbMenu(div,select);
 			else
@@ -350,56 +349,31 @@
 					}
 					if (data.result!=false){	
 						div.find('.tab-content').removeClass('active');	
+						if(is_array(data.result.Media)){
+							UpdateList(div,data.result.Media,'');
+							div.find('.ListeMedia').trigger('click');
+							div.find('.Filtre').hide();
+							div.find('.Detail').show();
+							div.find('.Playback').show();
+							div.find('.Cast').hide();
+						}
+						else{
+							UpdateDetail(div,data.result.Media);
+							div.find('.Detail').trigger('click');
+							div.find('.Filtre').hide();
+							div.find('.Detail').show();
+							div.find('.Playback').show();
+							div.find('.Cast').hide();
+						}
 						switch(data.result.Media.Type){
 							case 'movie':		
-								UpdateDetail(div,data.result.Media);
 								if(div.find('#ListeMedia li').length == 0){
 									UpdateLibraryElement(div,data.result.Library.Key,data.result.Media.RatingKey)
 								}
-								div.find('.Detail').trigger('click');			
-								div.find('.ListeMedia').hide();
-								div.find('.Filtre').hide();
-								div.find('.Detail').show();
-								div.find('.Playback').show();
-								div.find('.Cast').show();
-								break;
+							break;
 							case 'show':
-								if(is_array(data.result.Media)){
-									UpdateList(div,data.result.Media,'');
-									div.find('.ListeMedia').trigger('click');			
-									div.find('.ListeMedia').show();
-									div.find('.Filtre').hide();
-									div.find('.Detail').show();
-									div.find('.Playback').show();
-									div.find('.Cast').hide();
-								}
-								else{
-									UpdateDetail(div,data.result.Media);
-									div.find('.Detail').trigger('click');
-									div.find('.Filtre').hide();
-									div.find('.Detail').show();
-									div.find('.Playback').show();
-									div.find('.Cast').hide();
-								}
-								break;
+							break;
 							case 'artist':
-								if(is_array(data.result.Media)){
-									UpdateList(div,data.result.Media,'');
-									div.find('.ListeMedia').trigger('click');			
-									div.find('.ListeMedia').show();
-									div.find('.Filtre').hide();
-									div.find('.Detail').show();
-									div.find('.Playback').show();
-									div.find('.Cast').hide();
-								}
-								else{
-									UpdateDetail(div,data.result.Media);
-									div.find('.Detail').trigger('click');
-									div.find('.Filtre').hide();
-									div.find('.Detail').show();
-									div.find('.Playback').show();
-									div.find('.Cast').hide();
-								}
 							break;
 						}
 					}
