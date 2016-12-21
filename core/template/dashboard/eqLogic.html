@@ -348,11 +348,13 @@
 					}
 					if (data.result!=false)
 					{	
-						UpdateDetail(div,data.result.Media);
-						UpdateList(div,data.result.Liste);
+						if(div.find('#ListeMedia ul').length == 0){
+							UpdateLibraryElement(div,data.result.Library.Key)
+						}
 						div.find('.tab-content').removeClass('active');	
 						switch(data.result.Media.Type){
 							case 'movie':		
+								UpdateDetail(div,data.result.Media);
 								div.find('.Detail').trigger('click');			
 								div.find('.ListeMedia').hide();
 								div.find('.Filtre').hide();
