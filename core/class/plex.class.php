@@ -172,7 +172,7 @@ class plex extends eqLogic {
 									$reponse=$Album->getTracks();
 							}
 						}else
-							$reponse=$section->searchTrack($param['Key']);
+							$reponse=$section->searchTracks($param['Key']);
 					break;
 					case 'show':
 						//$section->getShow($param['Key']);
