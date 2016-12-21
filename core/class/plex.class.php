@@ -153,10 +153,17 @@ class plex extends eqLogic {
 			break;
 			case 'ByKey':	
 				$reponse=null;
-				switch($section->getType())
+				if(method_exists($section,'getType'))
+					$Type=$section->getType();
+				if(method_exists($section,'getViewGroup'))
+					$Type=$section->getViewGroup();
+				switch($Type)
 				{
 					case 'movie':
 						$reponse=$section->getMovie($param['Key']);
+					break;
+					case 'track':
+						$reponse=$section->getTrack($param['Key']);
 					break;
 					case 'album':
 						$reponse=$section->getTrack($param['Key']);
