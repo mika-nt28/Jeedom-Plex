@@ -351,7 +351,7 @@
 					}
 					if (data.result!=false){	
 						div.find('.tab-content').removeClass('active');	
-						if(is_array(data.result.Media)){
+						if(Array.isArray(data.result.Media)){
 							UpdateList(div,data.result.Media,'');
 							div.find('.ListeMedia').trigger('click');
 							div.find('.Filtre').hide();
