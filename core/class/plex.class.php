@@ -158,17 +158,20 @@ class plex extends eqLogic {
 					case 'movie':
 						$reponse=$section->getMovie($param['Key']);
 					break;
+					case 'album':
+						$reponse=$section->getTrack($param['Key']);
+					break;
+					case 'artist':
+						$reponse=$section->getTrack($param['Key']);
+						//$Albums=$section->getAllAlbums();
+						//$reponse=$Album->getTracks();
+					break;
 					case 'show':
 						//$section->getShow($param['Key']);
 						//$show->getSeason($param['Key']);
 						//$Season->getEpisode($param['Key']);
 						//$reponse=$Season->getEpisodes();
 						$reponse=$show->getSeasons();
-					break;
-					case 'artist':
-						$reponse=$section->getTrack($param['Key']);
-						//$Albums=$section->getAllAlbums();
-						//$reponse=$Album->getTracks();
 					break;
 				}	
 			break;
