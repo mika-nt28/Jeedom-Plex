@@ -229,12 +229,13 @@
 			}
 		});
 		function UpdateDetail(div,Data){
-			//Mise a jours des etoiles		
+			//Mise a jours des etoiles
+			div.find('.media_Title').text(Data.Title + ' - ' + Data.Tagline + ' (' + Data.Année + ')');
 			div.find('.item-summary').text(Data.Summary);
 			if (typeof(Data.Duration) != "undefined")
-				div.find('.item-duration').text(SecondToDuration(Data.Duration)).show();
+				div.find('.time_haut_plex_widget').text(SecondToDuration(Data.Duration)).show();
 			else
-				div.find('.item-duration').hide();
+				div.find('.time_haut_plex_widget').hide();
 			for (var i in Data.Genre) {
 				div.find('.item-genre .metadata-tags').append($('<a class="pivot-link">')
 					.attr('href',Data.Genre[i].Href)
