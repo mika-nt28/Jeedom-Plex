@@ -348,6 +348,8 @@
 					}
 					if (data.result!=false)
 					{	
+						UpdateDetail(div,data.result.Media);
+						UpdateList(div,data.result.Liste);
 						div.find('.tab-content').removeClass('active');	
 						switch(data.result.Media.Type){
 							case 'movie':		
@@ -357,11 +359,9 @@
 								div.find('.Detail').show();
 								div.find('.Playback').show();
 								div.find('.Cast').show();
-								UpdateDetail(div,data.result.Media);
 								break;
 							case 'show':
 								/*if (Media.Season == '' || typeof(Media.Season) == "undefined"){
-									UpdateList(div,data.result.Media);
 									div.find('.ListeMedia').trigger('click');		
 									div.find('.ListeMedia').show();
 									div.find('.Filtre').hide();
@@ -370,7 +370,6 @@
 									div.find('.Cast').show();
 								}
 								else if (Media.Episode == '' || typeof(Media.Episode) == "undefined"){
-									UpdateList(div,data.result.Media);
 									div.find('.ListeMedia').trigger('click');			
 									div.find('.ListeMedia').show();
 									div.find('.Filtre').hide();
@@ -379,7 +378,6 @@
 									div.find('.Cast').show();
 								}
 								else{
-									UpdateDetail(div,data.result.Media);
 									div.find('.Detail').trigger('click');		
 									div.find('.ListeMedia').show();
 									div.find('.Filtre').hide();
