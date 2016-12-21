@@ -39,7 +39,7 @@ class Plex_Server_Library extends Plex_Server
 	{
 		$endpoint = str_replace('/library/', '/', $key);
 		$media=$this->getItems($endpoint);
-		return $media[0]->getLibrarySectionId();
+		return $this->getSectionByKey($media[0]->getLibrarySectionId());
 	}
 	protected function getItems($endpoint)
 	{
