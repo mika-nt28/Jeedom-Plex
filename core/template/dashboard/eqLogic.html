@@ -428,9 +428,9 @@
 			});
 		}
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
-			UpdateThumbMenu(div,$(this).attr('data-RatingKey'));
+			UpdateThumbMenu($(this).closest('.eqLogic'),$(this).attr('data-RatingKey'));
 			UpdateCmd('media', $(this).attr('data-Key'));
-			UpdateInforamtion($('.plex[data-eqLogic_uid=#uid#]'),$(this).attr('data-Key'));
+			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-library-plex", function() {				
 			$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
@@ -461,14 +461,14 @@
 					}
 					if (data.result!=false)
 					{		
-						UpdateList($('.plex[data-eqLogic_uid=#uid#]'),data.result);
+						UpdateList($(this).closest('.eqLogic'),data.result);
 					}
 				}
 			});
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
 			UpdateCmd('media', $(this).attr('data-Key'));
-			UpdateInforamtion($('.plex[data-eqLogic_uid=#uid#]'),$(this).attr('data-Key'));
+			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexGroupFiltre', function() {		
 			$('.bt_PlexGroupFiltre').removeClass('btn-primary');
