@@ -270,6 +270,7 @@
 			UpdateThumbMenu(div,Data.Media.RatingKey);
 		}
 		function UpdateList(div,Data){
+			alert(Data.length);
 			div.find('#ListeMedia ul').html('');
 			div.find('.jaquette_plex').html('');
 			for (var i in Data.Media) {
