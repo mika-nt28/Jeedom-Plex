@@ -301,6 +301,31 @@
 			div.find('.petit_titre_plex').text(div.find('.jaquette_plex .affiche[data-RatingKey='+RatingKey+']').attr('data-Tagline'));
 			
 		}
+		function UpdateLibraryElement(div,Key){
+			$.ajax({
+					type: "POST",
+					timeout:8000, 
+					url: "plugins/plex/core/ajax/plex.ajax.php",
+					data: {
+						Id:'#id#',
+						action: "SearchMedia",
+						Filtre:'',
+						param:JSON.stringify({'Key':Key}),
+					},
+					dataType: 'json',
+					error: function(request, status, error) {
+						handleAjaxError(request, status, error);
+					},
+					success: function(data) { 
+						if (data.state != 'ok') {
+							$('#div_alert').showAlert({message: data.result, level: 'danger'});
+							return;
+						}
+						if (data.result!=false)
+							UpdateList(div,data.result.Media);
+					}
+				});
+		}	
 		function UpdateInforamtion(div,Key){
 			$.ajax({
 				type: "POST",
@@ -433,30 +458,7 @@
 			$('.plex[data-eqLogic_uid=#uid#] .Playback').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Poster').hide();
-			var div=$(this).closest('.eqLogic');
-			$.ajax({
-				type: "POST",
-				timeout:8000, 
-				url: "plugins/plex/core/ajax/plex.ajax.php",
-				data: {
-					Id:'#id#',
-					action: "SearchMedia",
-					Filtre:'',
-					param:JSON.stringify({'Key':$(this).attr('data-Key')}),
-				},
-				dataType: 'json',
-				error: function(request, status, error) {
-					handleAjaxError(request, status, error);
-				},
-				success: function(data) { 
-					if (data.state != 'ok') {
-						$('#div_alert').showAlert({message: data.result, level: 'danger'});
-						return;
-					}
-					if (data.result!=false)
-						UpdateList(div,data.result.Media);
-				}
-			});
+			UpdateLibraryElement($(this).closest('.eqLogic'),$(this).attr('data-Key'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
 			UpdateCmd('media', $(this).attr('data-Key'));
