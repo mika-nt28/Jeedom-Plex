@@ -37,7 +37,9 @@ class Plex_Server_Library extends Plex_Server
 	}
 	public function getSectionByMediaKey($key)
 	{
-		foreach ($this->getSections() as $section) {
+		$endpoint = str_replace('/library/', '/', $key);
+		return $this->getItems($endpoint);
+		/*foreach ($this->getSections() as $section) {
 			log::add('plex','debug',$section->getTitle());
 			switch($section->getType()){
 				case 'movie':
@@ -62,7 +64,7 @@ class Plex_Server_Library extends Plex_Server
 		throw new Plex_Exception_Server_Library(
 			'RESOURCE_NOT_FOUND',
 			array('section', $key)
-		);
+		);*/
 	}
 	protected function getItems($endpoint)
 	{
