@@ -165,14 +165,14 @@ class plex extends eqLogic {
 						$reponse=$section->getTrack($param['Key']);
 					break;
 					case 'artist':
-							$Albums=$section->getAllAlbums();
+							/*$Albums=$section->getAllAlbums();
 							foreach ($Albums as $Album) {
 								if(isset($param['Album'])){
 									if($Album->getKey() == $param['Key'])
 										$reponse=$Album->getTracks();
 								}
-							}
-						//$reponse=$section->getTracks();//->getTrack($param['Key']);
+							}*/
+						$reponse=$section->searchTracks($param['Key']->getTracks());
 					break;
 					case 'show':
 						//$section->getShow($param['Key']);
