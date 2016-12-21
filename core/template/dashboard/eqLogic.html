@@ -263,7 +263,7 @@
 			div.find('.studio-flag').attr('src',Data.StudioFlag);
 			UpdateThumbMenu(div,Data.RatingKey);
 		}
-		function UpdateList(div,Data){
+		function UpdateList(div,Data,select){
 			div.find('#ListeMedia ul').html('');
 			div.find('.jaquette_plex').html('');
 			for (var i in Data) {
@@ -284,9 +284,9 @@
 						.attr('title',Data[i].Title)
 						.hide());
 			}
-			/*if(mediaKey!='')
-				UpdateThumbMenu#uid#($('.plex[data-eqLogic_uid=#uid#]'),div.find('.jaquette_plex .affiche[data-Key='+mediaKey+']'));
-			else*/
+			if(select!='')
+				UpdateThumbMenu(div,select);
+			else
 				UpdateThumbMenu(div,Data[0].RatingKey);
 		}
 		function UpdateThumbMenu(div,RatingKey){
@@ -301,7 +301,7 @@
 			div.find('.petit_titre_plex').text(div.find('.jaquette_plex .affiche[data-RatingKey='+RatingKey+']').attr('data-Tagline'));
 			
 		}
-		function UpdateLibraryElement(div,Key){
+		function UpdateLibraryElement(div,Key,select){
 			$.ajax({
 					type: "POST",
 					timeout:8000, 
@@ -322,7 +322,7 @@
 							return;
 						}
 						if (data.result!=false)
-							UpdateList(div,data.result.Media);
+							UpdateList(div,data.result.Media,select);
 					}
 				});
 		}	
@@ -348,13 +348,13 @@
 					}
 					if (data.result!=false)
 					{	
-						if(div.find('#ListeMedia li').length == 0){
-							UpdateLibraryElement(div,data.result.Library.Key)
-						}
 						div.find('.tab-content').removeClass('active');	
 						switch(data.result.Media.Type){
 							case 'movie':		
 								UpdateDetail(div,data.result.Media);
+								if(div.find('#ListeMedia li').length == 0){
+									UpdateLibraryElement(div,data.result.Library.Key,data.result.Media.RatingKey)
+								}
 								div.find('.Detail').trigger('click');			
 								div.find('.ListeMedia').hide();
 								div.find('.Filtre').hide();
@@ -389,7 +389,7 @@
 									}*/
 								break;
 							case 'album':
-								UpdateList(div,data.result.Media);
+								UpdateList(div,data.result.Media,'');
 								div.find('.ListeMedia').trigger('click');			
 								div.find('.ListeMedia').show();
 								div.find('.Filtre').hide();
@@ -458,7 +458,7 @@
 			$('.plex[data-eqLogic_uid=#uid#] .Playback').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Poster').hide();
-			UpdateLibraryElement($(this).closest('.eqLogic'),$(this).attr('data-Key'));
+			UpdateLibraryElement($(this).closest('.eqLogic'),$(this).attr('data-Key'),'');
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
 			UpdateCmd('media', $(this).attr('data-Key'));
