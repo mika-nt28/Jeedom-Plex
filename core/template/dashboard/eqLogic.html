@@ -298,9 +298,9 @@
 			div.find('.affiche').removeClass("affiche_premiere_plex");
 			div.find('.affiche').removeClass("affiche_next_plex");
 			div.find('.affiche').removeClass("affiche_prev_plex");
-			//div.find('.jaquette_plex .affiche[data-Key='+key+']').addClass("affiche_premiere_plex").show();
-			//div.find('.jaquette_plex .affiche[data-Key='+key+']').next().addClass("affiche_next_plex").show();
-			//div.find('.jaquette_plex .affiche[data-Key='+key+']').prev().addClass("affiche_prev_plex").show();
+			div.find('.jaquette_plex .affiche[data-Key='+key+']').addClass("affiche_premiere_plex").show();
+			div.find('.jaquette_plex .affiche[data-Key='+key+']').next().addClass("affiche_next_plex").show();
+			div.find('.jaquette_plex .affiche[data-Key='+key+']').prev().addClass("affiche_prev_plex").show();
 		}
 		function UpdateInforamtion(div,Key){
 			$.ajax({
@@ -326,7 +326,8 @@
 					{	
 						div.find('.tab-content').removeClass('active');	
 						switch(div.find('.btm-library-plex[data-Key="'+Key+'"]').data('lib_type')){
-							case 'movie':			
+							case 'movie':		
+								alert('movie');
 								div.find('.Detail').trigger('click');			
 								div.find('.ListeMedia').hide();
 								div.find('.Filtre').hide();
@@ -334,11 +335,11 @@
 								div.find('.Playback').show();
 								div.find('.Cast').show();
 								div.find('.Poster').show();
-								UpdateDetail($('.plex[data-eqLogic_uid=#uid#]'),data.result);
+								UpdateDetail(div,data.result);
 								break;
 							case 'show':
 								/*if (Media.Season == '' || typeof(Media.Season) == "undefined"){
-									UpdateList($('.plex[data-eqLogic_uid=#uid#]'),data.result);
+									UpdateList(div,data.result);
 									div.find('.ListeMedia').trigger('click');		
 									div.find('.ListeMedia').show();
 									div.find('.Filtre').hide();
@@ -348,7 +349,7 @@
 									div.find('.Poster').show();
 								}
 								else if (Media.Episode == '' || typeof(Media.Episode) == "undefined"){
-									UpdateList($('.plex[data-eqLogic_uid=#uid#]'),data.result);
+									UpdateList(div,data.result);
 									div.find('.ListeMedia').trigger('click');			
 									div.find('.ListeMedia').show();
 									div.find('.Filtre').hide();
@@ -358,7 +359,7 @@
 									div.find('.Poster').show();
 								}
 								else{
-									UpdateDetail($('.plex[data-eqLogic_uid=#uid#]'),data.result);
+									UpdateDetail(div,data.result);
 									div.find('.Detail').trigger('click');		
 									div.find('.ListeMedia').show();
 									div.find('.Filtre').hide();
@@ -370,7 +371,7 @@
 								break;
 							case 'artist':
 								/*if (Media.Tarck == '' || typeof(Media.Tarck) == "undefined"){
-									UpdateList($('.plex[data-eqLogic_uid=#uid#]'),data.result);
+									UpdateList(div,data.result);
 									div.find('.ListeMedia').trigger('click');			
 									div.find('.ListeMedia').show();
 									div.find('.Filtre').hide();
@@ -380,7 +381,7 @@
 									div.find('.Poster').show();
 									}
 								else{
-									UpdateDetail($('.plex[data-eqLogic_uid=#uid#]'),data.result);
+									UpdateDetail(div,data.result);
 									div.find('.Detail').trigger('click');			
 									div.find('.ListeMedia').hide();
 									div.find('.Filtre').hide();
