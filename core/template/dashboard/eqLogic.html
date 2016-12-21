@@ -270,7 +270,6 @@
 			UpdateThumbMenu(div,Data.Media.RatingKey);
 		}
 		function UpdateList(div,Data){
-			alert(Data.length);
 			div.find('#ListeMedia ul').html('');
 			div.find('.jaquette_plex').html('');
 			for (var i in Data.Media) {
@@ -327,7 +326,7 @@
 					if (data.result!=false)
 					{	
 						div.find('.tab-content').removeClass('active');	
-						switch(div.find('.btm-library-plex[data-Key="'+Key+'"]').data('lib_type')){
+						switch(data.result.Media.Type){
 							case 'movie':		
 								alert('movie');
 								div.find('.Detail').trigger('click');			
@@ -462,10 +461,7 @@
 						return;
 					}
 					if (data.result!=false)
-					{		
-					alert(data.result);
 						UpdateList(div,data.result);
-					}
 				}
 			});
 		});
