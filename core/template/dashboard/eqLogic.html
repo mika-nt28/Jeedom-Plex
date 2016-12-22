@@ -324,7 +324,7 @@
 							$('#div_alert').showAlert({message: data.result, level: 'danger'});
 							return;
 						}
-						if (data.result!=false && typeof(data.result.Media) != "undefined"))
+						if (data.result!=false)
 							UpdateList(div,data.result.Media,select);
 					}
 				});
@@ -349,7 +349,7 @@
 						$('#div_alert').showAlert({message: data.result, level: 'danger'});
 						return;
 					}
-					if (data.result!=false){	
+					if (data.result!=false && typeof(data.result.Media) != "undefined"){	
 						div.find('.tab-content').removeClass('active');	
 						if(Array.isArray(data.result.Media)){
 							UpdateList(div,data.result.Media,'');
