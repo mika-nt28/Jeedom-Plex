@@ -1,4 +1,4 @@
-Nous allons nous rendre sur la page de parametrage des client plex Plugins > Multimedia > Plex
+We're going on the plex setting page : Plugins > Multimedia > Plex
 Arriver sur cette page nous allons pouvoir acceder a nos clients deja configurer, ou en ajouter un.
 
 image::../images/plex_screenshot_configuration1.jpg[]
