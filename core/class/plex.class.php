@@ -180,8 +180,15 @@ class plex extends eqLogic {
 						}
 					break;
 					case 'show':
-						$reponse = $section->getShow($param['Key']);
-						//$reponse = $show->getSeasons();
+						if(stripos($param['Key'],'children') === FALSE)
+							$reponse=$section->getTrack($param['Key']);
+						else{
+							$shows=$section->getAllShows();
+							foreach ($shows as $show) {
+								if($show->getKey() == $param['Key'])
+									$reponse=$show->getSeasons();
+							}
+						}
 					break;
 				}	
 			break;
