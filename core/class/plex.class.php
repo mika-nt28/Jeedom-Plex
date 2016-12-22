@@ -191,7 +191,7 @@ class plex extends eqLogic {
 						}
 					break;
 					case 'season':
-							$Seasons=$show->getSeason($param['Key']);
+							$Seasons=$section->getSeason($param['Key']);
 							$reponse=$Season->getEpisodes();
 					break;
 				}	
