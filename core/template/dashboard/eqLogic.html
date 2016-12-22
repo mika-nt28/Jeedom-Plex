@@ -324,7 +324,7 @@
 							$('#div_alert').showAlert({message: data.result, level: 'danger'});
 							return;
 						}
-						if (data.result!=false)
+						if (data.result!=false && typeof(data.result.Media) != "undefined"))
 							UpdateList(div,data.result.Media,select);
 					}
 				});
