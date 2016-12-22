@@ -153,10 +153,10 @@ class plex extends eqLogic {
 			break;
 			case 'ByKey':	
 				$reponse=null;
-				if($param['Type'] =='')
+				/*if($param['Type'] =='')
 					$Type=$section->getType();
 				else
-					$Type=$param['Type'];
+					$Type=$param['Type'];*/
 				switch($param['Type'])
 				{
 					case 'movie':
@@ -191,15 +191,8 @@ class plex extends eqLogic {
 						}
 					break;
 					case 'season':
-						if(stripos($param['Key'],'children') === FALSE)
-							$reponse=$section->getEpisode($param['Key']);
-						else{
-							$Seasons=$section->getSeasons();
-							foreach ($Seasons as $Season) {
-								if($Season->getKey() == $param['Key'])
-									$reponse=$Season->getEpisodes();
-							}
-						}
+							$Seasons=$show->getSeason($param['Key']);
+							$reponse=$Season->getEpisodes();
 					break;
 				}	
 			break;
