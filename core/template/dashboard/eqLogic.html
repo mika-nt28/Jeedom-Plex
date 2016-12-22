@@ -329,7 +329,7 @@
 					}
 				});
 		}	
-		function UpdateInforamtion(div,Key){
+		function UpdateInforamtion(div,Key,Type){
 			$.ajax({
 				type: "POST",
 				timeout:8000, 
@@ -338,7 +338,7 @@
 					Id:'#id#',
 					action: "SearchMedia",
 					Filtre: 'ByKey',
-					param:JSON.stringify({'Key':Key})
+					param:JSON.stringify({'Key':Key,'Type':Type})
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
@@ -414,7 +414,7 @@
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
 			UpdateThumbMenu($(this).closest('.eqLogic'),$(this).attr('data-RatingKey'));
 			UpdateCmd('media', $(this).attr('data-Key'));
-			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'));
+			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'),$(this).attr('data-type_media'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-library-plex", function() {				
 			$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
@@ -428,7 +428,7 @@
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
 			UpdateCmd('media', $(this).attr('data-Key'));
-			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'));
+			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'),$(this).attr('data-type_media'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexGroupFiltre', function() {		
 			$('.bt_PlexGroupFiltre').removeClass('btn-primary');
