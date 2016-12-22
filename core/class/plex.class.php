@@ -153,7 +153,11 @@ class plex extends eqLogic {
 			break;
 			case 'ByKey':	
 				$reponse=null;
-				switch($section->getType())
+				if($param['Type'] =='')
+					$Type=$section->getType();
+				else
+					$Type=$param['Type'];
+				switch($Type)
 				{
 					case 'movie':
 						$reponse=$section->getMovie($param['Key']);
@@ -176,6 +180,15 @@ class plex extends eqLogic {
 						}
 					break;
 					case 'show':
+						if(stripos($param['Key'],'children') === FALSE)
+							$reponse=$section->getTrack($param['Key']);
+						else{
+							$Albums=$section->getAllAlbums();
+							foreach ($Albums as $Album) {
+								if($Album->getKey() == $param['Key'])
+									$reponse=$Album->getTracks();
+							}
+						}
 						//$section->getShow($param['Key']);
 						//$show->getSeason($param['Key']);
 						//$Season->getEpisode($param['Key']);
