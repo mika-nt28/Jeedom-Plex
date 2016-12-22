@@ -181,12 +181,23 @@ class plex extends eqLogic {
 					break;
 					case 'show':
 						if(stripos($param['Key'],'children') === FALSE)
-							$reponse=$section->getTrack($param['Key']);
+							$reponse=$section->getShow($param['Key']);
 						else{
-							$shows=$section->getAllShows();
-							foreach ($shows as $show) {
-								if($show->getKey() == $param['Key'])
-									$reponse=$show->getSeasons();
+							$Shows=$section->getAllShows();
+							foreach ($Shows as $Show) {
+								if($Show->getKey() == $param['Key'])
+									$reponse=$Show->getSeasons();
+							}
+						}
+					break;
+					case 'season':
+						if(stripos($param['Key'],'children') === FALSE)
+							$reponse=$section->getEpisode($param['Key']);
+						else{
+							$Seasons=$section->getSeasons();
+							foreach ($Seasons as $Season) {
+								if($Season->getKey() == $param['Key'])
+									$reponse=$Season->getEpisodes();
 							}
 						}
 					break;
