@@ -157,7 +157,7 @@ class plex extends eqLogic {
 					$Type=$section->getType();
 				else
 					$Type=$param['Type'];
-				switch($Type)
+				switch($param['Type'])
 				{
 					case 'movie':
 						$reponse=$section->getMovie($param['Key']);
