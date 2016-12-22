@@ -180,8 +180,8 @@ class plex extends eqLogic {
 						}
 					break;
 					case 'show':
-						$show = $section->getShow($param['Key']);
-						$reponse = $show->getSeasons();
+						$reponse = $section->getShow($param['Key']);
+						//$reponse = $show->getSeasons();
 					break;
 				}	
 			break;
