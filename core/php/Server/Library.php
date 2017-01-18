@@ -42,8 +42,7 @@ class Plex_Server_Library extends Plex_Server
 		
 		$items = array();
 		$itemArray = $this->makeCall(sprintf('%s%s',$this->getBaseUrl(),$key));
-		
-		foreach ($itemArray['Video'] as $attribute) {
+		foreach ($itemArray/*['Video']*/ as $attribute) {
 			log::add('plex','debug',json_encode($attribute));
 			if (isset($attribute['type'])) {
 				$item = Plex_Server_Library_ItemAbstract::factory(
