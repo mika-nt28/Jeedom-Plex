@@ -41,7 +41,7 @@ class Plex_Server_Library extends Plex_Server
 		//$media=$this->getItems($endpoint);
 		
 		$items = array();
-		$itemArray = $this->makeCall($key);
+		$itemArray = $this->makeCall(sprintf('%s/%s',$this->getBaseUrl(),$key));
 		
 		foreach ($itemArray['Video'] as $attribute) {
 			log::add('plex','debug',json_encode($attribute));
