@@ -39,7 +39,6 @@ class Plex_Server_Library extends Plex_Server
 	{
 		$key = str_replace('/library/', '/', $key);
 		$items=$this->getItems($key);
-		log::add('plex','debug',json_encode($items));
 		return $items;
 	}
 	public function getSectionByMediaKey($endpoint)
@@ -64,7 +63,6 @@ class Plex_Server_Library extends Plex_Server
 			// case we skip it by checking the integrity of the 'type' index. 
 			// If there is no type index then it is not an item.
 			if (isset($attribute['type'])) {
-				log::add('plex','debug',json_encode($attribute));
 				$item = Plex_Server_Library_ItemAbstract::factory(
 					$attribute['type'],
 					$this->name,
@@ -72,6 +70,8 @@ class Plex_Server_Library extends Plex_Server
 					$this->port
 				);
 				$item->setAttributes($attribute);
+				
+				log::add('plex','debug',json_encode($item));
 				$items[] = $item;
 			}
 		}
