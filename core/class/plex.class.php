@@ -532,9 +532,12 @@ class plex extends eqLogic {
 					$return['Media'][]=self::ListMedia($media);
 				}
 			}else{
-				$return['Media']=self::ListMedia($reponse[0]);
-				//$param['Key']=$reponse[0]->getParentKey();
-				//$return['Parent']=$this->getMedia(null,$param['Key'])['Media'];
+				$media=$reponse[0];
+				$return['Media']=self::ListMedia($media);
+				if(method_exists($media,'getParentKey')){
+					$param['Key']=$media->getParentKey();
+					//$return['Parent']=$this->getMedia(null,$param['Key'])['Media'];
+				}
 			}
 		}
 		return $return;
