@@ -536,7 +536,8 @@ class plex extends eqLogic {
 				$return['Media']=self::ListMedia($media);
 				if(method_exists($media,'getParentKey')){
 					$param['Key']=$media->getParentKey();
-					//$return['Parent']=$this->getMedia(null,$param['Key'])['Media'];
+					$Parent=$this->getMedia(null,$param['Key']);
+					$return['Parent']=$Parent['Media'];
 				}
 			}
 		}
