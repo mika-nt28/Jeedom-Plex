@@ -454,8 +454,8 @@ class plex extends eqLogic {
 			$return['Tagline']=$media->getTagline();
 		if(method_exists($media,'getRatingKey'))
 			$return['RatingKey']=$media->getRatingKey();
-		//if(method_exists($media,'getThumb'))
-			//$return['StudioFlag']=$media->getThumb();
+		if(method_exists($media,'studio'))
+			$return['StudioFlag']=$media->getStudio();
 		//if(method_exists($media,'getThumb'))
 			//$return['Audio']=$media->getThumb();
 		//if(method_exists($media,'getThumb'))
@@ -474,6 +474,7 @@ class plex extends eqLogic {
 			$return['UpdatedAt']=$media->getUpdatedAt();
 		if(method_exists($media,'getArtist'))
 			$return['Artist']=$media->getArtist();
+		if(method_exists($media,'getGenre'))
 			$return['Genre']=array('Name'=>'','Href'=>'');
 		return $return;
 	}
@@ -523,7 +524,6 @@ class plex extends eqLogic {
 			$reponse=self::filterMedia($section, $Filtre,$param);
 		}else
 			$reponse=self::$_server->getLibrary()->byMediaKey($param['Key']);
-			//$section=self::$_server->getLibrary()->getSectionByMediaKey($param['Key']);
 		$return =array();
 		if($reponse != null){
 			if(count($reponse)>1){
@@ -531,11 +531,12 @@ class plex extends eqLogic {
 				{
 					$return['Media'][]=self::ListMedia($media);
 				}
-			}
-			else
+			}else{
 				$return['Media']=self::ListMedia($reponse[0]);
+				$param['Key']=$reponse[0]->getParentKey();
+				$return['Parent']=self::getMedia(null,$param['Key']);
+			}
 		}
-		$return['Library']='';//self::LibraryInforamtion($section);
 		return $return;
 	}
 	
