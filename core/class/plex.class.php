@@ -533,8 +533,8 @@ class plex extends eqLogic {
 				}
 			}else{
 				$return['Media']=self::ListMedia($reponse[0]);
-				$param['Key']=$reponse[0]->getParentKey();
-				$return['Parent']=$this->getMedia(null,$param['Key'])['Media'];
+				//$param['Key']=$reponse[0]->getParentKey();
+				//$return['Parent']=$this->getMedia(null,$param['Key'])['Media'];
 			}
 		}
 		return $return;
