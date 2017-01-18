@@ -70,8 +70,6 @@ class Plex_Server_Library extends Plex_Server
 					$this->port
 				);
 				$item->setAttributes($attribute);
-				
-				log::add('plex','debug',json_encode($item));
 				$items[] = $item;
 			}
 		}
