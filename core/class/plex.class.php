@@ -526,14 +526,14 @@ class plex extends eqLogic {
 			//$section=self::$_server->getLibrary()->getSectionByMediaKey($param['Key']);
 		$return =array();
 		if($reponse != null){
-			if(count($reponse)>1){
+			//if(count($reponse)>1){
 				foreach($reponse as $media)
 				{
 					$return['Media'][]=self::ListMedia($media);
 				}
-			}
-			else
-				$return['Media']=self::ListMedia($reponse);
+			//}
+			//else
+				//$return['Media']=self::ListMedia($reponse);
 		}
 		$return['Library']='';//self::LibraryInforamtion($section);
 		return $return;
