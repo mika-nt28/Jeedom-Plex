@@ -35,11 +35,28 @@ class Plex_Server_Library extends Plex_Server
 		
 		return $url;
 	}
-	public function byMediaKey($endpoint)
+	public function byMediaKey($key)
 	{
-		$endpoint = str_replace('/library/', '/', $endpoint);
-		$media=$this->getItems($endpoint);
-		return $media;
+		//$endpoint = str_replace('/library/', '/', $endpoint);
+		//$media=$this->getItems($endpoint);
+		
+		$items = array();
+		$itemArray = $this->makeCall($key);
+		
+		foreach ($itemArray['Video'] as $attribute) {
+			log::add('plex','debug',json_encode($attribute));
+			if (isset($attribute['type'])) {
+				$item = Plex_Server_Library_ItemAbstract::factory(
+					$attribute['type'],
+					$this->name,
+					$this->address,
+					$this->port
+				);
+				$item->setAttributes($attribute);
+				$items[] = $item;
+			}
+		}
+		return $items;
 	}
 	public function getSectionByMediaKey($endpoint)
 	{
