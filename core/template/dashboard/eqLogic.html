@@ -360,6 +360,7 @@
 							div.find('.Cast').hide();
 						}else{
 							UpdateDetail(div,data.result.Media);
+							UpdateList(div,data.result.Parent,'');
 							div.find('.Detail').trigger('click');
 							div.find('.Filtre').hide();
 							div.find('.Detail').show();
@@ -369,7 +370,7 @@
 						switch(data.result.Media.Type){
 							case 'movie':		
 								if(div.find('#ListeMedia li').length == 0){
-									UpdateLibraryElement(div,data.result.Library.Key,data.result.Media.RatingKey)
+								//	UpdateLibraryElement(div,data.result.Library.Key,data.result.Media.RatingKey)
 								}
 							break;
 							case 'show':
