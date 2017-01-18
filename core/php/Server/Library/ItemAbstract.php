@@ -7,6 +7,8 @@ abstract class Plex_Server_Library_ItemAbstract
 	protected $librarySectionId;
 	protected $viewGroup;
 	protected $ratingKey;
+	protected $grandparentKey;
+	protected $parentKey;
 	protected $key;
 	protected $type;
 	protected $title;
@@ -31,6 +33,12 @@ abstract class Plex_Server_Library_ItemAbstract
 		}
 		if (isset($attribute['viewGroup'])) {
 			$this->setViewGroup($attribute['viewGroup']);
+		}
+		if (isset($attribute['parentKey'])) {
+			$this->setParentKey($attribute['parentKey']);
+		}
+		if (isset($attribute['grandparentKey'])) {
+			$this->setGrandParentKey($attribute['grandparentKey']);
 		}
 		if (isset($attribute['ratingKey'])) {
 			$this->setRatingKey($attribute['ratingKey']);
@@ -152,6 +160,22 @@ abstract class Plex_Server_Library_ItemAbstract
 	public function setLibrarySectionId($librarySectionId)
 	{
 		$this->librarySectionId = (int) $librarySectionId;
+	}
+	public function getGrandParentKey()
+	{
+		return (int) $this->grandparentKey;
+	}
+	public function setGrandParentKey($grandparentKey)
+	{
+		$this->grandparentKey = (int) $grandparentKey;
+	}
+	public function getParentKey()
+	{
+		return (int) $this->parentKey;
+	}
+	public function setParentKey($parentKey)
+	{
+		$this->parentKey = (int) $parentKey;
 	}
 	public function getRatingKey()
 	{
