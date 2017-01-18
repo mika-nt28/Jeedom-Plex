@@ -535,7 +535,7 @@ class plex extends eqLogic {
 			else
 				$return['Media']=self::ListMedia($reponse);
 		}
-		$return['Library']=self::LibraryInforamtion($section);
+		$return['Library']='';//self::LibraryInforamtion($section);
 		return $return;
 	}
 	
