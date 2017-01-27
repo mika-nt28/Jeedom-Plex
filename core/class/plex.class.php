@@ -47,10 +47,6 @@ class plex extends eqLogic {
 						}
 					}
 				}
-				if(!$this->_onlyState){
-					$MediaOffset=$this->getCmd(null,'viewOffset');
-					$MediaOffset->execute();
-				}
 			}
 		}
 	}
