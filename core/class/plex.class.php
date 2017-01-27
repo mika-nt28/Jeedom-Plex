@@ -574,7 +574,6 @@ class plex extends eqLogic {
 			'#volume_id#' => is_object($this->getCmd(null, 'setVolume'))?$this->getCmd(null, 'setVolume')->getId():'',
 			'#viewOffset#' => $this->getCmd(null, 'viewOffset')->toHtml($_version),
 			'#getDuration#' => $this->getCmd(null, 'getDuration')->toHtml($_version),
-			'#skipNext#' => is_object($this->getCmd(null, 'skipNext'))?$this->getCmd(null, 'skipNext')->execCmd():'',
 		);
 		//ACTION
 		foreach ($this->getCmd('action') as $cmd) {
