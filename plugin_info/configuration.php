@@ -37,7 +37,7 @@ if (!isConnect()) {
 		<div class="form-group">
 			<label class="col-lg-2 control-label">{{IP}}</label>
 			<div class="col-lg-2">
-				<input type="text" class="configKey form-control" data-l1key="addr" placeholder="{{Adresse ou IP de plex (sans http://) sans le port}}"/>
+				<input type="text" class="configKey form-control" data-l1key="addr" placeholder="{{Adresse ou IP de plex}}"/>
 			</div>
 			<label class="col-lg-1 control-label">{{Port}}</label>
 			<div class="col-lg-2">
