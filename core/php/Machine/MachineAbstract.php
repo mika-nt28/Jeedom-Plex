@@ -7,7 +7,7 @@ abstract class Plex_MachineAbstract implements Plex_MachineInterface
 	protected function getBaseUrl()
 	{	
 		$http="";
-		if(strrpos($this->address,"http")<=0)
+		if(strrpos($this->address,"http")=== false)
 			$http="http://";
 		return sprintf(
 			'%s%s:%s',
