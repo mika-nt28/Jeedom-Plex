@@ -79,7 +79,7 @@ abstract class Plex_MachineAbstract implements Plex_MachineInterface
 		curl_setopt($ch, CURLOPT_HEADER, FALSE);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false)
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 		//curl_setopt($ch, CURLOPT_TIMEOUT, 1000);
 		
 		$response = curl_exec($ch);
