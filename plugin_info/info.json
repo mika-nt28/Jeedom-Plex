@@ -1,0 +1,10 @@
+{
+	"id" : "plex",
+	"name" : "Plex",
+	"description" : "Plugin permetant de controler certain client Plex (Actuellement testé RasPlex, et Plex Home Theater)",
+	"licence" : "AGPL",
+	"author" : "Halbout Michael",
+	"require" : "3.0",
+	"category" : "multimedia",
+	"hasOwnDeamon" : true,
+}
