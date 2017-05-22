@@ -1,0 +1,9 @@
+{
+	"id" : "plex",
+	"name" : "Plex",
+	"licence" : "AGPL",
+	"author" : "Halbout Michael",
+	"require" : "3.0",
+	"category" : "multimedia",
+	"hasOwnDeamon" : true,
+}
