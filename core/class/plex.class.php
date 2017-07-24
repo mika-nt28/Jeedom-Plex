@@ -497,9 +497,11 @@ class plex extends eqLogic {
 		}
 		if(!is_object($this->_client)){
 			$this->_client=self::$_plex->getClient($this->getLogicalId());
-			if(is_object($this->_client))
+			if(is_object($this->_client)){
+				if($this->getConfiguration('HostUpdate') !="")
+					$this->_client->setHost($this->getConfiguration('HostUpdate'));
 				$this->_onlyState=$this->_client->getOnlyState();
-			else
+			}else
 				log::add('plex','debug','Impossible de trouver le client '.$this->getLogicalId());
 		}
 	}	
