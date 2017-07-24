@@ -629,7 +629,6 @@ class plex extends eqLogic {
         	return template_replace($replace, getTemplate('core', $_version, 'eqLogic', 'plex'));
 	}  
 }
-
 class plexCmd extends cmd {
      public function execute($_options = null) {
 		$response='';
