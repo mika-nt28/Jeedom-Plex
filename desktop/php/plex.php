@@ -109,6 +109,12 @@ $eqLogics = eqLogic::byType('plex');
 						?>
                     </div>
                 </div>
+                <div class="form-group expertModeVisible">
+					<label class="col-lg-1 control-label">{{Modifier son address}}</label>
+                    <div class="col-lg-2">
+                        <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="HostUpdate" placeholder="{{Modifier son address}}"/>
+                    </div>
+                </div>
                 <div class="form-group">
 					<label class="col-lg-1 control-label">{{Volume +/-}}</label>
                     <div class="col-lg-2">

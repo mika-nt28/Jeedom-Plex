@@ -27,24 +27,37 @@ class plex extends eqLogic {
 			$this->ConnexionsPlex();
 			if(isset($this->_client)&&is_object($this->_client)){
 				$server=self::$_plex->getServer(config::byKey('name', 'plex'));
+				$session=$server->getActiveSession();
 				$PlayerSate=$this->getCmd(null,'state');
 				if(is_object($PlayerSate)){
-					$State=$server->getPlayerSessions(array($this->getLogicalId()));
-					/*$session=$server->getActiveSession();
-					$State=$session->getPlayer(array($this->getLogicalId()));*/
+					$State=$session->getPlayer(array($this->getLogicalId()));
 					log::add('plex','debug','Etat du player : '.$State);
 					$PlayerSate->setCollectDate(date('Y-m-d H:i:s'));
-					$PlayerSate->setConfiguration('doNotRepeatEvent', 1);
 					$PlayerSate->event($State);
 					$PlayerSate->save();
-					if($State){
+					$ItemsSession=$session->getItems();
+					if (count($ItemsSession)>0){
 						$PlayerTypeMedia=$this->getCmd(null,'type');
 						if(is_object($PlayerTypeMedia)){
 							$PlayerTypeMedia->setCollectDate(date('Y-m-d H:i:s'));
-							$PlayerTypeMedia->setConfiguration('doNotRepeatEvent', 1);
-							$PlayerTypeMedia->event('Type du media en cours');
+							$PlayerTypeMedia->event($ItemsSession[0]->getType());
 							$PlayerTypeMedia->save();
 						}
+						log::add('plex','debug','Type de media : '.$ItemsSession[0]->getType());
+						$PlayerMedia=$this->getCmd(null,'Media');
+						if(is_object($PlayerMedia)){
+							$PlayerMedia->setCollectDate(date('Y-m-d H:i:s'));
+							$PlayerMedia->event($ItemsSession[0]->getKey());
+							$PlayerMedia->save();
+						}
+						log::add('plex','debug','Titre de media : '.$ItemsSession[0]->getTitle());
+						$PlayerMediaViewOffset=$this->getCmd(null,'viewOffset');
+						if(is_object($PlayerMediaViewOffset)){
+							$PlayerMediaViewOffset->setCollectDate(date('Y-m-d H:i:s'));
+							$PlayerMediaViewOffset->event($ItemsSession[0]->getViewOffset());
+							$PlayerMediaViewOffset->save();
+						}
+						log::add('plex','debug','Temps de lecture : '.$ItemsSession[0]->getViewOffset());
 					}
 				}
 			}
@@ -136,6 +149,51 @@ class plex extends eqLogic {
 					case 'artist':
 						$reponse=$section->getAllAlbums();
 						break;
+				}	
+			break;
+			case 'ByKey':	
+				$reponse=null;
+				/*if($param['Type'] =='')
+					$Type=$section->getType();
+				else
+					$Type=$param['Type'];*/
+				switch($param['Type'])
+				{
+					case 'movie':
+						$reponse=$section->getMovie($param['Key']);
+					break;
+					case 'track':
+						$reponse=$section->getTrack($param['Key']);
+					break;
+					case 'album':
+						$reponse=$section->getTrack($param['Key']);
+					break;
+					case 'artist':
+						if(stripos($param['Key'],'children') === FALSE)
+							$reponse=$section->getTrack($param['Key']);
+						else{
+							$Albums=$section->getAllAlbums();
+							foreach ($Albums as $Album) {
+								if($Album->getKey() == $param['Key'])
+									$reponse=$Album->getTracks();
+							}
+						}
+					break;
+					case 'show':
+						if(stripos($param['Key'],'children') === FALSE)
+							$reponse=$section->getShow($param['Key']);
+						else{
+							$Shows=$section->getAllShows();
+							foreach ($Shows as $Show) {
+								if($Show->getKey() == $param['Key'])
+									$reponse=$Show->getSeasons();
+							}
+						}
+					break;
+					case 'season':
+							$Seasons=$section->getSeason($param['Key']);
+							$reponse=$Season->getEpisodes();
+					break;
 				}	
 			break;
 			case 'Unwatched':		
@@ -396,8 +454,8 @@ class plex extends eqLogic {
 			$return['Tagline']=$media->getTagline();
 		if(method_exists($media,'getRatingKey'))
 			$return['RatingKey']=$media->getRatingKey();
-		//if(method_exists($media,'getThumb'))
-			//$return['StudioFlag']=$media->getThumb();
+		if(method_exists($media,'studio'))
+			$return['StudioFlag']=$media->getStudio();
 		//if(method_exists($media,'getThumb'))
 			//$return['Audio']=$media->getThumb();
 		//if(method_exists($media,'getThumb'))
@@ -416,6 +474,7 @@ class plex extends eqLogic {
 			$return['UpdatedAt']=$media->getUpdatedAt();
 		if(method_exists($media,'getArtist'))
 			$return['Artist']=$media->getArtist();
+		if(method_exists($media,'getGenre'))
 			$return['Genre']=array('Name'=>'','Href'=>'');
 		return $return;
 	}
@@ -438,9 +497,11 @@ class plex extends eqLogic {
 		}
 		if(!is_object($this->_client)){
 			$this->_client=self::$_plex->getClient($this->getLogicalId());
-			if(is_object($this->_client))
+			if(is_object($this->_client)){
+				if($this->getConfiguration('HostUpdate') !="")
+					$this->_client->setHost($this->getConfiguration('HostUpdate'));
 				$this->_onlyState=$this->_client->getOnlyState();
-			else
+			}else
 				log::add('plex','debug','Impossible de trouver le client '.$this->getLogicalId());
 		}
 	}	
@@ -459,9 +520,12 @@ class plex extends eqLogic {
 	}
 	public function getMedia($Filtre=null,$param=''){
 		$param=json_decode($param, true);
-		$this->ConnexionsPlex();	
-		$section=self::$_server->getLibrary()->getSection($param['Library']);
-		$reponse=self::filterMedia($section, $Filtre,$param);
+		$this->ConnexionsPlex();
+		if(stripos($param['Key'],'library') === FALSE){
+			$section=self::$_server->getLibrary()->getSectionByKey($param['Key']);
+			$reponse=self::filterMedia($section, $Filtre,$param);
+		}else
+			$reponse=self::$_server->getLibrary()->byMediaKey($param['Key']);
 		$return =array();
 		if($reponse != null){
 			if(count($reponse)>1){
@@ -469,11 +533,18 @@ class plex extends eqLogic {
 				{
 					$return['Media'][]=self::ListMedia($media);
 				}
+			}else{
+				$media=$reponse[0];
+				$return['Media']=self::ListMedia($media);
+				$param['Key']=$media->getParentKey();
+				if($param['Key']==''){
+					$param['Key']=$media->getLibrarySectionId();
+				}
+				$Parent=$this->getMedia(null,json_encode($param));
+				$return['Parent']=$Parent['Media'];
+				
 			}
-			else
-				$return['Media']=self::ListMedia($reponse);
 		}
-		$return['Library']=self::LibraryInforamtion($section);
 		return $return;
 	}
 	
@@ -540,59 +611,22 @@ class plex extends eqLogic {
 			}
 		}
     	}	
+	
 	public function toHtml($_version = 'dashboard') {
-		if ($this->getIsEnable() != 1) {
-			return '';
-		}
-		if (!$this->hasRight('r')) {
-			return '';
-		}
+		$replace = $this->preToHtml($_version);
+		if (!is_array($replace)) 
+			return $replace;
 		$version = jeedom::versionAlias($_version);
-		if ($this->getDisplay('hideOn' . $version) == 1) {
+		if ($this->getDisplay('hideOn' . $version) == 1) 
 			return '';
-		}
-	/*	$mc = cache::byKey('plexWidget' . jeedom::versionAlias($_version) . $this->getId());
-		if ($mc->getValue() != '') {
-			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
-		}*/
-		$EtatPlayer=is_object($this->getCmd(null, 'state'))?$this->getCmd(null, 'state')->execCmd():0;
-		if($EtatPlayer=='')
-			$EtatPlayer=0;
-		$Media=is_object($this->getCmd(null, 'media'))?str_replace("'","\'",$this->getCmd(null, 'media')->execCmd()):'{}';
-		if($Media=='')
-			$Media='{}';		
-		$replace = array(
-			'#id#' => $this->getId(),
-			'#name#' => ($this->getIsEnable()) ? $this->getName() : '<del>' . $this->getName() . '</del>',
-			'#eqLink#' => $this->getLinkToConfiguration(),
-			'#uid#' => 'plex' . $this->getId()/* . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER*/,
-			'#action#' => (isset($action)) ? $action : '',
-			'#background#' => ($this->getConfiguration('has_image_fond')) ? 'background-color: #000000; background-image: url(plugins/plex/core/template/dashboard/plex.png); background-repeat: no-repeat; background-position: center 0px;background-size: contain;#style#' : 'background-color:'.($this->getBackgroundColor($_version)).';#style#\'',
-			'#media#' =>$Media,
-			'#state#' => $EtatPlayer,
-			'#volume#' => is_object($this->getCmd(null, 'volume'))?$this->getCmd(null, 'volume')->execCmd():0,
-			'#volume_id#' => is_object($this->getCmd(null, 'setVolume'))?$this->getCmd(null, 'setVolume')->getId():'',
-			'#viewOffset#' => $this->getCmd(null, 'viewOffset')->toHtml($_version),
-			'#getDuration#' => $this->getCmd(null, 'getDuration')->toHtml($_version),
-		);
-		//ACTION
-		foreach ($this->getCmd('action') as $cmd) {
-			if ($cmd->getIsVisible()) {
+		foreach ($this->getCmd() as $cmd) {
+			if ($cmd->getIsVisible())
 				$replace['#'. $cmd->getLogicalId() . '#'] = $cmd->toHtml($_version);
-			} else {
+			else 
 				$replace['#' . $cmd->getLogicalId() . '#'] = '';
-			}
+			
 		}
-		$parameters = $this->getDisplay('parameters');
-        if (is_array($parameters)) {
-            foreach ($parameters as $key => $value) {    
-		log::add('plex','debug','Received : ' .$value . ' from ' .$key);
-                $replace['#' . $key . '#'] = $value;
-            }
-        }
-        $html = template_replace($replace, getTemplate('core', $_version, 'eqLogic', 'plex'));
-        cache::set('plexWidget' . $_version . $this->getId(), $html, 0);
-        return $html;
+        	return template_replace($replace, getTemplate('core', $_version, 'eqLogic', 'plex'));
 	}  
 }
 class plexCmd extends cmd {
@@ -703,10 +737,11 @@ class plexCmd extends cmd {
 				break;
 				case 'Application':
 					$application = $client->getApplicationController();
-					//$navigation = $client->getNavigationController();		
-					$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
-					$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
-					$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
+					$navigation = $client->getNavigationController();		
+					//$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
+					//$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
+					//$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
+					$media= plex::getMedia(null,json_encode(array("key" => $this->getEqLogic()->getCmd(null,'media')->execCmd())));
 					switch ($this->getConfiguration('commande'))
 					{
 						case 'viewOffset':
@@ -732,7 +767,7 @@ class plexCmd extends cmd {
 							// Set voume to half
 							if(method_exists($application,'setVolume'))
 								$response=$application->setVolume($Value);
-							//$navigation->toggleOSD();
+							$navigation->toggleOSD();
 						break;
 					}
 				break;

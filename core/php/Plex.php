@@ -11,6 +11,7 @@ require_once(sprintf('%s/Machine/MachineInterface.php', $phpPlexDir));
 require_once(sprintf('%s/Machine/MachineAbstract.php', $phpPlexDir));
 // Server
 require_once(sprintf('%s/Server.php', $phpPlexDir));
+require_once(sprintf('%s/Server/Session.php', $phpPlexDir));
 require_once(sprintf('%s/Server/Library.php', $phpPlexDir));
 require_once(sprintf('%s/Server/Library/SectionAbstract.php', $phpPlexDir));
 require_once(sprintf('%s/Server/Library/Section/Movie.php', $phpPlexDir));

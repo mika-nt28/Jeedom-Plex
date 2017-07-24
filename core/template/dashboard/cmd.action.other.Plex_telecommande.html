@@ -46,14 +46,20 @@
 		case 'stepForward':
 			$('.iconCmd#id#').append($('<img class="avance_droite cmd noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/advance.png" title="Avance rapide" />'));
 		break;
-		case 'playMedia':
+		case 'playMedia': 
+		case 'play': 
 			$('.iconCmd#id#').append($('<img class="play_in_cercle noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/play1.png" title="Lecture"/>'));
-		break;
-		case 'play':
-			$('.iconCmd#id#').append($('<img class="play_in_cercle noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/play1.png" title="Lecture"/>'));
+			if ("#state#" == "1") 
+				$('.iconCmd#id#').hide();
+			else
+				$('.iconCmd#id#').show();
 		break;
 		case 'pause':
 			$('.iconCmd#id#').append($('<img class="pause_in_cercle cmd noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/pause.png" title="Pause" />'));
+			if ("#state#" == "1") 
+				$('.iconCmd#id#').show();
+			else
+				$('.iconCmd#id#').hide();
 		break;
 		case 'stop':
 			$('.iconCmd#id#').append($('<div class="stop_plex_widget cmd noRefresh tooltips" title="Stop">'));
@@ -64,5 +70,6 @@
 		case 'stop':
 		break;
 	}
+	   
 	</script>
 </span>
