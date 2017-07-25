@@ -37,26 +37,11 @@ class plex extends eqLogic {
 					$PlayerSate->save();
 					$ItemsSession=$session->getItems();
 					if (count($ItemsSession)>0){
-						$PlayerTypeMedia=$this->getCmd(null,'type');
-						if(is_object($PlayerTypeMedia)){
-							$PlayerTypeMedia->setCollectDate(date('Y-m-d H:i:s'));
-							$PlayerTypeMedia->event($ItemsSession[0]->getType());
-							$PlayerTypeMedia->save();
-						}
+						$this->checkAndUpdateCmd('type',$ItemsSession[0]->getType());
 						log::add('plex','debug','Type de media : '.$ItemsSession[0]->getType());
-						$PlayerMedia=$this->getCmd(null,'Media');
-						if(is_object($PlayerMedia)){
-							$PlayerMedia->setCollectDate(date('Y-m-d H:i:s'));
-							$PlayerMedia->event($ItemsSession[0]->getKey());
-							$PlayerMedia->save();
-						}
+						$this->checkAndUpdateCmd('media',$ItemsSession[0]->getKey());
 						log::add('plex','debug','Titre de media : '.$ItemsSession[0]->getTitle());
-						$PlayerMediaViewOffset=$this->getCmd(null,'viewOffset');
-						if(is_object($PlayerMediaViewOffset)){
-							$PlayerMediaViewOffset->setCollectDate(date('Y-m-d H:i:s'));
-							$PlayerMediaViewOffset->event($ItemsSession[0]->getViewOffset());
-							$PlayerMediaViewOffset->save();
-						}
+						$this->checkAndUpdateCmd('viewOffset',$ItemsSession[0]->getViewOffset());
 						log::add('plex','debug','Temps de lecture : '.$ItemsSession[0]->getViewOffset());
 					}
 				}
@@ -738,12 +723,14 @@ class plexCmd extends cmd {
 				case 'Application':
 					$application = $client->getApplicationController();
 					$navigation = $client->getNavigationController();		
-					//$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
-					//$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
-					//$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
-					$media= plex::getMedia(null,json_encode(array("key" => $this->getEqLogic()->getCmd(null,'media')->execCmd())));
-					switch ($this->getConfiguration('commande'))
-					{
+					$mediaObject=$this->getEqLogic()->getCmd('info','media');
+					if(is_object($mediaObject)){
+						$param['Key']=$mediaObject->execCmd();
+						$section=plex::$_server->getLibrary()->getSectionByMediaKey($param['Key']);
+						$media=plex::filterMedia($section, $Filtre,$param);
+						//$media=$this->getEqLogic()->getMedia('ByKey',json_encode($param));
+					}
+					switch ($this->getLogicalId())	{
 						case 'viewOffset':
 							$response=0;
 							if(method_exists($media,'getViewOffset'))
@@ -752,16 +739,17 @@ class plexCmd extends cmd {
 						break;
 						case 'playMedia':
 							// Play episode from beginning
-							log::add('plex','debug','Execution de playMedia');
-							if(method_exists($application,'playMedia'))
+							if(method_exists($application,'playMedia')){
+								log::add('plex','debug','Execution de playMedia');
 								$response=$application->playMedia($media);
+							}
 						break;
 						case 'playMediaLastStopped':
 							// Play epsiode from where it was last stopped
-							if(method_exists($application,'playMedia'))
-								$response=$application->playMedia($episode, $media->getViewOffset());
-							else
-								log::add('plex','debug','La methode playMedia n\'existe pas');
+							//if(method_exists($application,'playMedia'))
+							//	$response=$application->playMedia($episode, $media->getViewOffset());
+							//else
+							//	log::add('plex','debug','La methode playMedia n\'existe pas');
 						break;
 						case 'setVolume':
 							// Set voume to half
@@ -772,12 +760,7 @@ class plexCmd extends cmd {
 					}
 				break;
 			}
-		}
-		$this->setCollectDate(date('Y-m-d H:i:s'));
-		$this->setConfiguration('doNotRepeatEvent', 1);
-		$this->event($response);
-		$this->save();
-		return $response;	
+		}	
     	}
 }
 ?>
