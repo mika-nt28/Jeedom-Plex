@@ -726,7 +726,7 @@ class plexCmd extends cmd {
 					//$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
 					//$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
 					//$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
-					$mediaObject=$this->getEqLogic()->getCmd(null,'media');
+					$mediaObject=$this->getEqLogic()->getCmd('','media');
 					if(is_object($mediaObject))
 						$media= $this->getEqLogic()->getMedia('ByKey',json_encode(array("key" => $mediaObject->execCmd())));
 					log::add('plex','debug','Execution de playMedia');
