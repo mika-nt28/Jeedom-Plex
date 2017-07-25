@@ -726,7 +726,7 @@ class plexCmd extends cmd {
 					$mediaObject=$this->getEqLogic()->getCmd('info','media');
 					if(is_object($mediaObject)){
 						$param['Key']=$mediaObject->execCmd();
-						$section=plex::$_server->getLibrary()->getSectionByKey($param['Key']);
+						$section=plex::$_server->getLibrary()->getSectionByMediaKey($param['Key']);
 						$media=plex::filterMedia($section, $Filtre,$param);
 						//$media=$this->getEqLogic()->getMedia('ByKey',json_encode($param));
 					}
