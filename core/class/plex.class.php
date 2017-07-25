@@ -726,14 +726,17 @@ class plexCmd extends cmd {
 					//$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
 					//$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
 					//$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
-					$media= plex::getMedia(null,json_encode(array("key" => $this->getEqLogic()->getCmd(null,'media')->execCmd())));
+					$mediaObject=$this->getEqLogic()->getCmd(null,'media');
+					if(is_object($mediaObject))
+						$media= plex::getMedia('ByKey',json_encode(array("key" => $mediaObject->execCmd())));
 					switch ($this->getConfiguration('commande'))
 					{
 						case 'viewOffset':
+							if(is_object($media)){
 							$response=0;
 							if(method_exists($media,'getViewOffset'))
 								$response=$media->getViewOffset();
-							
+							}
 						break;
 						case 'playMedia':
 							// Play episode from beginning
