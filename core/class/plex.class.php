@@ -725,10 +725,9 @@ class plexCmd extends cmd {
 					$navigation = $client->getNavigationController();		
 					$mediaObject=$this->getEqLogic()->getCmd('info','media');
 					if(is_object($mediaObject)){
-						log::add('plex','debug','test');
-						$key=$mediaObject->execCmd();
-						log::add('plex','debug','test'.$key);
-						$media= $this->getEqLogic()->getMedia('ByKey',json_encode(array("key" =>$key )));
+						$key=
+						$param['Key']=$mediaObject->execCmd();
+						$media=$this->getEqLogic()->getMedia('ByKey',json_encode($param));
 						log::add('plex','debug','test');
 					}
 					switch ($this->getLogicalId())	{
