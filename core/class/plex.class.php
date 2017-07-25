@@ -738,9 +738,9 @@ class plexCmd extends cmd {
 						case 'playMedia':
 							// Play episode from beginning
 							if(method_exists($application,'playMedia')){
-									$response=$application->playMedia($media['Media']);
-									log::add('plex','debug','Execution de playMedia');
-								}
+								log::add('plex','debug','Execution de playMedia');
+								$response=$application->playMedia($media['Media']);
+							}
 						break;
 						case 'playMediaLastStopped':
 							// Play epsiode from where it was last stopped
