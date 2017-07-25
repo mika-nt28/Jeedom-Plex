@@ -536,12 +536,12 @@ class plex extends eqLogic {
 			}else{
 				$media=$reponse[0];
 				$return['Media']=self::ListMedia($media);
-				/*$param['Key']=$media->getParentKey();
+				$param['Key']="/library/metadata/".$media->getParentRatingKey()."/children";
 				if($param['Key']==''){
 					$param['Key']=$media->getLibrarySectionId();
 				}
 				$Parent=$this->getMedia('ByKey',json_encode($param));
-				$return['Parent']=$Parent['Media'];*/
+				$return['Parent']=$Parent['Media'];
 				
 			}
 		}
