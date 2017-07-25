@@ -735,10 +735,11 @@ class plexCmd extends cmd {
 						break;
 						case 'playMedia':
 							// Play episode from beginning
-							log::add('plex','debug','Execution de playMedia');
 							if(is_object($media)){
-								if(method_exists($application,'playMedia'))
+								if(method_exists($application,'playMedia')){
 									$response=$application->playMedia($media);
+									log::add('plex','debug','Execution de playMedia');
+								}
 							}
 						break;
 						case 'playMediaLastStopped':
@@ -757,12 +758,7 @@ class plexCmd extends cmd {
 					}
 				break;
 			}
-		}
-		$this->setCollectDate(date('Y-m-d H:i:s'));
-		$this->setConfiguration('doNotRepeatEvent', 1);
-		$this->event($response);
-		$this->save();
-		return $response;	
+		}	
     	}
 }
 ?>
