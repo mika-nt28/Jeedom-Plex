@@ -732,17 +732,18 @@ class plexCmd extends cmd {
 					switch ($this->getConfiguration('commande'))
 					{
 						case 'viewOffset':
-							if(is_object($media)){
 							$response=0;
 							if(method_exists($media,'getViewOffset'))
 								$response=$media->getViewOffset();
-							}
+							
 						break;
 						case 'playMedia':
 							// Play episode from beginning
 							log::add('plex','debug','Execution de playMedia');
-							//if(method_exists($application,'playMedia'))
-								//$response=$application->playMedia($media);
+							if(is_object($media)){
+								//if(method_exists($application,'playMedia'))
+									//$response=$application->playMedia($media);
+							}
 						break;
 						case 'playMediaLastStopped':
 							// Play epsiode from where it was last stopped
