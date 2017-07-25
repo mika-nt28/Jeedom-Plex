@@ -721,16 +721,18 @@ class plexCmd extends cmd {
 					}
 				break;
 				case 'Application':
+							log::add('plex','debug','Execution de playMedia');
 					$application = $client->getApplicationController();
-					$navigation = $client->getNavigationController();		
+							log::add('plex','debug','Execution de playMedia');
+					$navigation = $client->getNavigationController();	
+							log::add('plex','debug','Execution de playMedia');	
 					//$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
 					//$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
 					//$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
 					$mediaObject=$this->getEqLogic()->getCmd(null,'media');
 					if(is_object($mediaObject))
 						$media= plex::getMedia('ByKey',json_encode(array("key" => $mediaObject->execCmd())));
-					switch ($this->getConfiguration('commande'))
-					{
+					switch ($this->getLogicalId())	{
 						case 'viewOffset':
 							$response=0;
 							if(method_exists($media,'getViewOffset'))
