@@ -723,7 +723,7 @@ class plexCmd extends cmd {
 				case 'Application':
 					$application = $client->getApplicationController();
 					$navigation = $client->getNavigationController();		
-					$mediaObject=$this->getEqLogic()->getCmd('','media');
+					$mediaObject=$this->getEqLogic()->getCmd('info','media');
 					if(is_object($mediaObject)){
 						log::add('plex','debug','test');
 						$key=$mediaObject->execCmd();
