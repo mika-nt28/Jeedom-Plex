@@ -736,7 +736,7 @@ class plexCmd extends cmd {
 					}
 				break;
 				case 'Application':
-					$application = $client->getApplicationController();
+					/*$application = $client->getApplicationController();
 					$navigation = $client->getNavigationController();		
 					//$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
 					//$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
@@ -769,7 +769,7 @@ class plexCmd extends cmd {
 								$response=$application->setVolume($Value);
 							$navigation->toggleOSD();
 						break;
-					}
+					}*/
 				break;
 			}
 		}
