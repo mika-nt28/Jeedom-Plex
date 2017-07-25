@@ -39,7 +39,7 @@ class plex extends eqLogic {
 					if (count($ItemsSession)>0){
 						$this->checkAndUpdateCmd('type',$ItemsSession[0]->getType());
 						log::add('plex','debug','Type de media : '.$ItemsSession[0]->getType());
-						$this->checkAndUpdateCmd('Media',$ItemsSession[0]->getKey());
+						$this->checkAndUpdateCmd('media',$ItemsSession[0]->getKey());
 						log::add('plex','debug','Titre de media : '.$ItemsSession[0]->getTitle());
 						$this->checkAndUpdateCmd('viewOffset',$ItemsSession[0]->getViewOffset());
 						log::add('plex','debug','Temps de lecture : '.$ItemsSession[0]->getViewOffset());
