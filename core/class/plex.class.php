@@ -729,7 +729,7 @@ class plexCmd extends cmd {
 					$mediaObject=$this->getEqLogic()->getCmd(null,'media');
 							log::add('plex','debug','Execution de playMedia');
 					if(is_object($mediaObject))
-						$media= plex::getMedia('ByKey',json_encode(array("key" => $mediaObject->execCmd())));
+						$media= $this->getEqLogic()->getMedia('ByKey',json_encode(array("key" => $mediaObject->execCmd())));
 							log::add('plex','debug','Execution de playMedia');
 					switch ($this->getLogicalId())	{
 						case 'viewOffset':
