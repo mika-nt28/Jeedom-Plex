@@ -215,13 +215,13 @@
 							default:
 							break;
 							case 'movie':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/cinema.png" data-lib_type="'+data.result[i].Type+'" data-RatingKey="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/cinema.png" data-lib_type="'+data.result[i].Type+'" data-Key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 							case 'show':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/tv.png" data-lib_type="'+data.result[i].Type+'" data-RatingKey="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/tv.png" data-lib_type="'+data.result[i].Type+'" data-Key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 							case 'artist':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/music.png" data-lib_type="'+data.result[i].Type+'" data-RatingKey="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/music.png" data-lib_type="'+data.result[i].Type+'" data-Key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 						}					
 					}
@@ -272,14 +272,14 @@
 					$('<li>')
 						.addClass('btm-media-plex')
 						.attr('data-TypeMedia',Data[i].Type)
-						.attr('data-RatingKey',Data[i].RatingKey)
+						.attr('data-Key',Data[i].Key)
 						.text(Data[i].Title));
 				div.find('.jaquette_plex').append(
 					$("<img>")
 						.addClass("affiche")
 						.attr('src','plugins/plex/core/php/Poster.php?url='+Data[i].Poster)
 						.attr('data-TypeMedia',Data[i].Type)
-						.attr('data-RatingKey',Data[i].RatingKey)
+						.attr('data-Key',Data[i].Key)
 						.attr('data-Tagline',Data[i].Tagline)
 						.attr('title',Data[i].Title)
 						.hide());
@@ -291,16 +291,16 @@
 					UpdateThumbMenu(div,Data[0].RatingKey);
 			}
 		}
-		function UpdateThumbMenu(div,RatingKey){
+		function UpdateThumbMenu(div,Key){
 			div.find('.affiche').hide();
 			div.find('.affiche').removeClass("affiche_premiere_plex");
 			div.find('.affiche').removeClass("affiche_next_plex");
 			div.find('.affiche').removeClass("affiche_prev_plex");
-			div.find('.jaquette_plex .affiche[data-RatingKey='+RatingKey+']').addClass("affiche_premiere_plex").show();
-			div.find('.jaquette_plex .affiche[data-RatingKey='+RatingKey+']').next().addClass("affiche_next_plex").show();
-			div.find('.jaquette_plex .affiche[data-RatingKey='+RatingKey+']').prev().addClass("affiche_prev_plex").show();
-			div.find('.gros_titre_plex').text(div.find('.jaquette_plex .affiche[data-RatingKey='+RatingKey+']').attr('title'));
-			div.find('.petit_titre_plex').text(div.find('.jaquette_plex .affiche[data-RatingKey='+RatingKey+']').attr('data-Tagline'));
+			div.find('.jaquette_plex .affiche[data-Key='+Key+']').addClass("affiche_premiere_plex").show();
+			div.find('.jaquette_plex .affiche[data-Key='+Key+']').next().addClass("affiche_next_plex").show();
+			div.find('.jaquette_plex .affiche[data-Key='+Key+']').prev().addClass("affiche_prev_plex").show();
+			div.find('.gros_titre_plex').text(div.find('.jaquette_plex .affiche[data-Key='+Key+']').attr('title'));
+			div.find('.petit_titre_plex').text(div.find('.jaquette_plex .affiche[data-Key='+Key+']').attr('data-Tagline'));
 			
 		}
 		function UpdateLibraryElement(div,Key,select){
@@ -359,7 +359,7 @@
 							div.find('.Cast').hide();
 						}else{
 							UpdateDetail(div,data.result.Media);
-							UpdateList(div,data.result.Parent,data.result.Media.RatingKey);
+							UpdateList(div,data.result.Parent,data.result.Media.Key);
 							div.find('.Detail').trigger('click');
 							div.find('.Filtre').hide();
 							div.find('.Detail').show();
@@ -412,9 +412,9 @@
 			});
 		}
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
-			UpdateThumbMenu($(this).closest('.eqLogic'),$(this).attr('data-RatingKey'));
-			UpdateCmd('media', $(this).attr('data-RatingKey'));
-			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-RatingKey'),$(this).attr('data-TypeMedia'));
+			UpdateThumbMenu($(this).closest('.eqLogic'),$(this).attr('data-Key'));
+			UpdateCmd('media', $(this).attr('data-Key'));
+			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'),$(this).attr('data-TypeMedia'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-library-plex", function() {				
 			$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
@@ -424,11 +424,11 @@
 			$('.plex[data-eqLogic_uid=#uid#] .Playback').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Poster').hide();
-			UpdateLibraryElement($(this).closest('.eqLogic'),$(this).attr('data-RatingKey'),'');
+			UpdateLibraryElement($(this).closest('.eqLogic'),$(this).attr('data-Key'),'');
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
-			UpdateCmd('media', $(this).attr('data-RatingKey'));
-			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-RatingKey'),$(this).attr('data-TypeMedia'));
+			UpdateCmd('media', $(this).attr('data-Key'));
+			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'),$(this).attr('data-TypeMedia'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexGroupFiltre', function() {		
 			$('.bt_PlexGroupFiltre').removeClass('btn-primary');
