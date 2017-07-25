@@ -723,13 +723,9 @@ class plexCmd extends cmd {
 				case 'Application':
 					$application = $client->getApplicationController();
 					$navigation = $client->getNavigationController();		
-					//$mediaInforamtion= json_decode($this->getEqLogic()->getCmd(null,'media')->execCmd(), true);
-					//$section=$server->getLibrary()->getSection($mediaInforamtion['Library']);
-					//$media= plex::filterMedia($section,'ByTitle', $mediaInforamtion);
 					$mediaObject=$this->getEqLogic()->getCmd('','media');
 					if(is_object($mediaObject))
 						$media= $this->getEqLogic()->getMedia('ByKey',json_encode(array("key" => $mediaObject->execCmd())));
-					log::add('plex','debug','Execution de playMedia');
 					switch ($this->getLogicalId())	{
 						case 'viewOffset':
 							$response=0;
@@ -741,8 +737,8 @@ class plexCmd extends cmd {
 							// Play episode from beginning
 							log::add('plex','debug','Execution de playMedia');
 							if(is_object($media)){
-								//if(method_exists($application,'playMedia'))
-									//$response=$application->playMedia($media);
+								if(method_exists($application,'playMedia'))
+									$response=$application->playMedia($media);
 							}
 						break;
 						case 'playMediaLastStopped':
