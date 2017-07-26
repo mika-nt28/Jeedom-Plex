@@ -378,7 +378,7 @@
 			var duration=heure+' h '+minute+' min ';
 			return duration
 		}			
-		function UpdateCmd(logicalId, Key,Name){
+		function UpdateCmd(logicalId,Key,Name,Type){
 			$.ajax({
 				type: "POST",
 				timeout:8000, 
@@ -388,7 +388,8 @@
 					EqId:'#id#',
 					logicalId:logicalId,
 					Key:Key,
-					Name:Name
+					Name:Name,
+					Type:Type
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
@@ -404,8 +405,7 @@
 		}
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
 			UpdateThumbMenu($(this).closest('.eqLogic'),$(this).attr('data-RatingKey'));
-			UpdateCmd('media', $(this).attr('data-key'), $(this).attr('title'));
-			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-key'),$(this).attr('data-mediatype'));
+			UpdateCmd('media', $(this).attr('data-key'), $(this).attr('title'),$(this).attr('data-mediatype'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-library-plex", function() {				
 			$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
@@ -418,8 +418,7 @@
 			UpdateLibraryElement($(this).closest('.eqLogic'),$(this).attr('data-key'),'');
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
-			UpdateCmd('media', $(this).attr('data-key'), $(this).text());
-			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-key'),$(this).attr('data-mediatype'));
+			UpdateCmd('media', $(this).attr('data-key'), $(this).text()),$(this).attr('data-mediatype');
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexGroupFiltre', function() {		
 			$('.bt_PlexGroupFiltre').removeClass('btn-primary');
