@@ -379,6 +379,7 @@
 			return duration
 		}			
 		function UpdateCmd(logicalId,Key,Name,Type){
+			alert(logicalId+','+Key+','+Name+','+Type);
 			$.ajax({
 				type: "POST",
 				timeout:8000, 
