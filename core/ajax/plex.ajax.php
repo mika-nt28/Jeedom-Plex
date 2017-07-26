@@ -13,7 +13,7 @@ try {
 		$cache = cache::byKey('plex::MediaType::'.$this->getId());
 		$return['MediaType']=$cache->getValue('');
 
-		ajax::success($return);
+		ajax::success(json_encode($return));
    	}
 	if (init('action') == 'getLibrary') {
 		$equipement=eqLogic::byId(init('Id'));
