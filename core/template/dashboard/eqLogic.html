@@ -399,7 +399,7 @@
 					EqId:'#id#',
 					logicalId:logicalId,
 					Key:Key,
-					Name:Name,
+					Name:Name
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
@@ -415,7 +415,7 @@
 		}
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
 			UpdateThumbMenu($(this).closest('.eqLogic'),$(this).attr('data-RatingKey'));
-			UpdateCmd('media', $(this).attr('data-Key'));
+			UpdateCmd('media', $(this).attr('data-Key'), $(this).attr('title'));
 			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'),$(this).attr('data-type_media'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-library-plex", function() {				
@@ -429,7 +429,7 @@
 			UpdateLibraryElement($(this).closest('.eqLogic'),$(this).attr('data-Key'),'');
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
-			UpdateCmd('media', $(this).attr('data-Key'));
+			UpdateCmd('media', $(this).attr('data-Key'), $(this).text());
 			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'),$(this).attr('data-type_media'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexGroupFiltre', function() {		
