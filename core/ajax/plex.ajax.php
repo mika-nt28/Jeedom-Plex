@@ -8,12 +8,17 @@ try {
 	}
 	
 	if (init('action') == 'getCacheParameter') {
-		$cache = cache::byKey('plex::MediaKey::'.$this->getId());
-		$return['MediaKey']=$cache->getValue('');
-		$cache = cache::byKey('plex::MediaType::'.$this->getId());
-		$return['MediaType']=$cache->getValue('');
-		ajax::success($return);
-		//ajax::success(json_encode($return));
+		$cmd=cmd::byId(init('Id'));
+		if(is_object($cmd)){
+			$cache = cache::byKey('plex::MediaKey::'.$cmd->getEqLogic()->getId());
+			$return['MediaKey']=$cache->getValue('');
+			$cache = cache::byKey('plex::MediaType::'.$cmd->getEqLogic()->getId());
+			$return['MediaType']=$cache->getValue('');
+			ajax::success($return);
+			//ajax::success(json_encode($return));
+		}
+		else
+			ajax::success(false);
    	}
 	if (init('action') == 'getLibrary') {
 		$equipement=eqLogic::byId(init('Id'));
