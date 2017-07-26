@@ -26,6 +26,7 @@ try {
 			$eqLogic->checkAndUpdateCmd(init('logicalId'),init('Name'));			
 			cache::set('plex::MediaKey::'.$eqLogic->getId(), init('Key'), 0);	
 			cache::set('plex::MediaType::'.$eqLogic->getId(), init('Type'), 0);
+			$eqLogic->refreshWidget();
 			ajax::success(true);
 		}
 		ajax::success(false);
