@@ -59,7 +59,7 @@ $listCmdPLEX = array(
 		    'commande' => 'playMedia',
 		),
 		'type' => 'action',
-		'subType' => 'other',
+		'subType' => 'message',
 		'display' => array(
 			'icon' => '<i class="fa fa-play"></i>',
 			'template' => 'Plex_telecommande'
