@@ -39,7 +39,8 @@ class plex extends eqLogic {
 					if (count($ItemsSession)>0){
 						$this->checkAndUpdateCmd('type',$ItemsSession[0]->getType());
 						log::add('plex','debug','Type de media : '.$ItemsSession[0]->getType());
-						$this->checkAndUpdateCmd('media',$ItemsSession[0]->getKey());
+						$this->checkAndUpdateCmd('media',$ItemsSession[0]->getTitle());		
+						cache::set('plex::MediaKey::'.$this->getId(),$ItemsSession[0]->getKey(), 0);
 						log::add('plex','debug','Titre de media : '.$ItemsSession[0]->getTitle());
 						$this->checkAndUpdateCmd('viewOffset',$ItemsSession[0]->getViewOffset());
 						log::add('plex','debug','Temps de lecture : '.$ItemsSession[0]->getViewOffset());
@@ -605,11 +606,19 @@ class plex extends eqLogic {
 		if ($this->getDisplay('hideOn' . $version) == 1) 
 			return '';
 		foreach ($this->getCmd() as $cmd) {
-			if ($cmd->getIsVisible())
-				$replace['#'. $cmd->getLogicalId() . '#'] = $cmd->toHtml($_version);
-			else 
-				$replace['#' . $cmd->getLogicalId() . '#'] = '';
-			
+			$replace['#' . $cmd->getLogicalId() . '#'] = '';
+			if ($cmd->getIsVisible()){
+				switch($cmd->getLogicalId()){
+					case 'media':	
+						$cache = cache::byKey('plex::MediaKey::'.$this->getId());
+						$replaceCmd['#state#']=$cache->getValue('');
+						$replace['#'. $cmd->getLogicalId() . '#'] = template_replace($replaceCmd, $cmd->toHtml($_version));
+					break;
+					default:
+						$replace['#'. $cmd->getLogicalId() . '#'] = $cmd->toHtml($_version);
+					break;
+				}
+			}
 		}
         	return template_replace($replace, getTemplate('core', $_version, 'eqLogic', 'plex'));
 	}  
