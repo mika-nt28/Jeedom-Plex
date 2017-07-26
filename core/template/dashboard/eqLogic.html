@@ -389,7 +389,7 @@
 			var duration=heure+' h '+minute+' min ';
 			return duration
 		}			
-		function UpdateCmd(logicalId, Valeur){
+		function UpdateCmd(logicalId, Key,Name){
 			$.ajax({
 				type: "POST",
 				timeout:8000, 
@@ -397,8 +397,9 @@
 				data: {
 					action: "UpdateCommande",
 					EqId:'#id#',
-					CmdId:logicalId,
-					value:Valeur,
+					logicalId:logicalId,
+					Key:Key,
+					Name:Name,
 				},
 				dataType: 'json',
 				error: function(request, status, error) {
