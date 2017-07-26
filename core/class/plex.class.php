@@ -608,16 +608,11 @@ class plex extends eqLogic {
 		foreach ($this->getCmd() as $cmd) {
 			$replace['#' . $cmd->getLogicalId() . '#'] = '';
 			if ($cmd->getIsVisible()){
-				switch($cmd->getLogicalId()){
-					case 'media':	
-						$cache = cache::byKey('plex::MediaKey::'.$this->getId());
-						$replaceCmd['#state#']=$cache->getValue('');
-						$replace['#'. $cmd->getLogicalId() . '#'] = template_replace($replaceCmd, $cmd->toHtml($_version));
-					break;
-					default:
-						$replace['#'. $cmd->getLogicalId() . '#'] = $cmd->toHtml($_version);
-					break;
-				}
+				$cache = cache::byKey('plex::MediaKey::'.$this->getId());
+				$replaceCmd['#MediaKey#']=$cache->getValue('');
+				$cache = cache::byKey('plex::MediaType::'.$this->getId());
+				$replaceCmd['#MediaType#']=$cache->getValue('');
+				$replace['#'. $cmd->getLogicalId() . '#'] = template_replace($replaceCmd, $cmd->toHtml($_version));
 			}
 		}
         	return template_replace($replace, getTemplate('core', $_version, 'eqLogic', 'plex'));
@@ -731,14 +726,11 @@ class plexCmd extends cmd {
 				break;
 				case 'Application':
 					$application = $client->getApplicationController();
-					$navigation = $client->getNavigationController();		
-					$mediaObject=$this->getEqLogic()->getCmd('info','media');
-					if(is_object($mediaObject)){
-						$param['Key']=$mediaObject->execCmd();
-						$section=plex::$_server->getLibrary()->getSectionByMediaKey($param['Key']);
-						$media=plex::filterMedia($section, $Filtre,$param);
-						//$media=$this->getEqLogic()->getMedia('ByKey',json_encode($param));
-					}
+					$navigation = $client->getNavigationController();
+					$cache = cache::byKey('plex::MediaKey::'.$this->getEqLogic()->getId());
+					$param['Key']=$cache->getValue('');	
+					$section=plex::$_server->getLibrary()->getSectionByMediaKey($param['Key']);
+					$media=plex::filterMedia($section, $Filtre,$param);
 					switch ($this->getLogicalId())	{
 						case 'viewOffset':
 							$response=0;
