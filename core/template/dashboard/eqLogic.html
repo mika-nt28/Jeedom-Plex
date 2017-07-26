@@ -271,14 +271,14 @@
 				div.find('#ListeMedia ul').append(
 					$('<li>')
 						.addClass('btm-media-plex')
-						.attr('data-type_media',Data[i].Type)
+						.attr('data-MediaType',Data[i].Type)
 						.attr('data-Key',Data[i].Key)
 						.text(Data[i].Title));
 				div.find('.jaquette_plex').append(
 					$("<img>")
 						.addClass("affiche")
 						.attr('src','plugins/plex/core/php/Poster.php?url='+Data[i].Poster)
-						.attr('data-type_media',Data[i].Type)
+						.attr('data-MediaType',Data[i].Type)
 						.attr('data-Key',Data[i].Key)
 						.attr('data-RatingKey',Data[i].RatingKey)
 						.attr('data-Tagline',Data[i].Tagline)
@@ -416,7 +416,7 @@
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
 			UpdateThumbMenu($(this).closest('.eqLogic'),$(this).attr('data-RatingKey'));
 			UpdateCmd('media', $(this).attr('data-Key'), $(this).attr('title'));
-			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'),$(this).attr('data-type_media'));
+			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'),$(this).attr('data-MediaType'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-library-plex", function() {				
 			$('.plex[data-eqLogic_uid=#uid#] .ListeMedia').trigger('click');		
@@ -430,7 +430,7 @@
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
 			UpdateCmd('media', $(this).attr('data-Key'), $(this).text());
-			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'),$(this).attr('data-type_media'));
+			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-Key'),$(this).attr('data-MediaType'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexGroupFiltre', function() {		
 			$('.bt_PlexGroupFiltre').removeClass('btn-primary');
