@@ -1,7 +1,27 @@
 <div  style="width: 100px;" class="cmd tooltips cmd-widget" data-type="info" data-subtype="string" data-cmd_id="#id#" title="#collectDate#">
-  <script>
-    $(function(){
-   	  UpdateInforamtion($('.cmd[data-cmd_id=#id#]').closest('.eqLogic'),"#MediaKey#","#MediaType#");
-    });
-  </script>
+	<script>
+		$(function(){
+			$.ajax({
+				type: "POST",
+				timeout:8000, 
+				url: "plugins/plex/core/ajax/plex.ajax.php",
+				data: {
+					Id:"#id#",
+					action: "getCacheParameter",
+				},
+				dataType: 'json',
+				error: function(request, status, error) {
+					handleAjaxError(request, status, error);
+				},
+				success: function(data) { 
+					if (data.state != 'ok') {
+						$('#div_alert').showAlert({message: data.result, level: 'danger'});
+						return;
+					}
+					if (data.result!=false)
+						UpdateInforamtion($('.cmd[data-cmd_id=#id#]').closest('.eqLogic'),data.result.MediaKey,data.result.MediaType);
+				}
+			});
+		});
+	</script>
 </div>

@@ -6,6 +6,20 @@ try {
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
+	
+	if (init('action') == 'getCacheParameter') {
+		$cmd=cmd::byId(init('Id'));
+		if(is_object($cmd)){
+			$cache = cache::byKey('plex::MediaKey::'.$cmd->getEqLogic()->getId());
+			$return['MediaKey']=$cache->getValue('');
+			$cache = cache::byKey('plex::MediaType::'.$cmd->getEqLogic()->getId());
+			$return['MediaType']=$cache->getValue('');
+			ajax::success($return);
+			//ajax::success(json_encode($return));
+		}
+		else
+			ajax::success(false);
+   	}
 	if (init('action') == 'getLibrary') {
 		$equipement=eqLogic::byId(init('Id'));
 		if(is_object($equipement))
@@ -26,7 +40,6 @@ try {
 			$eqLogic->checkAndUpdateCmd(init('logicalId'),init('Name'));			
 			cache::set('plex::MediaKey::'.$eqLogic->getId(), init('Key'), 0);	
 			cache::set('plex::MediaType::'.$eqLogic->getId(), init('Type'), 0);
-			$eqLogic->refreshWidget();
 			ajax::success(true);
 		}
 		ajax::success(false);

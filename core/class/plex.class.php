@@ -608,11 +608,7 @@ class plex extends eqLogic {
 		foreach ($this->getCmd() as $cmd) {
 			$replace['#' . $cmd->getLogicalId() . '#'] = '';
 			if ($cmd->getIsVisible()){
-				$cache = cache::byKey('plex::MediaKey::'.$this->getId());
-				$replaceCmd['#MediaKey#']=$cache->getValue('');
-				$cache = cache::byKey('plex::MediaType::'.$this->getId());
-				$replaceCmd['#MediaType#']=$cache->getValue('');
-				$replace['#'. $cmd->getLogicalId() . '#'] = template_replace($replaceCmd, $cmd->toHtml($_version));
+				$replace['#'. $cmd->getLogicalId() . '#'] = $cmd->toHtml($_version);
 			}
 		}
         	return template_replace($replace, getTemplate('core', $_version, 'eqLogic', 'plex'));
