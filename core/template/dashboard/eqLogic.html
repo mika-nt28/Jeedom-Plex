@@ -215,13 +215,13 @@
 							default:
 							break;
 							case 'movie':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/cinema.png" data-lib_type="'+data.result[i].Type+'" data-Key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/cinema.png" data-lib_type="'+data.result[i].Type+'" data-key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 							case 'show':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/tv.png" data-lib_type="'+data.result[i].Type+'" data-Key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/tv.png" data-lib_type="'+data.result[i].Type+'" data-key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 							case 'artist':
-								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/music.png" data-lib_type="'+data.result[i].Type+'" data-Key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
+								$('.plex[data-eqLogic_uid=#uid#] .media_Library').append($('<img class="btm-library-plex cursor noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/music.png" data-lib_type="'+data.result[i].Type+'" data-key="'+data.result[i].Key+'" title="'+data.result[i].Title+'" />'));
 							break;
 						}					
 					}
@@ -367,17 +367,6 @@
 							div.find('.Playback').show();
 							div.find('.Cast').hide();
 						}
-						switch(data.result.Media.Type){
-							case 'movie':		
-								if(div.find('#ListeMedia li').length == 0){
-								//	UpdateLibraryElement(div,data.result.Library.Key,data.result.Media.RatingKey)
-								}
-							break;
-							case 'show':
-							break;
-							case 'artist':
-							break;
-						}
 					}
 				}
 			});
@@ -415,7 +404,7 @@
 		}
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".affiche", function() {
 			UpdateThumbMenu($(this).closest('.eqLogic'),$(this).attr('data-RatingKey'));
-			UpdateCmd('media', $(this).attr('data-Key'), $(this).attr('title'));
+			UpdateCmd('media', $(this).attr('data-key'), $(this).attr('title'));
 			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-key'),$(this).attr('data-mediatype'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-library-plex", function() {				
@@ -426,10 +415,10 @@
 			$('.plex[data-eqLogic_uid=#uid#] .Playback').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Cast').hide();
 			$('.plex[data-eqLogic_uid=#uid#] .Poster').hide();
-			UpdateLibraryElement($(this).closest('.eqLogic'),$(this).attr('data-Key'),'');
+			UpdateLibraryElement($(this).closest('.eqLogic'),$(this).attr('data-key'),'');
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
-			UpdateCmd('media', $(this).attr('data-Key'), $(this).text());
+			UpdateCmd('media', $(this).attr('data-key'), $(this).text());
 			UpdateInforamtion($(this).closest('.eqLogic'),$(this).attr('data-key'),$(this).attr('data-mediatype'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexGroupFiltre', function() {		
