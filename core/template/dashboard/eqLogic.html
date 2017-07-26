@@ -419,7 +419,7 @@
 			UpdateLibraryElement($(this).closest('.eqLogic'),$(this).attr('data-key'),'');
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on('click',".btm-media-plex", function() {
-			UpdateCmd('media', $(this).attr('data-key'), $(this).text()),$(this).attr('data-mediatype');
+			UpdateCmd('media', $(this).attr('data-key'), $(this).text(),$(this).attr('data-mediatype'));
 		});
 		$('.plex[data-eqLogic_uid=#uid#]').on( 'click','.bt_PlexGroupFiltre', function() {		
 			$('.bt_PlexGroupFiltre').removeClass('btn-primary');
