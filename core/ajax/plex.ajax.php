@@ -37,7 +37,8 @@ try {
 	if (init('action') == 'UpdateCommande') {
 		$eqLogic=eqLogic::byId(init('EqId'));
 		if(is_object($eqLogic)){
-			$eqLogic->checkAndUpdateCmd(init('logicalId'),init('Name'));			
+			$eqLogic->checkAndUpdateCmd(init('logicalId'),init('Name'));
+			$eqLogic->checkAndUpdateCmd('viewOffset',0);			
 			cache::set('plex::MediaKey::'.$eqLogic->getId(), init('Key'), 0);	
 			cache::set('plex::MediaType::'.$eqLogic->getId(), init('Type'), 0);
 			ajax::success(true);
