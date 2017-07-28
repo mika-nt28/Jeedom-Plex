@@ -723,30 +723,20 @@ class plexCmd extends cmd {
 				case 'Application':
 					$application = $client->getApplicationController();
 					$navigation = $client->getNavigationController();
-					$cache = cache::byKey('plex::MediaKey::'.$this->getEqLogic()->getId());
-					$param['Key']=$cache->getValue('');	
-					$section=plex::$_server->getLibrary()->getSectionByMediaKey($param['Key']);
-					$media=plex::filterMedia($section, $Filtre,$param);
 					switch ($this->getLogicalId())	{
-						case 'viewOffset':
+						/*case 'viewOffset':
 							$response=0;
 							if(method_exists($media,'getViewOffset'))
 								$response=$media->getViewOffset();
 							
-						break;
+						break;*/
 						case 'playMedia':
 							// Play episode from beginning
 							if(method_exists($application,'playMedia')){
 								log::add('plex','debug','Execution de playMedia');
-								$response=$application->playMedia($media);
+								$cache = cache::byKey('plex::MediaKey::'.$this->getEqLogic()->getId());
+								$response=$application->playMedia($cache->getValue(''));
 							}
-						break;
-						case 'playMediaLastStopped':
-							// Play epsiode from where it was last stopped
-							//if(method_exists($application,'playMedia'))
-							//	$response=$application->playMedia($episode, $media->getViewOffset());
-							//else
-							//	log::add('plex','debug','La methode playMedia n\'existe pas');
 						break;
 						case 'setVolume':
 							// Set voume to half
