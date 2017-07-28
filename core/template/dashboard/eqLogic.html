@@ -371,12 +371,6 @@
 				}
 			});
 			
-		}
-		function SecondToDuration(timeCount){	
-			var heure=Math.floor(((timeCount/1000)/60)/60);
-			var minute=Math.floor(((timeCount/1000)/60))-heure*60;
-			var duration=heure+' h '+minute+' min ';
-			return duration
 		}			
 		function UpdateCmd(logicalId,Key,Name,Type){
 			$.ajax({
