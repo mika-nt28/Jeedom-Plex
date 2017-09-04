@@ -9,7 +9,7 @@ $listCmdPLEX = array(
 
 		),
 		'type' => 'info',
-		'subType' => 'binary',
+		'subType' => 'string',
 		'display' => array(
 			'template' => 'Plex_State'
         	),

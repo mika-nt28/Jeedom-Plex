@@ -1,6 +1,6 @@
-<div  style="width: 100px;" class="cmd tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" title="#collectDate#">
+<div  style="width: 100px;" class="cmd tooltips cmd-widget" data-type="info" data-subtype="string" data-cmd_id="#id#" title="#collectDate#">
   <script>
-	  if ("#state#" == "0") {
+	  if ("#state#" == "pause" || "#state#" == "stop") {
 		  $(this).closest(".eqLogic .pause_in_cercle").hide();
 		  $(this).closest(".eqLogic .play_in_cercle").show();
 	  }else{
