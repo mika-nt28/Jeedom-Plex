@@ -1,34 +1,34 @@
 <?php
-	class Plex_Server_Session extends Plex_Server{
-		const ENDPOINT_STATUS = 'status';
-		const ENDPOINT_SESSIONS = 'sessions';
-		protected function buildUrl(){
-			$url = sprintf(
-				'%s/%s',
-				$this->getBaseUrl(),
-				self::ENDPOINT_STATUS.'/'.
-				self::ENDPOINT_SESSIONS
-			);
-			return $url;
-		}
-		public function getItems(){
-			$items = array();
-			$this->_ActiveSessions = $this->makeCall($this->buildUrl());
-			foreach ($this->_ActiveSessions as $attribute) {
-				if (isset($attribute['type'])) {
-					$item = Plex_Server_Library_ItemAbstract::factory(
-						$attribute['type'],
-						$this->name,
-						$this->address,
-						$this->port
-					);
-					$item->setAttributes($attribute);
-					$items[] = $item;
-				}
+class Plex_Server_Session extends Plex_Server{
+	const ENDPOINT_STATUS = 'status';
+	const ENDPOINT_SESSIONS = 'sessions';
+	protected function buildUrl(){
+		$url = sprintf(
+			'%s/%s',
+			$this->getBaseUrl(),
+			self::ENDPOINT_STATUS.'/'.
+			self::ENDPOINT_SESSIONS
+		);
+		return $url;
+	}
+	public function getItems(){
+		$items = array();
+		$this->_ActiveSessions = $this->makeCall($this->buildUrl());
+		foreach ($this->_ActiveSessions as $attribute) {
+			if (isset($attribute['type'])) {
+				$item = Plex_Server_Library_ItemAbstract::factory(
+					$attribute['type'],
+					$this->name,
+					$this->address,
+					$this->port
+				);
+				$item->setAttributes($attribute);
+				$items[] = $item;
 			}
-			return $items;
 		}
-		public function getPlayer($clients){
+		return $items;
+	}
+	public function getPlayer($clients){
 		$this->_ActiveSessions = $this->makeCall($this->buildUrl());
 		foreach ($this->_ActiveSessions as $Session) {			
 			foreach ($Session['Player'] as $attribute) {
@@ -50,10 +50,14 @@
 					$client->setOnlyState(true);
 					$client->setServer($this);
 				}
+				if(isset($attribute['state']))
+					$client->setState($attribute['state']);
+				}
 				return true;
 			}
 		}
+		$client->setState('Stop');
 		return false;
 	}
-	}
+}
 ?>
