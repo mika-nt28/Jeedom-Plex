@@ -56,7 +56,6 @@ class Plex_Server_Session extends Plex_Server{
 				return true;
 			}
 		}
-		$client->setState('Stop');
 		return false;
 	}
 }
