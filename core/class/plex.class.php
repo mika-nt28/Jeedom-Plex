@@ -28,23 +28,18 @@ class plex extends eqLogic {
 			if(isset($this->_client)&&is_object($this->_client)){
 				$server=self::$_plex->getServer(config::byKey('name', 'plex'));
 				$session=$server->getActiveSession();
-				$PlayerSate=$this->getCmd(null,'state');
-				if(is_object($PlayerSate)){
-					$State=$session->getPlayer(array($this->getLogicalId()));
-					log::add('plex','debug','Etat du player : '.$State);
-					$PlayerSate->setCollectDate(date('Y-m-d H:i:s'));
-					$PlayerSate->event($State);
-					$PlayerSate->save();
-					$ItemsSession=$session->getItems();
-					if (count($ItemsSession)>0){
-						$this->checkAndUpdateCmd('type',$ItemsSession[0]->getType());
-						log::add('plex','debug','Type de media : '.$ItemsSession[0]->getType());
-						$this->checkAndUpdateCmd('media',$ItemsSession[0]->getTitle());		
-						cache::set('plex::MediaKey::'.$this->getId(),$ItemsSession[0]->getKey(), 0);
-						log::add('plex','debug','Titre de media : '.$ItemsSession[0]->getTitle());
-						$this->checkAndUpdateCmd('viewOffset',$ItemsSession[0]->getViewOffset());
-						log::add('plex','debug','Temps de lecture : '.$ItemsSession[0]->getViewOffset());
-					}
+				$session->getPlayer(array($this->getLogicalId()));
+				$this->checkAndUpdateCmd('state',$this->_client->getState());
+				log::add('plex','debug','Type de media : '.$this->_client->getState());
+				$ItemsSession=$session->getItems();
+				if (count($ItemsSession)>0){
+					$this->checkAndUpdateCmd('type',$ItemsSession[0]->getType());
+					log::add('plex','debug','Type de media : '.$ItemsSession[0]->getType());
+					$this->checkAndUpdateCmd('media',$ItemsSession[0]->getTitle());		
+					cache::set('plex::MediaKey::'.$this->getId(),$ItemsSession[0]->getKey(), 0);
+					log::add('plex','debug','Titre de media : '.$ItemsSession[0]->getTitle());
+					$this->checkAndUpdateCmd('viewOffset',$ItemsSession[0]->getViewOffset());
+					log::add('plex','debug','Temps de lecture : '.$ItemsSession[0]->getViewOffset());
 				}
 			}
 		}
@@ -586,7 +581,7 @@ class plex extends eqLogic {
 						'commande' => 'state',
 					),
 					'type' => 'info',
-					'subType' => 'binary',
+					'subType' => 'string',
 					'description' => 'Etat du player',
 				);
 				$this->AddCmd($cmdPlex);
