@@ -81,25 +81,25 @@ $eqLogics = eqLogic::byType('plex');
 						<legend>Général</legend>
 						<fieldset>			
 							<div class="form-group">
-								<label class="col-md-2 control-label">
+								<label class="col-md-4 control-label">
 									{{Nom de l'équipement}}
 									<sup>
 										<i class="fa fa-question-circle tooltips" title="Indiquez le nom de votre équipement" style="font-size : 1em;color:grey;"></i>
 									</sup>
 								</label>
-								<div class="col-md-3">
+								<div class="col-md-8">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
 									<input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement KNX}}"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-2 control-label" >
+								<label class="col-md-4 control-label">
 									{{Objet parent}}
 									<sup>
 										<i class="fa fa-question-circle tooltips" title="Indiquez l'objet dans lequel le widget de cette equipement apparaiterai sur le dashboard" style="font-size : 1em;color:grey;"></i>
 									</sup>
 								</label>
-								<div class="col-md-3">
+								<div class="col-md-8">
 									<select id="sel_object" class="eqLogicAttr form-control" data-l1key="object_id">
 										<?php
 										foreach (object::all() as $object) {
@@ -110,7 +110,7 @@ $eqLogics = eqLogic::byType('plex');
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-2 control-label">
+								<label class="col-md-4 control-label">
 									{{Catégorie}}
 									<sup>
 										<i class="fa fa-question-circle tooltips" title="Choisissez une catégorie
@@ -129,7 +129,7 @@ $eqLogics = eqLogic::byType('plex');
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label" >
+								<label class="col-md-4 control-label">
 									{{Etat du widget}}
 									<sup>
 										<i class="fa fa-question-circle tooltips" title="Choisissez les options de visibilité et d'activation
@@ -137,7 +137,7 @@ $eqLogics = eqLogic::byType('plex');
 									Si l'equipement n'est pas visible il ne sera caché sur le dashbord, mais utilisable dans jeedom" style="font-size : 1em;color:grey;"></i>
 									</sup>
 								</label>
-								<div class="col-sm-9">
+								<div class="col-md-8">
 									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
 									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
 								</div>
@@ -150,7 +150,8 @@ $eqLogics = eqLogic::byType('plex');
 						<legend>Paramètre du clients</legend>
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">{{Heartbeat}}
+								<label class="col-md-4 control-label">
+									{{Heartbeat}}
 									<sup>
 										<i class="fa fa-question-circle tooltips" style="font-size : 1em;color:grey;" title="Permet de vérifier toutes les minutes si le plex est toujours actif. Si il n'est plus actif, cela le mettra comme arrêté dans Jeedom. Utile pour les plexs qui sont sur des machines qui s'éteignent sans forcément arrêter plex"></i>
 									</sup>
@@ -158,8 +159,13 @@ $eqLogics = eqLogic::byType('plex');
 								</label>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-1 control-label">{{Choisir le client}}<sup><i class="fa fa-question-circle tooltips" style="font-size : 1em;color:grey;" title="Permet de choisir un client reconnue par le systeme. Attention les clients doivent etres actif pour etre reconnue"></i></sup></label>
-								<div class="col-lg-2">
+								<label class="col-md-4 control-label">
+									{{Choisir le client}}
+									<sup>
+										<i class="fa fa-question-circle tooltips" style="font-size : 1em;color:grey;" title="Permet de choisir un client reconnue par le systeme. Attention les clients doivent etres actif pour etre reconnue"></i>
+									</sup>
+								</label>
+								<div class="col-md-8">
 									<input type="hidden" class="eqLogicAttr form-control" data-l1key="logicalId"/>
 									<?php	
 										if(count($eqLogics)>0){
@@ -171,15 +177,15 @@ $eqLogics = eqLogic::byType('plex');
 									?>
 								</div>
 							</div>
-							<div class="form-group expertModeVisible">
-								<label class="col-lg-1 control-label">{{Modifier son address}}</label>
-								<div class="col-lg-2">
+							<div class="form-group expertModeVisible">								
+								<label class="col-md-4 control-label">{{Modifier son address}}</label>
+								<div class="col-md-8">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="HostUpdate" placeholder="{{Modifier son address}}"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-1 control-label">{{Volume +/-}}</label>
-								<div class="col-lg-2">
+								<label class="col-md-4 control-label">{{Volume +/-}}</label>
+								<div class="col-md-8">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="volume_inc" placeholder="{{Volume incrément}}"/>
 								</div>
 							</div>						
@@ -187,21 +193,21 @@ $eqLogics = eqLogic::byType('plex');
 					</form>
 				</div>
 			</div>
-		</div>
-		<div role="tabpanel" class="tab-pane" id="commandtab">
-			<br>
-			<!--a class="btn btn-success btn-sm cmdAction pull-right" data-action="add"><i class="fa fa-plus-circle"></i> Ajouter une commande</a-->
-			<table id="table_cmd" class="table table-bordered table-condensed">
-				<thead>
-					<tr>
-						<th>Nom</th>
-						<th>Type</th>
-						<th>Options</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+			<div role="tabpanel" class="tab-pane" id="commandtab">
+				<br>
+				<!--a class="btn btn-success btn-sm cmdAction pull-right" data-action="add"><i class="fa fa-plus-circle"></i> Ajouter une commande</a-->
+				<table id="table_cmd" class="table table-bordered table-condensed">
+					<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Type</th>
+							<th>Options</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
