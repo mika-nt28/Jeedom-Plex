@@ -28,10 +28,8 @@ class plex extends eqLogic {
 			if(isset($this->_client)&&is_object($this->_client)){
 				$server=self::$_plex->getServer(config::byKey('name', 'plex'));
 				$session=$server->getActiveSession();
-				if($session->getPlayer(array($this->getLogicalId())) === false)
-					$this->checkAndUpdateCmd('state','stop');
-				else
-					$this->checkAndUpdateCmd('state',$this->_client->getState());
+				$Etat=$session->getPlayer(array($this->getLogicalId()));
+				$this->checkAndUpdateCmd('state',$Etat);
 				$ItemsSession=$session->getItems();
 				if (count($ItemsSession)>0){
 					$this->checkAndUpdateCmd('type',$ItemsSession[0]->getType());
