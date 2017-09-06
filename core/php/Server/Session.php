@@ -51,11 +51,10 @@ class Plex_Server_Session extends Plex_Server{
 					$client->setServer($this);
 				}
 				if(isset($attribute['state']))
-					$client->setState($attribute['state']);
-				return true;
+					return $attribute['state'];
 			}
 		}
-		return false;
+		return 'stop';
 	}
 }
 ?>
