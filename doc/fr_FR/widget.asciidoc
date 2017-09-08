@@ -9,7 +9,7 @@ L'écran principal du widget permet les fonctions de base :
 * Lecture / Pause 
 * Stop
 
-Mais aussi de choisir le medias en cliquant sur les affiches arrière.
+Mais aussi de choisir le medias en cliquant sur les affiches arrières.
 Il permet également d'accéder aux différents menus.
 
 image::../images/plex_screenshot_widget_Télécommande.jpg[]
