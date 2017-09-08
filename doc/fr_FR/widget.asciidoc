@@ -1,7 +1,7 @@
 image::../images/plex_screenshot_widget_principal.jpg[]
-L'ecran principal du widget permet les fonction de base
+L'écran principal du widget permet les fonctions de base :
 
-* Saut arriere
+* Saut arrière
 * Saut avant
 * Reculer
 * Avancer
@@ -9,14 +9,14 @@ L'ecran principal du widget permet les fonction de base
 * Lecture / Pause 
 * Stop
 
-Mais aussi de choisir le media en cliquant sur les affiche arrier
-Il permet egalment d'acceder aux diferents menus
+Mais aussi de choisir le medias en cliquant sur les affiches arrière.
+Il permet également d'accéder aux différents menus.
 
 image::../images/plex_screenshot_widget_Télécommande.jpg[]
-A droite la télécommande qui permet de naviger directemetn sur votre ecran
+A droite, la télécommande qui permet de naviguer directement sur votre écran.
 
 image::../images/plex_screenshot_widget_Liste.jpg[]
-Le menu de gauche permet des selectioner une librairie et leur media associé.
+Le menu de gauche permet des sélectioner une librairie et leur media associé.
 
 image::../images/plex_screenshot_widget_Detail.jpg[]
-Mais aussi le detail du media
+Mais aussi le détail du media.
