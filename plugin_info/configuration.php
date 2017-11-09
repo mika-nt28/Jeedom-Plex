@@ -70,7 +70,7 @@ $('body').on('click','.bt_removecamera', function() {
 	$(this).closest('tr').remove();
 });
 $('body').on('click','#bt_AddServer', function() {
-	AddServer($('#table_server tbody'),'server',['address'=>'','port'=>'']);
+	AddServer($('#table_server tbody'),'server',{'address':'','port':''});
 });
 function AddServer(_el,name,data){
 	var tr=$('<tr>');
