@@ -466,14 +466,15 @@ class plex extends eqLogic {
 				self::$_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
 		//}	
 		//if(!is_object(self::$_server)){
-			$servers = array(
+			/*$servers = array(
 				config::byKey('name', 'plex') => array(
 					'address' => config::byKey('addr', 'plex'),
 					'port' => config::byKey('port', 'plex')
 				)
-			);
-			self::$_plex->registerServers($servers);
-			self::$_server=self::$_plex->getServer(config::byKey('name', 'plex'));
+			);*/
+			$Serveurs=config::byKey('configuration','plex');
+			self::$_plex->registerServers($Serveurs);
+			self::$_server=self::$_plex->getServer($Serveurs[0]);
 		}
 		if(!is_object($this->_client)){
 			$this->_client=self::$_plex->getClient($this->getLogicalId());
