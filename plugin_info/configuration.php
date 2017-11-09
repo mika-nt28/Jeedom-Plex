@@ -70,21 +70,20 @@ $('body').on('click','.bt_removecamera', function() {
 	$(this).closest('tr').remove();
 });
 $('body').on('click','#bt_AddServer', function() {
-	AddServer($('#table_server tbody'),'server','');
+	AddServer($('#table_server tbody'),'server',{'address'=>'','port'=>''});
 });
 function AddServer(_el,name,data){
 	var tr=$('<tr>');
 	tr.append($('<td>')
 		.append($('<input class="form-control input-sm NameServer"placeholder="{{Nom du serveur}}">').val(name)));
 	tr.append($('<td>')
-		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="'+name+'" data-l3key="address" placeholder="{{Adresse ou IP de plex}}"/>'))
-		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="'+name+'" data-l3key="port" placeholder="{{Port de plex}}"/>')));
+		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="'+name+'" data-l3key="address" placeholder="{{Adresse ou IP de plex}}"/>').val(data.address))
+		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="'+name+'" data-l3key="port" placeholder="{{Port de plex}}"/>').val(data.port)));
 	tr.append($('<td>')
 		.append($('<span class="input-group-btn">')
 			.append($('<a class="btn btn-default btn-sm bt_removecamera">')
 				.append($('<i class="fa fa-minus-circle">')))));
 	_el.append(tr);
-	_el.find('tr:last').setValues(data, '.configKey');
 	$('.NameServer').off().on('keyup',function() {
 		$(this).closest('tr').find('.configKey[data-l1key=configuration][data-l3key=address]').attr('data-l2key',$(this).val());
 		$(this).closest('tr').find('.configKey[data-l1key=configuration][data-l3key=port]').attr('data-l2key',$(this).val());
