@@ -99,7 +99,7 @@ function AddServer(_el,data){
 	tr.append($('<td>')
 		.append($('<input class="configKey form-control input-sm "data-l1key="configuration" data-l2key="name" placeholder="{{Nom du serveur}}">')));
 	tr.append($('<td>')
-		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="addr" placeholder="{{Adresse ou IP de plex}}"/>'))
+		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="address" placeholder="{{Adresse ou IP de plex}}"/>'))
 		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="port" placeholder="{{Port de plex}}"/>')));
 	tr.append($('<td>')
 		.append($('<input type="hidden" class="configKey" data-l1key="configuration" data-l2key="id">'))
