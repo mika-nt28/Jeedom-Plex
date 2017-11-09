@@ -8,7 +8,7 @@ if (!isConnect()) {
 ?>
 <div class="col-sm-6">
 	<form class="form-horizontal">
-		<legend>Serveur plex</legend>
+		<legend>Serveur plex<a class="btn btn-success btn-xs pull-right cursor" id="bt_AddServer"><i class="fa fa-check"></i> {{Ajouter}}</a></legend>
 		<fieldset>
 			<table id="table_server" class="table table-bordered table-condensed tablesorter">
 				<thead>
@@ -25,7 +25,7 @@ if (!isConnect()) {
 </div>			
 <div class="col-sm-6">
 	<form class="form-horizontal">
-		<legend>Compte PlexPass<a class="btn btn-success btn-xs pull-right cursor" id="bt_AddServer"><i class="fa fa-check"></i> {{Ajouter}}</a></legend>
+		<legend>Compte Plex</legend>
 		<fieldset>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">{{Nom utilisateur plex.tv}}</label>
