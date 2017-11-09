@@ -60,8 +60,8 @@ $.ajax({
 			return;
 		}
 		if (data.result['configuration']!=''){
-			$.each(data.result['configuration'], function(id,data){
-				AddServer($('#table_server tbody'),data);
+			$.each(data.result['configuration'], function(name,parameter){
+				AddServer($('#table_server tbody'),name,parameter);
 			});
 		}
 	}
@@ -70,15 +70,12 @@ $('body').on('click','.bt_removecamera', function() {
 	$(this).closest('tr').remove();
 });
 $('body').on('click','#bt_AddServer', function() {
-	AddServer($('#table_server tbody'),'');
+	AddServer($('#table_server tbody'),'server','');
 });
-function AddServer(_el,data){
-	var name="new";
-	if(data.length >0)
-		name= data.name;
+function AddServer(_el,name,data){
 	var tr=$('<tr>');
 	tr.append($('<td>')
-		.append($('<input class="configKey form-control input-sm "data-l1key="configuration" data-l2key="name" placeholder="{{Nom du serveur}}">')));
+		.append($('<input class="form-control input-sm NameServer"placeholder="{{Nom du serveur}}">').val(name)));
 	tr.append($('<td>')
 		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="'+name+'" data-l3key="address" placeholder="{{Adresse ou IP de plex}}"/>'))
 		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="'+name+'" data-l3key="port" placeholder="{{Port de plex}}"/>')));
@@ -88,7 +85,7 @@ function AddServer(_el,data){
 				.append($('<i class="fa fa-minus-circle">')))));
 	_el.append(tr);
 	_el.find('tr:last').setValues(data, '.configKey');
-	$('.configKey[data-l1key=configuration][data-l2key=name]').off().on('keyup',function() {
+	$('.NameServer').off().on('keyup',function() {
 		$(this).closest('tr').find('.configKey[data-l1key=configuration][data-l3key=address]').attr('data-l2key',$(this).val());
 		$(this).closest('tr').find('.configKey[data-l1key=configuration][data-l3key=port]').attr('data-l2key',$(this).val());
 	});
