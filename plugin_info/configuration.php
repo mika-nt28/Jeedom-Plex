@@ -60,28 +60,7 @@ $.ajax({
 			return;
 		}
 		if (data.result['configuration']!=''){
-			var Server= new Object();
-			$.each(data.result['configuration'], function(param,valeur){
-				switch(typeof(valeur)){
-					case 'object':
-						$.each(valeur, function(key,value ){
-							if (typeof(Server[key]) === 'undefined')
-								Server[key]= new Object();
-							if (typeof(Server[key]['configuration']) === 'undefined')
-								Server[key]['configuration']= new Object();
-							Server[key]['configuration'][param]=value;
-						});
-					break;
-					case 'string':
-						if (typeof(Server[0]) === 'undefined')
-							Server[0]= new Object();
-						if (typeof(Server[0]['configuration']) === 'undefined')
-							Server[0]['configuration']= new Object();
-						Server[0]['configuration'][param]=valeur;
-					break;
-				}
-			});
-			$.each(Server, function(id,data){
+			$.each(data.result['configuration'], function(id,data){
 				AddServer($('#table_server tbody'),data);
 			});
 		}
@@ -94,20 +73,24 @@ $('body').on('click','#bt_AddServer', function() {
 	AddServer($('#table_server tbody'),'');
 });
 function AddServer(_el,data){
-	var id= $('.configKey[data-l1key=configuration][data-l2key=cameraUrl]').length +1;
+	var name="new";
+	if(data.length >0)
+		name= data.name;
 	var tr=$('<tr>');
 	tr.append($('<td>')
 		.append($('<input class="configKey form-control input-sm "data-l1key="configuration" data-l2key="name" placeholder="{{Nom du serveur}}">')));
 	tr.append($('<td>')
-		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="address" placeholder="{{Adresse ou IP de plex}}"/>'))
-		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="port" placeholder="{{Port de plex}}"/>')));
+		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="'+name+'" data-l3key="address" placeholder="{{Adresse ou IP de plex}}"/>'))
+		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="'+name+'" data-l3key="port" placeholder="{{Port de plex}}"/>')));
 	tr.append($('<td>')
-		.append($('<input type="hidden" class="configKey" data-l1key="configuration" data-l2key="id">'))
 		.append($('<span class="input-group-btn">')
 			.append($('<a class="btn btn-default btn-sm bt_removecamera">')
 				.append($('<i class="fa fa-minus-circle">')))));
 	_el.append(tr);
 	_el.find('tr:last').setValues(data, '.configKey');
-	_el.find('tr:last').find('.configKey[data-l1key=configuration][data-l2key=id]').val(id);
+	$('.configKey[data-l1key=configuration][data-l2key=name]').off().on('keyup',function() {
+		$(this).closest('tr').find('.configKey[data-l1key=configuration][data-l3key=address]').attr('data-l2key',$(this).val());
+		$(this).closest('tr').find('.configKey[data-l1key=configuration][data-l3key=port]').attr('data-l2key',$(this).val());
+	});
 } 
 </script>
