@@ -51,7 +51,7 @@ class plex extends eqLogic {
 			$return['state'] = 'ok';
 		else
 			$return['state'] = 'nok';
-		if(config::byKey('name', 'plex')!=''&&config::byKey('addr', 'plex')!=''&&config::byKey('port', 'plex')!='')
+		if(count(config::byKey('configuration', 'plex'))>0)
 			$return['launchable'] = 'ok';
 		else
 			$return['launchable'] = 'nok';
