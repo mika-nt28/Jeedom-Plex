@@ -466,9 +466,10 @@ class plex extends eqLogic {
 				self::$_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
 		//}	
 		//if(!is_object(self::$_server)){
+			$Serveur=$this->execCmd('serverState');
 			$Serveurs=config::byKey('configuration','plex');
 			self::$_plex->registerServers($Serveurs);
-			self::$_server=self::$_plex->getServer($Serveurs[0]);
+			self::$_server=self::$_plex->getServer($Serveurs[$Serveur]);
 		}
 		if(!is_object($this->_client)){
 			$this->_client=self::$_plex->getClient($this->getLogicalId());
@@ -585,6 +586,8 @@ class plex extends eqLogic {
 		foreach(config::byKey('configuration','plex') as $name => $param){
 			if($list!='')
 				$list.=',';
+			else
+				$server->event($name);
 			$list.=$name.'|'.$name;
 		}
 		$server->setConfiguration('listValue',$list);
@@ -630,6 +633,10 @@ class plex extends eqLogic {
 }
 class plexCmd extends cmd {
      public function execute($_options = null) {
+	     	if($this->getLogicalId()=='server'){
+			$this->getEqLogic->checkAndUpdateCmd('serverState',$_options['select']);
+			return;
+		}
 		$response='';
 		$this->getEqLogic()->ConnexionsPlex();	
 		$plex= plex::$_plex;
