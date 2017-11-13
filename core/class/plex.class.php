@@ -466,7 +466,7 @@ class plex extends eqLogic {
 				self::$_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
 		//}	
 		//if(!is_object(self::$_server)){
-			$Serveur=$this->getCmd('serverState')
+			$Serveur=$this->getCmd(null,'serverState');
 			if(is_object($Serveur))
 				$Serveur=$Serveur->execCmd();
 			$Serveurs=config::byKey('configuration','plex');
