@@ -570,23 +570,28 @@ class plex extends eqLogic {
 	}    
     	public function postSave() {
 		if (!$this->getId())
-          		return;
-		$etat=$this->AddCmd(
-			array(
-				'name' => 'Server séléctioné',
-				'configuration' => array(
-					'commande' => 'serverState',
-				),
-				'type' => 'info',
-				'subType' => 'string'));
-		$server=$this->AddCmd(
-			array(
-				'name' => 'Choix du Server',
-				'configuration' => array(
-					'commande' => 'server',
-				),
-				'type' => 'action',
-				'subType' => 'select'));
+			return;
+		$cmdPlex=	array(
+			'name' => 'Serveur séléctioné',
+			'configuration' => array(
+				'categorie' => 'Application',
+				'commande' => 'serverState',
+			),
+			'type' => 'info',
+			'subType' => 'string',
+			'description' => 'Serveur séléctioné',
+		);
+		$etat=$this->AddCmd($cmdPlex);
+		$cmdPlex=	array(
+			'name' => 'Choix du Serveur',
+			'configuration' => array(
+				'categorie' => 'Application',
+				'commande' => 'server',
+			),
+			'type' => 'action',
+			'subType' => 'select',
+			'description' => 'Choix du Serveur',
+		);
 		$server->setValue($etat->getId());
 		$list='';
 		foreach(config::byKey('configuration','plex') as $name => $param){
