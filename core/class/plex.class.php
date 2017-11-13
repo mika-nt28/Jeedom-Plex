@@ -592,6 +592,7 @@ class plex extends eqLogic {
 			'subType' => 'select',
 			'description' => 'Choix du Serveur',
 		);
+		$server=$this->AddCmd($cmdPlex);
 		$server->setValue($etat->getId());
 		$list='';
 		foreach(config::byKey('configuration','plex') as $name => $param){
