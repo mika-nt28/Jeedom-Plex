@@ -596,7 +596,7 @@ class plex extends eqLogic {
 		$list='';
 		foreach(config::byKey('configuration','plex') as $name => $param){
 			if($list!='')
-				$list.=',';
+				$list.=';';
 			else
 				$server->event($name);
 			$list.=$name.'|'.$name;
