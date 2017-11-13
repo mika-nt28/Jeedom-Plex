@@ -475,7 +475,7 @@ class plex extends eqLogic {
 					break;
 				}
 			}
-			self::$_server=self::$_plex->getServer($Serveurs[$Serveur]);
+			self::$_server=self::$_plex->getServer($Serveur);
 		}
 		if(!is_object($this->_client)){
 			$this->_client=self::$_plex->getClient($this->getLogicalId());
