@@ -51,7 +51,7 @@ class plex extends eqLogic {
 			$return['state'] = 'ok';
 		else
 			$return['state'] = 'nok';
-		if(config::byKey('name', 'plex')!=''&&config::byKey('addr', 'plex')!=''&&config::byKey('port', 'plex')!='')
+		if(count(config::byKey('configuration', 'plex'))>0)
 			$return['launchable'] = 'ok';
 		else
 			$return['launchable'] = 'nok';
@@ -466,14 +466,16 @@ class plex extends eqLogic {
 				self::$_plex->getToken(config::byKey('PlexUser', 'plex'),config::byKey('PlexPassword', 'plex'));
 		//}	
 		//if(!is_object(self::$_server)){
-			$servers = array(
-				config::byKey('name', 'plex') => array(
-					'address' => config::byKey('addr', 'plex'),
-					'port' => config::byKey('port', 'plex')
-				)
-			);
-			self::$_plex->registerServers($servers);
-			self::$_server=self::$_plex->getServer(config::byKey('name', 'plex'));
+			$Serveurs=config::byKey('configuration','plex');
+			self::$_plex->registerServers($Serveurs);
+			$Serveur=$this->getCmd(null,'serverState')->execCmd();
+			if($Serveur == ''){
+				foreach($Serveurs as $name => $param){
+					$Serveur=$name;
+					break;
+				}
+			}
+			self::$_server=self::$_plex->getServer($Serveur);
 		}
 		if(!is_object($this->_client)){
 			$this->_client=self::$_plex->getClient($this->getLogicalId());
@@ -568,8 +570,40 @@ class plex extends eqLogic {
 	}    
     	public function postSave() {
 		if (!$this->getId())
-          		return;
-		global $listCmdPLEX;
+			return;
+		$cmdPlex=	array(
+			'name' => 'Serveur séléctioné',
+			'configuration' => array(
+				'categorie' => 'Application',
+				'commande' => 'serverState',
+			),
+			'type' => 'info',
+			'subType' => 'string',
+			'description' => 'Serveur séléctioné',
+		);
+		$etat=$this->AddCmd($cmdPlex);
+		$cmdPlex=	array(
+			'name' => 'Choix du Serveur',
+			'configuration' => array(
+				'categorie' => 'Application',
+				'commande' => 'server',
+			),
+			'type' => 'action',
+			'subType' => 'select',
+			'description' => 'Choix du Serveur',
+		);
+		$server=$this->AddCmd($cmdPlex);
+		$server->setValue($etat->getId());
+		$list='';
+		foreach(config::byKey('configuration','plex') as $name => $param){
+			if($list!='')
+				$list.=';';
+			else
+				$server->event($name);
+			$list.=$name.'|'.$name;
+		}
+		$server->setConfiguration('listValue',$list);
+		$server->save();
 		if($this->getLogicalId()!= ""){
 			$this->ConnexionsPlex();
 			if($this->_onlyState){
@@ -585,6 +619,7 @@ class plex extends eqLogic {
 				);
 				$this->AddCmd($cmdPlex);
 			}else{
+				global $listCmdPLEX;
 				foreach ($listCmdPLEX as $cmdPlex) {
 					$this->AddCmd($cmdPlex);
 				}
@@ -610,6 +645,10 @@ class plex extends eqLogic {
 }
 class plexCmd extends cmd {
      public function execute($_options = null) {
+	     	if($this->getLogicalId()=='server'){
+			$this->getEqLogic()->checkAndUpdateCmd('serverState',$_options['select']);
+			return;
+		}
 		$response='';
 		$this->getEqLogic()->ConnexionsPlex();	
 		$plex= plex::$_plex;
