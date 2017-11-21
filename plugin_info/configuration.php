@@ -66,7 +66,7 @@ $.ajax({
 		}
 	}
 });
-$('body').on('click','.bt_removecamera', function() {
+$('body').on('click','.bt_removeServer', function() {
 	$(this).closest('tr').remove();
 });
 $('body').on('click','#bt_AddServer', function() {
@@ -81,7 +81,7 @@ function AddServer(_el,name,data){
 		.append($('<input type="text" class="configKey form-control" data-l1key="configuration" data-l2key="'+name+'" data-l3key="port" placeholder="{{Port de plex}}"/>').val(data.port)));
 	tr.append($('<td>')
 		.append($('<span class="input-group-btn">')
-			.append($('<a class="btn btn-default btn-sm bt_removecamera">')
+			.append($('<a class="btn btn-default btn-sm bt_removeServer">')
 				.append($('<i class="fa fa-minus-circle">')))));
 	_el.append(tr);
 	$('.NameServer').off().on('keyup',function() {
