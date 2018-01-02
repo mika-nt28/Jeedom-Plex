@@ -569,6 +569,8 @@ class plex extends eqLogic {
 		$this->setConfiguration('text_color','#BACEC8');
 	}    
     	public function postSave() {
+		if(!is_array(config::byKey('configuration','plex')))
+			return;
 		if (!$this->getId())
 			return;
 		$cmdPlex=	array(
