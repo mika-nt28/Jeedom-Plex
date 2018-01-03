@@ -626,6 +626,7 @@ class plex extends eqLogic {
 					$this->AddCmd($cmdPlex);
 				}
 			}
+			$this->checkAndUpdateCmd('state','stop');
 		}
     	}	
 	
