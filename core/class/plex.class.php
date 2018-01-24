@@ -560,9 +560,9 @@ class plex extends eqLogic {
 		$server->setConfiguration('listValue',$list);
 		$server->save();
 		if($this->getLogicalId()!= ""){
-			$this->AddCommande('Etat du player','state',"info","string","Application");
+			$this->AddCommande('Etat du player','state',"info","string","Application","Plex_State");
 			$this->checkAndUpdateCmd('state','stop');
-			$this->AddCommande('Type de media lue','type',"info","string","Application","Plex_State");
+			$this->AddCommande('Type de media lue','type',"info","string","Application");
 			$this->AddCommande('Media en cours','media',"info","string","Application","Plex_media");
 			$this->ConnexionsPlex();
 			if(!$this->_onlyState){
