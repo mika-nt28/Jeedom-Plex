@@ -561,8 +561,9 @@ class plex extends eqLogic {
 		$server->save();
 		if($this->getLogicalId()!= ""){
 			$this->AddCommande('Etat du player','state',"info","string","Application");
-			$this->AddCommande('Type de media lue','type',"info","string","Application");
-			$this->AddCommande('Media en cours','media',"info","string","Plex_media","Application");
+			$this->checkAndUpdateCmd('state','stop');
+			$this->AddCommande('Type de media lue','type',"info","string","Application","Plex_State");
+			$this->AddCommande('Media en cours','media',"info","string","Application","Plex_media");
 			$this->ConnexionsPlex();
 			if(!$this->_onlyState){
 				$this->AddCommande('Bitrate','getBitrate',"info","string","Media");
@@ -595,7 +596,6 @@ class plex extends eqLogic {
 				$this->AddCommande('Skip Next','skipNext',"action","other","Playback","Plex_telecommande",'<i class="fa fa-arrow-right"></i>');
 				$this->AddCommande('Skip Previous','skipPrevious',"action","other","Playback","Plex_telecommande",'<i class="fa fa-arrow-left"></i>');
 			}
-			$this->checkAndUpdateCmd('state','stop');
 		}
     	}	
 	public function AddCommande($Name,$_logicalId,$Type="info", $SubType='binary',$categorie,$Template='',$icon='',$generic_type='') {
