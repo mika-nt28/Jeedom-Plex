@@ -56,7 +56,7 @@
 		break;
 		case 'pause':
 			$('.iconCmd#id#').append($('<img class="pause_in_cercle cmd noRefresh tooltips" src="plugins/plex/core/template/dashboard/images/pause.png" title="Pause" />'));
-			iif ("#state#" == "pause" || "#state#" == "stop") 
+			if ("#state#" == "pause" || "#state#" == "stop") 
 				$('.iconCmd#id#').closest(".cmd").hide();
 			else
 				$('.iconCmd#id#').closest(".cmd").show();
