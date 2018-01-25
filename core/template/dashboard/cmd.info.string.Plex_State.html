@@ -1,11 +1,13 @@
 <div  style="width: 100px;" class="cmd tooltips cmd-widget" data-type="info" data-subtype="string" data-cmd_id="#id#" title="#collectDate#">
-  <script>
-	  if ("#state#" == "pause" || "#state#" == "stop") {
-		  $(this).closest(".eqLogic .pause_in_cercle").hide();
-		  $(this).closest(".eqLogic .play_in_cercle").show();
-	  }else{
-		  $(this).closest(".eqLogic .pause_in_cercle").show();
-		  $(this).closest(".eqLogic .play_in_cercle").hide();
-	  }
-  </script>
+	<script>
+		if ("#state#" == "pause" || "#state#" == "stop") {
+			$(this).closest(".eqLogic .stop_plex_widget").hide();
+			$(this).closest(".eqLogic .pause_in_cercle").hide();
+			$(this).closest(".eqLogic .play_in_cercle").show();
+		}else{
+			$(this).closest(".eqLogic .stop_plex_widget").hide();
+			$(this).closest(".eqLogic .pause_in_cercle").show();
+			$(this).closest(".eqLogic .play_in_cercle").hide();
+		}
+	</script>
 </div>
