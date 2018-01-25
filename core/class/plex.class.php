@@ -529,33 +529,6 @@ class plex extends eqLogic {
 		}
 		return $return;
 	}
-	
-	public function AddCmd($cmdPlex) 	{
-		$Commande = $this->getCmd(null,$cmdPlex['configuration']['commande']);
-		if (!is_object($Commande))
-		{
-			$Commande = new plexCmd();
-			$Commande->setId(null);
-			$Commande->setName($cmdPlex['name']);
-			$Commande->setLogicalId($cmdPlex['configuration']['commande']);
-			$Commande->setEqLogic_id($this->getId());
-		}
-		$Commande->setType($cmdPlex['type']);
-		$Commande->setSubType($cmdPlex['subType']);
-		reset($cmdPlex['configuration']);
-		while ($configuration = current($cmdPlex['configuration'])) {
-			$Commande->setConfiguration(key($cmdPlex['configuration']),$configuration);
-			next($cmdPlex['configuration']);
-		}
-		if(isset($cmdPlex['display']['icon']))
-			$Commande->setDisplay('icon',$cmdPlex['display']['icon']);
-		if(isset($cmdPlex['display']['template'])){
-			$Commande->setTemplate('dashboard',$cmdPlex['display']['template']);
-			$Commande->setTemplate('mobile', $cmdPlex['display']['template']);
-		}
-		$Commande->save();
-		return $Commande;
-	}
 	public function preUpdate() {
 		if ($this->getLogicalId() == '') {
             		throw new Exception(__('Un client doit etre choisi pour poursuivre',__FILE__));
@@ -573,28 +546,8 @@ class plex extends eqLogic {
 			return;
 		if (!$this->getId())
 			return;
-		$cmdPlex=	array(
-			'name' => 'Serveur séléctioné',
-			'configuration' => array(
-				'categorie' => 'Application',
-				'commande' => 'serverState',
-			),
-			'type' => 'info',
-			'subType' => 'string',
-			'description' => 'Serveur séléctioné',
-		);
-		$etat=$this->AddCmd($cmdPlex);
-		$cmdPlex=	array(
-			'name' => 'Choix du Serveur',
-			'configuration' => array(
-				'categorie' => 'Application',
-				'commande' => 'server',
-			),
-			'type' => 'action',
-			'subType' => 'select',
-			'description' => 'Choix du Serveur',
-		);
-		$server=$this->AddCmd($cmdPlex);
+		$etat=$this->AddCommande('Serveur séléctioné','serverState',"info","string");
+		$server=$this->AddCommande('Choix du Serveur','server',"action","select");
 		$server->setValue($etat->getId());
 		$list='';
 		foreach(config::byKey('configuration','plex') as $name => $param){
@@ -607,28 +560,65 @@ class plex extends eqLogic {
 		$server->setConfiguration('listValue',$list);
 		$server->save();
 		if($this->getLogicalId()!= ""){
+			$this->AddCommande('Etat du player','state',"info","string","Application","Plex_State");
+			$this->checkAndUpdateCmd('state','stop');
+			$this->AddCommande('Type de media lue','type',"info","string","Application");
+			$this->AddCommande('Media en cours','media',"info","string","Application","Plex_media");
 			$this->ConnexionsPlex();
-			if($this->_onlyState){
-				$cmdPlex=	array(
-					'name' => 'Etat du player',
-					'configuration' => array(
-						'categorie' => 'Application',
-						'commande' => 'state',
-					),
-					'type' => 'info',
-					'subType' => 'string',
-					'description' => 'Etat du player',
-				);
-				$this->AddCmd($cmdPlex);
-			}else{
-				global $listCmdPLEX;
-				foreach ($listCmdPLEX as $cmdPlex) {
-					$this->AddCmd($cmdPlex);
-				}
+			if(!$this->_onlyState){
+				$this->AddCommande('Bitrate','getBitrate',"info","string","Media");
+				$this->AddCommande('Duration','getDuration',"info","string","Media","Plex_Duration");
+				$this->AddCommande('View Media Offset','viewOffset',"info","string","Application","Plex_Duration");
+				$this->AddCommande('Volume','setVolume',"action","slider","Application");
+				$this->AddCommande('Play Media','playMedia',"action","other","Application","Plex_telecommande",'<i class="fa fa-play"></i>');
+				$this->AddCommande('Play Media Last Stopped','playMediaLastStopped',"action","other","Application","Plex_telecommande",'<i class="fa fa-play"></i>');
+				$this->AddCommande('Back','back',"action","other","Navigation","Plex_telecommande",'<i class="fa fa-reply"></i>');
+				$this->AddCommande('Up','moveUp',"action","other","Navigation","Plex_telecommande",'<i class="fa fa-arrow-up"></i>');
+				$this->AddCommande('Left','moveLeft',"action","other","Navigation","Plex_telecommande",'<i class="fa fa-left"></i>');
+				$this->AddCommande('Right','moveRight',"action","other","Navigation","Plex_telecommande",'<i class="fa fa-right"></i>');
+				$this->AddCommande('Down','moveDown',"action","other","Navigation","Plex_telecommande",'<i class="fa fa-down"></i>');
+				$this->AddCommande('Page Up','pageUp',"action","other","Navigation","Plex_telecommande",'<i class="fa fa-chevron-up"></i>');
+				$this->AddCommande('Page Down','pageDown',"action","other","","Plex_telecommande",'<i class="fa fa-chevron-down"></i>');
+				$this->AddCommande('Next Letter','nextLetter',"action","other","Navigation","Plex_telecommande",'<i class="fa fa-caret-square-o-up"></i>');
+				$this->AddCommande('Previous Letter','previousLetter',"action","other","Navigation","Plex_telecommande",'<i class="fa fa-caret-square-o-down"></i>');
+				$this->AddCommande('Select','select',"action","other","Navigation","Plex_telecommande",'<i class="fa fa-check"></i>');
+				$this->AddCommande('Context Menu','contextMenu',"action","other","Navigation","Plex_telecommande",'<i class="fa fa-home"></i>');
+				$this->AddCommande('Toggle OSD','toggleOSD',"action","other","Navigation","Plex_telecommande",'<i class="icon techno-television4"></i>');
+				$this->AddCommande('Rewind','rewind',"action","other","Playback","Plex_telecommande",'<i class="fa fa-backward"></i>');
+				$this->AddCommande('Fast Forward','fastForward',"action","other","Playback","Plex_telecommande",'<i class="fa fa-forward"></i>');
+				$this->AddCommande('Step Backward','stepBack',"action","other","Playback","Plex_telecommande",'<i class="fa fa-step-backward"></i>');
+				$this->AddCommande('Big Step Forward','bigStepForward',"action","other","Playback","Plex_telecommande",'<i class="fa fa-fast-forward"></i>');
+				$this->AddCommande('Play','play',"action","other","Playback","Plex_telecommande",'<i class="fa fa-play"></i>');
+				$this->AddCommande('Pause','pause',"action","other","Playback","Plex_telecommande",'<i class="fa fa-pause"></i>');
+				$this->AddCommande('Stop','stop',"action","other","Playback","Plex_telecommande",'<i class="fa fa-stop"></i>');
+				$this->AddCommande('Step Forward','stepForward',"action","other","Playback","Plex_telecommande",'<i class="fa fa-step-forward"></i>');
+				$this->AddCommande('Big Step Back','bigStepBack',"action","other","Playback","Plex_telecommande",'<i class="fa fa-fast-backward"></i>');
+				$this->AddCommande('Skip Next','skipNext',"action","other","Playback","Plex_telecommande",'<i class="fa fa-arrow-right"></i>');
+				$this->AddCommande('Skip Previous','skipPrevious',"action","other","Playback","Plex_telecommande",'<i class="fa fa-arrow-left"></i>');
 			}
 		}
     	}	
-	
+	public function AddCommande($Name,$_logicalId,$Type="info", $SubType='binary',$categorie,$Template='',$icon='',$generic_type='') {
+		$Commande = $this->getCmd(null,$_logicalId);
+		if (!is_object($Commande))
+		{
+			$Commande = new plexCmd();
+			$Commande->setId(null);
+			$Commande->setName($Name);
+			$Commande->setIsVisible(1);
+			$Commande->setLogicalId($_logicalId);
+			$Commande->setEqLogic_id($this->getId());
+		}
+		$Commande->setType($Type);
+		$Commande->setSubType($SubType);
+   		$Commande->setTemplate('dashboard',$Template );
+		$Commande->setTemplate('mobile', $Template);
+		$Commande->setDisplay('icon', $icon);
+		$Commande->setDisplay('generic_type', $generic_type);
+		$Commande->setConfiguration('categorie',$categorie);
+		$Commande->save();
+		return $Commande;
+	}
 	public function toHtml($_version = 'dashboard') {
 		$replace = $this->preToHtml($_version);
 		if (!is_array($replace)) 
