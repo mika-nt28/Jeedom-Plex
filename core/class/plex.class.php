@@ -26,8 +26,8 @@ class plex extends eqLogic {
 		if ($this->getIsEnable() == 1 && $this->getConfiguration('heartbeat',0) == 1) {
 			$this->ConnexionsPlex();
 			if(isset($this->_client)&&is_object($this->_client)){
-				$Serveur=$this->getCmd(null,'serverState')->execCmd();
-				if($Serveur != ''){
+				$Serveur=self::$_plex->getServer($this->getCmd(null,'serverState')->execCmd());
+				if(is_object($Serveur)){
 					$session=$Serveur->getActiveSession();
 					$Etat=$session->getPlayer(array($this->getLogicalId()));
 					$this->checkAndUpdateCmd('state',$Etat);
