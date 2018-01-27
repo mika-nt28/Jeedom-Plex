@@ -1,0 +1,20 @@
+== Plex
+
+=== Beschreibung
+Contrôler vos clients plex grâce a votre domotique.
+Créer des réveil, musical grâce a l'association de plex et de jeedom.
+
+Was ist PLEX?
+Plex organise vidéo, musique et photos à partir de bibliothèques de médias personnels et les cours d'eau pour les téléviseurs intelligents, des boîtes en streaming et les appareils mobiles. Il est un système de lecteur multimédia et suite logicielle composée de plusieurs applications de lecture pour les interfaces utilisateur.       
+
+'''
+=== Plex Server Konfiguration
+include::configuration_Server.asciidoc[]
+
+'''
+=== Plex Client Konfiguration
+include::configuration_Client.asciidoc[]
+
+'''
+=== Verwendung des Widgets
+include::widget.asciidoc[]
