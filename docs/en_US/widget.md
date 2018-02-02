@@ -2,7 +2,7 @@ image::../images/plex_screenshot_widget_principal.jpg[]
 L'écran principal du widget permet les fonctions de base :
 
 * Saut arrière
-* Front flip
+* Saut avant
 * Reculer
 * Avancer
 * Affichage du menu

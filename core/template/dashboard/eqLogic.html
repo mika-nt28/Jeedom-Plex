@@ -87,7 +87,7 @@
 			</div>		
         </div>
         <div class="media_Library"> </div>
-		<img class="sections_droite_liste tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Listes" onClick="listefermer()"/>
+		<img class="sections_droite_liste tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Listes" />
 	</div>
 	<!-- Partie telecommande du Widget-->
 	<div class="telecommande_plex_widget">
@@ -117,15 +117,15 @@
 			#skipNext#
 			#stepForward#
 		</div>
-		<img class="working_droite_telecommande noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Télécommande" onClick="telecommandefermer()"/>
+		<img class="working_droite_telecommande noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Télécommande"/>
 	</div>
 	<!-- Partie Haute du Widget-->
 	<div class="haut_plex_widget">
     	<a class="position_longueur_plex tooltips" style="text-decoration: none; color: #404040; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px;font-weight:bold;">#viewOffset#</a>
     	<a href="#eqLink#" class="titre_haut_plex_widget"> #name# </a>
 	<a class="time_haut_plex_widget tooltips" style="text-decoration: none; color: #404040; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px;font-weight:bold;" title="Durée"></a>
-	<img class="working_droite tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Télécommande" onClick="telecommande()"/>
-	<img class="sections_gauche tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" onclick="liste()" title="Informations"/>
+	<img class="working_droite tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Télécommande" />
+	<img class="sections_gauche tooltips noRefresh" src="plugins/plex/core/template/dashboard/images/chevron.png" title="Informations"/>
 		<div class="jaquette_plex"></div>
 		<div class="titre_plex">
 			<a class="gros_titre_plex tooltips noRefresh" style="text-decoration: none; cursor:default;" title=""></a>
@@ -158,28 +158,28 @@
 	</div>
 	#media#
 	<script type="text/javascript">
-		function telecommande(){
+		$('.eqLogic[data-eqLogic_uid=#uid#] .working_droite').on('click',function(){
 			$(".plex[data-eqLogic_uid=#uid#] .telecommande_plex_widget").animate({right:"0px"});
 			$(".plex[data-eqLogic_uid=#uid#] .telecommande_plex_widget").attr("class","telecommande_plex_widget shadow_fenetre_plex");
 			if ($(".plex[data-eqLogic_uid=#uid#] .media_panel").css("left") == "0px"){
-				listefermer();
+				$('.eqLogic[data-eqLogic_uid=#uid#] .sections_droite_liste').trigger('click');
 			}
-		}
-		function telecommandefermer(){
+		});
+		$('.eqLogic[data-eqLogic_uid=#uid#] .working_droite_telecommande').on('click',function(){
 			$(".plex[data-eqLogic_uid=#uid#] .telecommande_plex_widget").animate({right:"-200px"});
 			$(".plex[data-eqLogic_uid=#uid#] .telecommande_plex_widget").attr("class","telecommande_plex_widget");
-		}
-		function liste(){
+		});
+		$('.eqLogic[data-eqLogic_uid=#uid#] .sections_gauche').on('click',function(){
 			$(".plex[data-eqLogic_uid=#uid#] .media_panel").animate({left:"0px"});
 			$(".plex[data-eqLogic_uid=#uid#] .media_panel").attr("class","media_panel shadow_fenetre_plex");
 			if ($(".plex[data-eqLogic_uid=#uid#] .media_panel").css("right") == "0px"){
-				telecommandefermer();
+				$('.eqLogic[data-eqLogic_uid=#uid#] .working_droite_telecommande').trigger('click');
 			}
-		}
-		function listefermer(){
+		});
+		$('.eqLogic[data-eqLogic_uid=#uid#] .sections_droite_liste').on('click',function(){
 			$(".plex[data-eqLogic_uid=#uid#] .media_panel").animate({left:"-200px"});
 			$(".plex[data-eqLogic_uid=#uid#] .media_panel").attr("class","media_panel");
-		}
+		});
 		$(".plex[data-eqLogic_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
 		function volume_plex(bouton){
 			if(bouton == 'bouton'){

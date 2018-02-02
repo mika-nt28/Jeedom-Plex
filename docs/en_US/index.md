@@ -1,6 +1,6 @@
 == Plex
 
-= Description
+=== Description
 Contrôler vos clients plex grâce a votre domotique.
 Créer des réveil, musical grâce a l'association de plex et de jeedom.
 
