@@ -426,8 +426,12 @@ class plex extends eqLogic {
 			$return['Type']=$media->getType();
 		if(method_exists($media,'getTitle'))
 			$return['Title']=$media->getTitle();
-		if(method_exists($media,'getThumb'))
-			$return['Poster']='http://'.config::byKey('addr', 'plex').':'.config::byKey('port', 'plex').$media->getThumb();
+		if(method_exists($media,'getThumb')){
+			$Serveur=self::$_plex->getServer($this->getCmd(null,'serverState')->execCmd());
+			if(is_object($Serveur)){
+				$return['Poster']='http://'.$Serveur->getAddress().':'.$Serveur->getPort().$media->getThumb();
+			}
+		}
 		if(method_exists($media,'getYear'))
 			$return['Année']=$media->getYear();
 		if(method_exists($media,'getDuration'))
