@@ -418,7 +418,7 @@ class plex extends eqLogic {
 		}
 		return $reponse;
 	}
-	public static function ListMedia($media){
+	public function ListMedia($media){
 		$return =array();
 		if(method_exists($media,'getKey'))
 			$return['Key']=$media->getKey();
@@ -519,11 +519,11 @@ class plex extends eqLogic {
 			if(count($reponse)>1){
 				foreach($reponse as $media)
 				{
-					$return['Media'][]=self::ListMedia($media);
+					$return['Media'][]=$this->ListMedia($media);
 				}
 			}else{
 				$media=$reponse[0];
-				$return['Media']=self::ListMedia($media);
+				$return['Media']=$this->ListMedia($media);
 				$param['Key']="/library/metadata/".$media->getParentRatingKey()."/children";
 				if($param['Key']==''){
 					$param['Key']=$media->getLibrarySectionId();
