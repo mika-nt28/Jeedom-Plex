@@ -6,6 +6,7 @@
 	"require" : "3.0",
 	"category" : "multimedia",
 	"hasOwnDeamon" : true,
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile"],
 	"issue" : "https://github.com/mika-nt28/Jeedom-Plex/issues",
  	"changelog" : "https://github.com/mika-nt28/Jeedom-Plex/commits/master",
  	"documentation" : "https://jeedom.github.io/documentation/third_plugin/plex/fr_FR/index.html"
