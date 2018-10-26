@@ -8,6 +8,6 @@
 	"hasOwnDeamon" : true,
 	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile"],
 	"issue" : "https://github.com/mika-nt28/Jeedom-Plex/issues",
- 	"changelog" : "https://github.com/mika-nt28/Jeedom-Plex/commits/master",
+ 	"changelog" : "https://github.com/mika-nt28/Jeedom-Plex/commits/stable",
  	"documentation" : "https://mika-nt28.github.io/Jeedom-Plex/"
 }
