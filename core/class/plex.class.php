@@ -672,8 +672,7 @@ class plexCmd extends cmd {
 			{
 				case 'Playback':
 					$playback = $client->getPlaybackController();
-					switch ($this->getConfiguration('commande'))
-					{
+					switch ($this->getLogicalId()){
 						case 'play':
 							$response=$playback->play();
 						break;
@@ -711,8 +710,7 @@ class plexCmd extends cmd {
 				break;
 				case 'Navigation':
 					$navigation = $client->getNavigationController();
-					switch ($this->getConfiguration('commande'))
-					{
+					switch ($this->getLogicalId()){
 						case 'moveUp':
 							$response=$navigation->moveUp();
 						break;
@@ -754,7 +752,7 @@ class plexCmd extends cmd {
 				case 'Application':
 					$application = $client->getApplicationController();
 					$navigation = $client->getNavigationController();
-					switch ($this->getLogicalId())	{
+					switch ($this->getLogicalId()){
 						/*case 'viewOffset':
 							$response=0;
 							if(method_exists($media,'getViewOffset'))
