@@ -15,31 +15,31 @@ class plex extends eqLogic {
 		while(true){
 			$eqLogics = eqLogic::byType('plex');
 			if(is_array($eqLogics)){
-				foreach($eqLogics as $plexClient) 
-					$plexClient->StateControl();
+				foreach($eqLogics as $plexClient) {
+					if($plexClient->getIsEnable() && $plexClient->getLogicalId() != '' && $plexClient->getConfiguration('heartbeat',0) == 1)
+						$plexClient->StateControl();
+				}
 			}
 			sleep(10);
 		}
 	}
 	public function StateControl() {
-		if ($this->getIsEnable() == 1 && $this->getConfiguration('heartbeat',0) == 1) {
-			$this->ConnexionsPlex();
-			if(isset($this->_client)&&is_object($this->_client)){
-				$Serveur=self::$_plex->getServer($this->getCmd(null,'serverState')->execCmd());
-				if(is_object($Serveur)){
-					$session=$Serveur->getActiveSession();
-					$Etat=$session->getPlayer(array($this->getLogicalId()));
-					$this->checkAndUpdateCmd('state',$Etat);
-					$ItemsSession=$session->getItems();
-					if (count($ItemsSession)>0){
-						$this->checkAndUpdateCmd('type',$ItemsSession[0]->getType());
-						log::add('plex','debug','Type de media : '.$ItemsSession[0]->getType());
-						$this->checkAndUpdateCmd('media',$ItemsSession[0]->getTitle());		
-						cache::set('plex::MediaKey::'.$this->getId(),$ItemsSession[0]->getKey(), 0);
-						log::add('plex','debug','Titre de media : '.$ItemsSession[0]->getTitle());
-						$this->checkAndUpdateCmd('viewOffset',$ItemsSession[0]->getViewOffset());
-						log::add('plex','debug','Temps de lecture : '.$ItemsSession[0]->getViewOffset());
-					}
+		$this->ConnexionsPlex();
+		if(isset($this->_client) && is_object($this->_client)){
+			$Serveur=self::$_plex->getServer($this->getCmd(null,'serverState')->execCmd());
+			if(is_object($Serveur)){
+				$session=$Serveur->getActiveSession();
+				$Etat=$session->getPlayer(array($this->getLogicalId()));
+				$this->checkAndUpdateCmd('state',$Etat);
+				$ItemsSession=$session->getItems();
+				if (count($ItemsSession)>0){
+					$this->checkAndUpdateCmd('type',$ItemsSession[0]->getType());
+					log::add('plex','debug','Type de media : '.$ItemsSession[0]->getType());
+					$this->checkAndUpdateCmd('media',$ItemsSession[0]->getTitle());		
+					cache::set('plex::MediaKey::'.$this->getId(),$ItemsSession[0]->getKey(), 0);
+					log::add('plex','debug','Titre de media : '.$ItemsSession[0]->getTitle());
+					$this->checkAndUpdateCmd('viewOffset',$ItemsSession[0]->getViewOffset());
+					log::add('plex','debug','Temps de lecture : '.$ItemsSession[0]->getViewOffset());
 				}
 			}
 		}
