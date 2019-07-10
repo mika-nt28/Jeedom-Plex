@@ -7,24 +7,28 @@ Qu'est ce que PLEX?
 Plex organise vidéo, musique et photos à partir de bibliothèques de médias personnels et les cours d'eau pour les téléviseurs intelligents, des boîtes en streaming et les appareils mobiles. Il est un système de lecteur multimédia et suite logicielle composée de plusieurs applications de lecture pour les interfaces utilisateur.       
 
 
-Configuration du serveur Plex
-=============================
+Configuration 
+=============
 
-La première chose à réaliser est de connecter Jeedom au serveur Plex.
-
-Juste après l'activation, nous avons les champs de paramétrage du serveur.
+Configuration des serveur Plex
+------------------------------
+La première chose à réaliser est de connecter Jeedom aux serveurs Plex.
+Il est possible de disposer de plusieurs serveur
 
 ![introduction01](../images/plex_screenshot_configuration3.jpg)	
 
-Remplissez donc bien les 3 champs
+Cliquez sur "Ajouter" et complétez les 3 champs d'informations pour la connexion a chaque serveur
 
 * Adresse ip du serveur
 * Le port de connexion
 * Son nom, attention de bien respecter la casse de ce paramètre
 
+Configuration d'un compte Plex
+------------------------------
+Il est recommandé de se connecteur avec un compte plex pour securisé les connexions.
+Pour liee se compte a jeedom il faut saisir vos identifiants
 
 Pour connaître les informations liées à votre installation Plex, je vous conseille d'ouvrir la page de configuration de votre serveur Plex.
-
 ![introduction01](../images/plex_screenshot_ServeurConfiguration.jpg)	
 
 Nota:
@@ -36,6 +40,8 @@ Le démon permet de scruter l'état de medias en cours et détermine si une paus
 Configuration des clients Plex
 ==============================
 
+Configuration de l'equipement 
+-----------------------------
 Nous allons nous rendre sur la page de paramétrage des clients Plex Plugins > Multimedia > Plex.
 Arrivé sur cette page, nous allons pouvoir accéder à nos clients déja configurés, ou en ajouter un.
 
@@ -46,10 +52,18 @@ Vous l'aurez deviné, pour ajouter un client, il suffit de cliquer sur le bouton
 ![introduction01](../images/plex_screenshot_configuration2.jpg)	
 
 Commencez par personnaliser les paramètres généraux (activer, visible, parent)
-N'oubliez pas d'activer l'option "Heartbeat" pour que le démon surveille votre client.
 
-Dans la partie configuration, le plugin détecte automatiquement tous les clients compatibles (Aujourd'hui teste Rasplex et plex home theater).
-*Vos clients doivent impérativement être lancés et connectés au serveur Plex*
+Parametre du client
+-------------------.
+
+Pour liée Jeedom a un client plex, il faudra selectionner un client.
+Pour qu'un client soit visible dans le plugin il faut que celui ci soit ouvert et connecter au serveur/
+Certain client ne sont disponible que dans leur retour d'etat, dans ce cas il faut qu'un media soit en cours de lecture pour qu'il soit visible
+
+Activer l'option "Heartbeat" pour que le démon surveille votre client et mette a jours ses etat de lecture.
+
+Si votre client est sur la meme machine que votre serveur alors le serveur remontra un ip localhost.
+Si jeedom n'est pas sur cette meme machine alors il faut luis spécifié l'adresse ip du client sur le reseau
 
 Ajoutez un incrément pour le volume.
 
