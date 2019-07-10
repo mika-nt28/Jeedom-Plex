@@ -84,14 +84,24 @@
 	    				<form class="form-horizontal">
 						<fieldset>
 							<div class="form-group ">
-	                					<label class="col-sm-3 control-label">{{Nom de l'équipement template}}</label>
+	                					<label class="col-sm-3 control-label">
+									{{Nom de l'équipement Plex}}
+									<sup>
+										<i class="fa fa-question-circle tooltips" title="{{Indiquer le nom de votre client}}"></i>
+									</sup>
+								</label>
 								<div class="col-sm-3">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
 	                    						<input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement template}}"/>
 								</div>
 							</div>
 							<div class="form-group">
-	                					<label class="col-sm-2 control-label" >{{Objet parent}}</label>
+	                					<label class="col-sm-3 control-label" >
+									{{Objet parent}}
+									<sup>
+										<i class="fa fa-question-circle tooltips" title="{{Indiquer l'objet dans lequel le widget de cette zone apparaîtra sur le Dashboard}}"></i>
+									</sup>
+								</label>
 								<div class="col-sm-3">
 									<select id="sel_object" class="eqLogicAttr form-control" data-l1key="object_id">
 										<option value="">{{Aucun}}</option>
@@ -103,7 +113,12 @@
 								</div>
 							</div>
 							<div class="form-group">
-	                					<label class="col-sm-3 control-label">{{Catégorie}}</label>
+	                					<label class="col-sm-3 control-label">
+									{{Catégorie}}
+									<sup>
+										<i class="fa fa-question-circle tooltips" title="{{Choisir une catégorie. Cette information n'est pas obligatoire mais peut être utile pour filtrer les widgets}}"></i>
+									</sup>
+								</label>
 								<div class="col-sm-9">
 									<?php
 										foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
@@ -115,7 +130,14 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"></label>
+								<label class="col-sm-3 control-label">
+									{{Etat du widget}}
+									<sup>
+										<i class="fa fa-question-circle tooltips" title="{{Choisissez les options de visibilité et d'activation
+										Si l'equipement n'est pas activé il ne sera pas utilisable dans jeedom, mais visible sur le dashboard
+										Si l'equipement n'est pas visible il ne sera caché sur le dashbord, mais utilisable dans jeedom}}"></i>
+									</sup>
+								</label>
 								<div class="col-sm-9">
 									<label class="checkbox-inline">
 										<input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>
@@ -138,7 +160,7 @@
 	        						<label class="col-sm-3 control-label">
 									{{Heartbeat}}
 									<sup>
-										<i class="fa fa-question-circle tooltips" style="font-size : 1em;color:grey;" title="Permet de vérifier toutes les minutes si le plex est toujours actif. Si il n'est plus actif, cela le mettra comme arrêté dans Jeedom. Utile pour les plexs qui sont sur des machines qui s'éteignent sans forcément arrêter plex"></i>
+										<i class="fa fa-question-circle tooltips" title="{{Permet de vérifier toutes les minutes si le plex est toujours actif. Si il n'est plus actif, cela le mettra comme arrêté dans Jeedom. Utile pour les plexs qui sont sur des machines qui s'éteignent sans forcément arrêter plex}}"></i>
 									</sup>
 								</label>
 							        <div class="col-sm-3">
@@ -149,7 +171,7 @@
 								<label class="col-sm-3 control-label">
 									{{Choisir le client}}
 									<sup>
-										<i class="fa fa-question-circle tooltips" style="font-size : 1em;color:grey;" title="Permet de choisir un client reconnue par le systeme. Attention les clients doivent etres actif pour etre reconnue"></i>
+										<i class="fa fa-question-circle tooltips" title="{{Permet de choisir un client reconnue par le systeme. Attention les clients doivent etres actif pour etre reconnue}}"></i>
 									</sup>
 								</label>
 								<div class="col-sm-8">
@@ -164,14 +186,24 @@
 									?>
 								</div>
 							</div>
-							<div class="form-group expertModeVisible">								
-								<label class="col-sm-3 control-label">{{Modifier son address}}</label>
+							<div class="form-group">								
+								<label class="col-sm-3 control-label">
+									{{Changer IP}}
+									<sup>
+										<i class="fa fa-question-circle tooltips" title="{{Dans le cas ou le client est sur la meme machine que le serveur, alors jeedom recevera une ip local. Ici nous pouvons luis saisir sont ip reseau}}"></i>
+									</sup>
+								</label>
 								<div class="col-sm-8">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="HostUpdate" placeholder="{{Modifier son address}}"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">{{Volume +/-}}</label>
+								<label class="col-sm-3 control-label">
+									{{Volume +/-}}
+									<sup>
+										<i class="fa fa-question-circle tooltips" title="{{Permet de choisir un increment du volume}}"></i>
+									</sup>
+								</label>
 								<div class="col-sm-8">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="volume_inc" placeholder="{{Volume incrément}}"/>
 								</div>
