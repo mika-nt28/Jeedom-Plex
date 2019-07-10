@@ -54,7 +54,7 @@ Vous l'aurez deviné, pour ajouter un client, il suffit de cliquer sur le bouton
 Commencez par personnaliser les paramètres généraux (activer, visible, parent)
 
 Parametre du client
--------------------.
+------------------
 
 Pour liée Jeedom a un client plex, il faudra selectionner un client.
 Pour qu'un client soit visible dans le plugin il faut que celui ci soit ouvert et connecter au serveur/
