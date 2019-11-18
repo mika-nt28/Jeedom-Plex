@@ -15,7 +15,7 @@ Configuration des serveur Plex
 La première chose à réaliser est de connecter Jeedom aux serveurs Plex.
 Il est possible de disposer de plusieurs serveur
 
-![introduction01](../images/plex_screenshot_configuration3.jpg)	
+![introduction01](../images/plex_screenshot_configuration3.JPG)	
 
 Cliquez sur "Ajouter" et complétez les 3 champs d'informations pour la connexion a chaque serveur
 
@@ -45,16 +45,16 @@ Configuration de l'equipement
 Nous allons nous rendre sur la page de paramétrage des clients Plex Plugins > Multimedia > Plex.
 Arrivé sur cette page, nous allons pouvoir accéder à nos clients déja configurés, ou en ajouter un.
 
-![introduction01](../images/plex_screenshot_configuration1.jpg)	
+![introduction01](../images/plex_screenshot_configuration1.JPG)	
 
 Vous l'aurez deviné, pour ajouter un client, il suffit de cliquer sur le bouton "Ajouter" et de nommer l'équipement dans la fenêtre qui va apparaître.
 
-![introduction01](../images/plex_screenshot_configuration2.jpg)	
+![introduction01](../images/plex_screenshot_configuration2.JPG)	
 
 Commencez par personnaliser les paramètres généraux (activer, visible, parent)
 
 Parametre du client
--------------------.
+------------------
 
 Pour liée Jeedom a un client plex, il faudra selectionner un client.
 Pour qu'un client soit visible dans le plugin il faut que celui ci soit ouvert et connecter au serveur/
