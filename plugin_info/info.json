@@ -7,5 +7,6 @@
 	"category" : "multimedia",
 	"hasOwnDeamon" : true,
 	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile"],
- 	"documentation" : "https://mika-nt28.github.io/Jeedom-Plex/"
+ 	"documentation" : "https://mika-nt28.github.io/Jeedom-Plex/",
+	"changelog" : "https://mika-nt28.github.io/Jeedom-Plex/"
 }
