@@ -603,7 +603,7 @@ class plex extends eqLogic {
 			}
 		}
     	}	
-	public function AddCommande($Name,$_logicalId,$Type="info", $SubType='binary',$categorie,$Template='',$icon='',$generic_type='') {
+	public function AddCommande($Name,$_logicalId,$Type="info", $SubType='binary',$categorie='',$Template='',$icon='',$generic_type='') {
 		$Commande = $this->getCmd(null,$_logicalId);
 		if (!is_object($Commande))
 		{
