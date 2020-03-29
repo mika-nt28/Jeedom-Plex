@@ -102,7 +102,7 @@ abstract class Plex_Server_Library_ItemAbstract
 			}
 		}
 	}
-	public function getPolymorphicItem($polymorphicData)
+	public function getPolymorphicItem($polymorphicData, $scopedToItem = FALSE)
 	{
 		// At the item level, instead of assuming an integer is a rating key, we
 		// assume an integer is an index. This allows us to retrieve seasons,
