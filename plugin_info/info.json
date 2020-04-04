@@ -7,6 +7,6 @@
 	"category" : "multimedia",
 	"hasOwnDeamon" : true,
 	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile","v4"],
- 	"documentation" : "https://mika-nt28.github.io/Documentations/plex/",
-	"changelog" : "https://mika-nt28.github.io/Documentations/plex/changelog"
+ 	"documentation" : "https://mika-nt28.github.io/Documentations/plex/#language#/",
+	"changelog" : "https://mika-nt28.github.io/Documentations/plex/#language#/changelog"
 }
